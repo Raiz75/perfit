@@ -527,13 +527,19 @@
          </div>
      </div>
 <!--script-->
-    <script src="callApi.js"></script>
     <script>
-        if (typeof apiKey !== "undefined" && apiKey) {
-            console.warn("AI functions are enabled — running with API");
+        if (location.hostname === "localhost") {
+            let script = document.createElement("script");
+            script.src = "callApi.js";
+            document.head.appendChild(script);
         } else {
-            console.warn("AI functions are disabled — running without API");
+            console.warn("Skipping callApi.js — running in production without API key");
         }
+        // if (typeof apiKey !== "undefined" && apiKey) {
+        //     console.warn("AI functions are enabled — running with API");
+        // } else {
+        //     console.warn("AI functions are disabled — running without API");
+        // }
     //varibales
         let gender=0;
         let age=0;
