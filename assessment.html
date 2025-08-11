@@ -533,7 +533,7 @@
             script.src = "callApi.js";
             document.head.appendChild(script);
         } else {
-            console.warn("Skipping callApi.js — running in production without API key");
+            console.warn("Skipping callApi.js — For testing only");
         }
     //varibales
         let gender=0;
@@ -1528,7 +1528,7 @@
 
             let AI_API;
             if (location.hostname !== "localhost") {
-                console.warn("This code has no API");
+                console.warn("This code has no API, For testing only");
                 document.getElementById("responseDiv").innerHTML = "AI functions are disabled";
             }else{
                 AI_API=apiKey;
