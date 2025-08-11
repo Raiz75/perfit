@@ -1527,7 +1527,8 @@
             `;
 
             let AI_API;
-            if (!apiKey) {
+            if (location.hostname !== "localhost") {
+                console.warn("This code has no API");
                 document.getElementById("responseDiv").innerHTML = "AI functions are disabled";
             }else{
                 AI_API=apiKey;
