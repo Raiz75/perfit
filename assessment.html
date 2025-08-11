@@ -529,10 +529,10 @@
 <!--script-->
     <script src="callApi.js"></script>
     <script>
-        if (!apiKey) {
-            console.warn("AI functions are disabled — running without API");
-        }else{
+        if (typeof apiKey !== "undefined" && apiKey) {
             console.warn("AI functions are enabled — running with API");
+        } else {
+            console.warn("AI functions are disabled — running without API");
         }
     //varibales
         let gender=0;
