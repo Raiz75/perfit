@@ -527,7 +527,13 @@
          </div>
      </div>
 <!--script-->
+    <script src="callApi.js"></script>
     <script>
+        if (!apiKey) {
+            console.warn("AI functions are disabled — running without API");
+        }else{
+            console.warn("AI functions are enabled — running with API");
+        }
     //varibales
         let gender=0;
         let age=0;
@@ -1519,42 +1525,46 @@
                 <h2 style="color:rgb(128, 65, 128);">Ministry Pathway / Journey Map:</h2>
             `;
 
-            const apiKey = "test";
+            let AI_API;
+            if (!apiKey) {
+                document.getElementById("responseDiv").innerHTML = "AI functions are disabled";
+            }else{
+                AI_API=apiKey;
+                try {
+                    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${AI_API}`
+                        },
+                        body: JSON.stringify({
+                            model: 'gpt-3.5-turbo',
+                            messages: [
+                                { role: 'system', content: 'You are a helpful church ministry assistant.' },
+                                { role: 'user', content: message }
+                            ],
+                            temperature: 0.7
+                        })
+                    });
 
-            try {
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
-                    },
-                    body: JSON.stringify({
-                        model: 'gpt-3.5-turbo',
-                        messages: [
-                            { role: 'system', content: 'You are a helpful church ministry assistant.' },
-                            { role: 'user', content: message }
-                        ],
-                        temperature: 0.7
-                    })
-                });
+                    if (!response.ok) {
+                        const error = await response.text();
+                        throw new Error(`OpenAI API error: ${error}`);
+                    }
 
-                if (!response.ok) {
-                    const error = await response.text();
-                    throw new Error(`OpenAI API error: ${error}`);
+                    const data = await response.json();
+
+                    //Show response
+                    stopThinkingAnimation();
+                    document.getElementById("responseDiv").innerHTML =
+                        data.choices[0].message.content.replace(/\n/g, '<br>');
+
+                } catch (error) {
+                    stopThinkingAnimation();
+                    console.error("Error:", error);
+                    document.getElementById("responseDiv").innerHTML =
+                        `<span style="color:red;">Error: ${error.message}</span>`;
                 }
-
-                const data = await response.json();
-
-                //Show response
-                stopThinkingAnimation();
-                document.getElementById("responseDiv").innerHTML =
-                    data.choices[0].message.content.replace(/\n/g, '<br>');
-
-            } catch (error) {
-                stopThinkingAnimation();
-                console.error("Error:", error);
-                document.getElementById("responseDiv").innerHTML =
-                    `<span style="color:red;">Error: ${error.message}</span>`;
             }
         }
 
@@ -1594,5 +1604,6 @@
         }, { threshold: 0.1 });
         moveUp.forEach(el => upObserver.observe(el));
     </script>
+    
 </body>
 </html>
