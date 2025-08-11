@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>perfit</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-size: 1vw;
+        }
+
+        /*banner*/
+        .banner {
+            width: 100%;
+            height: 45vw;
+            background-image: url("img/banner.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .title {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: auto;
+            text-align: center;
+            width: 50%;
+            padding: 5vw;
+        }
+
+        .title h1 {
+            font-size: 7vw;
+            margin-bottom: 5vw;
+            color: rgb(128, 65, 128);
+        }
+
+        .title p {
+            font-size: 1.5vw;
+            margin: 2vw 0;
+        }
+
+        /*notes*/
+        .note {
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            margin: auto;
+            width: 70%;
+            color: rgb(128, 65, 128);
+        }
+
+        .n {
+            font-size: 1.2em;
+            width: 30%;
+            text-align: center;
+            margin: 3vw 0;
+            padding: 0.1vw;
+            border-radius: 12%;
+            border: 0.3vw solid rgb(128, 65, 128);
+            background-color: rgb(255, 255, 255);
+            transition: 0.5s ease-in-out;
+        }
+
+        .n img {
+            width: 10vw;
+            transition: 0.5s ease-in-out;
+        }
+
+        .n:hover {
+            box-shadow: 0px 1.2vw 1.2vw rgb(51, 26, 51);
+            transform: translateY(-5px);
+        }
+
+        .n:hover img {
+            transform: scale(1.2);
+        }
+
+        /*how it works*/
+        .howItWorks {
+            display: flex;
+            flex-direction: row;
+            padding: 7vw;
+            padding-bottom: 15vw;
+            background-color: rgb(255, 223, 255);
+            margin: 3vw auto;
+            margin-bottom: 0vw;
+        }
+
+        .howItWorks img {
+            width: 30vw;
+            margin: 0 auto;
+            border-radius: 1.2vw;
+            border: 0.3vw solid grey;
+        }
+
+        .step {
+            width: 56vw;
+            text-align: center;
+        }
+
+        .step h1 {
+            color: rgb(128, 65, 128);
+            font-size: 2.8em;
+            margin-top: 5vw;
+        }
+
+        .step hr {
+            width: 80%;
+            border: 1px solid rgb(128, 65, 128);
+        }
+
+        .stepContiner {
+            padding: 0.5vw;
+            display: flex;
+            flex-direction: row;
+            height: 13vw;
+        }
+
+        .stepBox {
+            margin: 1vw;
+            width: 31%;
+            height: 11vw;
+            padding: 0.3vw;
+            border-top-left-radius: 0vw;
+            border-top-right-radius: 5vw;
+            border-bottom-right-radius: 0vw;
+            border-bottom-left-radius: 5vw;
+            background-color: rgb(128, 65, 128);
+            border: 0.3vw solid rgb(128, 65, 128);
+            box-shadow: 0vw 1vw 1vw rgb(51, 26, 51);
+            transition: 0.5s ease-in-out;
+        }
+
+        .stepBox:hover {
+            border-top-left-radius: 5vw;
+            border-top-right-radius: 0vw;
+            border-bottom-right-radius: 5vw;
+            border-bottom-left-radius: 0vw;
+            background-color: rgb(255, 223, 255);
+        }
+
+        .stepBox h3,
+        .stepBox p {
+            color: white;
+            transition: 0.5s ease-in-out;
+            font-size: 1em;
+        }
+
+        .stepBox:hover h3 {
+            color: rgb(128, 65, 128);
+            transform: scale(1.2);
+        }
+
+        .stepBox:hover p {
+            color: rgb(128, 65, 128);
+        }
+
+        .stepBox hr {
+            width: 80%;
+            border: 0.1vw solid white;
+            transition: 0.5s ease-in-out;
+        }
+
+        .stepBox:hover hr {
+            border: 0.1vw solid rgb(128, 65, 128);
+        }
+
+        /*carousel*/
+        .ministrySelection {
+            position: relative;
+            width: 80%;
+            height: 28vw;
+            overflow: hidden;
+            text-align: center;
+            color: rgb(128, 65, 128);
+            margin: auto;
+            padding: 0.5vw;
+        }
+
+        .ministrySelection h1 {
+            font-size: 2em;
+        }
+
+        .slides-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 1vw;
+            margin-top: 2vw;
+        }
+
+        .card {
+            width: 20%;
+            height: 15vw;
+            background-color: white;
+            border: 0.3vw solid rgb(128, 65, 128);
+            margin: 0.3vw;
+            padding: 0.3vw;
+            border-radius: 2vw;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.5s ease-in-out;
+        }
+
+        .card:hover {
+            box-shadow: 0px 1.2vw 1.2vw rgb(51, 26, 51);
+            transform: translateY(-5px);
+        }
+
+        .lBtn,
+        .rBtn {
+            width: 3vw;
+            height: 3vw;
+            position: absolute;
+            top: 50%;
+            background-color: lightgray;
+            cursor: pointer;
+            border: 0.2vw solid rgb(128, 65, 128);
+            background-color: rgb(128, 65, 128);
+            color: white;
+            transition: 0.5s ease-in-out;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lBtn:hover,
+        .rBtn:hover {
+            background-color: rgb(255, 223, 255);
+            color: rgb(128, 65, 128);
+        }
+
+        .mTtl {
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        .card p {
+            font-size: 1em;
+        }
+
+        .lBtn {
+            left: 0;
+            border-radius: 50%;
+        }
+
+        .rBtn {
+            right: 0;
+            border-radius: 50%;
+        }
+
+        /*takeAssessment*/
+        .takeAssessment {
+            border: 1px solid white;
+            height: 40vw;
+            position: relative;
+            padding: 0;
+            background-image: url('img/bg.png');
+            background-size: cover;
+            text-align: center;
+        }
+
+        .takeAssessment h1 {
+            color: white;
+            font-size: 4em;
+            margin: 2vw 0;
+        }
+
+        .takeAssessment img {
+            width: 100%;
+            z-index: 10;
+        }
+
+        .takeAssessment button {
+            width: 20vw;
+            height: 5vw;
+            border: 0.3vw solid rgb(128, 65, 128);
+            border-radius: 1.2vw;
+            font-size: 2em;
+            background-color: rgb(128, 65, 128);
+            color: white;
+            transition: 0.3s ease-in-out;
+            margin-top: 5vw;
+        }
+
+        .takeAssessment button:hover {
+            background-color: rgb(255, 223, 255);
+            color: rgb(128, 65, 128);
+        }
+
+        /*design*/
+        .design {
+            display: block;
+            position: absolute;
+            top: 0vw;
+            left: 0vw;
+            height: 158vw;
+        }
+
+        .dsn1 {
+            position: absolute;
+            top: 145vw;
+            right: 1vw;
+            width: 20%;
+            border-radius: 1.2vw;
+            border: 0.3vw solid grey;
+            box-shadow: 0.2vw 1vw 1.5vw rgb(51, 26, 51);
+            z-index: 1;
+        }
+
+        .dsn2 {
+            position: relative;
+            top: 5vw;
+            left: 2vw;
+            width: 35%;
+            border-radius: 1.2vw;
+            border: 0.3vw solid grey;
+            box-shadow: 0.2vw 1vw 1.5vw rgb(51, 26, 51);
+            z-index: 1;
+        }
+
+        .dsn3 {
+            position: absolute;
+            top: 15vw;
+            left: 28vw;
+            width: 25%;
+            border-radius: 1.2vw;
+            border: 0.3vw solid grey;
+            box-shadow: 0.2vw 1vw 1.5vw rgb(51, 26, 51);
+            z-index: 1;
+        }
+
+        /*footer*/
+        .footer {
+            background-image: url('img/footer.png');
+            background-size: cover;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 13vw;
+        }
+
+        /*animation */
+        .move-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 0.5s ease-in-out;
+        }
+
+        .move-up.visible1 {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        /* DESKTOP-FIRST RESPONSIVE MEDIA QUERIES */
+
+        /* Tablet styles */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .banner {
+                height: 60vw;
+            }
+            
+            .title {
+                width: 80%;
+                position: relative;
+                margin:auto;
+            }
+            
+            .title h1 {
+                font-size: 8vw;
+            }
+            
+            .title p {
+                font-size: 3vw;
+            }
+            
+            .note {
+                flex-direction: column;
+                width: 80%;
+            }
+            
+            .n {
+                width: 100%;
+                font-size: 1.5rem;
+                padding: 2vw;
+                margin: 2vw 0;
+            }
+            
+            .n img {
+                width: 15vw;
+            }
+            
+            .howItWorks {
+                flex-direction: column;
+                padding: 5vw;
+            }
+            
+            .howItWorks img {
+                width: 80%;
+                margin-bottom: 3vw;
+            }
+            
+            .step {
+                width: 100%;
+            }
+            
+            .step h1 {
+                font-size: 6vw;
+            }
+            
+            .stepContiner {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .stepBox {
+                width: 100%;
+                height: auto;
+                padding: 3vw;
+                margin: 2vw 0;
+            }
+            
+            .stepBox h3,
+            .stepBox p {
+                font-size: 3vw;
+            }
+            
+            .ministrySelection {
+                width: 90%;
+                height: auto;
+            }
+            
+            .ministrySelection h1 {
+                font-size: 6vw;
+            }
+            
+            .slide {
+                flex-direction: column;
+            }
+            
+            .card {
+                width: 80%;
+                height: auto;
+                margin: 2vw;
+                padding: 3vw;
+            }
+            
+            .mTtl {
+                font-size: 4vw;
+            }
+            
+            .card p {
+                font-size: 3vw;
+            }
+            
+            .lBtn,
+            .rBtn {
+                width: 8vw;
+                height: 8vw;
+                font-size: 3vw;
+            }
+            
+            .takeAssessment {
+                height: 80vw;
+                padding: 8vw 0;
+            }
+            
+            .takeAssessment h1 {
+                font-size: 6vw;
+            }
+            
+            .takeAssessment button {
+                width: 50vw;
+                height: 12vw;
+                font-size: 4vw;
+            }
+            
+            .design {
+                display: none;
+            }
+            
+            .footer {
+                height: 20vw;
+            }
+        }
+
+        /* Mobile styles - 480px and below */
+        @media (max-width: 480px) {
+            .banner {
+                height: 80vw;
+            }
+            
+            .title {
+                width: 80%;
+                position: relative;
+                margin:auto;
+                padding:1vw;
+            }
+            
+            .title h1 {
+                font-size: 10vw;
+                margin-bottom: 3vw;
+            }
+            
+            .title p {
+                font-size: 4vw;
+            }
+            
+            .note {
+                width: 90%;
+            }
+            
+            .n {
+                font-size: 1.3rem;
+                padding: 3vw;
+                margin: 3vw 0;
+            }
+            
+            .n img {
+                width: 20%;
+            }
+            
+            .howItWorks {
+                padding: 3vw;
+            }
+            
+            .howItWorks img {
+                width: 90%;
+            }
+            
+            .step h1 {
+                font-size: 8vw;
+            }
+            
+            .stepBox {
+                padding: 4vw;
+                margin: 3vw 0;
+            }
+            
+            .stepBox h3,
+            .stepBox p {
+                font-size: 4vw;
+            }
+            
+            .ministrySelection {
+                width: 95%;
+            }
+            
+            .ministrySelection h1 {
+                font-size: 8vw;
+            }
+            
+            .card {
+                width: 90%;
+                padding: 4vw;
+                margin: 3vw 0;
+            }
+            
+            .mTtl {
+                font-size: 5vw;
+            }
+            
+            .card p {
+                font-size: 4vw;
+            }
+            
+            .lBtn,
+            .rBtn {
+                width: 10vw;
+                height: 10vw;
+                font-size: 4vw;
+            }
+            
+            .takeAssessment {
+                height: 80vw;
+                padding: 10vw 0;
+            }
+            
+            .takeAssessment h1 {
+                font-size: 8vw;
+            }
+            
+            .takeAssessment button {
+                width: 60vw;
+                height: 15vw;
+                font-size: 5vw;
+            }
+            
+            .footer {
+                height: 25vw;
+            }
+        }
+
+        /* Small mobile styles - 320px and below */
+        @media (max-width: 320px) {
+            .banner {
+                height: 100vw;
+            }
+            
+            .title {
+                width: 95%;
+                padding: 2vw;
+            }
+            
+            .title h1 {
+                font-size: 12vw;
+                margin-bottom: 2vw;
+            }
+            
+            .title p {
+                font-size: 5vw;
+                margin: 1vw 0;
+            }
+            
+            .note {
+                width: 95%;
+            }
+            
+            .n {
+                font-size: 1.2rem;
+                padding: 4vw;
+                margin: 4vw 0;
+            }
+            
+            .n img {
+                width: 25%;
+            }
+            
+            .howItWorks {
+                padding: 2vw;
+            }
+            
+            .howItWorks img {
+                width: 95%;
+            }
+            
+            .step h1 {
+                font-size: 10vw;
+            }
+            
+            .stepBox {
+                padding: 5vw;
+                margin: 4vw 0;
+            }
+            
+            .stepBox h3,
+            .stepBox p {
+                font-size: 5vw;
+            }
+            
+            .ministrySelection {
+                width: 98%;
+            }
+            
+            .ministrySelection h1 {
+                font-size: 10vw;
+            }
+            
+            .card {
+                width: 95%;
+                padding: 5vw;
+                margin: 4vw 0;
+            }
+            
+            .mTtl {
+                font-size: 6vw;
+            }
+            
+            .card p {
+                font-size: 5vw;
+            }
+            
+            .lBtn,
+            .rBtn {
+                width: 12vw;
+                height: 12vw;
+                font-size: 5vw;
+            }
+            
+            .takeAssessment {
+                height: 70vw;
+                padding: 12vw 0;
+            }
+            
+            .takeAssessment h1 {
+                font-size: 10vw;
+                margin: 3vw 0;
+            }
+            
+            .takeAssessment button {
+                width: 70vw;
+                height: 18vw;
+                font-size: 6vw;
+                margin-top: 6vw;
+            }
+            
+            .footer {
+                height: 30vw;
+            }
+        }
+    </style>
+</head>
+<body>
+<!--design-->
+<div class="design">
+    <img class="dsn1 move-up" src="img/pray.png">
+    <img class="dsn2 move-up" src="img/img1.png">
+    <img class="dsn3 move-up" src="img/el1.jpg">
+</div>
+<!--banner-->
+    <div class="banner">
+        <div class="title move-up" >
+            <h1>PERFIT</h1>
+            <p>PerFit helps you discover where your strengths, passions, and purpose align so you can thrive in the role made just for you.</p>
+        </div>
+    </div>
+<!--note-->
+    <div class="note move-up">
+        <div class="n">
+            <img src="img/icn-honesty.png"><!--honety icon-->
+            <h3>Be Honest</h3>
+            <p>Answer honestly discover your strengths.</p>
+        </div>
+        <div class="n">
+            <img src="img/icn-find.png"><!--magnifying glass-->
+            <h3>View Your Inner Self</h3>
+            <p>Learn your unique strengths and preferences.</p>
+        </div>
+        <div class="n">
+            <img src="img/icn-grow.png"><!--tree growing-->
+            <h3>Unlock Your Potential</h3>
+            <p>Grow into the person you're meant to be.</p>
+        </div>
+    </div>
+<!--how it works-->
+    <div class="howItWorks">
+        <img class="move-up" src="img/howItWorks.png">
+        <div class="step">
+            <h1 class="move-up">HOW IT WORKS</h1>
+            <hr>
+            <div class="stepContiner">
+                <div class="stepBox move-up">
+                    <h3>STEP 1</h3>
+                    <p>answer the assesment</p>
+                    <hr>
+                    <p>Carefully go through each question and select you answer.</p>
+                </div>
+                <div class="stepBox move-up">
+                    <h3>STEP 2</h3>
+                    <p>submit the assessment</p>
+                    <hr>
+                    <p></p>
+                    <p>Once you're done, Submit your response for processing and evaluation.</p>
+                </div>
+                <div class="stepBox move-up">
+                    <h3>STEP 3</h3>
+                    <p>see the result</p>
+                    <hr>
+                    <p>After submission, check your pesonalized result.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--ministry carousel-->
+    <div class="ministrySelection">
+        <h1>JOIN OUR MINISTRY</h1>
+        <div class="slides-container" id="carousel">
+            <!-- Last slide (clone) -->
+            <div class="slide">
+                <div class="card">
+                    <p class="mTtl">Marketplace Ministry</p>
+                    <p>Encourages professionals to integrate their faith into their workplaces, promoting ethical practices and spiritual influence in the marketplace.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Sports Ministry</p>
+                    <p>Uses athletic activities to foster community, promote health, and provide outreach opportunities.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Writing and Publications Ministry</p>
+                    <p>Produces written materials—such as newsletters, devotionals, and educational content—to inform and inspire the church body.</p>
+                </div>
+            </div>
+
+            <!-- Slide 1 -->
+            <div class="slide">
+                <div class="card">
+                    <p class="mTtl">Worship Ministry</p>
+                    <p>Leads the congregation in praising and honoring God through music, song, and other artistic expressions during services.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Prayer Ministry</p>
+                    <p>Focuses on intercessory prayer, organizing prayer meetings, and encouraging a culture of continuous prayer within the church community.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Preaching Ministry</p>
+                    <p>Responsible for delivering sermons and teachings that convey biblical truths and inspire spiritual growth among congregants.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Discipleship Ministry</p>
+                    <p>Aims to mentor and guide individuals in their spiritual journey, fostering maturity and deeper understanding of faith.</p>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="card">
+                    <p class="mTtl">Children's Ministry</p>
+                    <p>Provides age-appropriate biblical education and activities for children, laying a foundation for lifelong faith.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Youth Ministry</p>
+                    <p>Engages teenagers through relevant programs, discussions, and events that address their unique challenges and encourage spiritual development.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Young Adults Ministry</p>
+                    <p>Supports individuals in their late teens to early thirties, offering fellowship and guidance as they navigate adulthood and faith.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Men's Ministry</p>
+                    <p>Encourages men to grow spiritually, providing opportunities for fellowship, mentorship, and service.</p>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="card">
+                    <p class="mTtl">Women's Ministry</p>
+                    <p>Empowers women through spiritual growth, community building, and service opportunities. Key objectives include fostering spiritual growth, promoting biblical literacy, and encouraging active service.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Family or Couples Ministry</p>
+                    <p>Strengthens marital and family relationships through counseling, workshops, and events that promote healthy dynamics.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Ushering Ministry</p>
+                    <p>Ensures order during services by welcoming attendees, assisting with seating, and facilitating offerings. Ushers play a crucial role in creating a welcoming atmosphere and maintaining order during services.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Hospitality Ministry</p>
+                    <p>Creates a welcoming environment by greeting visitors, providing information, and organizing refreshments or events. provide love, acceptance, comfort, support, care, and unity.</p>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <div class="card">
+                    <p class="mTtl">Administrative Ministry</p>
+                    <p>Handles the organizational aspects of church operations, including scheduling, communication, and record-keeping.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Finance Ministry</p>
+                    <p>Manages the church's financial resources, overseeing budgeting, accounting, and stewardship programs.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Security Ministry</p>
+                    <p>Ensures the safety of congregants during church activities, coordinating emergency responses and maintaining a secure environment.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Facilities Maintenance Ministry</p>
+                    <p>Maintains the church's physical infrastructure, ensuring that buildings and equipment are functional and welcoming.</p>
+                </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <div class="card">
+                    <p class="mTtl">Evangelism Ministry</p>
+                    <p>Focuses on sharing the gospel message with non-believers through various outreach efforts and personal witnessing.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Missions Ministry</p>
+                    <p>Supports local and international mission work, including sending missionaries and providing resources to spread the faith.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Community Service Ministry</p>
+                    <p>Engages in activities that serve the local community, addressing needs such as food distribution, shelter, and education.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Visitation Ministry</p>
+                    <p>Provides support and companionship to those unable to attend church services, including the sick and elderly.</p>
+                </div>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="slide">
+                <div class="card">
+                    <p class="mTtl">New Believers Ministry</p>
+                    <p>Guides recent converts through foundational teachings and integration into the church community.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Production Tech Ministry</p>
+                    <p>Manages technical aspects of services, including sound, lighting, and audiovisual elements to enhance worship experiences.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Creative Arts Ministry</p>
+                    <p>Utilizes various art forms—such as drama, dance, and visual arts—to convey spiritual messages and enrich worship.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Communications & Social Media Ministry</p>
+                    <p>Handles the church's online presence, disseminating information and engaging with the community through digital platforms.</p>
+                </div>
+            </div>
+
+            <!-- Slide 7 -->
+            <div class="slide">
+                <div class="card">
+                    <p class="mTtl">Graphic and Video Design Ministry</p>
+                    <p>Creates visual content for church materials, including promotional graphics, videos, and presentations.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Counseling Ministry</p>
+                    <p>Offers spiritual and emotional guidance to individuals facing personal challenges, providing support and resources.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Healing & Deliverance Ministry</p>
+                    <p>Focuses on prayer and spiritual practices aimed at healing physical, emotional, and spiritual ailments.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Grief & Bereavement Ministry</p>
+                    <p>Supports individuals coping with loss, offering counseling and group support during times of mourning.</p>
+                </div>
+            </div>
+
+            <!-- Slide 8 -->
+            <div class="slide">
+                <div class="card">
+                    <p class="mTtl">Addiction Recovery Ministry</p>
+                    <p>Provides assistance and programs for individuals seeking freedom from various addictions, promoting healing and restoration.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Special Needs Ministry</p>
+                    <p>Ensures that individuals with disabilities are included and supported within the church community through tailored programs and assistance.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Seniors Ministry</p>
+                    <p>Caters to the spiritual and social needs of older adults, offering fellowship and activities suited to their stage of life.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Single Adults Ministry</p>
+                    <p>Supports unmarried individuals through community building, spiritual growth opportunities, and service projects.</p>
+                </div>
+            </div>
+
+            <!-- Slide 9 -->
+            <div class="slide">
+                <div class="card">
+                    <p class="mTtl">Marketplace Ministry</p>
+                    <p>Encourages professionals to integrate their faith into their workplaces, promoting ethical practices and spiritual influence in the marketplace.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Sports Ministry</p>
+                    <p>Uses athletic activities to foster community, promote health, and provide outreach opportunities.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Writing and Publications Ministry</p>
+                    <p>Produces written materials—such as newsletters, devotionals, and educational content—to inform and inspire the church body.</p>
+                </div>
+            </div>
+
+            <!-- First slide (clone) -->
+            <div class="slide">
+                <div class="card">
+                    <p class="mTtl">Worship Ministry</p>
+                    <p>Leads the congregation in praising and honoring God through music, song, and other artistic expressions during services.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Prayer Ministry</p>
+                    <p>Focuses on intercessory prayer, organizing prayer meetings, and encouraging a culture of continuous prayer within the church community.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Preaching Ministry</p>
+                    <p>Responsible for delivering sermons and teachings that convey biblical truths and inspire spiritual growth among congregants.</p>
+                </div>
+                <div class="card">
+                    <p class="mTtl">Discipleship Ministry</p>
+                    <p>Aims to mentor and guide individuals in their spiritual journey, fostering maturity and deeper understanding of faith.</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="lBtn" onclick="moveSlide('left')">‹</button>
+        <button class="rBtn" onclick="moveSlide('right')">›</button>
+  </div>
+<!--take assesment-->
+    <div class="takeAssessment">
+        <div class="bg"></div>
+        <h1>Would you like to </h1>
+        <h1>find your role?</h1>
+        <button onclick="next()">Take Assessment</button>
+    <!--footer puzzle-->
+        <div class="footer">
+           <div class="puzzle" id="puzzle"></div>
+        </div>
+    </div>
+    <script>
+    //carousel
+        const carousel = document.getElementById('carousel');
+        const totalSlides = 9;
+        let currentIndex = 1;
+
+        // Set initial position
+        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        function moveSlide(direction) {
+        if (direction === 'right') {
+            currentIndex++;
+        } else {
+            currentIndex--;
+        }
+        carousel.style.transition = "transform 0.5s ease-in-out";
+        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        carousel.addEventListener('transitionend', () => {
+        if (currentIndex === 0) {
+            carousel.style.transition = "none";
+            currentIndex = totalSlides;
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        if (currentIndex === totalSlides + 1) {
+            carousel.style.transition = "none";
+            currentIndex = 1;
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        });
+        
+    //next
+        function next(){
+            window.location.href = "assessment.html";
+        }
+    //animation
+       const moveUp = document.querySelectorAll('.move-up');
+        const upObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible1');
+                }
+            });
+        }, { threshold: 0.1 });
+        moveUp.forEach(el => upObserver.observe(el));
+
+    </script>
+</body>
+</html>

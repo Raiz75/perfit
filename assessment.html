@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfit</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            padding: 0;
+            margin: 0;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+
+        /*banner*/
+        .banner img{
+            width: 100%;
+        }
+        .ttl{
+            text-align: center;
+            font-size: 4rem;
+            color:rgb(128, 65, 128);
+            margin-top: -25vw;
+            margin-bottom: 20vw;
+        }
+
+        /*stepCounter*/
+        .stepCounter{
+            margin-top: 5vw;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            margin-bottom: 2rem;
+        }
+        .stepContainer{
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            text-align: center;
+            color: rgb(128, 65, 128);
+            width: 10%;
+        }
+        .step {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgb(255, 223, 255);
+            color: rgb(128, 65, 128);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin: 8px;
+            font-size: 1.2rem;
+        }
+        .line{
+            flex: 1;
+            height: 4px;
+            background: rgb(255, 223, 255);
+            margin-top: 32px;
+        }
+        .currentStep{
+            background-color: rgb(128, 65, 128);
+            color: white
+        }
+
+        /*personalDetail*/
+        .personalDetail{
+            width: 90%;
+            max-width: 500px;
+            margin: 2rem auto;
+            text-align: center;
+            border-radius: 8px;
+            padding: 1rem;
+            background-color: whitesmoke;
+            box-shadow: 0 0 8px rgba(128, 128, 128, 0.3);
+        }
+        .personalDetail span{
+            font-size: 0.9rem;
+            color: grey;
+            transition: .3s ease-in-out;
+        }
+        .box{
+            width: auto;
+            border-radius: 8px;
+            padding: 0.75rem;
+            text-align: left;
+            margin: 1rem 0;
+            border: 2px solid rgb(128, 65, 128);
+            background-color: white;
+        }
+        .box input[type="number"]{
+            width: 100%;
+            max-width: 120px;
+            height: 40px;
+            border: 2px solid rgb(128, 65, 128);
+            border-radius: 8px;
+            background-color: white;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+
+        /*skills*/
+        .skillQuestion{
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 12px;
+            display: none;
+        }
+
+        /*generalQuestion*/
+        .generalQuestion{
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 12px;
+        }
+
+        /*question box*/
+        .questionBox{
+            width: 90%;
+            margin: 2rem auto;
+            text-align: center;
+            padding: 1.5rem;
+            background-color: whitesmoke;
+            border-radius: 12px;
+            box-shadow: 0 0 8px rgba(51, 26, 51, 0.3);
+        }
+        .questionText{
+            width: 95%;
+            font-size: 1.5rem;
+            margin: 0 auto 1.5rem auto;
+            color: rgb(128, 65, 128);
+            line-height: 1.4;
+        }
+        .rateBox{
+            margin: 1.5rem auto 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+        .rateBox button{
+            font-size: 1rem;
+            min-height: 50px;
+            border-radius: 12px;
+            border: 2px solid rgb(128, 65, 128);
+            color: rgb(128, 65, 128);
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .rateBox button:hover{
+            color: white;
+            background-color: rgb(128, 65, 128);
+        }
+        .blurred {
+            filter: blur(2px);
+            pointer-events: none;
+            opacity: 0.9;
+        }
+        .clicked {
+            background-color: rgb(128, 65, 128);
+            color: white;
+        }
+
+        /*specific questions*/
+        .specificQuestion{
+            width: 90%;
+            margin: 0 auto;
+            display: none;
+        }
+
+        /*responseDiv*/
+        .responseDiv{
+            width: 90%;
+            margin: 2rem auto;
+            padding: 2rem;
+            border: 3px solid rgb(128, 65, 128);
+            border-radius: 12px;
+            display: none;
+        }
+
+        /*next*/
+        .nextBtn{
+            width: 200px;
+            height: 60px;
+            border: 3px solid rgb(128, 65, 128);
+            border-radius: 12px;
+            font-size: 1.2rem;
+            background-color: rgb(128, 65, 128);
+            color: white;
+            margin: 2rem auto;
+            display: block;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+        }
+        .nextBtn:hover{
+            background-color: rgb(255, 223, 255);
+            color: rgb(128, 65, 128);
+        }
+        .disable{
+            pointer-events: none;
+            border: 3px solid grey;
+            background-color: rgb(196, 171, 196);
+            color: grey;
+        }
+
+        /*footer*/
+        .footer{
+            background-image: url('img/footer.png');
+            background-size: cover;
+            width: 100%;
+            height: 200px;
+            position: relative;
+            margin-top: 30vh;
+        }
+
+        /*puzzle*/
+        .puzzle{
+            width: 40vw;
+            height: 40vw;
+            position: absolute;
+            bottom:0vw;
+            left: 0vw;
+            background: radial-gradient(circle, rgb(128, 65, 128) 10%, transparent 70%);
+            z-index: -5;
+        }
+        .puzzle img{
+            width: 15vw;
+            height: 15vw;
+        }
+        .bottom{
+            position: absolute;
+            bottom:5vw;
+            left:13vw;
+            opacity: 0;
+            filter: drop-shadow(0vw 0vw 3vw rgb(255, 255, 255));
+            transform: scale(1.2);
+            transition: 1s ease-in-out;
+        }
+        .left{
+            position: absolute;
+            top:13.1vw;
+            left:4.9vw;
+            opacity: 0;
+            filter: drop-shadow(0vw 0vw 3vw rgb(255, 255, 255));
+            transform: scale(1.2);
+            transition: 1s ease-in-out;
+        }
+        .right{
+            position: absolute;
+            top:11.8vw;
+            right:5.1vw;
+            opacity: 0;
+            filter: drop-shadow(0vw 0vw 3vw rgb(255, 255, 255));
+            transform: scale(1.2);
+            transition: 1s ease-in-out;
+        }
+        .top{
+            position: absolute;
+            top:5vw;
+            left:11.7vw;
+            opacity: 0;
+            filter: drop-shadow(0vw 0vw 3vw rgb(255, 255, 255));
+            transform: scale(1.2);
+            transition: 1s ease-in-out;
+        }
+        .showPiece{
+            transform: scale(1);
+            filter: drop-shadow(0vw 0vw 0vw rgb(255, 255, 255));
+            opacity: 1;
+        }
+        .highlightPiece{
+            filter: drop-shadow(0vw 0vw 5vw rgb(255, 255, 255));
+        }
+        /*test*/
+        .testBtn{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            display: none;
+        }
+
+        /* Mobile Responsive Media Queries */
+        @media screen and (max-width: 768px) {
+            .banner{
+                height: 30vh;
+            }
+            .ttl {
+                font-size: 2.5rem;
+                margin-top: -10vw;
+                margin-bottom: 15vw;
+            }
+            
+            .stepCounter {
+                width: 95%;
+                margin-top: 8vw;
+            }
+            
+            .step {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+                margin: 4px;
+            }
+            .stepContainer{
+                width: 20%;
+            }
+            .line {
+                height: 3px;
+                margin-top: 26px;
+            }
+            
+            .personalDetail {
+                width: 95%;
+                padding: 1rem;
+            }
+            
+            .questionText {
+                font-size: 1.3rem;
+            }
+            
+            .rateBox {
+                gap: 0.3rem;
+            }
+            
+            .rateBox button {
+                height: 45px;
+                min-height: 45px;
+                font-size: 0.9rem;
+            }
+            
+            .nextBtn {
+                width: 180px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
+            
+            .footer {
+                height: 150px;
+                margin-top: 3rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+            .banner img{
+                height: 30vh;
+            }
+            .ttl {
+                font-size: 2rem;
+                margin-top: -50vw;
+            }
+            
+            .stepCounter {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .step {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+                margin: 3px;
+            }
+            .stepContainer{
+                width: 20%;
+            }
+            
+            .line {
+                display: none;
+            }
+            
+            .questionText {
+                font-size: 1.1rem;
+                width: 100%;
+            }
+            
+            .rateBox {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0.5rem;
+            }
+            
+            .rateBox button {
+                height: 40px;
+                min-height: 40px;
+                font-size: 0.8rem;
+            }
+            
+            .nextBtn {
+                width: 150px;
+                height: 45px;
+                font-size: 1rem;
+            }
+            
+            .box input[type="number"] {
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .footer {
+                height: 120px;
+            }
+            
+            
+        }
+    </style>
+</head>
+<body>
+<!--banner-->
+    <div class="banner">
+        <img src="img/banner-cut.png">
+        <p class="ttl move-up">ASSESSMENT</p>
+    </div>
+<!--step-->
+    <div class="stepCounter move-up">
+        <div class="stepContainer">
+            <p class="step currentStep">1</p>
+            <p>Personal Details</p>
+        </div>
+        <p class="line" id="l1"></p>
+        <div class="stepContainer">
+            <p class="step" id="s2">2</p>
+            <p>Skill Profiling</p>
+        </div>
+        <p class="line" id="l2"></p>
+        <div class="stepContainer">
+            <p class="step" id="s3">3</p>
+            <p>Interest & Passion Profiling</p>
+        </div>
+        <p class="line" id="l3"></p>
+        <div class="stepContainer">
+            <p class="step" id="s4">4</p>
+            <p>Behavioral Profiling</p>
+        </div>
+        <p class="line" id="l4"></p>
+        <div class="stepContainer">
+            <p class="step" id="s5">5</p>
+            <p>Result</p>
+        </div>
+    </div>
+<!--personal details-->
+    <div class="personalDetail move-up" id="personalForm">
+        <h2>DEMOGRAPHICS</h2>
+        <div class="box move-up" id="genderBox">
+            <span id="genderBoxttl">Gender</span><br>
+            <label><input type="radio" name="genderBox" value="1"> Male</label>
+            <label><input type="radio" name="genderBox" value="2"> Female</label>
+        </div>
+        <div class="box move-up" id="ageBox">
+            <span id="ageBoxttl" >Age</span><br>
+            <input type="number" name="ageBox" id="ageInput" min="1" max="100">
+            <label for="ageBox">Years</label>
+        </div>
+        <div class="box move-up" id="statusBox">
+            <span id="statusBoxttl">Status</span><br>
+            <label><input type="radio" name="statusBox" value="1"> Single</label>
+            <label><input type="radio" name="statusBox" value="2"> Married</label>
+        </div>
+        <div class="box move-up" id="baptizedBox">
+            <span id="baptizedBoxttl">Baptized</span><br>
+            <label><input type="radio" name="baptizedBox" value="1"> No</label>
+            <label><input type="radio" name="baptizedBox" value="2"> Yes</label>
+        </div>
+        <div class="box move-up" id="timeInFaithBox">
+            <span id="timeInFaithBoxttl">Time In Faith</span><br>
+            <label><input type="radio" name="timeInFaithBox" value="1"> New</label><br>
+            <label><input type="radio" name="timeInFaithBox" value="2"> More than 6 months</label><br>
+            <label><input type="radio" name="timeInFaithBox" value="3"> More than 1 year</label>
+        </div>
+    </div>
+<!--skill details-->
+    <div class="skillQuestion" id="skillQuestion">
+    </div>
+<!--general questions-->
+    <div class="generalQuestion" id="generalQuestion">
+    </div>
+<!--specific questions-->
+    <div class="specificQuestion" id="specificQuestion">
+    </div>
+<!--no minstry interest-->
+    <!-- <p>Base on your Personal & Skill Profiling Interest & Passion Profiling</p> -->
+<!--question box template-->
+    <template id="questionTemp">
+        <div class="questionBox">
+            <p class="questionText">//test question//</p>
+            <div class="rateBox">
+                <button value=3>Strongly Agree</button>
+                <button value=2>Agree</button>
+                <button value=1>Slightly Agree</button>
+                <button value=0>Neutral</button>
+                <button value=-1>Slightly Disagree</button>
+                <button value=-2>Disagree</button>
+                <button value=-3>Strongly Disagree</button>
+            </div>
+        </div>
+    </template>
+<!--response div-->
+    <div class="responseDiv" id="responseDiv">
+        <h1 style="color:rgb(128, 65, 128);text-align: center;">AI INTERPRETATION</h1>
+        <div id="thinking" style="display:none; font-weight: bold; font-size: 1.2em;">Thinking<span id="dots">.</span></div>
+    </div>
+<!--next button-->
+    <button class="move-up nextBtn" id="step1" onclick="personalDetailsSubmit()">NEXT</button>
+    <button class="move-up nextBtn" id="step2" style="display:none;" onclick="showGeneralQuestions()">NEXT</button>
+    <button class="move-up nextBtn" id="step3" style="display:none;" onclick="filter()">NEXT</button>
+    <button class="move-up nextBtn" id="step4" style="display:none;" onclick="interpret()">SUBMIT</button>
+    <button class="move-up nextBtn" id="step5" style="display:none;" onclick="window.location.href = 'perfit.html'">DONE</button>
+
+    <button class="testBtn" id="submitGeneralQuestion" onclick="displaySpecificQuestions()">test</button>
+<!--footer puzzle-->
+    <div class="footer">
+        <div class="puzzle" id="puzzle">
+            <img class="bottom" id="bottom" src="img/y-bottom.png">
+            <img class="left" id="left" src="img/x-left.png">
+            <img class="right" id="right" src="img/x-right.png">
+            <img class="top" id="top" src="img/y-bottom.png">
+         </div>
+     </div>
+<!--script-->
+    <script>
+    //varibales
+        let gender=0;
+        let age=0;
+        let status=0;
+        let baptized=0;
+        let timeInFaith=0;
+    //personal details
+        function personalDetailsSubmit(){
+            const genderAns = document.querySelector("input[name='genderBox']:checked");
+            const ageAns = document.querySelector("input[name='ageBox']").value;
+            const statusAns = document.querySelector("input[name='statusBox']:checked");
+            const baptizedAns = document.querySelector("input[name='baptizedBox']:checked");
+            const timeInFaithAns = document.querySelector("input[name='timeInFaithBox']:checked");
+            if (!genderAns) {
+                document.getElementById('genderBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                let blink = 0;
+                const blinkInterval = setInterval(() => {
+                    document.getElementById('genderBoxttl').style.color = (blink % 2 === 0) ? "red" : "grey";
+                    document.getElementById('genderBoxttl').style.fontSize = (blink % 2 === 0) ? "1em" : ".8em";
+                    document.getElementById('genderBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
+                    blink++;
+                    if (blink > 5) clearInterval(blinkInterval);
+                }, 300);
+            }else if (ageAns<1 || ageAns>100) {
+                document.getElementById('ageBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                let blink = 0;
+                const blinkInterval = setInterval(() => {
+                    document.getElementById('ageBoxttl').style.color = (blink % 2 === 0) ? "red" : "grey";
+                    document.getElementById('ageBoxttl').style.fontSize = (blink % 2 === 0) ? "1em" : ".8em";
+                    document.getElementById('ageBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
+                    document.getElementById('ageInput').value = '';
+                    blink++;
+                    if (blink > 5) clearInterval(blinkInterval);
+                }, 300);
+            }else if (!statusAns) {
+                document.getElementById('statusBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                let blink = 0;
+                const blinkInterval = setInterval(() => {
+                    document.getElementById('statusBoxttl').style.color = (blink % 2 === 0) ? "red" : "grey";
+                    document.getElementById('statusBoxttl').style.fontSize = (blink % 2 === 0) ? "1em" : ".8em";
+                    document.getElementById('statusBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
+                    blink++;
+                    if (blink > 5) clearInterval(blinkInterval);
+                }, 300);
+            }else if (!baptizedAns) {
+                document.getElementById('baptizedBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                let blink = 0;
+                const blinkInterval = setInterval(() => {
+                    document.getElementById('baptizedBoxttl').style.color = (blink % 2 === 0) ? "red" : "grey";
+                    document.getElementById('baptizedBoxttl').style.fontSize = (blink % 2 === 0) ? "1em" : ".8em";
+                    document.getElementById('baptizedBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
+                    blink++;
+                    if (blink > 5) clearInterval(blinkInterval);
+                }, 300);
+            }else if (!timeInFaithAns) {
+                document.getElementById('timeInFaithBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                let blink = 0;
+                const blinkInterval = setInterval(() => {
+                    document.getElementById('timeInFaithBoxttl').style.color = (blink % 2 === 0) ? "red" : "grey";
+                    document.getElementById('timeInFaithBoxttl').style.fontSize = (blink % 2 === 0) ? "1em" : ".8em";
+                    document.getElementById('timeInFaithBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
+                    blink++;
+                    if (blink > 5) clearInterval(blinkInterval);
+                }, 300);
+             }else {
+                //record variables
+                gender = document.querySelector('input[name="genderBox"]:checked')?.value || "";
+                age = document.querySelector('input[name="ageBox"]')?.value || "";
+                status = document.querySelector('input[name="statusBox"]:checked')?.value || "";
+                baptized = document.querySelector('input[name="baptizedBox"]:checked')?.value || "";
+                timeInFaith = document.querySelector('input[name="timeInFaithBox"]:checked')?.value || "";
+                //skill = Array.from(document.querySelectorAll('input[name="skillsInput"]:checked')).map(checkbox => checkbox.value);
+                console.log("personal details>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                console.log("gender[1=male 2=female]: "+gender);
+                console.log("age: "+age);
+                console.log("status[1=single 2=married]: "+status);
+                console.log("baptized[1=no 2=yes]: "+baptized);
+                console.log("time in faith[1-new 2=6mth 3=1yr]: "+ timeInFaith);
+                //console.log("1=music 2=technology 3=writing 4=technical 5=speaking 6=accounting 7=mentoring 8=bible: "+skill);
+                showPuzzle("bottom");
+                setTimeout(function() {
+                    document.getElementById('personalForm').style.display = "none";
+                    document.getElementById('step1').style.display = "none";
+                    document.getElementById('step2').style.display = "block";
+                    document.getElementById('step2').classList.add("disable");
+                    document.getElementById('l1').classList.add("currentStep");
+                    document.getElementById('s2').classList.add("currentStep");
+                    document.getElementById('skillQuestion').style.display = "block";
+                    skillSubmit();
+                    //skillSubmit();
+                }, 3500);
+            }
+        };
+    //skill questions
+        const skillProfilingQuestions = [
+        //Musical, Instrumental, Singing Skills
+            "I am passionate about participating in musical or singing activities.",
+            "I currently know how to play at least one musical instrument.",
+            "I have experience performing in front of an audience.",
+            "I am willing to improve or learn musical or singing skills if needed.",
+            "I enjoy collaborating with others in musical performances.",
+        // Technological, Computer, Editing Skills
+            "I am excited about working with technology and media tools.",
+            "I am comfortable using computers for editing, presentations, or design.",
+            "I have experience in video editing, graphic design, or coding.",
+            "I am willing to learn new technology skills to support a team or project.",
+            "I enjoy solving problems using technology.",
+        // Writing Skills
+            "I enjoy expressing ideas through writing.",
+            "I am confident in my grammar, spelling, and writing structure.",
+            "I have experience writing articles, blogs, reports, or scripts.",
+            "I am open to improving my writing skills through training or practice.",
+            "I feel energized when tasked with writing projects.",
+        // Technical, Electrical, Plumbing Skills
+            "I am interested in tasks that involve hands-on technical work.",
+            "I have basic knowledge of electrical, plumbing, or mechanical repairs.",
+            "I have past experience fixing or building things.",
+            "I am willing to undergo training to learn technical or maintenance skills.",
+            "I enjoy working with tools and equipment.",
+        // Public Speaking Skills
+            "I am excited by opportunities to speak in front of groups.",
+            "I feel confident presenting or leading discussions publicly.",
+            "I have experience giving speeches, presentations, or announcements.",
+            "I am willing to take workshops or training to improve my public speaking.",
+            "I enjoy preparing and delivering messages to an audience.",
+        // Accounting Skills
+            "I am interested in working with numbers, budgets, or financial records.",
+            "I have knowledge of basic accounting principles.",
+            "I have experience handling money, creating budgets, or tracking expenses.",
+            "I am willing to learn or improve my accounting skills through training.",
+            "I feel confident managing financial responsibilities accurately.",
+        // Mentoring/Counseling Ability
+            "I am passionate about helping others grow personally or spiritually.",
+            "I feel confident providing advice, encouragement, or guidance to others.",
+            "I have experience mentoring, counseling, or coaching individuals.",
+            "I am willing to undergo training to better support people in need.",
+            "I find joy in listening and giving support to others.",
+        // Understanding of Bible and Scripture
+            "I am eager to deepen my understanding of the Bible.",
+            "I have a strong foundation in Biblical knowledge and interpretation.",
+            "I have experience teaching, sharing, or discussing Bible topics.",
+            "I am willing to attend Bible studies or theological training to grow.",
+            "I enjoy studying and reflecting on Scripture."
+        ];
+        let skillProfilingScore = [0,0,0,0,0,0,0,0];
+        let skill=[];
+        function skillSubmit(){
+            console.log("skill question");
+            //show question
+            if(age<13){
+                alert("it appears that you are not yet old enough to serve in a ministry. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.");
+                window.location.href = "perfit.html";
+            }
+            console.log("skill questions Score>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            showQuestions("skillQuestion", skillProfilingQuestions, skillProfilingScore, "step2");
+        }
+    //interest and passion questions
+        const interestAndPassionProfiling = [
+            //core ministry
+            "I have a deep passion for helping others grow in their faith and relationship with God.",
+            "I enjoy being actively involved in or leading worship, prayer, or Bible study.",
+            "I feel a strong desire to minister to specific age groups (children, youth, young adults, men/women).",
+            "I am eager to share biblical truths and guide others spiritually.",
+            "I would be excited to serve in ministries that focus on spiritual growth and discipleship.",
+            //support ministry
+            "I have a strong desire to work behind the scenes and contribute to the smooth operation of the church.",
+            "I find fulfillment in organizing events, managing tasks, or helping with logistics.",
+            "I am passionate about paying attention to details and ensuring efficient operations.",
+            "I feel a sense of fulfillment when I help create a welcoming and organized church environment.",
+            "I would be willing to serve in roles such as ushering, administration, hospitality, or facility care.",
+            //outreach ministry
+            "I am driven by a strong desire to serve people in need beyond the church walls.",
+            "I am passionate about sharing my faith or helping others encounter God’s love.",
+            "I feel called to missions, community service, or street outreach to make a difference.",
+            "I am passionate about going where people are hurting and bringing hope.",
+            "I would be excited to participate in ministries that involve evangelism or making a tangible community impact.",
+            //creative & media ministry
+            "I am passionate about using my creative talents and interests for God's glory.",
+            "I enjoy working with visuals, media, technology, or the arts to communicate messages.",
+            "I feel energized and fulfilled when creating content, managing social media, or producing live events.",
+            "I would love to help improve the church’s communication and engagement through creative means.",
+            "I am interested in using my skills in drama, dance, video, graphic design, or tech to contribute to ministry.",
+            //care & healing ministry
+            "I feel deeply compassionate and have a desire to help those who are hurting or in need.",
+            "I am a good listener and often find people sharing their struggles with me.",
+            "I feel strongly called to help others heal emotionally, spiritually, or physically.",
+            "I would be open and eager to receive training in counseling, healing prayer, or support groups.",
+            "I have a passionate heart for caring for people in crisis, grief, addiction, or trauma.",
+            //special interest ministry
+            "I am interested in ministering to specific groups such as seniors, singles, or working professionals.",
+            "I enjoy connecting with others who share common interests or hobbies (e.g., sports, writing).",
+            "I believe my life experiences and skills could be used to bless and build up others.",
+            "I would enjoy leading or participating in ministries that align with my current life season or stage.",
+            "I feel a strong desire to serve in creative or nontraditional ministry spaces that engage unique interests."
+        ];
+        let interestAndPassionProfilingScore = [0,0,0,0,0,0];
+        function showGeneralQuestions() {
+            console.log("music,technology,writing,technical,speaking,accounting,mentoring,bible: "+skill);
+            //record skill
+            for (let i = 0; i < skillProfilingScore.length; i++) {
+                if(skillProfilingScore[i]>=10){
+                    skill = skill.concat(i+1);
+                }
+            }
+            console.log("general question");
+            showPuzzle("left");
+                setTimeout(function() {
+                    document.getElementById('skillQuestion').style.display = "none";
+                    document.getElementById('step2').style.display = "none";
+                    document.getElementById('step3').style.display = "block";
+                    document.getElementById('step3').classList.add("disable");
+                    document.getElementById('l2').classList.add("currentStep");
+                    document.getElementById('s3').classList.add("currentStep");
+                    document.getElementById('generalQuestion').style.display = "block";
+
+                    //record skill
+                    for (let i = 0; i < skillProfilingScore.length; i++) {
+                        if(skillProfilingScore[i]>=10){
+                            skill = skill.concat(i+1);
+                        }
+                    }
+                    console.log("genereal question scores>>>>>>>>>>>>>>");
+                    showQuestions("generalQuestion", interestAndPassionProfiling, interestAndPassionProfilingScore, "step3");
+                }, 3500);
+        }
+    
+    //filter
+        const ministries = [
+        //core ministry/
+            ["Worship","Prayer","Preaching","Discipleship","Children's",
+            "Youth","Young Adults","Men's","Women's","Family Or Couples"],
+        //support ministry
+            ["Ushering","Hospitality","Administrative","Finance","Security","Facilities Maintenance"],
+        //outreach ministry
+            ["Evangelism","Missions","Community Service","Visitation","New Believers"],
+        //creative and media ministry/
+            ["Production Tech","Creative Arts","Communications & Social Media","Graphic Video Design"],
+        //care and healing ministry
+            ["Counseling","Healing & Deliverance","Grief & Bereavement","Addiction Recovery","Special Needs"],
+        //special interest ministry
+            ["Seniors","Single Adults","Marketplace","Sports","Writing Publications"]
+        ];
+        let ranks = [0,0,0,0,0,0];
+        let highest = [];
+        let q = 0;
+        let ministryInterest = [];
+        function filter(){
+            console.log("filter");
+            //combine all ministry interest
+            for (let i = 0; i < highest.length; i++) {
+                let min = highest[i];
+                ministryInterest = ministryInterest.concat(ministries[min]);
+            }
+            //populate the ranks
+            for(let i = 0; i < interestAndPassionProfilingScore.length; i++) {
+                ranks[i]=interestAndPassionProfilingScore[i];
+            }
+        //find the highest category scorer(can be multiple)
+            for (let i = 0; i < ranks.length; i++) {
+                for (let j = i+1; j < ranks.length; j++) {
+                    if (ranks[i] < ranks[j]) { 
+                        // Swap elements
+                        const temp = ranks[i];
+                        ranks[i] = ranks[j];
+                        ranks[j] = temp;
+                    }
+                }
+            }
+            //top scorer
+            for (let i = 0; i < ranks.length; i++) {
+                if(ranks[0]==interestAndPassionProfilingScore[i]){
+                    highest[q]=i;
+                    q++;
+                }
+            }
+            //combine all ministry interest questions
+            for (let i = 0; i < highest.length; i++) {
+                let min = highest[i];
+                ministryInterest = ministryInterest.concat(ministries[min]);
+            }
+        //test
+            console.log("raw ministry interest>>>>>>>>>>>>>>>>");
+            for(let i = 0; i < ministryInterest.length; i++) {
+                console.log(ministryInterest[i]);
+            }
+        //apply restriction
+            //gender filter
+            let maleRestriction = ["Women's"];
+            let femaleRestriction = ["Men's", "Preaching"];
+            if (gender == "1") { // male
+                ministryInterest = ministryInterest.filter(item => !maleRestriction.includes(item));
+            } else if (gender == "2") { // female
+                ministryInterest = ministryInterest.filter(item => !femaleRestriction.includes(item));
+            }
+            //age filter
+            let age13Restriction = ["Prayer","Preaching","Seniors","Single Adults","Marketplace","Writing Publications","Evangelism","Counseling","Healing & Deliverance","Grief & Bereavement","Addiction Recovery","Special Needs","Missions","Communications & Social Media","Visitation","New Believers","Discipleship","Children's","Young Adults","Men's","Women's","Family Or Couples","Administrative","Finance","Security","Facilities Maintenance"];
+            let age16Restriction = ["Prayer","Visitation","Seniors","Single Adults","Marketplace","New Believers","Preaching","Counseling","Healing & Deliverance","Grief & Bereavement","Addiction Recovery","Young Adults","Men's","Women's","Family Or Couples","Administrative","Finance","Security"];
+            let age18Restriction = ["Seniors","Family Or Couples","Finance","Counseling","Healing & Deliverance"];
+            let age21Restriction = ["Youth","Seniors"];
+            let age60Restriction = ["Youth","Young Adults","Marketplace"];
+            if(age>=60){
+                ministryInterest = ministryInterest.filter(item => !age60Restriction.includes(item));
+            }else if(age>=21){
+                ministryInterest = ministryInterest.filter(item => !age21Restriction.includes(item));
+            }else if(age>=18){
+                ministryInterest = ministryInterest.filter(item => !age18Restriction.includes(item));
+            }else if(age>=16){
+                ministryInterest = ministryInterest.filter(item => !age16Restriction.includes(item));
+            }else if(age>=13){
+                ministryInterest = ministryInterest.filter(item => !age13Restriction.includes(item));
+            }
+            //baptized filter
+            let nonBaptizedRestriction = ["Worship","Counseling","Healing & Deliverance","Evangelism","Missions","Visitation","New Believers","Finance","Prayer","Preaching","Discipleship","Children's",];
+            if (baptized == "1") { // not Baptized
+                ministryInterest = ministryInterest.filter(item => !nonBaptizedRestriction.includes(item));
+            }
+            //status
+            let singleRestriction = ["Family Or Couples"];
+            let marriedRestriction = ["Single Adults"];
+            if (status == "1") { // singleRestriction
+                ministryInterest = ministryInterest.filter(item => !singleRestriction.includes(item));
+            }else if(status == "2"){//marriedRestriction
+                ministryInterest = ministryInterest.filter(item => !marriedRestriction.includes(item));
+            }
+            //time in faith filter
+            let newComerRestriction = ["Counseling","New Believers","Healing & Deliverance","Marketplace","Grief & Bereavement","Addiction Recovery","Worship","Evangelism","Communications & Social Media","Missions","Visitation","Administrative","Finance","Security","Prayer","Preaching","Discipleship","Children's","Youth","Young Adults","Men's","Women's","Family Or Couples"];
+            let sixMonthRestriction = ["Preaching","Finance","Counseling","Healing & Deliverance","Discipleship","New Believers"];
+            if (timeInFaith == "1") { // singleRestriction
+                ministryInterest = ministryInterest.filter(item => !newComerRestriction.includes(item));
+            }else if(timeInFaith == "2"){//marriedRestriction
+                ministryInterest = ministryInterest.filter(item => !sixMonthRestriction.includes(item));
+            }
+            //skill filter
+            if(!skill.includes("1")){
+                ministryInterest = ministryInterest.filter(item => item !== "Worship");
+            }
+            if(!skill.includes("2")){
+                ministryInterest = ministryInterest.filter(item => item !== "Administrative");
+                ministryInterest = ministryInterest.filter(item => item !== "Production Tech");
+                ministryInterest = ministryInterest.filter(item => item !== "Graphic & Video Design");
+                ministryInterest = ministryInterest.filter(item => item !== "Communications & Social Media");
+            }
+            if(!skill.includes("3")){
+                ministryInterest = ministryInterest.filter(item => item !== "Writing Publications");
+                ministryInterest = ministryInterest.filter(item => item !== "Communications & Social Media");
+            }
+            if(!skill.includes("4")){
+                ministryInterest = ministryInterest.filter(item => item !== "Facilities Maintenance");
+            }
+            if(!skill.includes("5") && !skill.includes(8)){
+                ministryInterest = ministryInterest.filter(item => item !== "Preaching");
+                ministryInterest = ministryInterest.filter(item => item !== "Evangelism");
+            }
+            if(!skill.includes("6")){
+                ministryInterest = ministryInterest.filter(item => item !== "Finance")
+                ministryInterest = ministryInterest.filter(item => item !== "Marketplace");
+            }
+            if(!skill.includes("7")){
+                ministryInterest = ministryInterest.filter(item => item !== "Discipleship")
+                ministryInterest = ministryInterest.filter(item => item !== "Counseling");
+                ministryInterest = ministryInterest.filter(item => item !== "New Believers");
+            }
+            if(!skill.includes("8")){
+                ministryInterest = ministryInterest.filter(item => item !== "Preaching");
+                ministryInterest = ministryInterest.filter(item => item !== "Evangelism");
+                ministryInterest = ministryInterest.filter(item => item !== "New Believers");
+            }
+            console.log("Filtered ministries>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            for (let i = 0; i < ministryInterest.length; i++) {
+                console.log(ministryInterest[i]);
+            }
+            showSpecificQuestions();
+        }
+    
+        //behavioral questions
+        const ministryQuestions = [
+        //core ministry
+            {
+                "ministry": "Worship",
+                "questions": [
+                    "I often sing, play an instrument, or express worship through music during my personal time.",
+                    "I feel deeply connected to God through music and love sharing that experience with others.",
+                    "I enjoy collaborating with others creatively, especially in music or arts-related projects.",
+                    "Leading others in musical worship feels like a natural extension of my personal relationship with God.",
+                    "I feel called to use my musical or artistic gifts to help others encounter God's presence during worship."
+                ]
+            },
+            {
+                "ministry": "Prayer",
+                "questions": [
+                    "I find myself praying for others throughout the day, even without being asked.",
+                    "I am drawn to spending extended quiet time with God in intercession or reflection.",
+                    "People naturally come to me for spiritual support or prayer.",
+                    "I often sense a spiritual burden to pray for individuals, situations, or even nations without knowing all the details.",
+                    "I feel a deep peace and purpose when I’m in prayer, especially when standing in the gap for others."
+                ]
+            },
+            {
+                "ministry": "Preaching",
+                "questions": [
+                    "I enjoy studying the Bible in depth and sharing what I learn with others.",
+                    "I often find myself explaining biblical ideas or concepts to friends or family.",
+                    "I get excited about opportunities to speak or teach in front of a group.",
+                    "I feel called to help others grow in their faith by clearly communicating God’s Word.",
+                    "Preparing and delivering messages or lessons from Scripture energizes and fulfills me."
+                ]
+            },
+            {
+                "ministry": "Discipleship",
+                "questions": [
+                    "I enjoy mentoring or walking alongside someone in their spiritual journey.",
+                    "I naturally seek to guide and support others in their personal growth.",
+                    "I prefer deep one-on-one conversations over casual group interactions.",
+                    "I feel a deep joy when I see someone grow spiritually through consistent guidance and encouragement.",
+                    "I often find myself intentionally investing time in helping others mature in their faith."
+                ]
+            },
+            {
+                "ministry": "Children's",
+                "questions": [
+                    "I enjoy spending time with children and engaging with their energy and curiosity.",
+                    "I am patient and creative when explaining things in a way kids can understand.",
+                    "I feel a strong desire to help children know and experience God's love.",
+                    "I feel called to lay a strong spiritual foundation in the lives of children through teaching and example.",
+                    "I find joy in creating fun, meaningful experiences that help kids grow in their faith."
+                ]
+            },
+            {
+                "ministry": "Youth",
+                "questions": [
+                    "I relate well to teenagers and young adults and enjoy listening to their stories.",
+                    "I’m energized by youth culture, trends, or being part of fun, lively environments.",
+                    "I often find myself mentoring or advising young people in school or church settings.",
+                    "I feel a burden to guide the next generation toward a real, personal relationship with Jesus.",
+                    "I’m passionate about creating safe, fun spaces where teens can be themselves and encounter God."
+                ]
+            },
+            {
+                "ministry": "Young Adults",
+                "questions": [
+                    "I feel called to walk alongside people in their college or early career stages.",
+                    "I enjoy discussions around life direction, purpose, and spiritual identity.",
+                    "I actively build friendships with peers navigating similar life stages.",
+                    "I enjoy journeying with young adults as they make big life decisions rooted in faith.",
+                    "I’m drawn to conversations that help others discover God’s purpose for their season of life."
+                ]
+            },
+            {
+                "ministry": "Men's",
+                "questions": [
+                    "I value brotherhood and often seek meaningful conversations with fellow men.",
+                    "I’m passionate about helping other men grow in faith, integrity, and leadership.",
+                    "I feel comfortable being vulnerable and encouraging others to do the same.",
+                    "I believe in the importance of spiritual brotherhood and sharpening one another through accountability.",
+                    "I desire to see men rise in godly strength, lead well, and walk in biblical manhood."
+                ]
+            },
+            {
+                "ministry": "Women's",
+                "questions": [
+                    "I’m passionate about empowering women to grow spiritually and emotionally.",
+                    "I often support other women by listening, encouraging, or praying with them.",
+                    "I actively seek out spaces where women can gather for faith and fellowship.",
+                    "I long to create spaces where women feel seen, heard, and spiritually uplifted.",
+                    "I find joy in helping women discover their identity and purpose in Christ."
+                ]
+            },
+            {
+                "ministry": "Family Or Couples",
+                "questions": [ 
+                    "I have a heart for strengthening marriages and family relationships through faith.",
+                    "I enjoy helping others navigate relationship challenges with biblical wisdom.",
+                    "I often find myself giving advice or support to couples or parents.",
+                    "I feel called to help families and couples thrive spiritually, emotionally, and relationally.",
+                    "I enjoy walking with others through both the joys and struggles of marriage and parenting."
+                ]
+            },
+        //support ministry
+            {
+                "ministry": "Ushering",
+                "questions": [
+                    "I enjoy making people feel comfortable and welcome in new environments.",
+                    "I often notice when someone looks lost or unsure and offer to help.",
+                    "I smile naturally and enjoy small conversations with people I don’t know well.",
+                    "I have a habit of arriving early to prepare for events or gatherings.",
+                    "I enjoy being active and moving around rather than sitting in one place for long."
+                ]
+            },
+            {
+                "ministry": "Hospitality",
+                "questions": [
+                    "I take joy in preparing food or refreshments for guests at home or events.",
+                    "Hosting or helping with social events is something I look forward to.",
+                    "I enjoy decorating or organizing spaces to make them more welcoming.",
+                    "I often anticipate people’s needs before they ask.",
+                    "I feel most fulfilled when others are enjoying themselves because of something I did."
+                ]
+            },
+            {
+                "ministry": "Administrative",
+                "questions": [
+                    "I’m naturally organized and enjoy making schedules, lists, or plans.",
+                    "I often catch small errors or inconsistencies when reviewing written information.",
+                    "I feel satisfaction from managing paperwork, systems, or office tasks.",
+                    "I enjoy working behind the scenes to help things run smoothly.",
+                    "I tend to double-check dates, emails, and messages to make sure everything’s correct."
+                ]
+            },
+            {
+                "ministry": "Finance",
+                "questions": [
+                    "I enjoy budgeting or managing personal or group finances.",
+                    "I believe teaching people about wise financial stewardship is important.",
+                    "I naturally track expenses, savings, or giving habits.",
+                    "People often ask me for advice on money management or giving.",
+                    "I feel a strong sense of responsibility when entrusted with financial matters."
+                ]
+            },
+            {
+                "ministry": "Security",
+                "questions": [
+                    "I often find myself observing surroundings and noticing details others miss.",
+                    "I’m calm and level-headed during stressful or emergency situations.",
+                    "I feel a strong desire to protect and ensure the safety of others.",
+                    "I am comfortable setting boundaries or enforcing rules respectfully.",
+                    "I enjoy roles that involve vigilance, order, or structure."
+                ]
+            },
+            {
+                "ministry": "Facilities Maintenance",
+                "questions": [
+                    "I take pride in keeping spaces clean, functional, and presentable.",
+                    "I enjoy fixing, organizing, or improving physical spaces or equipment.",
+                    "I often volunteer to help set up or tear down before and after events.",
+                    "I don’t mind physical tasks such as lifting, moving, or cleaning.",
+                    "I find satisfaction in completing hands-on tasks that others may overlook."
+                ]
+            },
+        //outreach ministry
+            {
+                "ministry": "Evangelism",
+                "questions": [
+                    "I am energized by meeting new people and hearing their stories.",
+                    "I often look for natural ways to talk about Jesus in everyday conversations.",
+                    "I enjoy stepping outside of my comfort zone to connect with others.",
+                    "I feel a strong burden for people who don’t yet know Christ.",
+                    "I find fulfillment in telling others about how God changed my life."
+                ]
+            },
+            {
+                "ministry": "Missions",
+                "questions": [
+                    "I enjoy learning about other cultures and adapting to different environments.",
+                    "I am open to traveling to unfamiliar places to serve others.",
+                    "I feel called to serve in both local and global communities.",
+                    "I enjoy working with diverse teams to accomplish a shared mission.",
+                    "I am willing to sacrifice time, comfort, or convenience for the sake of the Gospel."
+                ]
+            },
+            {
+                "ministry": "Community Service",
+                "questions": [
+                    "I am drawn to helping those in need, especially the poor and marginalized.",
+                    "I often volunteer for community service or outreach programs.",
+                    "I feel comfortable interacting with people from all walks of life.",
+                    "I enjoy physically serving others (e.g., preparing food, distributing goods).",
+                    "I often think about how to make my neighborhood or city a better place."
+                ]
+            },
+            {
+                "ministry": "Visitation",
+                "questions": [
+                    "I am a good listener and find joy in simply being present with someone.",
+                    "I feel compassion for people who are sick, isolated, or imprisoned.",
+                    "I am comfortable offering prayer, comfort, or encouragement in intimate settings.",
+                    "I often check in on people who are going through difficult times.",
+                    "I don’t mind quiet or emotional environments where deep support is needed."
+                ]
+            },
+            {
+                "ministry": "New Believers",
+                "questions": [
+                    "I enjoy walking with people through the early stages of their spiritual journey.",
+                    "I am patient and understanding when someone asks basic faith-related questions.",
+                    "I often feel excited when I see someone new grow in their relationship with Jesus.",
+                    "I enjoy creating a welcoming environment for people who are new to church.",
+                    "I’m passionate about helping others develop habits like prayer, Bible reading, and fellowship."
+                ]
+            },
+       //creative media ministry
+            {
+                "ministry": "Production Tech",
+                "questions": [
+                    "I enjoy working behind the scenes to make events run smoothly.",
+                    "I like figuring out how technology works and troubleshooting problems.",
+                    "I can stay focused and calm while operating equipment during live events.",
+                    "I’m interested in learning more about audio, lighting, or livestream systems.",
+                    "I get a sense of accomplishment when everything runs smoothly but no one notices me."
+                ]
+            },
+            {
+                "ministry": "Creative Arts",
+                "questions": [
+                    "I express myself best through creative outlets like drama, dance, or visual arts.",
+                    "I enjoy preparing and rehearsing for performances or artistic presentations.",
+                    "I love using my creativity to communicate messages of faith and hope.",
+                    "I am comfortable being on stage or in front of people when presenting something meaningful.",
+                    "I often think of creative ways to make worship or church events more engaging."
+                ]
+            },
+            {
+                "ministry": "Communications & Social Media",
+                "questions": [
+                    "I enjoy writing or creating content that informs or inspires others.",
+                    "I am familiar with how social media platforms work and enjoy using them.",
+                    "I like brainstorming creative ways to share updates or stories online.",
+                    "I pay attention to detail in things like captions, grammar, and design flow.",
+                    "I often think about how to make things more visually appealing or easier to understand."
+                ]
+            },
+            {
+                "ministry": "Graphic & Video Design",
+                "questions": [
+                    "I enjoy creating digital content like posters, videos, or short reels.",
+                    "I am skilled in or excited to learn tools like Canva, Photoshop, or video editors.",
+                    "I pay close attention to color, typography, and visual balance.",
+                    "I often notice good design or production quality in media and try to replicate it.",
+                    "I find joy in using my digital skills to support ministry work."
+                ]
+            },
+        //care healing ministry
+            {
+                "ministry": "Counseling",
+                "questions": [
+                    "I find it fulfilling to listen deeply and offer guidance to people going through emotional struggles.",
+                    "Friends and family often come to me for advice or emotional support.",
+                    "I am patient when people need time to process their thoughts or emotions.",
+                    "I am naturally empathetic and feel compelled to walk with people through their pain.",
+                    "I enjoy reading or learning about emotional intelligence, mental health, or spiritual care."
+                ]
+            },
+            {
+                "ministry": "Healing & Deliverance",
+                "questions": [
+                    "I believe prayer can bring healing and spiritual breakthrough.",
+                    "I am not easily shaken when dealing with deep spiritual or emotional issues.",
+                    "I have a passion for intercessory prayer and seeing people set free spiritually.",
+                    "I am sensitive to the spiritual atmosphere or burdens others may carry.",
+                    "I have an interest in learning more about spiritual authority and deliverance ministry."
+                ]
+            },
+            {
+                "ministry": "Grief & Bereavement",
+                "questions": [
+                    "I feel called to be a comforting presence for those who are grieving.",
+                    "I am able to sit in silence or sadness with others without needing to 'fix' things.",
+                    "I’ve experienced grief myself and have a heart to help others walk through it.",
+                    "I am drawn to quiet, one-on-one moments of comfort and connection.",
+                    "I have a calm demeanor and can be relied on during emotionally heavy times."
+                ]
+            },
+            {
+                "ministry": "Addiction Recovery",
+                "questions": [
+                    "I have a passion to help others break free from destructive patterns or addictions.",
+                    "I am open-minded and nonjudgmental toward people in recovery or relapse.",
+                    "I believe in the power of community and accountability for healing.",
+                    "I am comfortable discussing personal struggles and encouraging vulnerability.",
+                    "I enjoy environments that foster deep honesty, restoration, and support."
+                ]
+            },
+            {
+                "ministry": "Special Needs",
+                "questions": [
+                    "I have a heart for helping individuals with special needs feel seen and included.",
+                    "I am patient and flexible when working with people of different abilities.",
+                    "I enjoy serving families who face unique challenges and celebrating their victories.",
+                    "I take joy in creating safe and joyful environments for people to thrive.",
+                    "I often look for creative ways to connect with individuals who communicate differently."
+                ]
+            },
+        //special interest
+            {
+                "ministry": "Seniors",
+                "questions": [
+                    "I enjoy spending time with older adults and learning from their life stories.",
+                    "I am patient and compassionate when assisting people who need more time or care.",
+                    "I’m intentional about showing honor and value to elderly members of the community.",
+                    "I find joy in organizing or participating in activities that bring comfort and companionship.",
+                    "I’m willing to make regular visits or calls to check in on senior church members."
+                ]
+            },
+            {
+                "ministry": "Single Adults",
+                "questions": [
+                    "I value deep conversations and forming community with fellow single adults.",
+                    "I’m interested in creating or participating in small groups or events for singles.",
+                    "I am comfortable encouraging others who are navigating life without a spouse.",
+                    "I enjoy connecting people who might be feeling isolated in their current season.",
+                    "I often think of creative ways to build a strong, God-honoring single adult community."
+                ]
+            },
+            {
+                "ministry": "Marketplace ",
+                "questions": [
+                    "I believe our faith should influence how we work and lead in the marketplace.",
+                    "I enjoy mentoring or learning from others in professional or business settings.",
+                    "I’m passionate about helping others integrate faith and career purposefully.",
+                    "I actively seek networking opportunities that can support personal and spiritual growth.",
+                    "I’m energized by discussions about leadership, entrepreneurship, or workplace challenges."
+                ]
+            },
+            {
+                "ministry": "Sports",
+                "questions": [
+                    "I enjoy playing or watching sports and see it as a tool for connection.",
+                    "I love team-based activities and using competition in a healthy, fun way.",
+                    "I’m interested in using sports to reach youth or build relationships in the community.",
+                    "I find that physical activity helps me connect better with others.",
+                    "I’m motivated to combine fitness and faith in meaningful and creative ways."
+                ]
+            },
+            {
+                "ministry": "Writing Publications",
+                "questions": [
+                    "I enjoy expressing thoughts and faith through writing.",
+                    "I’m excited about contributing to devotionals, articles, or publications for the church.",
+                    "I like crafting clear, inspiring messages that help others grow spiritually.",
+                    "I pay close attention to grammar, tone, and clarity when writing.",
+                    "I often reflect deeply and journal my thoughts, prayers, or insights from Scripture."
+                ]
+            }
+        ];
+        let behavioralProfilingScore = [];
+        let filteredQuestion = [];
+        function showSpecificQuestions() {
+            console.log("specific question");
+            for (let i = 0; i < ministryInterest.length; i++) {
+                let ministryName = ministryInterest[i];
+                
+                // find the ministry object inside ministryQuestions array
+                let ministryObj = ministryQuestions.find(m => m.ministry === ministryName); 
+                
+                if (ministryObj) {
+                    filteredQuestion = filteredQuestion.concat(ministryObj.questions);
+                }
+            }
+            showPuzzle("right");
+            setTimeout(function() {
+                    document.getElementById('generalQuestion').style.display = "none";
+                    document.getElementById('l3').classList.add("currentStep");
+                    document.getElementById('s4').classList.add("currentStep");
+                    document.getElementById("step3").style.display = "none";
+                    document.getElementById("step4").style.display = "block";
+                    document.getElementById("step4").classList.add("disable");
+                    document.getElementById('specificQuestion').style.display = "block"; 
+                    console.log("specific question scores>>>>>>>>>>>>>>");
+                    showQuestions("specificQuestion", filteredQuestion, behavioralProfilingScore, "step4");
+            }, 3000);
+        }
+    //display question func
+        function showQuestions(portID, question, scorePort, btnId){
+            const port = document.getElementById(portID);
+            for (let i = 0; i < question.length; i++) {
+                const template = document.getElementById('questionTemp');
+                const clone = template.content.cloneNode(true);
+                const questionText = clone.querySelector('.questionText');
+                const questionBox = clone.querySelector('.questionBox');
+                questionText.innerText = question[i];
+                if(i!=0){
+                    questionBox.classList.add("blurred");
+                    port.appendChild(clone);
+                }else{
+                    port.appendChild(clone);
+                    questionBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+            //blur prev & go next
+            let opemNext = 0; 
+            let count = 1;
+            let nextScoreIndex = 0;
+            document.querySelectorAll('.questionBox button').forEach(button => {
+                button.addEventListener('click', () => {
+                    button.classList.add('clicked');
+                    // Blur the questionBox container
+                    const questionBox = button.closest('.questionBox');
+                    questionBox.classList.add("blurred");
+                    const nextBox = questionBox.nextElementSibling;
+                    if (nextBox && nextBox.classList.contains('questionBox')) {
+                        nextBox.classList.remove("blurred");
+                        nextBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    opemNext++;
+                    if (scorePort[nextScoreIndex] === undefined) {
+                        scorePort[nextScoreIndex] = 0;
+                    }
+                    scorePort[nextScoreIndex] += parseInt(button.value);
+                    //scoring
+                    if(count==5){//6 index
+                        console.log("phase["+ nextScoreIndex +"]: " + scorePort[nextScoreIndex]);
+                        nextScoreIndex++;
+                        count=0;
+                    }
+                    count++;
+                    if(opemNext === question.length){
+                        document.getElementById(btnId).classList.remove("disable");
+                        //next phase
+                    }
+                });
+            });
+        }
+
+        //AI interpretation
+        async function interpret(){
+            console.log("interpret");
+            showPuzzle("top");
+            setTimeout(function() {
+                    document.getElementById('specificQuestion').style.display = "none";
+                    document.getElementById('l4').classList.add("currentStep");
+                    document.getElementById('s5').classList.add("currentStep");
+                    document.getElementById("step4").style.display = "none";
+                    document.getElementById("step5").style.display = "block";
+                    document.getElementById("step5").classList.add("disable");
+                    document.getElementById('responseDiv').style.display = "block";
+                    document.getElementById('responseDiv').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 3500);
+            startThinkingAnimation();
+
+            //rank it
+            for (let i = 0; i < behavioralProfilingScore.length; i++) {
+                for (let j = i+1; j < behavioralProfilingScore.length; j++) {
+                    if (behavioralProfilingScore[i] < behavioralProfilingScore[j]) { 
+                        // Swap elements
+                        const temp = behavioralProfilingScore[i];
+                        behavioralProfilingScore[i] = behavioralProfilingScore[j];
+                        behavioralProfilingScore[j] = temp;
+
+                        const temp2 = ministryInterest[i];
+                        ministryInterest[i] = ministryInterest[j];
+                        ministryInterest[j] = temp2;
+                    }
+                }
+            }
+            // build the dynamic top list
+                let topList = "";
+                for (let i = 0; i < ministryInterest.length; i++) {
+                    topList += `top ${i + 1} [${ministryInterest[i]}],`;
+                }
+
+            let message = `
+                You are an AI assistant for the PerfectFit church ministry personality test. 
+                A user has completed the test, and their scores are as follows (highest score means top 1):
+
+                top: ${topList}
+
+                Least Aligned Ministry [${ministryInterest[ministryInterest.length-1]}] 
+
+                find the top 1, top 2 and top 3 scoring ministry from the data above
+                
+
+                Your task is to give interpretation, focusing on their divine calling and how the ministries align with their strengths and purpose. 
+                Include a spiritual connection between the top three ministries, emphasizing their complementary roles in the user's faith journey.
+
+                Output Format:
+                <h1 style="color:rgb(128, 65, 128);text-align: center;">AI INTERPRETATION</h1>
+
+                <h2 style="color:rgb(128, 65, 128);">Best Fit: [top1 ministry] Ministry</h2>//note: make this response 200 words minimum and 2 paragraphs minimum
+                Provide a brief explanation of why this ministry is the user's top fit. 
+                Highlight how this ministry aligns with their natural gifts, strengths, and passion. 
+                Explain that this fit is part of their divine calling, as though this ministry was made for them. 
+                Emphasize the alignment between their purpose and this ministry's mission. 
+
+                <h2 style="color:rgb(128, 65, 128);">Top 2 Identified Fit: [top2 ministry] Ministry</h2>//note: make this response 200 words minimum and 2 paragraphs minimum
+                Provide a brief explanation of why this ministry is the user's second-best fit. 
+                Focus on how it complements their spiritual strengths and calling. 
+                Again, explain that this ministry feels like a divine part of their journey, 
+                something that aligns with their unique gifts and purpose in life. 
+
+                <h2 style="color:rgb(128, 65, 128);">Top 3 Identified Fit: [top3 ministry] Ministry</h2>//note: make this response 200 words minimum and 2 paragraphs minimum
+                Provide a brief explanation of why this ministry is the user's third-best fit. 
+                Focus on how it complements their spiritual hobby and quirks. 
+                Again, explain that this ministry feels like a divine part of their journey, 
+                something that aligns with their unique gifts and purpose in life. 
+
+                <h2 style="color:rgb(128, 65, 128);">Least Aligned Ministry (Currently): [Ministry] Ministry</h2> 
+                //note: make this response 150 words minimum and 2 paragraphs minimum  
+                Provide a thoughtful and compassionate reflection on why this ministry may have ranked lowest for the user.  
+                Emphasize that every ministry plays a vital role in the body of Christ, and a low score does not mean disqualification—it simply highlights a lesser alignment *at this moment*.  
+                Encourage the user not to see this as a weakness but as a potential area of spiritual growth.  
+                End with a note of affirmation: they are uniquely made, and every ministry—strong or weak—can be a stepping stone in their divine walk.
+
+                <h2 style="color:rgb(128, 65, 128);">Spiritual Relationship Between Top Ministries</h2>//note: make this response 200 words minimum and 2 paragraphs minimum
+                Explain how these three ministries are connected and complement each other in a spiritual sense. 
+                Focus on how their roles support the individual's growth in faith, build on themes like service, prayer, worship, or leadership, and help fulfill the greater mission of the church. 
+                Illustrate how the combination of these ministries enhances the user’s role in God's work. 
+                
+                <h2 style="color:rgb(128, 65, 128);">Growth Opportunities:</h2>//note: make this response 100 words minimum and 2 paragraphs minimum
+                Show how they can grow into their role. Include spiritual, emotional, or skill-based development suggestions. 
+                
+                <h2 style="color:rgb(128, 65, 128);">Compatibility with Team Dynamics:</h2>//note: make this response 100 words minimum and 2 paragraphs minimum
+                Give an insight like "You'd thrive best in teams that are..." (ex. collaborative, structured, spontaneous, etc.) 
+                Help them visualize what kind of team culture suits them. 
+                
+                <h2 style="color:rgb(128, 65, 128);">Ministry Pathway / Journey Map:</h2>//note: Put the path way in bullets
+                make a possible serving pathway, Help them think long-term, not just one-time serving.
+                example:
+                - start as an assisstant
+                - learn from your senior
+                - lead your juniors
+                - grow into a leader role. 
+            `;
+
+            
+            const apiKey = "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"; // Your OpenAI API key here
+
+            try {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-3.5-turbo',
+                        messages: [
+                            { role: 'system', content: 'You are a helpful church ministry assistant.' },
+                            { role: 'user', content: message }
+                        ],
+                        temperature: 0.7
+                    })
+                });
+
+                if (!response.ok) {
+                    const error = await response.text();
+                    throw new Error(`OpenAI API error: ${error}`);
+                }
+
+                const data = await response.json();
+
+                //Show response
+                stopThinkingAnimation();
+                document.getElementById("responseDiv").innerHTML =
+                    data.choices[0].message.content.replace(/\n/g, '<br>');
+
+            } catch (error) {
+                stopThinkingAnimation();
+                console.error("Error:", error);
+                document.getElementById("responseDiv").innerHTML =
+                    `<span style="color:red;">Error: ${error.message}</span>`;
+            }
+        }
+
+
+    //thinking loading animation
+        let thinkingInterval;
+        function startThinkingAnimation() {
+            const dots = document.getElementById("dots");
+            let dotCount = 1;
+            thinkingInterval = setInterval(() => {
+                dotCount = (dotCount % 3) + 1;
+                dots.textContent = ".".repeat(dotCount);
+            }, 500);
+            document.getElementById("thinking").style.display = "inline";
+        }
+
+        function stopThinkingAnimation() {
+            clearInterval(thinkingInterval);
+            document.getElementById("thinking").style.display = "none";
+            document.getElementById("step5").classList.remove("disable");
+        }
+    //show puzzle
+        function showPuzzle(side){
+            document.getElementById(side).classList.add("showPiece");
+            document.getElementById('puzzle').scrollIntoView({ behavior: 'smooth' });
+            setTimeout(function() {document.getElementById(side).classList.add("highlightPiece");}, 1000);
+            setTimeout(function() {document.getElementById(side).classList.remove("highlightPiece");}, 2000);
+        }
+    //animation
+        const moveUp = document.querySelectorAll('.move-up');
+        const upObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible1');
+                }
+            });
+        }, { threshold: 0.1 });
+        moveUp.forEach(el => upObserver.observe(el));
+    </script>
+</body>
+</html>
