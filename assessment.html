@@ -544,7 +544,6 @@
         let timeInFaith=0;
     //personal details
         function personalDetailsSubmit(){
-            document.getElementById('step1').classList.add("disable");
             const genderAns = document.querySelector("input[name='genderBox']:checked");
             const ageAns = document.querySelector("input[name='ageBox']").value;
             const statusAns = document.querySelector("input[name='statusBox']:checked");
@@ -602,6 +601,7 @@
                     if (blink > 5) clearInterval(blinkInterval);
                 }, 300);
              }else {
+                document.getElementById('step1').classList.add("disable");
                 //record variables
                 gender = document.querySelector('input[name="genderBox"]:checked')?.value || "";
                 age = document.querySelector('input[name="ageBox"]')?.value || "";
@@ -638,7 +638,7 @@
             "Music is a regular part of my activities or hobbies.",
             "I’ve had opportunities in the past to perform or be part of musical events.",
             "I’m open to training or workshops to enhance my musical abilities.",
-            "I have skills in music, singing, or playing instruments.",
+            "I enjoy collaborating with others in musical performances.",
         
             // Technological, Computer, Editing Skills
             "I can easily work with computers, technology, or media tools.",
