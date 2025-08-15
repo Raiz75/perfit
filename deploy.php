@@ -15,7 +15,7 @@ if ($secret) {
 }
 
 // Go to repo directory and pull latest changes
-$repoDir = '/home/u634069814/domains/darkred-camel-628204.hostingersite.com/public_html/perfit'; // make sure this is your actual repo folder
+$repoDir = '/home/u634069814/domains/darkred-camel-628204.hostingersite.com/public_html/perfit_folder'; // make sure this is your actual repo folder
 chdir($repoDir);
 $output = shell_exec('git pull origin main 2>&1');
 
