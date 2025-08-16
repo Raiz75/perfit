@@ -229,17 +229,16 @@
 
         .lBtn,
         .rBtn {
-            width: 3vw;
-            height: 3vw;
+            width: 5vw;
+            height: 5vw;
             position: absolute;
-            top: 50%;
-            background-color: lightgray;
+            top: 45%;
             cursor: pointer;
             border: 0.2vw solid rgb(128, 65, 128);
             background-color: rgb(128, 65, 128);
             color: white;
             transition: 0.5s ease-in-out;
-            font-size: 1em;
+            font-size: 2em;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -374,6 +373,46 @@
         }
 
         /* DESKTOP-FIRST RESPONSIVE MEDIA QUERIES */
+        @media (hover: none) {
+            .n:hover {
+                box-shadow: 0px 0vw 0vw rgb(51, 26, 51);
+                transform: translateY(0px);
+            }
+            .n:hover img {
+                transform: none;
+            }
+
+            .stepBox:hover {
+                border-top-left-radius: 0vw;
+                border-top-right-radius: 5vw;
+                border-bottom-right-radius: 0vw;
+                border-bottom-left-radius: 5vw;
+                background-color: rgb(128, 65, 128);
+                border: 0.3vw solid rgb(128, 65, 128);
+                box-shadow: 0vw 1vw 1vw rgb(51, 26, 51);
+            }
+            .stepBox:hover h3 {
+                color: white;
+                transform: none;
+            }
+            .stepBox:hover p {
+                color: white;
+            }
+            .stepBox:hover hr {
+                border: 0.1vw solid white;
+            }
+
+            .card:hover {
+                box-shadow: 0px 0vw 0vw rgb(51, 26, 51);
+                transform: none;
+            }
+
+            .lBtn:hover,
+            .rBtn:hover {
+                background-color:  rgb(128, 65, 128);
+                color: white;
+            }
+        }
 
         /* Tablet styles */
         @media (max-width: 768px) {
@@ -480,9 +519,10 @@
             
             .lBtn,
             .rBtn {
-                width: 8vw;
-                height: 8vw;
-                font-size: 3vw;
+                width: 12vw;
+                height: 12vw;
+                font-size: 4.5vw;
+                top: 52%;
             }
             
             .takeAssessment {
@@ -591,9 +631,10 @@
             
             .lBtn,
             .rBtn {
-                width: 10vw;
-                height: 10vw;
-                font-size: 4vw;
+                width: 18vw;
+                height: 18vw;
+                font-size: 6vw;
+                top:51%;
             }
             
             .takeAssessment {
@@ -697,8 +738,8 @@
             
             .lBtn,
             .rBtn {
-                width: 12vw;
-                height: 12vw;
+                width: 25vw;
+                height: 25vw;
                 font-size: 5vw;
             }
             
@@ -1002,9 +1043,9 @@
                 </div>
             </div>
         </div>
-
         <button class="lBtn" onclick="moveSlide('left')">‹</button>
         <button class="rBtn" onclick="moveSlide('right')">›</button>
+        <p><span id="page">1</span>/9</p>
   </div>
 <!--take assesment-->
     <div class="takeAssessment">
@@ -1027,26 +1068,33 @@
         carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
 
         function moveSlide(direction) {
-        if (direction === 'right') {
-            currentIndex++;
-        } else {
-            currentIndex--;
-        }
-        carousel.style.transition = "transform 0.5s ease-in-out";
-        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            if (direction === 'right') {
+                currentIndex++;
+            } else {
+                currentIndex--;
+            }
+            if(currentIndex==10){
+                document.getElementById("page").innerHTML = 1;
+            }else if(currentIndex==0){
+                document.getElementById("page").innerHTML = 9;
+            }else{
+                document.getElementById("page").innerHTML = currentIndex;
+            }
+            carousel.style.transition = "transform 0.5s ease-in-out";
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
 
         carousel.addEventListener('transitionend', () => {
-        if (currentIndex === 0) {
-            carousel.style.transition = "none";
-            currentIndex = totalSlides;
-            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-        if (currentIndex === totalSlides + 1) {
-            carousel.style.transition = "none";
-            currentIndex = 1;
-            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
+            if (currentIndex === 0) {
+                carousel.style.transition = "none";
+                currentIndex = totalSlides;
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+            if (currentIndex === totalSlides + 1) {
+                carousel.style.transition = "none";
+                currentIndex = 1;
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
         });
         
     //next

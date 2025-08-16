@@ -160,12 +160,17 @@
         }
         .blurred {
             filter: blur(2px);
+            /* pointer-events: none; */
+            opacity: 0.9;
+        }
+        .denyInput {
+            filter: blur(2px);
             pointer-events: none;
             opacity: 0.9;
         }
         .clicked {
-            background-color: rgb(128, 65, 128);
-            color: white;
+            background-color: rgb(128, 65, 128) !important;
+            color: white !important;
         }
 
         /*specific questions*/
@@ -218,6 +223,44 @@
             height: 200px;
             position: relative;
             margin-top: 30vh;
+        }
+
+        /*alert*/
+        .overlay {
+            display: none;               /* hidden by default */
+            position: fixed;             /* stays in place */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4); /* dark semi-transparent layer */
+            backdrop-filter: blur(5px);        /* blur the content behind */
+            z-index: 999;  /* above everything */
+        }
+
+        /* Centered alert */
+        .showAlert {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 3px solid rgb(128, 65, 128);
+            width: 500px;
+            height: 300px;
+            background: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 1.17rem;
+            border-radius: 12px;
+        }
+        .showAlert button{
+            border: 3px solid rgb(128, 65, 128);
+            padding: 10px;
+            width: 50%;
+            background-color: rgb(128, 65, 128);
+            border-radius: 12px;
+            color: white;
+            font-size: 1.2rem;
         }
 
         /*puzzle*/
@@ -346,6 +389,12 @@
             .footer {
                 height: 150px;
                 margin-top: 3rem;
+            }
+
+            .showAlert{
+                width: 300px;
+                padding: 1.5rem;
+                font-size: .98rem;
             }
         }
 
@@ -487,7 +536,13 @@
 <!--specific questions-->
     <div class="ministrySpecific" id="ministrySpecific">
     </div>
-<!--no minstry interest-->
+<!--alert-->
+   <div id="overlay" class="overlay">
+        <div class="showAlert">
+            <p id="alertMessage">alert message here</p>
+            <button onclick="window.location.href = 'index.html'">CLOSE</button>
+        </div>
+    </div>
     <!-- <p>Base on your Personal & Skill Profiling Interest & Passion Profiling</p> -->
 <!--question box template-->
     <template id="questionTemp">
@@ -529,13 +584,6 @@
 <!--script-->
     <script src="callApi.js"></script>
     <script>
-        // if (location.hostname === "localhost") {
-        //     let script = document.createElement("script");
-        //     script.src = "callApi.js";
-        //     document.head.appendChild(script);
-        // } else {
-        //     console.warn("Skipping callApi.js — For testing only");
-        // }
     //varibales
         let gender=0;
         let age=0;
@@ -695,8 +743,9 @@
         function skillSubmit(){
             //show question
             if(age<13){
-                alert("it appears that you are not yet old enough to serve in a ministry. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.");
-                window.location.href = "index.html";
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("alertMessage").innerText = "it appears that you are not yet old enough to serve in a ministry. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.";
+                console.log("The user is not old enough yet");
             }
             console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             console.log(">> Skill Profile");
@@ -1299,8 +1348,9 @@
         let filteredQuestion = [];
         function showMinistrySpecific() {
             if(ministryInterest.length==0){
-                alert("it appears that you are not qualified to serve in any ministry yet. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.");
-                window.location.href = "index.html";
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("alertMessage").innerText = "It appears that your interest or personal profile doesn't match with the ministries` requirments yet. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.";
+                console.log("The user's interest or personal profile doesn't match the ministry requirment yet.");
             }
             document.getElementById('step4').classList.add("disable");
             for (let i = 0; i < ministryInterest.length; i++) {
@@ -1329,58 +1379,96 @@
                     showQuestions("ministrySpecific", filteredQuestion, behavioralProfilingScore, "step4");
             }, 3000);
         }
+
     //display question func
-        function showQuestions(portID, question, scorePort, btnId){
+        function showQuestions(portID, question, scorePort, btnId) {
             const port = document.getElementById(portID);
-            for (let i = 0; i < question.length; ++i) {
+
+            // render questions
+            for (let i = 0; i < question.length; i++) {
                 const template = document.getElementById('questionTemp');
                 const clone = template.content.cloneNode(true);
                 const questionText = clone.querySelector('.questionText');
-                const questionBox = clone.querySelector('.questionBox');
+                const questionBox  = clone.querySelector('.questionBox');
+
                 questionText.innerText = question[i];
-                if(i!=0){
-                    questionBox.classList.add("blurred");
-                    port.appendChild(clone);
-                }else{
-                    port.appendChild(clone);
-                    questionBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
+                questionBox.dataset.qidx = i;           // <- keep the question index
+
+                if (i !== 0) questionBox.classList.add('denyInput');
+                port.appendChild(clone);
+                if (i === 0) questionBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
-            
-            //blur prev & go next
-            let opemNext = 0;
-            let count = 1;
-            let nextScoreIndex = 0;
-            document.querySelectorAll('.questionBox button').forEach(button => {
-                button.addEventListener('click', () => {
-                    button.classList.add('clicked');
-                    // Blur the questionBox container
-                    const questionBox = button.closest('.questionBox');
-                    questionBox.classList.add("blurred");
-                    const nextBox = questionBox.nextElementSibling;
-                    if (nextBox && nextBox.classList.contains('questionBox')) {
-                        nextBox.classList.remove("blurred");
-                        nextBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                    opemNext++;
-                    if (scorePort[nextScoreIndex] === undefined) {
-                        scorePort[nextScoreIndex] = 0;
-                    }
-                    scorePort[nextScoreIndex] += parseInt(button.value);
-                    //scoring
-                    if(count==5){//6 index
-                        console.log("set["+ nextScoreIndex +"]: " + scorePort[nextScoreIndex]);
-                        nextScoreIndex++;
-                        count=0;
-                    }
-                    count++;
-                    if(opemNext === question.length){
-                        document.getElementById(btnId).classList.remove("disable");
-                        //next phase
-                    }
-                });
+
+            // ---------- scoring model ----------
+            const GROUP_SIZE = 5; // 5 questions per set/port
+            const totalQuestions = question.length;
+            const portCount = Math.ceil(totalQuestions / GROUP_SIZE);
+
+            // answers[qIdx] holds the last chosen value for that question
+            const answers = new Array(totalQuestions).fill(null);
+
+            // make sure scorePort has numeric slots
+            for (let p = 0; p < portCount; p++) {
+                if (typeof scorePort[p] !== 'number') scorePort[p] = 0;
+            }
+
+            let answeredCount = 0; // how many unique questions answered at least once
+
+            // ---------- event delegation ----------
+            port.addEventListener('click', (e) => {
+                const btn = e.target.closest('.rateBox button');
+                if (!btn) return;
+
+                const qBox = btn.closest('.questionBox');
+                if (!qBox || qBox.classList.contains('denyInput')) return; // blocked state
+
+                // UI: one clicked per rateBox
+                const rateBox = btn.closest('.rateBox');
+                rateBox.querySelectorAll('button').forEach(b => b.classList.remove('clicked'));
+                btn.classList.add('clicked');
+
+                // which question & which set/port does it belong to?
+                const qIdx = parseInt(qBox.dataset.qidx, 10);
+                const portIdx = Math.floor(qIdx / GROUP_SIZE);
+
+                // new selected value
+                const newVal = parseInt(btn.value, 10);
+                if (isNaN(newVal)) return;
+
+                // OVERWRITE logic:
+                // if this question had an old answer, remove its contribution first
+                if (answers[qIdx] !== null) {
+                    scorePort[portIdx] -= answers[qIdx];
+                } else {
+                    answeredCount++; // first time answering this question
+                }
+
+                // store and add the new contribution
+                answers[qIdx] = newVal;
+                scorePort[portIdx] += newVal;
+
+                // mark current as blurred (still accepts input) and unlock next
+                qBox.classList.add('blurred');
+                const nextBox = qBox.nextElementSibling;
+                if (nextBox && nextBox.classList.contains('questionBox')) {
+                    nextBox.classList.remove('denyInput');
+                    nextBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+
+                //log score
+                if ((qIdx + 1) % GROUP_SIZE === 0) {
+                    console.log(`scorePort[${portIdx + 1}] = ${scorePort[portIdx]}`);
+                }
+
+                // enable next-phase button when all questions answered at least once
+                if (answeredCount === totalQuestions) {
+                    console.log("Final Score: [" + scorePort.join(", ") + "]");
+                    const nextBtn = document.getElementById(btnId);
+                    if (nextBtn) nextBtn.classList.remove('disable');
+                }
             });
         }
+
 
         //AI interpretation
         async function interpret(){
@@ -1470,7 +1558,7 @@
                 something that aligns with their unique gifts and purpose in life.
 
 
-                then display the least aligned ministry in this format:
+                Only if there is a top 4 should you display the least aligned ministry in this format; if not, skip it.
                 <h2 style="color:rgb(128, 65, 128);">Least Aligned Ministry: [Ministry] Ministry</h2> 
                 //note: make this response 150 words minimum  
                 Provide a thoughtful and compassionate reflection on why this ministry may have ranked lowest for the user.  
@@ -1527,12 +1615,6 @@
                 <h2 style="color:rgb(128, 65, 128);">Ministry Pathway / Journey Map:</h2>
             `;
 
-            //oks ulit
-            // if (location.hostname !== "localhost") {
-            //     console.warn("This code has no API, For testing only");
-            //     document.getElementById("responseDiv").innerHTML = "AI functions are disabled";
-            // }else{
-            //     AI_API=apiKey
                 try {
                     const response = await fetch('https://api.openai.com/v1/chat/completions', {
                         method: 'POST',
@@ -1573,7 +1655,6 @@
 
 
     //thinking loading animation
-
         let thinkingInterval;
         function startThinkingAnimation() {
             const dots = document.getElementById("dots");
