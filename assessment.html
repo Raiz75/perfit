@@ -159,12 +159,11 @@
             background-color: rgb(128, 65, 128);
         }
         .blurred {
-            filter: blur(2px);
-            /* pointer-events: none; */
+            filter: blur(1.5px);
             opacity: 0.9;
         }
         .denyInput {
-            filter: blur(2px);
+            filter: blur(5px);
             pointer-events: none;
             opacity: 0.9;
         }
@@ -227,15 +226,15 @@
 
         /*alert*/
         .overlay {
-            display: none;               /* hidden by default */
-            position: fixed;             /* stays in place */
+            display: none;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.4); /* dark semi-transparent layer */
-            backdrop-filter: blur(5px);        /* blur the content behind */
-            z-index: 999;  /* above everything */
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            z-index: 999;
         }
 
         /* Centered alert */
