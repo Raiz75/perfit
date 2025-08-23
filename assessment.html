@@ -69,6 +69,7 @@
             color: white
         }
 
+        /* assessment tools */
         .instruction{
             background: linear-gradient(to right, rgb(255, 223, 255), transparent);
             max-width: 700px;
@@ -82,14 +83,16 @@
             font-weight: bold;
         }
         .progressBarDiv{
-            width: 90%;
-            border:1px solid transparent;
+            width: 100%;
             position: sticky;
-            top: 10px;
+            top: 0px;
             background: rgb(255, 223, 255);
             margin: 0px auto;
-            border-radius: 12px;
+            border-bottom: 3px solid rgb(128, 65, 128);
             padding: 10px;
+            box-shadow: 0 0 8px rgba(51, 26, 51, 0.3);
+            z-index: 5;
+            transition: .5s ease-in-out;
         }
         .progressBarDiv p{
             margin-left: 10px;
@@ -214,6 +217,17 @@
         }
 
         /*next*/
+        .btnDiv{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: .3s ease-in-out;
+            bottom: 0px;
+        }
+        .btnDivStuck{
+            position: sticky;
+            bottom: 0px;
+        } 
         .nextBtn{
             width: 200px;
             height: 60px;
@@ -222,7 +236,7 @@
             font-size: 1.2rem;
             background-color: rgb(128, 65, 128);
             color: white;
-            margin: 2rem auto;
+            margin: 10px auto;
             display: block;
             cursor: pointer;
             transition: .3s ease-in-out;
@@ -237,6 +251,7 @@
             background-color: rgb(196, 171, 196);
             color: grey;
         }
+        
 
         /*footer*/
         .footer{
@@ -493,8 +508,6 @@
             .footer {
                 height: 120px;
             }
-            
-            
         }
     </style>
 </head>
@@ -567,8 +580,8 @@
     <p class="instruction" style="display: none;" id="inst2"><span>Instruction:</span> Please read each statement carefully and answer honestly. Use the scale to show how strongly you agree or disagree — there are no right or wrong answers, just your true opinion.</p>
 <!--skill details-->
     <div id="skillQuestion" style="display: none;">
-        <div class="progressBarDiv" id="phase2">
-            <p>Skill Profiling progress</p>
+        <div class="progressBarDiv">
+            <p>Skill Profiling Progress</p>
             <div class="progressBar">
                 <div class="progressIndicator"></div>
             </div>
@@ -576,8 +589,8 @@
     </div>
 <!--general questions-->
     <div id="ministryCategory" style="display: none;">
-        <div class="progressBarDiv" id="phase2">
-            <p>Interest and Passion Profiling progress</p>
+        <div class="progressBarDiv">
+            <p>Interest and Passion Profiling Progress</p>
             <div class="progressBar">
                 <div class="progressIndicator"></div>
             </div>
@@ -585,8 +598,8 @@
     </div>
 <!--specific questions-->
     <div id="ministrySpecific" style="display: none;">
-        <div class="progressBarDiv" id="phase2">
-            <p>Behavioral Profiling progress</p>
+        <div class="progressBarDiv">
+            <p>Behavioral Profiling Progress</p>
             <div class="progressBar">
                 <div class="progressIndicator"></div>
             </div>
@@ -622,12 +635,13 @@
     </div>
 <!--next button-->
     <button class="move-up nextBtn" id="step1" onclick="personalDetailsSubmit()">NEXT</button>
-    <button class="move-up nextBtn" id="step2" style="display:none;" onclick="showMinistryCategory()">NEXT</button>
-    <button class="move-up nextBtn" id="step3" style="display:none;" onclick="filter()">NEXT</button>
-    <button class="move-up nextBtn" id="step4" style="display:none;" onclick="interpret()">SUBMIT</button>
+    <div class="btnDiv" id="btnDiv">
+        <button class="move-up nextBtn" onclick="reviewAns()" id="review" style="display: none;">REVIEW ANSWER</button>
+        <button class="move-up nextBtn" id="step2"  style="display: none;" onclick="showMinistryCategory()">NEXT PHASE</button>
+        <button class="move-up nextBtn" id="step3"  style="display: none;" onclick="filter()">NEXT PHASE</button>
+        <button class="move-up nextBtn" id="step4"  style="display: none;" onclick="interpret()">SUBMIT</button>
+    </div>
     <button class="move-up nextBtn" id="step5" style="display:none;" onclick="window.location.href = 'index.html'">DONE</button>
-
-    <!-- <button class="testBtn" id="submitGeneralQuestion" onclick="displaySpecificQuestions()">test</button> -->
 <!--footer puzzle-->
     <div class="footer">
         <div class="puzzle" id="puzzle">
@@ -732,6 +746,7 @@
                     document.getElementById('skillQuestion').style.display = "block";
                     document.getElementById('inst1').style.display = "none";
                     document.getElementById('inst2').style.display = "block";
+                    document.getElementById('review').classList.add("disable");
                     skillSubmit();
                 }, 3500);
             }
@@ -856,6 +871,7 @@
         let interestAndPassionProfilingScore = [0,0,0,0,0,0];
         function showMinistryCategory() {
             document.getElementById('step2').classList.add("disable");
+            document.getElementById('review').classList.add("disable");
             //record skill
             for (let i = 0; i < skillProfilingScore.length; i++) {
                 if(skillProfilingScore[i]>=5){
@@ -872,6 +888,7 @@
                     document.getElementById('l2').classList.add("currentStep");
                     document.getElementById('s3').classList.add("currentStep");
                     document.getElementById('ministryCategory').style.display = "block";
+                    document.getElementById('review').classList.add("disable");
 
                     //record skill
                     for (let i = 0; i < skillProfilingScore.length; i++) {
@@ -909,6 +926,7 @@
         let ministryInterest = [];
         function filter(){
             document.getElementById('step3').classList.add("disable");
+            document.getElementById('review').classList.add("disable");
             console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             console.log("");
             console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -1401,7 +1419,6 @@
             }
         ];
 
-
         let behavioralProfilingScore = [];
         let filteredQuestion = [];
         function showMinistrySpecific() {
@@ -1413,10 +1430,8 @@
             document.getElementById('step4').classList.add("disable");
             for (let i = 0; i < ministryInterest.length; i++) {
                 let ministryName = ministryInterest[i];
-                
                 // find the ministry object inside ministryQuestions array
                 let ministryObj = ministryQuestions.find(m => m.ministry === ministryName); 
-                
                 if (ministryObj) {
                     filteredQuestion = filteredQuestion.concat(ministryObj.questions);
                 }
@@ -1430,6 +1445,7 @@
                     document.getElementById("step4").style.display = "block";
                     document.getElementById("step4").classList.add("disable");
                     document.getElementById('ministrySpecific').style.display = "block"; 
+                    document.getElementById('review').classList.add("disable");
                     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     console.log("");
                     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -1456,7 +1472,7 @@
 
                 if (i !== 0) questionBox.classList.add('denyInput');
                 port.appendChild(clone);
-                if (i === 0) questionBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (i === 0) document.getElementById("inst2").scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
 
             // ---------- scoring model ----------
@@ -1522,15 +1538,25 @@
                 if (answeredCount === totalQuestions) {
                     console.log("Final Score: [" + scorePort.join(", ") + "]");
                     const nextBtn = document.getElementById(btnId);
-                    if (nextBtn) nextBtn.classList.remove('disable');
+                    if (nextBtn){
+                        nextBtn.classList.remove('disable');
+                        document.getElementById("review").classList.remove('disable');
+                    }
                 }
             });
         }
 
+        //Stick next btn div
+        function reviewAns(){
+            document.getElementById('inst2').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            document.getElementById('review').style.display = "none";
+            document.getElementById('btnDiv').classList.add("btnDivStuck");
+        }
 
         //AI interpretation
         async function interpret(){
             document.getElementById('step4').classList.add("disable");
+            document.getElementById('review').classList.add("disable");
             console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             console.log("");
             console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -1545,6 +1571,7 @@
                     document.getElementById("step5").classList.add("disable");
                     document.getElementById('responseDiv').style.display = "block";
                     document.getElementById('inst2').style.display = "none";
+                    document.getElementById('review').style.display = "none";
                     document.getElementById('responseDiv').scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 3500);
             startThinkingAnimation();
@@ -1580,7 +1607,6 @@
 
                 console.log(topList);
                 console.log("Lowest: "+least);
-                //console.log(ministryInterest.join(", "));
 
             let message = `
                 You are an AI assistant for the Perfit: Am Ai System for matching skills in church ministry.
@@ -1709,7 +1735,6 @@
                     document.getElementById("responseDiv").innerHTML =
                         `<span style="color:red;">Error: ${error.message}</span>`;
                 }
-            //}
         }
 
 
@@ -1736,6 +1761,10 @@
             document.getElementById('puzzle').scrollIntoView({ behavior: 'smooth' });
             setTimeout(function() {document.getElementById(side).classList.add("highlightPiece");}, 1000);
             setTimeout(function() {document.getElementById(side).classList.remove("highlightPiece");}, 2000);
+            setTimeout(function() {
+                document.getElementById('review').style.display = "block";
+                document.getElementById("btnDiv").classList.remove("btnDivStuck");
+            }, 3500);
         }
     //animation
         const moveUp = document.querySelectorAll('.move-up');
