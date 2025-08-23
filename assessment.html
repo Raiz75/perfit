@@ -124,6 +124,7 @@
             padding: 1rem;
             background-color: whitesmoke;
             box-shadow: 0 0 8px rgba(128, 128, 128, 0.3);
+            color:rgb(128, 65, 128);
         }
         .personalDetail span{
             font-size: 0.9rem;
@@ -141,9 +142,8 @@
             background-color: white;
         }
         .box input[type="number"]{
-            width: 100%;
             max-width: 120px;
-            height: 40px;
+            height: 30px;
             border: 2px solid rgb(128, 65, 128);
             border-radius: 8px;
             background-color: white;
@@ -621,7 +621,7 @@
                 <button value=3>Strongly Agree</button>
                 <button value=2>Agree</button>
                 <button value=1>Slightly Agree</button>
-                <button value=0>Neutral</button>
+                
                 <button value=-1>Slightly Disagree</button>
                 <button value=-2>Disagree</button>
                 <button value=-3>Strongly Disagree</button>
@@ -755,7 +755,7 @@
     //skill questions
         const skillProfilingQuestions = [
             // Musical, Instrumental, Singing Skills
-            "I have skills in music, singing, or playing instruments.",
+            "I have skills in music, singing, or playing instruments.\n\ntagalog test. kung na babasa mo ito, pakiss :)",
             "Music is a regular part of my activities or hobbies.",
             "I’ve had opportunities in the past to perform or be part of musical events.",
             "I’m open to training or workshops to enhance my musical abilities.",
@@ -828,7 +828,7 @@
         const interestAndPassionProfiling = [
             //core ministry
             "I enjoy helping others learn and grow a relationship with God.",
-            "I like participating in or helping lead worship, prayer, or Bible study.",
+            "I like participating in or helping lead worship, prayer or Bible study.",
             "I’m interested in regularly engaging with specific age groups (children, youth, young adults, men/women).",
             "I like sharing biblical ideas and supporting others in their spiritual journey.",
             "I’d like to be part of ministries that focus on spiritual growth and discipleship.",
@@ -907,7 +907,8 @@
     //filter
         const ministries = [
         //core ministry/
-            ["Worship","Prayer","Preaching","Discipleship","Children's",
+            ["Worship", //"Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)",
+            "Prayer","Preaching","Discipleship","Children's",
             "Youth","Young Adults","Men's","Women's","Family Or Couples"],
         //support ministry
             ["Ushering","Hospitality","Administrative","Finance","Security","Facilities Maintenance"],
@@ -1059,7 +1060,7 @@
             showMinistrySpecific();
         }
     
-        //behavioral questions
+    //behavioral questions
         const ministryQuestions = [
             // Core ministry
             {
@@ -1072,6 +1073,36 @@
                     "I have thought seriously about joining the worship team before."
                 ]
             },
+            // {
+            //     "ministry": "Worship(Singing)",
+            //     "questions": [
+            //         "I think I am good at singing and can carry a tune confidently.",
+            //         "I currently practice singing or use my voice regularly in school, events, or personal time.",
+            //         "I have performed or sung in front of an audience before.",
+            //         "I am willing to learn proper vocal techniques to improve my singing.",
+            //         "I am willing to use my singing talent to serve in the church."
+            //     ]
+            // },
+            // {
+            //     "ministry": "Worship(Dancing)",
+            //     "questions": [
+            //         "I think I am good at dancing and can learn choreography quickly.",
+            //         "I currently dance or practice movement regularly in school, events, or personal time.",
+            //         "I have performed or joined a dance group or presentation before.",
+            //         "I am willing to learn new dance styles or techniques to improve my skills.",
+            //         "I am willing to use my dancing talent to serve in the church."
+            //     ]
+            // },
+            // {
+            //     "ministry": "Worship(Instrument)",
+            //     "questions": [
+            //         "I think I am good at playing at least one musical instrument.",
+            //         "I currently practice or play an instrument regularly.",
+            //         "I have performed or played an instrument in front of an audience before.",
+            //         "I am willing to learn new instruments or improve my existing skills.",
+            //         "I am willing to use my instrumental talent to serve in the church."
+            //     ]
+            // },
             {
                 "ministry": "Prayer",
                 "questions": [
