@@ -371,6 +371,33 @@
             opacity: 1;
             transform: translate(0);
         }
+        /*translation */
+        .translateLang{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: auto;
+            height: auto;
+            margin: 5px;
+            color:rgb(128, 65, 128);
+            display: flex;
+            gap: 10px;
+            border:3px solid rgb(128, 65, 128);
+            padding: 3px;
+            border-radius: 12px;
+            background:rgb(255, 255, 255);
+        }
+        .translateLang select{
+            border:1px solid rgb(128, 65, 128);
+            color:rgb(128, 65, 128);
+            border: none;
+        }
+        .translateLang select:focus {
+            outline: none;
+        }
+        .translateLang img{
+            height: 30px;
+        }
 
         /* DESKTOP-FIRST RESPONSIVE MEDIA QUERIES */
         @media (hover: none) {
@@ -655,113 +682,20 @@
             .footer {
                 height: 25vw;
             }
-        }
 
-        /* Small mobile styles - 320px and below */
-        @media (max-width: 320px) {
-            .banner {
-                height: 100vw;
+            .translateLang{
+                height: 25px;
+                width: 60px;
+                border: 1px solid rgb(128, 65, 128);
             }
-            
-            .title {
-                width: 95%;
-                padding: 2vw;
+            .translateLang img{
+                display:none;
             }
-            
-            .title h1 {
-                font-size: 12vw;
-                margin-bottom: 2vw;
-            }
-            
-            .title p {
-                font-size: 5vw;
-                margin: 1vw 0;
-            }
-            
-            .note {
-                width: 95%;
-            }
-            
-            .n {
-                font-size: 1.2rem;
-                padding: 4vw;
-                margin: 4vw 0;
-            }
-            
-            .n img {
-                width: 25%;
-            }
-            
-            .howItWorks {
-                padding: 2vw;
-            }
-            
-            .howItWorks img {
-                width: 95%;
-            }
-            
-            .step h1 {
-                font-size: 10vw;
-            }
-            
-            .stepBox {
-                padding: 5vw;
-                margin: 4vw 0;
-            }
-            
-            .stepBox h3,
-            .stepBox p {
-                font-size: 5vw;
-            }
-            
-            .ministrySelection {
-                width: 98%;
-            }
-            
-            .ministrySelection h1 {
-                font-size: 10vw;
-            }
-            
-            .card {
-                width: 95%;
-                padding: 5vw;
-                margin: 4vw 0;
-            }
-            
-            .mTtl {
-                font-size: 6vw;
-            }
-            
-            .card p {
-                font-size: 5vw;
-            }
-            
-            .lBtn,
-            .rBtn {
-                width: 25vw;
-                height: 25vw;
-                font-size: 5vw;
-            }
-            
-            .takeAssessment {
-                height: 70vw;
-                padding: 12vw 0;
-            }
-            
-            .takeAssessment h1 {
-                font-size: 10vw;
-                margin: 3vw 0;
-            }
-            
-            .takeAssessment button {
-                width: 70vw;
-                height: 18vw;
-                font-size: 6vw;
-                margin-top: 6vw;
-            }
-            
-            .footer {
-                height: 30vw;
+            .translateLang select{
+                font-size: .5rem;
+                padding:0px;
+                width: 50px;
+                margin:0px;
             }
         }
     </style>
@@ -778,6 +712,13 @@
         <div class="title move-up" >
             <h1>PERFIT</h1>
             <p>PerFit helps you discover where your strengths, passions, and purpose align so you can thrive in the role made just for you.</p>
+        </div>
+        <div class="translateLang">
+            <img src="img/icn-language.png">
+            <select id="lang" name="language" onchange="changeLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="tl">Tagalog</option>
+            </select>
         </div>
     </div>
 <!--note-->
@@ -1059,6 +1000,18 @@
         </div>
     </div>
     <script>
+    //language
+        let selectedLanguage = sessionStorage.getItem("selectedLanguage") || "en";
+        window.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("lang").value = selectedLanguage;
+            sessionStorage.setItem("selectedLanguage", selectedLanguage);
+            console.log("Selected Language: "+selectedLanguage);
+        });
+        function changeLanguage(lang){
+            selectedLanguage = lang;
+            sessionStorage.setItem("selectedLanguage", lang);
+            console.log("Selected Language: "+selectedLanguage);
+        }
     //carousel
         const carousel = document.getElementById('carousel');
         const totalSlides = 9;

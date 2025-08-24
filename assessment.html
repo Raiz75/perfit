@@ -360,14 +360,35 @@
             filter: drop-shadow(0vw 0vw 5vw rgb(255, 255, 255));
         }
         /*test*/
-        .testBtn{
+        .translateLang{
             position: absolute;
             top: 0;
             right: 0;
-            width: 80px;
-            height: 80px;
-            display: none;
+            width: auto;
+            height: 35px;
+            margin: 5px;
+            color:rgb(128, 65, 128);
+            display: flex;
+            gap: 10px;
+            border:2px solid rgb(128, 65, 128);
+            padding: 3px;
+            border-radius: 12px;
+            background:white;
         }
+        .translateLang select{
+            border:1px solid rgb(128, 65, 128);
+            color:rgb(128, 65, 128);
+            border: none;
+            font-size: 1rem;
+        }
+        .translateLang select:focus {
+            outline: none;
+        }
+        .translateLang img{
+            height: auto;
+            width: 30px;
+        }
+
 
         /* Mobile Responsive Media Queries */
         @media screen and (max-width: 768px) {
@@ -508,6 +529,21 @@
             .footer {
                 height: 120px;
             }
+
+            .translateLang{
+                height: 25px;
+                width: 60px;
+                border: 1px solid rgb(128, 65, 128);
+            }
+            .translateLang img{
+                display:none;
+            }
+            .translateLang select{
+                font-size: .5rem;
+                padding:0px;
+                width: 50px;
+                margin:0px;
+            }
         }
     </style>
 </head>
@@ -515,73 +551,80 @@
 <!--banner-->
     <div class="banner">
         <img src="img/banner-cut.png">
-        <p class="ttl move-up">ASSESSMENT</p>
+        <p class="ttl move-up" translate="title">ASSESSMENT</p>
+        <div class="translateLang">
+            <select id="lang" name="language" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="tl">Tagalog</option>
+            </select>
+            <img src="img/icn-language.png">
+        </div>
     </div>
 <!--step-->
     <div class="stepCounter move-up">
         <div class="stepContainer">
             <p class="step currentStep">1</p>
-            <p>Personal Details</p>
+            <p translate="t1">Personal Details</p>
         </div>
         <p class="line" id="l1"></p>
         <div class="stepContainer">
             <p class="step" id="s2">2</p>
-            <p>Skill Profiling</p>
+            <p translate="t2">Skill Profiling</p>
         </div>
         <p class="line" id="l2"></p>
         <div class="stepContainer">
             <p class="step" id="s3">3</p>
-            <p>Interest & Passion Profiling</p>
+            <p translate="t3">Interest & Passion Profiling</p>
         </div>
         <p class="line" id="l3"></p>
         <div class="stepContainer">
             <p class="step" id="s4">4</p>
-            <p>Behavioral Profiling</p>
+            <p translate="t4">Behavioral Profiling</p>
         </div>
         <p class="line" id="l4"></p>
         <div class="stepContainer">
             <p class="step" id="s5">5</p>
-            <p>Result</p>
+            <p translate="t5">Result</p>
         </div>
     </div>
 <!--personal details-->
-    <p class="instruction" id="inst1"><span>Instruction:</span> Please provide your personal details accurately. This information helps us understand your profile better and will only be used for assessment purposes.</p>
+    <p class="instruction" id="inst1" translate="i1">INSTRUCTION: Please provide your personal details accurately. This information helps us understand your profile better and will only be used for assessment purposes.</p>
     <div class="personalDetail move-up" id="personalForm">
         
-        <h2>DEMOGRAPHICS</h2>
+        <h2 translate="test">DEMOGRAPHICS</h2>
         <div class="box move-up" id="genderBox">
-            <span id="genderBoxttl">Gender</span><br>
-            <label><input type="radio" name="genderBox" value="1"> Male</label>
-            <label><input type="radio" name="genderBox" value="2"> Female</label>
+            <span id="genderBoxttl" translate="ph1a">Gender</span><br>
+            <label><input type="radio" name="genderBox" value="1" translate="ph1b"> Male</label>
+            <label><input type="radio" name="genderBox" value="2" translate="ph1c"> Female</label>
         </div>
         <div class="box move-up" id="ageBox">
-            <span id="ageBoxttl" >Age</span><br>
+            <span id="ageBoxttl" translate="ph1d">Age</span><br>
             <input type="number" name="ageBox" id="ageInput" min="1" max="100">
-            <label for="ageBox">Years</label>
+            <span translate="ph1e">Years</span>
         </div>
         <div class="box move-up" id="statusBox">
-            <span id="statusBoxttl">Status</span><br>
-            <label><input type="radio" name="statusBox" value="1"> Single</label>
-            <label><input type="radio" name="statusBox" value="2"> Married</label>
+            <span id="statusBoxttl" translate="ph1f">Status</span><br>
+            <label><input type="radio" name="statusBox" value="1" translate="ph1g"> Single</label>
+            <label><input type="radio" name="statusBox" value="2" translate="ph1h"> Married</label>
         </div>
         <div class="box move-up" id="baptizedBox">
-            <span id="baptizedBoxttl">Baptized</span><br>
-            <label><input type="radio" name="baptizedBox" value="1"> No</label>
-            <label><input type="radio" name="baptizedBox" value="2"> Yes</label>
+            <span id="baptizedBoxttl" translate="ph1i">Baptized</span><br>
+            <label><input type="radio" name="baptizedBox" value="1" translate="ph1j"> No</label>
+            <label><input type="radio" name="baptizedBox" value="2" translate="ph1k"> Yes</label>
         </div>
         <div class="box move-up" id="timeInFaithBox">
-            <span id="timeInFaithBoxttl">Time In Faith</span><br>
-            <label><input type="radio" name="timeInFaithBox" value="1"> New</label><br>
-            <label><input type="radio" name="timeInFaithBox" value="2"> 6 months</label><br>
-            <label><input type="radio" name="timeInFaithBox" value="3"> 1 year</label><br>
-            <label><input type="radio" name="timeInFaithBox" value="4"> 2+ years</label>
+            <span id="timeInFaithBoxttl" translate="ph1l">Time In Faith</span><br>
+            <label><input type="radio" name="timeInFaithBox" value="1" translate="ph1m"> New</label><br>
+            <label><input type="radio" name="timeInFaithBox" value="2" translate="ph1n"> 6 months</label><br>
+            <label><input type="radio" name="timeInFaithBox" value="3" translate="ph1o"> 1 year</label><br>
+            <label><input type="radio" name="timeInFaithBox" value="4" translate="ph1p"> 2+ years</label>
         </div>
     </div>
-    <p class="instruction" style="display: none;" id="inst2"><span>Instruction:</span> Please read each statement carefully and answer honestly. Use the scale to show how strongly you agree or disagree — there are no right or wrong answers, just your true opinion.</p>
+    <p class="instruction" style="display: none;" id="inst2" translate="i2">INSTRUCTION: Please read each statement carefully and answer honestly. Use the scale to show how strongly you agree or disagree — there are no right or wrong answers, just your true opinion.</p>
 <!--skill details-->
     <div id="skillQuestion" style="display: none;">
         <div class="progressBarDiv">
-            <p>Skill Profiling Progress</p>
+            <p translate="ph2">Skill Profiling Progress</p>
             <div class="progressBar">
                 <div class="progressIndicator"></div>
             </div>
@@ -590,7 +633,7 @@
 <!--general questions-->
     <div id="ministryCategory" style="display: none;">
         <div class="progressBarDiv">
-            <p>Interest and Passion Profiling Progress</p>
+            <p translate="ph3">Interest and Passion Profiling Progress</p>
             <div class="progressBar">
                 <div class="progressIndicator"></div>
             </div>
@@ -599,7 +642,7 @@
 <!--specific questions-->
     <div id="ministrySpecific" style="display: none;">
         <div class="progressBarDiv">
-            <p>Behavioral Profiling Progress</p>
+            <p translate="ph4">Behavioral Profiling Progress</p>
             <div class="progressBar">
                 <div class="progressIndicator"></div>
             </div>
@@ -608,8 +651,8 @@
 <!--alert-->
    <div id="overlay" class="overlay">
         <div class="showAlert">
-            <p id="alertMessage">alert message here</p>
-            <button onclick="window.location.href = 'index.html'">CLOSE</button>
+            <p id="alertMessage">Alert message here</p>
+            <button onclick="window.location.href = 'index.html'" translate="a1">CLOSE</button>
         </div>
     </div>
     <!-- <p>Base on your Personal & Skill Profiling Interest & Passion Profiling</p> -->
@@ -618,29 +661,29 @@
         <div class="questionBox">
             <p class="questionText">//test question//</p>
             <div class="rateBox">
-                <button value=3>Strongly Agree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lubos na Sumasang-ayon</button>
-                <button value=2>Agree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sumasang-ayon</button>
-                <button value=1>Slightly Agree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bahagyang Sumasang-ayon</button>
-                <button value=-1>Slightly Disagree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bahagyang Hindi Sumasang-ayon</button>
-                <button value=-2>Disagree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hindi Sumasang-ayon</button>
-                <button value=-3>Strongly Disagree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lubos na Hindi Sumasang-ayon</button>
+                <button value=3 translate="s1">Strongly Agree</button>
+                <button value=2 translate="s2">Agree</button>
+                <button value=1 translate="s3">Slightly Agree</button>
+                <button value=-1 translate="s4">Slightly Disagree</button>
+                <button value=-2 translate="s5">Disagree</button>
+                <button value=-3 translate="s6">Strongly Disagree</button>
             </div>
         </div>
     </template>
 <!--response div-->
     <div class="responseDiv" id="responseDiv">
-        <h1 style="color:rgb(128, 65, 128);text-align: center;">CALLING AND SERVICE PROFILE</h1>
-        <div id="thinking" style="display:none; font-weight: bold; font-size: 1.2em;">Analyzing your gifts and calling<span id="dots">.</span></div>
+        <h1 style="color:rgb(128, 65, 128);text-align: center;" translate="r1">CALLING AND SERVICE PROFILE</h1>
+        <div id="thinking" style="display:none; font-weight: bold; font-size: 1.2em;" translate="r2">Analyzing your gifts and calling<span id="dots">.</span></div>
     </div>
 <!--next button-->
-    <button class="move-up nextBtn" id="step1" onclick="personalDetailsSubmit()">NEXT</button>
+    <button class="move-up nextBtn" id="step1" onclick="personalDetailsSubmit()" translate="b1">NEXT PHASE</button>
     <div class="btnDiv" id="btnDiv">
-        <button class="move-up nextBtn" onclick="reviewAns()" id="review" style="display: none;">REVIEW ANSWER</button>
-        <button class="move-up nextBtn" id="step2"  style="display: none;" onclick="showMinistryCategory()">NEXT PHASE</button>
-        <button class="move-up nextBtn" id="step3"  style="display: none;" onclick="filter()">NEXT PHASE</button>
-        <button class="move-up nextBtn" id="step4"  style="display: none;" onclick="interpret()">SUBMIT</button>
+        <button class="move-up nextBtn" onclick="reviewAns()" id="review" style="display: none;" translate="b2">REVIEW ANSWER</button>
+        <button class="move-up nextBtn" id="step2"  style="display: none;" onclick="showMinistryCategory()" translate="b1">NEXT PHASE</button>
+        <button class="move-up nextBtn" id="step3"  style="display: none;" onclick="filter()" translate="b1">NEXT PHASE</button>
+        <button class="move-up nextBtn" id="step4"  style="display: none;" onclick="interpret()" translate="b3">SUBMIT</button>
     </div>
-    <button class="move-up nextBtn" id="step5" style="display:none;" onclick="window.location.href = 'index.html'">DONE</button>
+    <button class="move-up nextBtn" id="step5" style="display:none;" onclick="window.location.href = 'index.html'" translate="b4">DONE</button>
 <!--footer puzzle-->
     <div class="footer">
         <div class="puzzle" id="puzzle">
@@ -653,13 +696,170 @@
 <!--script-->
     <script src="callApi.js"></script>
     <script>
+    //language
+        let selectedLanguage = sessionStorage.getItem("selectedLanguage") || "en";
+        window.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("lang").value = selectedLanguage;
+            sessionStorage.setItem("selectedLanguage", selectedLanguage);
+            changeLanguage(selectedLanguage)
+        });
+
+
+//         function changeLanguage(lang){
+//             selectedLanguage = lang;
+//             sessionStorage.setItem("selectedLanguage", lang);
+//             console.log("Selected Language: "+selectedLanguage);
+
+//             document.querySelectorAll("[translate]").forEach(el => {
+//                 const key = el.getAttribute("translate");
+//                 el.textContent = uiTranslation[lang][key];
+//             });
+
+//             document.querySelectorAll("input[translate]").forEach(el => {
+//                 const key = el.getAttribute("translate");
+//                 const label = el.closest("label");
+//                 if(label) {
+//                     label.childNodes.forEach(node => {
+//                         if(node.nodeType === Node.TEXT_NODE) {
+//                             node.textContent = uiTranslation[lang][key];
+//                         }
+//                     });
+//                 }
+//             });
+// myPort.switchLanguage(selectedLanguage); // switches to Tagalog
+            
+//         }
+        function changeLanguage(lang) {
+            selectedLanguage = lang;
+            sessionStorage.setItem("selectedLanguage", lang);
+
+            // Update UI text
+            document.querySelectorAll("[translate]").forEach(el => {
+                const key = el.getAttribute("translate");
+                if (uiTranslation[lang][key]) {
+                    el.textContent = uiTranslation[lang][key];
+                }
+            });
+
+            // Update labels if needed
+            document.querySelectorAll("input[translate]").forEach(el => {
+                const key = el.getAttribute("translate");
+                const label = el.closest("label");
+                if(label) {
+                    label.childNodes.forEach(node => {
+                        if(node.nodeType === Node.TEXT_NODE) {
+                            node.textContent = uiTranslation[lang][key];
+                        }
+                    });
+                }
+            });
+            // Update all ports
+            ['skillQuestion', 'ministryCategory', 'ministrySpecific'].forEach(portID => {
+                const port = document.getElementById(portID);
+                if (port && port.switchLanguage) {
+                    port.switchLanguage(lang);
+                }
+            });
+            console.log("selected language: " + selectedLanguage);
+        }
+
+        //language uiTranslation
+        const uiTranslation = {
+            en: {
+                title: "ASSESSMENT",
+                t1: "Personal Details",
+                t2: "Skill Profiling",
+                t3: "Interest & Passion Profiling",
+                t4: "Behavioral Profiling",
+                t5: "Result",
+                i1: "INSTRUCTION: Please provide your personal details accurately. This information helps us understand your profile better and will only be used for assessment purposes.",
+                ph1: "DEMOGRAPHICS",
+                ph1a: "Gender",
+                ph1b: "Male",
+                ph1c: "Female",
+                ph1d: "Age",
+                ph1e: "Years",
+                ph1f: "Status",
+                ph1g: "Single",
+                ph1h: "Married",
+                ph1i: "Baptized",
+                ph1j: "No",
+                ph1k: "Yes",
+                ph1l: "Time In Faith",
+                ph1m: "New",
+                ph1n: "6 months",
+                ph1o: "1 year",
+                ph1p: "2+ years",
+                i2: "INSTRUCTION: Please read each statement carefully and answer honestly. Use the scale to show how strongly you agree or disagree — there are no right or wrong answers, just your true opinion.",
+                ph2: "Skill Profiling Progress",
+                ph3: "Interest and Passion Profiling Progress",
+                ph4: "Behavioral Profiling Progress",
+                a1: "CLOSE",
+                s1: "Strongly Agree",
+                s2: "Agree",
+                s3: "Slightly Agree",
+                s4: "Slightly Disagree",
+                s5: "Disagree",
+                s6: "Strongly Disagree",
+                r1: "CALLING AND SERVICE PROFILE",
+                r2: "Analyzing your gifts and calling",
+                b1: "NEXT PHASE",
+                b2: "REVIEW ANSWER",
+                b3: "SUBMIT",
+                b4: "DONE"
+
+            },
+            tl: {
+                title: "tagalog",
+                t1: "tagalog",
+                t2: "tagalog",
+                t3: "tagalog",
+                t4: "tagalog",
+                t5: "tagalog",
+                i1: "tagalog",
+                i2: "tagalog",
+                ph1: "tagalog",
+                ph1a: "tagalog",
+                ph1b: "tagalog",
+                ph1c: "tagalog",
+                ph1d: "tagalog",
+                ph1e: "tagalog",
+                ph1f: "tagalog",
+                ph1g: "tagalog",
+                ph1h: "tagalog",
+                ph1i: "tagalog",
+                ph1j: "tagalog",
+                ph1k: "tagalog",
+                ph1l: "tagalog",
+                ph1m: "tagalog",
+                ph1n: "tagalog",
+                ph1o: "tagalog",
+                ph1p: "tagalog",
+                i3: "tagalog",
+                ph2: "tagalog",
+                ph3: "tagalog",
+                ph4: "tagalog",
+                a1: "tagalog",
+                s1: "Lubos na Sumasang-ayon",
+                s2: "Sumasang-ayon",
+                s3: "Bahagyang Sumasang-ayon",
+                s4: "Bahagyang Hindi Sumasang-ayon",
+                s5: "Hindi Sumasang-ayon",
+                s6: "Lubos na Hindi Sumasang-ayon",
+                r1: "tagalog",
+                r2: "tagalog",
+                b1: "tagalog",
+                b2: "tagalog",
+                b3: "tagalog",
+                b4: "tagalog"
+            }
+        };
     //varibales
         let gender=0;
         let age=0;
         let status=0;
         let baptized=0;
         let timeInFaith=0;
-        // let currentLang = "en";
     //personal details
         function personalDetailsSubmit(){
             const genderAns = document.querySelector("input[name='genderBox']:checked");
@@ -755,54 +955,54 @@
     //skill questions
         // const skillProfilingQuestions = [
         //     // Musical, Instrumental, Singing Skills
-        //     "I have skills in music, singing, or playing instruments.",
-        //     "Music is a regular part of my activities or hobbies.",
-        //     "I’ve had opportunities in the past to perform or be part of musical events.",
-        //     "I’m open to training or workshops to enhance my musical abilities.",
-        //     "I enjoy collaborating with others in musical performances.",
-        
+        //    "I am confident in my ability to sing with proper pitch and rhythm.",
+        //    "I am able to learn and perform dance routines when given instruction.", 
+        //    "I can play a musical instrument with basic skill and technique.",
+        //    "I have experience expressing myself through singing, dancing, or playing music.",
+        //   "I have the ability to use my singing, dancing, or musical skills to contribute effectively in a ministry or group setting.",
+       
         //     // Technological, Computer, Editing Skills
-        //     "I can easily work with computers, technology, or media tools.",
-        //     "I use technology for creative or problem-solving tasks on a regular basis.",
-        //     "In the past, I’ve worked on projects involving editing, design, or coding.",
-        //     "I’m interested in learning new tech skills to expand my capabilities.",
-        //     "I would like to use my technical skills to support church tasks.",
-        
+        //    "I can operate computers and use software applications to support church tasks.",
+        //    "I have skills in editing, design, or coding that can be used for ministry projects.",
+        //     "I can troubleshoot basic technical issues to help in church activities.",
+        //    "I am able to learn and apply new digital tools that can benefit the church.",
+        //     "I can use my technological skills to serve and support church ministries effectively.",
+       
         //     // Writing Skills
         //     "I’m able to put ideas into clear and engaging writing.",
         //     "Writing is something I do frequently in my personal or professional life.",
         //     "I’ve had past experiences creating articles, reports, or scripts.",
         //     "I’d like to further develop my writing abilities through practice or training.",
         //     "I’d like to contribute to church-related materials, articles, or programs through writing.",
-        
+       
         //     // Technical, Electrical, Plumbing Skills
         //     "I’m skilled in fixing, building, or handling technical tasks.",
         //     "I often work on repair, maintenance, or hands-on technical projects.",
         //     "I have previous experience in electrical, plumbing, or mechanical work.",
         //     "I’d like to learn more about technical skills through guided training.",
         //     "I’m willing to help the church with technical, electrical, or repair needs.",
-        
+       
         //     // Public Speaking Skills
-        //     "I feel confident speaking to or leading a group of people.",
+        //     "I feel confident speaking in front of a group of people.",
         //     "I regularly speak or present in front of audiences, big or small.",
         //     "I’ve had experience delivering talks, announcements, or presentations.",
-        //     "I’m open to improving my public speaking through workshops or practice.",
-        //     "I’d like to contribute to church-related materials, articles, or programs through writing.",
-        
+        //     "I can adjust my tone and pace when speaking to keep attention.",
+        //     "I can prepare and organize a talk or presentation effectively.",
+       
         //     // Accounting Skills
-        //     "I’m good at keeping track of money, budgets, or financial records.",
-        //     "I currently handle tasks that involve budgeting or expense tracking.",
-        //     "I’ve had experience managing finances for a project or group.",
-        //     "I’m willing to learn more about proper financial management.",
-        //     "I’d like to assist in handling finances or budgets for church activities.",
-        
+        //    "I’m good at keeping track of money, budgets, or financial records.",  
+        //     "I currently handle tasks that involve budgeting or expense tracking.",  
+        //     "I’ve had experience managing finances for a project or group.",  
+        //     "I can prepare simple financial reports or summaries.",  
+        //     "I can ensure accuracy when recording and monitoring financial transactions.",  
+
         //     // Mentoring/Counseling Ability
         //     "I have a natural ability to guide, encourage, or advise others.",
         //     "I regularly help people through mentoring, counseling, or coaching.",
-        //     "I’d like to assist in handling finances or budgets for church activities.",
-        //     "I’m open to training that will make me a better mentor or counselor.",
-        //     "I’d like to mentor or counsel people as part of church service.",
-        
+        //     "I have experience providing advice or support to individuals or groups.",  
+        //     "I can actively mentor or counsel people when needed.",  
+        //     "I am capable of giving guidance and support to others in an organized way.",  
+
         //     // Understanding of Bible and Scripture
         //     "I feel confident in my understanding of Biblical stories and principles.",
         //     "I often study and discuss the Bible.",
@@ -810,63 +1010,92 @@
         //     "I’d like to deepen my understanding of the Bible through study.",
         //     "I’d like to share my knowledge of Scripture in church activities."
         // ];
-        const skillProfilingQuestions = [
-            // Musical, Instrumental, Singing Skills
-            "I am confident in my ability to sing with proper pitch and rhythm.\n\nMay tiwala ako sa aking kakayahang umawit nang may tamang tono at ritmo.",
-            "I am able to learn and perform dance routines when given instruction.\n\nKaya kong matutunan at isayaw ang mga rutinang itinuturo sa akin.",
-            "I can play a musical instrument with basic skill and technique.\n\nKaya kong tumugtog ng isang instrumento gamit ang batayang kasanayan at tamang pamamaraan.",
-            "I have experience expressing myself through singing, dancing, or playing music.\n\nMay karanasan ako sa pagpapahayag ng aking sarili sa pamamagitan ng pag-awit, pagsayaw, o pagtugtog ng musika.",
-            "I have the ability to use my singing, dancing, or musical skills to contribute effectively in a ministry or group setting.\n\nMay kakayahan akong gamitin ang aking talento sa pag-awit, pagsayaw, o pagtugtog upang maging mabisa ang aking ambag sa isang ministeryo o grupo.",
-
-            // Technological, Computer, Editing Skills
-            "I can operate computers and use software applications to support church tasks.\n\nMarunong akong gumamit ng kompyuter at mga software upang makatulong sa simbahan.",
-            "I have skills in editing, design, or coding that can be used for ministry projects.\n\nMay kakayahan ako sa pag-eedit, pagdidisenyo, o coding para sa mga proyekto ng ministeryo.",
-            "I can troubleshoot basic technical issues to help in church activities.\n\nKaya kong ayusin ang mga simpleng teknikal na problema sa mga gawain ng simbahan.",
-            "I am able to learn and apply new digital tools that can benefit the church.\n\nHanda akong matuto gumamit ng mga bagong digital tools na makabubuti sa simbahan.",
-            "I can use my technological skills to serve and support church ministries effectively.\n\nMagagamit ko ang aking tech skills upang makapagsilbi at makasuporta sa mga ministeryo ng simbahan.",
-
-            // Writing Skills
-            "I’m able to put ideas into clear and engaging writing.\n\nNakakaya kong magsulat ng malinaw at nakakaengganyong ideya.",
-            "Writing is something I do frequently in my personal or professional life.\n\nMadalas kong ginagawa ang pagsusulat sa personal o propesyonal na buhay.",
-            "I’ve had past experiences creating articles, reports, or scripts.\n\nMay karanasan ako sa paggawa ng articles, reports, o scripts.",
-            "I’d like to further develop my writing abilities through practice or training.\n\nNais ko pang mapaunlad ang aking kakayahan sa pagsusulat sa pamamagitan ng pageensayo.",
-            "I’d like to contribute to church-related materials, articles, or programs through writing.\n\nGusto kong mag-ambag sa paggawa ng church materials, articles, o programs sa pamamagitan ng pagsusulat.",
-
-            // Technical, Electrical, Plumbing Skills
-            "I’m skilled in fixing, building, or handling technical tasks.\n\nMay kasanayan ako sa pagkukumpuni, paggawa, o paghawak ng mga teknikal na gawain.",
-            "I often work on repair, maintenance, or hands-on technical projects.\n\nMadalas akong gumagawa ng repair, maintenance, o iba pang hands-on na teknikal na proyekto.",
-            "I have previous experience in electrical, plumbing, or mechanical work.\n\nMay karanasan na ako sa electrical, plumbing, o mechanical na trabaho.",
-            "I’d like to learn more about technical skills through guided training.\n\nGusto kong matuto pa ng mas maraming teknikal na skills sa pamamagitan ng guided training.",
-            "I’m willing to help the church with technical, electrical, or repair needs.\n\nHanda akong tumulong sa simbahan pagdating sa teknikal, electrical, o repair na pangangailangan.",
-
-            // Public Speaking Skills
-            "I feel confident speaking in front of a group of people.\n\nMay kumpiyansa akong magsalita sa harap ng isang grupo ng tao.",
-            "I regularly speak or present in front of audiences, big or small.\n\nMadalas akong magsalita o magpresenta sa harap ng mga tagapakinig, maliit man o malaki.",
-            "I’ve had experience delivering talks, announcements, or presentations.\n\nNagkaroon na ako ng karanasan sa pagbibigay ng mga talumpati, anunsyo, o presentasyon.",
-            "I can adjust my tone and pace when speaking to keep attention.\n\nKaya kong iakma ang aking tono at bilis ng pananalita upang mapanatili ang atensyon.",
-            "I can prepare and organize a talk or presentation effectively.\n\nKaya kong maghanda at mag-ayos ng isang talumpati o presentasyon nang epektibo.",
-
-            // Accounting Skills
-            "I’m good at keeping track of money, budgets, or financial records.\n\nMagaling ako sa pagtatala ng pera, badyet, o mga rekord na pinansyal.",
-            "I currently handle tasks that involve budgeting or expense tracking.\n\nKasalukuyan akong humahawak ng mga gawain na may kinalaman sa pagbabadget o pagsubaybay ng gastos.",
-            "I’ve had experience managing finances for a project or group.\n\nNagkaroon na ako ng karanasan sa pamamahala ng pananalapi para sa isang proyekto o grupo.",
-            "I can prepare simple financial reports or summaries.\n\nKaya kong gumawa ng simpleng ulat o buod na pinansyal.",
-            "I can ensure accuracy when recording and monitoring financial transactions.\n\nNatitiyak kong tama ang pagtatala at pagsubaybay ng mga transaksyong pinansyal.",
-
-            // Mentoring/Counseling Ability
-            "I have a natural ability to guide, encourage, or advise others.\n\nMay likas akong kakayahan na gumabay, magpalakas ng loob, o magbigay ng payo sa iba.",
-            "I regularly help people through mentoring, counseling, or coaching.\n\nMadalas akong tumutulong sa mga tao sa pamamagitan ng mentoring, counseling, o coaching.",
-            "I have experience providing advice or support to individuals or groups.\n\nMay karanasan ako sa pagbibigay ng payo o suporta sa mga indibidwal o grupo.",
-            "I can actively mentor or counsel people when needed.\n\nKaya kong aktibong mag-mentor o mag-counsel sa mga tao kapag kinakailangan.",
-            "I am capable of giving guidance and support to others in an organized way.\n\nMay kakayahan akong magbigay ng gabay at suporta sa iba sa isang organisadong paraan.",
-
-            // Understanding of Bible and Scripture
-            "I feel confident in my understanding of Biblical stories and principles.\n\nMay tiwala ako sa aking pag-unawa sa mga kwento at prinsipyo sa Biblia.",
-            "I often study and discuss the Bible.\n\nMadalas akong mag-aral at makipag-usap tungkol sa Biblia.",
-            "I’ve had experience teaching or sharing lessons from Scripture.\n\nNagkaroon na ako ng karanasan sa pagtuturo o pagbabahagi ng aral mula sa Kasulatan.",
-            "I’d like to deepen my understanding of the Bible through study.\n\nNais kong palalimin ang aking pag-unawa sa Biblia sa pamamagitan ng pag-aaral.",
-            "I’d like to share my knowledge of Scripture in church activities.\n\nNais kong ibahagi ang aking kaalaman tungkol sa Kasulatan sa mga gawain ng simbahan."
-        ];
+        const skillProfilingQuestions = {
+            en: {
+                q1: "I am confident in my ability to sing with proper pitch and rhythm.",
+                q2: "I am able to learn and perform dance routines when given instruction.",
+                q3: "I can play a musical instrument with basic skill and technique.",
+                q4: "I have experience expressing myself through singing, dancing, or playing music.",
+                q5: "I have the ability to use my singing, dancing, or musical skills to contribute effectively in a ministry or group setting.",
+                q6: "I can operate computers and use software applications to support church tasks.",
+                q7: "I have skills in editing, design, or coding that can be used for ministry projects.",
+                q8: "I can troubleshoot basic technical issues to help in church activities.",
+                q9: "I am able to learn and apply new digital tools that can benefit the church.",
+                q10: "I can use my technological skills to serve and support church ministries effectively.",
+                q11: "I’m able to put ideas into clear and engaging writing.",
+                q12: "Writing is something I do frequently in my personal or professional life.",
+                q13: "I’ve had past experiences creating articles, reports, or scripts.",
+                q14: "I’d like to further develop my writing abilities through practice or training.",
+                q15: "I’d like to contribute to church-related materials, articles, or programs through writing.",
+                q16: "I’m skilled in fixing, building, or handling technical tasks.",
+                q17: "I often work on repair, maintenance, or hands-on technical projects.",
+                q18: "I have previous experience in electrical, plumbing, or mechanical work.",
+                q19: "I’d like to learn more about technical skills through guided training.",
+                q20: "I’m willing to help the church with technical, electrical, or repair needs.",
+                q21: "I feel confident speaking in front of a group of people.",
+                q22: "I regularly speak or present in front of audiences, big or small.",
+                q23: "I’ve had experience delivering talks, announcements, or presentations.",
+                q24: "I can adjust my tone and pace when speaking to keep attention.",
+                q25: "I can prepare and organize a talk or presentation effectively.",
+                q26: "I’m good at keeping track of money, budgets, or financial records.",
+                q27: "I currently handle tasks that involve budgeting or expense tracking.",
+                q28: "I’ve had experience managing finances for a project or group.",
+                q29: "I can prepare simple financial reports or summaries.",
+                q30: "I can ensure accuracy when recording and monitoring financial transactions.",
+                q31: "I have a natural ability to guide, encourage, or advise others.",
+                q32: "I regularly help people through mentoring, counseling, or coaching.",
+                q33: "I have experience providing advice or support to individuals or groups.",
+                q34: "I can actively mentor or counsel people when needed.",
+                q35: "I am capable of giving guidance and support to others in an organized way.",
+                q36: "I feel confident in my understanding of Biblical stories and principles.",
+                q37: "I often study and discuss the Bible.",
+                q38: "I’ve had experience teaching or sharing lessons from Scripture.",
+                q39: "I’d like to deepen my understanding of the Bible through study.",
+                q40: "I’d like to share my knowledge of Scripture in church activities."
+            },
+            tl: {
+                q1: "May tiwala ako sa aking kakayahang umawit nang may tamang tono at ritmo.",
+                q2: "Kaya kong matutunan at isayaw ang mga rutinang itinuturo sa akin.",
+                q3: "Kaya kong tumugtog ng isang instrumento gamit ang batayang kasanayan at tamang pamamaraan.",
+                q4: "May karanasan ako sa pagpapahayag ng aking sarili sa pamamagitan ng pag-awit, pagsayaw, o pagtugtog ng musika.",
+                q5: "May kakayahan akong gamitin ang aking talento sa pag-awit, pagsayaw, o pagtugtog upang maging mabisa ang aking ambag sa isang ministeryo o grupo.",
+                q6: "Marunong akong gumamit ng kompyuter at mga software upang makatulong sa simbahan.",
+                q7: "May kakayahan ako sa pag-eedit, pagdidisenyo, o coding para sa mga proyekto ng ministeryo.",
+                q8: "Kaya kong ayusin ang mga simpleng teknikal na problema sa mga gawain ng simbahan.",
+                q9: "Handa akong matuto gumamit ng mga bagong digital tools na makabubuti sa simbahan.",
+                q10: "Magagamit ko ang aking tech skills upang makapagsilbi at makasuporta sa mga ministeryo ng simbahan.",
+                q11: "Nakakaya kong magsulat ng malinaw at nakakaengganyong ideya.",
+                q12: "Madalas kong ginagawa ang pagsusulat sa personal o propesyonal na buhay.",
+                q13: "May karanasan ako sa paggawa ng articles, reports, o scripts.",
+                q14: "Nais ko pang mapaunlad ang aking kakayahan sa pagsusulat sa pamamagitan ng pageensayo .",
+                q15: "Gusto kong mag-ambag sa paggawa ng church materials, articles, o programs sa pamamagitan ng pagsusulat.",
+                q16: "May kasanayan ako sa pagkukumpuni, paggawa, o paghawak ng mga teknikal na gawain.",
+                q17: "Madalas akong gumagawa ng repair, maintenance, o iba pang hands-on na teknikal na proyekto.",
+                q18: "May karanasan na ako sa electrical, plumbing, o mechanical na trabaho.",
+                q19: "Gusto kong matuto pa ng mas maraming teknikal na skills sa pamamagitan ng guided training.",
+                q20: "Handa akong tumulong sa simbahan pagdating sa teknikal, electrical, o repair na pangangailangan.",
+                q21: "May kumpiyansa akong magsalita sa harap ng isang grupo ng tao.",
+                q22: "Madalas akong magsalita o magpresenta sa harap ng mga tagapakinig, maliit man o malaki.",
+                q23: "Nagkaroon na ako ng karanasan sa pagbibigay ng mga talumpati, anunsyo, o presentasyon.",
+                q24: "Kaya kong iakma ang aking tono at bilis ng pananalita upang mapanatili ang atensyon.",
+                q25: "Kaya kong maghanda at mag-ayos ng isang talumpati o presentasyon nang epektibo.",
+                q26: "Magaling ako sa pagtatala ng pera, badyet, o mga rekord na pinansyal.",
+                q27: "Kasalukuyan akong humahawak ng mga gawain na may kinalaman sa pagbabadget o pagsubaybay ng gastos.",
+                q28: "Nagkaroon na ako ng karanasan sa pamamahala ng pananalapi para sa isang proyekto o grupo.",
+                q29: "Kaya kong gumawa ng simpleng ulat o buod na pinansyal.",
+                q30: "Natitiyak kong tama ang pagtatala at pagsubaybay ng mga transaksyong pinansyal.",
+                q31: "May likas akong kakayahan na gumabay, magpalakas ng loob, o magbigay ng payo sa iba.",
+                q32: "Madalas akong tumutulong sa mga tao sa pamamagitan ng mentoring, counseling, o coaching.",
+                q33: "May karanasan ako sa pagbibigay ng payo o suporta sa mga indibidwal o grupo.",
+                q34: "Kaya kong aktibong mag-mentor o mag-counsel sa mga tao kapag kinakailangan.",
+                q35: "May kakayahan akong magbigay ng gabay at suporta sa iba sa isang organisadong paraan.",
+                q36: "May tiwala ako sa aking pag-unawa sa mga kwento at prinsipyo sa Biblia.",
+                q37: "Madalas akong mag-aral at makipag-usap tungkol sa Biblia.",
+                q38: "Nagkaroon na ako ng karanasan sa pagtuturo o pagbabahagi ng aral mula sa Kasulatan.",
+                q39: "Nais kong palalimin ang aking pag-unawa sa Biblia sa pamamagitan ng pag-aaral.",
+                q40: "Nais kong ibahagi ang aking kaalaman tungkol sa Kasulatan sa mga gawain ng simbahan."
+            }
+        };
 
 
 
@@ -881,7 +1110,7 @@
             }
             console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             console.log(">> Skill Profile");
-            showQuestions("skillQuestion", skillProfilingQuestions, skillProfilingScore, "step2");
+            showQuestions('skillQuestion', skillProfilingQuestions, selectedLanguage, skillProfilingScore, 'step2');
         }
     //interest and passion questions
         // const interestAndPassionProfiling = [
@@ -927,49 +1156,73 @@
         //     "I would enjoy leading or participating in ministries that align with my current life season or stage.",
         //     "I feel drawn to serve in creative or unconventional ministry areas that embrace unique interests."
         // ];
-        const interestAndPassionProfiling = [
-            // core ministry
-            "I enjoy helping others learn and grow a relationship with God.\n\nNasasiyahan akong tumulong sa iba na matuto at lumago ang kanilang relasyon sa Diyos.",
-            "I like participating in or helping lead worship, prayer, or Bible study.\n\nGusto kong makibahagi o tumulong mamuno sa pagsamba, panalangin, o pag-aaral ng Biblia.",
-            "I’m interested in regularly engaging with specific age groups (children, youth, young adults, men/women).\n\nInteresado akong regular na makisalamuha sa partikular na mga grupo ayon sa edad (mga bata, kabataan, young adults, kalalakihan/kababaihan).",
-            "I like sharing biblical ideas and supporting others in their spiritual journey.\n\nGusto kong magbahagi ng mga ideya mula sa Biblia at sumuporta sa iba sa kanilang espirituwal na paglalakbay.",
-            "I’d like to be part of ministries that focus on spiritual growth and discipleship.\n\nGusto kong maging bahagi ng mga ministeryo na nakatuon sa espirituwal na paglago at discipleship.",
+        const interestAndPassionProfiling = {
+            en: {
+                q1: "I enjoy helping others learn and grow a relationship with God.",
+                q2: "I like participating in or helping lead worship, prayer, or Bible study.",
+                q3: "I’m interested in regularly engaging with specific age groups (children, youth, young adults, men/women).",
+                q4: "I like sharing biblical ideas and supporting others in their spiritual journey.",
+                q5: "I’d like to be part of ministries that focus on spiritual growth and discipleship.",
+                q6: "I’m interested in working behind the scenes to help the church run smoothly.",
+                q7: "I enjoy organizing events, managing tasks, or helping with logistics.",
+                q8: "I like paying attention to details and making sure things run efficiently.",
+                q9: "I enjoy helping create a welcoming and organized church environment.",
+                q10: "I’d like to be involved in roles such as ushering, administration, hospitality, or facility care.",
+                q11: "I am motivated to assist individuals beyond the church community.",
+                q12: "Sharing my faith and helping others experience God’s love is important to me.",
+                q13: "I feel a personal calling toward community outreach and service.",
+                q14: "I am interested about going where people are hurting and bringing hope.",
+                q15: "I am interested in participating in ministries focused on evangelism and community impact.",
+                q16: "I am passionate about using my creative talents and interests for God's glory.",
+                q17: "I enjoy working with visuals, media, technology, or the arts to communicate messages.",
+                q18: "I find fulfillment and energy in creating content, managing social media, or coordinating live events.",
+                q19: "I would like to help improve the church’s communication and engagement through creative means.",
+                q20: "I am interested in using my skills in drama, dance, video, graphic design, or tech to contribute to ministry.",
+                q21: "I feel sincere and have a desire to help those who are struggling or in need.",
+                q22: "I am a good listener and often find people sharing their struggles with me.",
+                q23: "I feel strongly called to help others heal emotionally, spiritually, or physically.",
+                q24: "I am willing to give my time and understanding to support those in need.",
+                q25: "I am open and eager to serve in counseling, healing prayer, or support ministries.",
+                q26: "I am interested in ministering to specific groups such as seniors, singles, or working professionals.",
+                q27: "I enjoy connecting with others who share common interests or hobbies (e.g., sports, writing).",
+                q28: "I believe my personal experiences and skills can positively contribute to others’ growth.",
+                q29: "I would enjoy leading or participating in ministries that align with my current life season or stage.",
+                q30: "I feel drawn to serve in creative or unconventional ministry areas that embrace unique interests."
+            },
+            tl: {
+                q1: "Nasasiyahan akong tumulong sa iba na matuto at lumago ang kanilang relasyon sa Diyos.",
+                q2: "Gusto kong makibahagi o tumulong mamuno sa pagsamba, panalangin, o pag-aaral ng Biblia.",
+                q3: "Interesado akong regular na makisalamuha sa partikular na mga grupo ayon sa edad (mga bata, kabataan, young adults, kalalakihan/kababaihan).",
+                q4: "Gusto kong magbahagi ng mga ideya mula sa Biblia at sumuporta sa iba sa kanilang espirituwal na paglalakbay.",
+                q5: "Gusto kong maging bahagi ng mga ministeryo na nakatuon sa espirituwal na paglago at discipleship.",
+                q6: "Interesado akong magtrabaho sa likod ng mga gawain upang maging maayos ang takbo ng simbahan.",
+                q7: "Nasasayahan akong mag-organisa ng mga event, mag-manage ng mga gawain, o tumulong sa logistics.",
+                q8: "Gusto kong bigyang pansin ang mga detalye at matiyak na maayos ang takbo ng mga bagay.",
+                q9: "Nasasiyahan akong tumulong sa paglikha ng isang magiliw at organisadong kapaligiran sa simbahan.",
+                q10: "Gusto kong maging kasali sa mga tungkulin gaya ng ushering, administration, hospitality, o pag-aalaga ng pasilidad.",
+                q11: "May hangarin akong tumulong sa mga tao sa labas ng komunidad ng simbahan.",
+                q12: "Mahalaga sa akin ang pagbabahagi ng aking pananampalataya at pagtulong sa iba na maranasan ang pag-ibig ng Diyos.",
+                q13: "Nararamdaman ko ang personal na pagtawag tungo sa community outreach at paglilingkod.",
+                q14: "Interesado akong pumunta sa mga lugar kung saan may mga taong nasasaktan at magdala ng pag-asa.",
+                q15: "Interesado akong sumali sa mga ministeryo na nakatuon sa evangelism at community impact.",
+                q16: "Ipinapakita ko ang aking pagmamahal sa paggamit ng aking malikhaing talento at interes para sa kaluwalhatian ng Diyos.",
+                q17: "Nasasiyahan akong magtrabaho gamit ang biswal, media, teknolohiya, o sining upang maipahayag ang mga mensahe.",
+                q18: "Natagpuan ko ang kasiyahan at sigla sa paggawa ng nilalaman, pamamahala ng social media, o pag-aayos ng mga live na gawain.",
+                q19: "Nais kong makatulong sa pagpapabuti ng komunikasyon at pakikipag-ugnayan ng simbahan sa pamamagitan ng malikhaing paraan.",
+                q20: "Interesado akong gamitin ang aking kakayahan sa dula, sayaw, video, graphic design, o teknolohiya upang makatulong sa ministeryo.",
+                q21: "Magaan sa loob ko at may hangarin akong tumulong sa mga taong nahihirapan o nangangailangan.",
+                q22: "Magaling akong makinig at madalas akong nasasabihan ng mga tao tungkol sa kanilang pinagdadaanan.",
+                q23: "Malakas ang pakiramdam kong tinatawag akong tumulong sa paggaling ng iba—emosyonal, espiritwal, o pisikal.",
+                q24: "Handa akong maglaan ng oras at pag-unawa para sumuporta sa nangangailangan.",
+                q25: "Bukas ako at sabik na maglingkod sa pamamagitan ng counseling, panalangin para sa kagalingan, o mga support ministries.",
+                q26: "Interesado akong maglingkod sa mga partikular na grupo gaya ng mga nakatatanda, single, o mga propesyonal.",
+                q27: "Nasasayahan akong makipag-ugnayan sa iba na may parehong interes o hilig (hal. sports, pagsusulat).",
+                q28: "Naniniwala ako na ang aking mga personal na karanasan at kakayahan ay makatutulong nang positibo sa paglago ng iba.",
+                q29: "Magiging masaya ako na mamuno o makibahagi sa mga ministeryo na tumutugma sa aking kasalukuyang yugto ng buhay.",
+                q30: "Nararamdaman kong tinatawag ako na maglingkod sa malikhaing o kakaibang ministeryo na tumatanggap ng natatanging interes."
+            }
+        };
 
-            // support ministry
-            "I’m interested in working behind the scenes to help the church run smoothly.\n\nInteresado akong magtrabaho sa likod ng mga gawain upang maging maayos ang takbo ng simbahan.",
-            "I enjoy organizing events, managing tasks, or helping with logistics.\n\nNasasayahan akong mag-organisa ng mga event, mag-manage ng mga gawain, o tumulong sa logistics.",
-            "I like paying attention to details and making sure things run efficiently.\n\nGusto kong bigyang pansin ang mga detalye at matiyak na maayos ang takbo ng mga bagay.",
-            "I enjoy helping create a welcoming and organized church environment.\n\nNasasayahan akong tumulong sa paglikha ng isang magiliw at organisadong kapaligiran sa simbahan.",
-            "I’d like to be involved in roles such as ushering, administration, hospitality, or facility care.\n\nGusto kong maging kasali sa mga tungkulin gaya ng ushering, administration, hospitality, o pag-aalaga ng pasilidad.",
-
-            // outreach ministry
-            "I am motivated to assist individuals beyond the church community.\n\nMay hangarin akong tumulong sa mga tao sa labas ng komunidad ng simbahan.",
-            "Sharing my faith and helping others experience God’s love is important to me.\n\nMahalaga sa akin ang pagbabahagi ng aking pananampalataya at pagtulong sa iba na maranasan ang pag-ibig ng Diyos.",
-            "I feel a personal calling toward community outreach and service.\n\nNararamdaman ko ang personal na pagtawag tungo sa community outreach at paglilingkod.",
-            "I am interested about going where people are hurting and bringing hope.\n\nInteresado akong pumunta sa mga lugar kung saan may mga taong nasasaktan at magdala ng pag-asa.",
-            "I am interested in participating in ministries focused on evangelism and community impact.\n\nInteresado akong sumali sa mga ministeryo na nakatuon sa evangelism at community impact.",
-
-            // creative & media ministry
-            "I am passionate about using my creative talents and interests for God's glory.\n\nIpinapakita ko ang aking pagmamahal sa paggamit ng aking malikhaing talento at interes para sa kaluwalhatian ng Diyos.",
-            "I enjoy working with visuals, media, technology, or the arts to communicate messages.\n\nNasasiyahan akong magtrabaho gamit ang biswal, media, teknolohiya, o sining upang maipahayag ang mga mensahe.",
-            "I find fulfillment and energy in creating content, managing social media, or coordinating live events.\n\nNatagpuan ko ang kasiyahan at sigla sa paggawa ng nilalaman, pamamahala ng social media, o pag-aayos ng mga live na gawain.",
-            "I would like to help improve the church’s communication and engagement through creative means.\n\nNais kong makatulong sa pagpapabuti ng komunikasyon at pakikipag-ugnayan ng simbahan sa pamamagitan ng malikhaing paraan.",
-            "I am interested in using my skills in drama, dance, video, graphic design, or tech to contribute to ministry.\n\nInteresado akong gamitin ang aking kakayahan sa dula, sayaw, video, graphic design, o teknolohiya upang makatulong sa ministeryo.",
-
-            // care & healing ministry
-            "I feel sincere and have a desire to help those who are struggling or in need.\n\nMagaan sa loob ko at may hangarin akong tumulong sa mga taong nahihirapan o nangangailangan.",
-            "I am a good listener and often find people sharing their struggles with me.\n\nMagaling akong makinig at madalas akong nasasabihan ng mga tao tungkol sa kanilang pinagdadaanan.",
-            "I feel strongly called to help others heal emotionally, spiritually, or physically.\n\nMalakas ang pakiramdam kong tinatawag akong tumulong sa paggaling ng iba—emosyonal, espiritwal, o pisikal.",
-            "I am willing to give my time and understanding to support those in need.\n\nHanda akong maglaan ng oras at pag-unawa para sumuporta sa nangangailangan.",
-            "I am open and eager to serve in counseling, healing prayer, or support ministries.\n\nBukas ako at sabik na maglingkod sa pamamagitan ng counseling, panalangin para sa kagalingan, o mga support ministries.",
-
-            // special interest ministry
-            "I am interested in ministering to specific groups such as seniors, singles, or working professionals.\n\nInteresado akong maglingkod sa mga partikular na grupo gaya ng mga nakatatanda, single, o mga propesyonal.",
-            "I enjoy connecting with others who share common interests or hobbies (e.g., sports, writing).\n\nNasasayahan akong makipag-ugnayan sa iba na may parehong interes o hilig (hal. sports, pagsusulat).",
-            "I believe my personal experiences and skills can positively contribute to others’ growth.\n\nNaniniwala ako na ang aking mga personal na karanasan at kakayahan ay makatutulong nang positibo sa paglago ng iba.",
-            "I would enjoy leading or participating in ministries that align with my current life season or stage.\n\nMagiging masaya ako na mamuno o makibahagi sa mga ministeryo na tumutugma sa aking kasalukuyang yugto ng buhay.",
-            "I feel drawn to serve in creative or unconventional ministry areas that embrace unique interests.\n\nNararamdaman kong tinatawag ako na maglingkod sa malikhaing o kakaibang ministeryo na tumatanggap ng natatanging interes."
-        ];
         
         let interestAndPassionProfilingScore = [0,0,0,0,0,0];
         function showMinistryCategory() {
@@ -1003,7 +1256,7 @@
                     console.log("");
                     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     console.log(">> Ministry(Category) Profile");
-                    showQuestions("ministryCategory", interestAndPassionProfiling, interestAndPassionProfilingScore, "step3");
+                    showQuestions("ministryCategory", interestAndPassionProfiling, selectedLanguage, interestAndPassionProfilingScore, "step3");
                 }, 3500);
         }
     
@@ -1554,398 +1807,402 @@
         // ];
 
         const ministryQuestions = [
-            // Core ministry
+            //coreMinistry
             {
                 "ministry": "Worship",
                 "questions": [
-                    "Being in a space filled with music, rehearsals, and live worship excites me.\n\nNasasabik ako sa lugar na puno ng musika, rehearsals, at live worship.",
-                    "I am interested in leading others through singing, playing instruments, or creative expression.\n\nInteresado akong manguna sa iba sa pamamagitan ng pagkanta, pagtugtog ng instrumento, o creative na pagpapahayag.",
-                    "I have the musical talent, stage presence, or teamwork needed for worship ministry.\n\nMay kakayahan ako sa musika, stage presence, o teamwork na kailangan para sa worship ministry.",
-                    "Serving in worship fits well with my personality and interests.\n\nAng paglilingkod sa worship ay bagay sa aking personalidad at interes.",
-                    "I enjoy using my musical or creative talents to lead others in worship.\n\nNasasaya ako sa paggamit ng aking musikal o creative na talento para manguna sa worship ng iba."
+                    { en: "Being in a space filled with music, rehearsals, and live worship excites me.", tl: "Nasasabik ako sa lugar na puno ng musika, rehearsals, at live worship." },
+                    { en: "I am interested in leading others through singing, playing instruments, or creative expression.", tl: "Interesado akong manguna sa iba sa pamamagitan ng pagkanta, pagtugtog ng instrumento, o creative na pagpapahayag." },
+                    { en: "I have the musical talent, stage presence, or teamwork needed for worship ministry.", tl: "May kakayahan ako sa musika, stage presence, o teamwork na kailangan para sa worship ministry." },
+                    { en: "Serving in worship fits well with my personality and interests.", tl: "Ang paglilingkod sa worship ay bagay sa aking personalidad at interes." },
+                    { en: "I enjoy using my musical or creative talents to lead others in worship.", tl: "Nasasaya akong gamitin ang aking musikal o malikhaing talento upang pangunahan ang iba sa pagsamba." }
                 ]
             },
-            // {
-            //     "ministry": "Worship(Singing)",
-            //     "questions": [
-            //         "I think I am good at singing and can carry a tune confidently.\n\nSa tingin ko ay magaling ako sa pagkanta at kaya kong kumanta nang may kumpiyansa.",
-            //         "I can sing with proper pitch, tone, and breathing control.\n\nAko ay kasalukuyang nagsasanay ng pagkanta o gumagamit ng aking tinig nang regular sa paaralan, mga event, o sa personal na oras.",
-            //         "I have performed or sung in front of an audience before.\n\nAko ay nakapagtanghal o kumanta na sa harap ng madla dati.",
-            //         "I am willing to learn proper vocal techniques to improve my singing.\n\nHanda akong matuto ng tamang teknik sa boses upang mapabuti ang aking pagkanta.",
-            //         "I am willing to use my singing talent to serve in the church.\n\nHanda akong gamitin ang aking talento sa pagkanta upang maglingkod sa simbahan."
-            //     ]
-            // },
-            // {
-            //     "ministry": "Worship(Dancing)",
-            //     "questions": [
-            //         "I think I am good at dancing and can learn choreography quickly.\n\nSa tingin ko ay magaling ako sa pagsayaw at mabilis akong matuto ng choreography.",
-            //         "I currently dance or practice movement regularly in school, events, or personal time.\n\nAko ay kasalukuyang sumasayaw o nagsasanay ng galaw nang regular sa paaralan, mga event, o sa personal na oras.",
-            //         "I have performed or joined a dance group or presentation before.\n\nAko ay nakapagtanghal o nakasali na sa isang dance group o presentasyon dati.",
-            //         "I am willing to learn new dance styles or techniques to improve my skills.\n\nHanda akong matuto ng mga bagong estilo o teknik sa pagsayaw upang mapabuti ang aking kakayahan.",
-            //         "I am willing to use my dancing talent to serve in the church.\n\nHanda akong gamitin ang aking talento sa pagsayaw upang maglingkod sa simbahan."
-            //     ]
-            // },
-            // {
-            //     "ministry": "Worship(Instrument)",
-            //     "questions": [
-            //         "I think I am good at playing at least one musical instrument.\n\nSa tingin ko ay magaling ako tumugtog ng kahit isang instrumentong pangmusika.",
-            //         "I currently practice or play an instrument regularly.\n\nAko ay kasalukuyang nagsasanay o tumutugtog ng instrumento nang regular.",
-            //         "I have performed or played an instrument in front of an audience before.\n\nAko ay nakatugtog na o nakapagbigay-tanghal gamit ang isang instrumento sa harap ng madla dati.",
-            //         "I am willing to learn new instruments or improve my existing skills.\n\nHanda akong matuto ng bagong instrumento o paghusayin ang kasalukuyan kong kakayahan.",
-            //         "I am willing to use my instrumental talent to serve in the church.\n\nHanda akong gamitin ang aking talento sa pagtugtog ng instrumento upang maglingkod sa simbahan."
-            //     ]
-            // },
-
+            {
+                "ministry": "Worship(Singing)",
+                "questions": [
+                    { en: "I think I am good at singing and can carry a tune confidently.", tl: "Sa tingin ko ay magaling ako sa pagkanta at kaya kong kumanta nang may kumpiyansa." },
+                    { en: "I can sing with proper pitch, tone, and breathing control.", tl: "Ako ay kasalukuyang nagsasanay ng pagkanta o gumagamit ng aking tinig nang regular sa paaralan, mga event, o sa personal na oras." },
+                    { en: "I have performed or sung in front of an audience before.", tl: "Ako ay nakapagtanghal o kumanta na sa harap ng madla dati." },
+                    { en: "I am willing to learn proper vocal techniques to improve my singing.", tl: "Handa akong matuto ng tamang teknik sa boses upang mapabuti ang aking pagkanta." },
+                    { en: "I am willing to use my singing talent to serve in the church.", tl: "Handa akong gamitin ang aking talento sa pagkanta upang maglingkod sa simbahan." }
+                ]
+            },
+            {
+                "ministry": "Worship(Dancing)",
+                "questions": [
+                    { en: "I think I am good at dancing and can learn choreography quickly.", tl: "Sa tingin ko ay magaling ako sa pagsayaw at mabilis akong matuto ng choreography." },
+                    { en: "I currently dance or practice movement regularly in school, events, or personal time.", tl: "Ako ay kasalukuyang sumasayaw o nagsasanay ng galaw nang regular sa paaralan, mga event, o sa personal na oras." },
+                    { en: "I have performed or joined a dance group or presentation before.", tl: "Ako ay nakapagtanghal o nakasali na sa isang dance group o presentasyon dati." },
+                    { en: "I am willing to learn new dance styles or techniques to improve my skills.", tl: "Handa akong matuto ng mga bagong estilo o teknik sa pagsayaw upang mapabuti ang aking kakayahan." },
+                    { en: "I am willing to use my dancing talent to serve in the church.", tl: "Handa akong gamitin ang aking talento sa pagsayaw upang maglingkod sa simbahan." }
+                ]
+            },
+            {
+                "ministry": "Worship(Instrument)",
+                "questions": [
+                    { en: "I think I am good at playing at least one musical instrument.", tl: "Sa tingin ko ay magaling ako tumugtog ng kahit isang instrumentong pangmusika." },
+                    { en: "I currently practice or play an instrument regularly.", tl: "Ako ay kasalukuyang nagsasanay o tumutugtog ng instrumento nang regular." },
+                    { en: "I have performed or played an instrument in front of an audience before.", tl: "Ako ay nakatugtog na o nakapagbigay-tanghal gamit ang isang instrumento sa harap ng madla dati." },
+                    { en: "I am willing to learn new instruments or improve my existing skills.", tl: "Handa akong matuto ng bagong instrumento o paghusayin ang kasalukuyan kong kakayahan." },
+                    { en: "I am willing to use my instrumental talent to serve in the church.", tl: "Handa akong gamitin ang aking talento sa pagtugtog ng instrumento upang maglingkod sa simbahan." }
+                ]
+            },
             {
                 "ministry": "Prayer",
                 "questions": [
-                    "A peaceful, prayer-focused environment would be fulfilling for me.\n\nIsang mapayapa at panalanging nakatuon na kapaligiran ang magiging kasiya-siya para sa akin.",
-                    "I am willing to spend regular time interceding for people, the church, and world needs.\n\nHanda akong maglaan ng regular na oras sa pananalangin para sa mga tao, simbahan, at pangangailangan ng mundo.",
-                    "I have the focus, persistence, and spiritual sensitivity to serve in prayer ministry.\n\nMay konsentrasyon, tiyaga, at espiritwal na sensibilidad ako upang maglingkod sa prayer ministry.",
-                    "I believe I would serve well in a ministry centered on prayer.\n\nNaniniwala akong magiging maayos ang aking paglilingkod sa isang ministeryo na nakatuon sa panalangin.",
-                    "I think I would serve well in a ministry centered on prayer.\n\nMay kumpiyansa ako sa aking kakayahang makapag-ambag sa isang prayer ministry."
+                    { en: "A peaceful, prayer-focused environment would be fulfilling for me.", tl: "Isang mapayapa at panalanging nakatuon na kapaligiran ang magiging kasiya-siya para sa akin." },
+                    { en: "I am willing to spend regular time interceding for people, the church, and world needs.", tl: "Handa akong maglaan ng regular na oras sa pananalangin para sa mga tao, simbahan, at pangangailangan ng mundo." },
+                    { en: "I have the focus, persistence, and spiritual sensitivity to serve in prayer ministry.", tl: "May konsentrasyon, tiyaga, at espiritwal na sensibilidad ako upang maglingkod sa prayer ministry." },
+                    { en: "I believe I would serve well in a ministry centered on prayer.", tl: "Naniniwala akong magiging maayos ang aking paglilingkod sa isang ministeryo na nakatuon sa panalangin." },
+                    { en: "I think I would serve well in a ministry centered on prayer.", tl: "May kumpiyansa ako sa aking kakayahang makapag-ambag sa isang prayer ministry." }
                 ]
             },
             {
                 "ministry": "Preaching",
                 "questions": [
-                    "I would enjoy spending time studying, preparing, and discussing God’s Word.\n\nMag-eenjoy ako sa pag-aaral, paghahanda, at pagtalakay ng Salita ng Diyos.",
-                    "I want to share biblical truths through preaching or teaching.\n\nNais kong ibahagi ang mga katotohanang biblikal sa pamamagitan ng pangangaral o pagtuturo.",
-                    "I have the speaking ability, clarity, and understanding needed to communicate Scripture effectively.\n\nMay kakayahan akong magsalita, malinaw na magpaliwanag, at maunawaan ang Biblia upang maiparating ito ng epektibo.",
-                    "I think preaching or teaching is a ministry where I could contribute greatly.\n\nSa tingin ko, ang pangangaral o pagtuturo ay ministeryo kung saan malaki ang maiaambag ko.",
-                    "I have considered stepping into a preaching or teaching role before.\n\nNaisip ko na rin noon na pumasok sa tungkulin ng pangangaral o pagtuturo."
+                    { en: "I would enjoy spending time studying, preparing, and discussing God’s Word.", tl: "Mag-eenjoy ako sa pag-aaral, paghahanda, at pagtalakay ng Salita ng Diyos." },
+                    { en: "I want to share biblical truths through preaching or teaching.", tl: "Nais kong ibahagi ang mga katotohanang biblikal sa pamamagitan ng pangangaral o pagtuturo." },
+                    { en: "I have the speaking ability, clarity, and understanding needed to communicate Scripture effectively.", tl: "May kakayahan akong magsalita, malinaw na magpaliwanag, at maunawaan ang Biblia upang maiparating ito ng epektibo." },
+                    { en: "I think preaching or teaching is a ministry where I could contribute greatly.", tl: "Sa tingin ko, ang pangangaral o pagtuturo ay ministeryo kung saan malaki ang maiaambag ko." },
+                    { en: "I have considered stepping into a preaching or teaching role before.", tl: "Naisip ko na rin noon na pumasok sa tungkulin ng pangangaral o pagtuturo." }
                 ]
             },
             {
                 "ministry": "Discipleship",
                 "questions": [
-                    "I enjoy being in settings where people are guided and mentored in their faith.\n\nMasaya ako sa mga lugar kung saan ginagabayan at minementor ang mga tao sa pananampalataya.",
-                    "I am motivated to invest in others’ spiritual growth over time.\n\nInteresado akong tulungan ang iba na lumago sa kanilang espiritwal na buhay.",
-                    "I feel I have the patience, consistency, and listening skills that discipleship requires.\n\nMay pasensya, palagian sa pagtulong, at kakayahang makinig ako para sa discipleship.",
-                    "I believe walking alongside others in faith is a good fit for me.\n\nSa tingin ko bagay sa akin ang kasama ang iba sa kanilang pananampalataya.",
-                    "I have thought about being part of a discipleship ministry in the past.\n\nNaisip ko na rin noon na sumali sa isang discipleship ministry."
+                    { en: "I enjoy being in settings where people are guided and mentored in their faith.", tl: "Masaya ako sa mga lugar kung saan ginagabayan at minementor ang mga tao sa pananampalataya." },
+                    { en: "I am motivated to invest in others’ spiritual growth over time.", tl: "Interesado akong tulungan ang iba na lumago sa kanilang espiritwal na buhay." },
+                    { en: "I feel I have the patience, consistency, and listening skills that discipleship requires.", tl: "May pasensya, palagian sa pagtulong, at kakayahang makinig ako para sa discipleship." },
+                    { en: "I believe walking alongside others in faith is a good fit for me.", tl: "Sa tingin ko bagay sa akin ang kasama ang iba sa kanilang pananampalataya." },
+                    { en: "I have thought about being part of a discipleship ministry in the past.", tl: "Naisip ko na rin noon na sumali sa isang discipleship ministry." }
                 ]
             },
             {
                 "ministry": "Children's",
                 "questions": [
-                    "I would enjoy being in a lively, creative environment filled with children.\n\nMasaya ako sa masigla at malikhaing lugar na puno ng mga bata.",
-                    "I am interested in teaching, guiding, and caring for kids in a faith context.\n\nInteresado akong magturo, gumabay, at mag-alaga sa mga bata sa konteksto ng pananampalataya.",
-                    "I feel I have the patience, energy, and creativity to engage well with children.\n\nMay pasensya, enerhiya, at kakayahan akong makipag-ugnayan nang maayos sa mga bata.",
-                    "I believe I can contribute effectively to a ministry focused on children’s growth and faith.\n\nNaniniwala akong makakatulong ako sa ministeryo na nakatuon sa paglago at pananampalataya ng mga bata.",
-                    "I have considered joining the children’s ministry before.\n\nNaisip ko na rin noon na sumali sa children’s ministry."
+                    { en: "I would enjoy being in a lively, creative environment filled with children.", tl: "Masaya ako sa masigla at malikhaing lugar na puno ng mga bata." },
+                    { en: "I am interested in teaching, guiding, and caring for kids in a faith context.", tl: "Interesado akong magturo, gumabay, at mag-alaga sa mga bata sa konteksto ng pananampalataya." },
+                    { en: "I feel I have the patience, energy, and creativity to engage well with children.", tl: "May pasensya, enerhiya, at kakayahan akong makipag-ugnayan nang maayos sa mga bata." },
+                    { en: "I believe I can contribute effectively to a ministry focused on children’s growth and faith.", tl: "Naniniwala akong makakatulong ako sa ministeryo na nakatuon sa paglago at pananampalataya ng mga bata." },
+                    { en: "I have considered joining the children’s ministry before.", tl: "Naisip ko na rin noon na sumali sa children’s ministry." }
                 ]
             },
             {
                 "ministry": "Youth",
                 "questions": [
-                    "I would feel energized in a setting filled with teens and youth activities.\n\nMasigla akong makaramdam sa lugar na puno ng aktibidad para sa teens at youth.",
-                    "I feel I have the patience, energy, and creativity to engage well with teens and youth.\n\nMay pasensya, enerhiya, at kakayahan akong makipag-ugnayan nang maayos sa teens at youth.",
-                    "I believe I can contribute effectively to a ministry focused on youth growth and faith.\n\nNaniniwala akong makakatulong ako sa ministeryo na nakatuon sa paglago at pananampalataya ng youth.",
-                    "I think youth ministry fits my strengths and personality.\n\nSa tingin ko bagay sa akin ang youth ministry at tugma sa aking kakayahan.",
-                    "I have thought about working with the youth ministry before.\n\nNaisip ko na rin noon na sumali sa youth ministry."
+                    { en: "I would feel energized in a setting filled with teens and youth activities.", tl: "Masigla akong makaramdam sa lugar na puno ng aktibidad para sa teens at youth." },
+                    { en: "I feel I have the patience, energy, and creativity to engage well with teens and youth.", tl: "May pasensya, enerhiya, at kakayahan akong makipag-ugnayan nang maayos sa teens at youth." },
+                    { en: "I believe I can contribute effectively to a ministry focused on youth growth and faith.", tl: "Naniniwala akong makakatulong ako sa ministeryo na nakatuon sa paglago at pananampalataya ng youth." },
+                    { en: "I think youth ministry fits my strengths and personality.", tl: "Sa tingin ko bagay sa akin ang youth ministry at tugma sa aking kakayahan." },
+                    { en: "I have thought about working with the youth ministry before.", tl: "Naisip ko na rin noon na sumali sa youth ministry." }
                 ]
             },
             {
                 "ministry": "Young Adults",
                 "questions": [
-                    "I enjoy being in environments where young adults share life experiences and challenges.\n\nMasaya ako sa mga lugar kung saan nagbabahagi ang young adults ng kanilang karanasan at hamon sa buhay.",
-                    "I want to support people in their early career or college years in making faith-based decisions.\n\nGusto kong tulungan ang mga tao sa kanilang early career o college years sa paggawa ng desisyon base sa pananampalataya.",
-                    "I have the empathy, understanding, and guidance skills needed for this ministry.\n\nMay empatiya, pag-unawa, at kakayahan akong magbigay-gabay para sa ministeryong ito.",
-                    "I believe I could connect well with and serve in a young adults ministry.\n\nNaniniwala akong makakaugnay ako nang maayos at makakapaglingkod sa young adults ministry.",
-                    "I have previously considered joining this ministry.\n\nNaisip ko na rin noon na sumali sa ministeryong ito."
+                    { en: "I enjoy being in environments where young adults share life experiences and challenges.", tl: "Masaya ako sa mga lugar kung saan nagbabahagi ang young adults ng kanilang karanasan at hamon sa buhay." },
+                    { en: "I want to support people in their early career or college years in making faith-based decisions.", tl: "Gusto kong tulungan ang mga tao sa kanilang early career o college years sa paggawa ng desisyon base sa pananampalataya." },
+                    { en: "I have the empathy, understanding, and guidance skills needed for this ministry.", tl: "May empatiya, pag-unawa, at kakayahan akong magbigay-gabay para sa ministeryong ito." },
+                    { en: "I believe I could connect well with and serve in a young adults ministry.", tl: "Naniniwala akong makakaugnay ako nang maayos at makakapaglingkod sa young adults ministry." },
+                    { en: "I have previously considered joining this ministry.", tl: "Naisip ko na rin noon na sumali sa ministeryong ito." }
                 ]
             },
             {
                 "ministry": "Men's",
                 "questions": [
-                    "I would enjoy building strong, faith-based relationships with other men.\n\nMasaya ako na bumuo ng matibay at pananampalatayang relasyon sa ibang lalaki.",
-                    "I want to help men grow in integrity, leadership, and spiritual strength.\n\nGusto kong tulungan ang mga lalaki na lumago sa integridad, pamumuno, at espiritwal na lakas.",
-                    "I have the openness, mentorship skills, and accountability mindset needed here.\n\nMay openness, kakayahan sa mentorship, at pananagutan ako na kailangan dito.",
-                    "I believe the men’s ministry is an area where I could have a strong impact.\n\nNaniniwala akong makakagawa ako ng malaking epekto sa men’s ministry.",
-                    "I am interested in participating in group activities that strengthen men's faith and character.\n\nInteresado akong sumali sa mga group activities na nagpapalakas sa pananampalataya at karakter ng mga lalaki."
+                    { en: "I would enjoy building strong, faith-based relationships with other men.", tl: "Masaya ako na bumuo ng matibay at pananampalatayang relasyon sa ibang lalaki." },
+                    { en: "I want to help men grow in integrity, leadership, and spiritual strength.", tl: "Gusto kong tulungan ang mga lalaki na lumago sa integridad, pamumuno, at espiritwal na lakas." },
+                    { en: "I have the openness, mentorship skills, and accountability mindset needed here.", tl: "May openness, kakayahan sa mentorship, at pananagutan ako na kailangan dito." },
+                    { en: "I believe the men’s ministry is an area where I could have a strong impact.", tl: "Naniniwala akong makakagawa ako ng malaking epekto sa men’s ministry." },
+                    { en: "I am interested in participating in group activities that strengthen men's faith and character.", tl: "Interesado akong sumali sa mga group activities na nagpapalakas sa pananampalataya at karakter ng mga lalaki." }
                 ]
             },
             {
                 "ministry": "Women's",
                 "questions": [
-                    "I would enjoy a setting where women gather for support, faith, and encouragement.\n\nMasaya ako sa lugar kung saan nagtitipon ang mga babae para sa suporta, pananampalataya, at pampalakas ng loob.",
-                    "I want to help women grow spiritually, emotionally, and in community.\n\nGusto kong tulungan ang mga babae na lumago sa espiritwal, emosyonal, at komunidad.",
-                    "I have the compassion, leadership, and listening skills suited for women’s ministry.\n\nMay malasakit, kakayahan sa pamumuno, at pakikinig ako na bagay sa women’s ministry.",
-                    "I believe I could thrive in a role that uplifts and supports women.\n\nNaniniwala akong magiging maayos ang aking paglilingkod sa isang tungkulin na nag-uplift at sumusuporta sa mga babae.",
-                    "I am interested in participating in group activities that strengthen women's faith and character.\n\nInteresado akong sumali sa mga group activities na nagpapalakas sa pananampalataya at karakter ng mga babae."
+                    { en: "I would enjoy a setting where women gather for support, faith, and encouragement.", tl: "Masaya ako sa lugar kung saan nagtitipon ang mga babae para sa suporta, pananampalataya, at pampalakas ng loob." },
+                    { en: "I want to help women grow spiritually, emotionally, and in community.", tl: "Gusto kong tulungan ang mga babae na lumago sa espiritwal, emosyonal, at komunidad." },
+                    { en: "I have the compassion, leadership, and listening skills suited for women’s ministry.", tl: "May malasakit, kakayahan sa pamumuno, at pakikinig ako na bagay sa women’s ministry." },
+                    { en: "I believe I could thrive in a role that uplifts and supports women.", tl: "Naniniwala akong magiging maayos ang aking paglilingkod sa isang tungkulin na nag-uplift at sumusuporta sa mga babae." },
+                    { en: "I am interested in participating in group activities that strengthen women's faith and character.", tl: "Interesado akong sumali sa mga group activities na nagpapalakas sa pananampalataya at karakter ng mga babae." }
                 ]
             },
             {
                 "ministry": "Family Or Couples",
                 "questions": [
-                    "I would enjoy working in an environment that focuses on strengthening families and marriages.\n\nMasaya ako na magtrabaho sa lugar na nakatuon sa pagpapalakas ng pamilya at kasal.",
-                    "I want to support couples and families through events, teaching, or guidance.\n\nGusto kong tulungan ang mga mag-asawa at pamilya sa pamamagitan ng events, pagtuturo, o gabay.",
-                    "I have the wisdom, patience, and relationship skills needed here.\n\nMay karunungan, pasensya, at kakayahan sa relasyon ako na kailangan dito.",
-                    "I believe I could contribute positively to a ministry focused on families and couples.\n\nNaniniwala akong makakatulong ako sa ministeryo na nakatuon sa pamilya at mag-asawa.",
-                    "I enjoy participating in events or programs that help families build stronger bonds.\n\nNasasaya ako sa pagsali sa mga events o programa na tumutulong sa pamilya na magkaroon ng mas matibay na ugnayan."
+                    { en: "I would enjoy working in an environment that focuses on strengthening families and marriages.", tl: "Masaya ako na magtrabaho sa lugar na nakatuon sa pagpapalakas ng pamilya at kasal." },
+                    { en: "I want to support couples and families through events, teaching, or guidance.", tl: "Gusto kong tulungan ang mga mag-asawa at pamilya sa pamamagitan ng events, pagtuturo, o gabay." },
+                    { en: "I have the wisdom, patience, and relationship skills needed here.", tl: "May karunungan, pasensya, at kakayahan sa relasyon ako na kailangan dito." },
+                    { en: "I believe I could contribute positively to a ministry focused on families and couples.", tl: "Naniniwala akong makakatulong ako sa ministeryo na nakatuon sa pamilya at mag-asawa." },
+                    { en: "I enjoy participating in events or programs that help families build stronger bonds.", tl: "Nasasaya ako sa pagsali sa mga events o programa na tumutulong sa pamilya na magkaroon ng mas matibay na ugnayan." }
                 ]
             },
-            // Support ministry
+
+            //support ministry
             {
                 "ministry": "Ushering",
                 "questions": [
-                    "I would enjoy being in a welcoming, people-focused environment.\n\nMasaya ako sa lugar na nakatuon sa pagtanggap at serbisyo sa tao.",
-                    "I want to help create a warm and friendly atmosphere during services or events.\n\nGusto kong tulungan lumikha ng mainit at magiliw na kapaligiran sa mga serbisyo o events.",
-                    "I have the friendliness, alertness, and helpfulness needed for ushering.\n\nMay kaibigan, alerto, at handa akong tumulong na kakayahan ako para sa ushering.",
-                    "I believe I would do well in a ministry that serves as the first point of contact for guests.\n\nNaniniwala akong magaling akong maglingkod sa ministeryo na unang nakakatagpo sa mga bisita.",
-                    "I enjoy coordinating and assisting with logistics to make church events run smoothly.\n\nNasasaya ako sa pagtulong at pag-aayos ng mga gawain para maging maayos ang church events."
+                    { en: "I would enjoy being in a welcoming, people-focused environment.", tl: "Masaya ako sa lugar na nakatuon sa pagtanggap at serbisyo sa tao." },
+                    { en: "I want to help create a warm and friendly atmosphere during services or events.", tl: "Gusto kong tulungan lumikha ng mainit at magiliw na kapaligiran sa mga serbisyo o events." },
+                    { en: "I have the friendliness, alertness, and helpfulness needed for ushering.", tl: "May kaibigan, alerto, at handa akong tumulong na kakayahan ako para sa ushering." },
+                    { en: "I believe I would do well in a ministry that serves as the first point of contact for guests.", tl: "Naniniwala akong magaling akong maglingkod sa ministeryo na unang nakakatagpo sa mga bisita." },
+                    { en: "I enjoy coordinating and assisting with logistics to make church events run smoothly.", tl: "Nasasaya ako sa pagtulong at pag-aayos ng mga gawain para maging maayos ang church events." }
                 ]
             },
             {
                 "ministry": "Hospitality",
                 "questions": [
-                    "I would enjoy being in a setting where food, comfort, and service are prioritized.\n\nMasaya ako sa lugar na nakatuon sa pagkain, kaginhawahan, at serbisyo.",
-                    "I want to help prepare and serve food or refreshments for others.\n\nGusto kong tumulong sa paghahanda at paghahain ng pagkain o refreshments para sa iba.",
-                    "I have the organization, presentation, and hosting skills needed here.\n\nMay kakayahan ako sa organisasyon, presentasyon, at pagho-host na kailangan dito.",
-                    "I believe I could help make people feel welcomed through hospitality ministry.\n\nNaniniwala akong makakatulong ako upang maramdaman ng tao ang welcome sa pamamagitan ng hospitality ministry.",
-                    "I enjoy creating a warm and welcoming environment for church attendees.\n\nNasasaya ako sa paggawa ng mainit at magiliw na kapaligiran para sa mga dumadalo sa simbahan."
+                    { en: "I would enjoy being in a setting where food, comfort, and service are prioritized.", tl: "Masaya ako sa lugar na nakatuon sa pagkain, kaginhawahan, at serbisyo." },
+                    { en: "I want to help prepare and serve food or refreshments for others.", tl: "Gusto kong tumulong sa paghahanda at paghahain ng pagkain o refreshments para sa iba." },
+                    { en: "I have the organization, presentation, and hosting skills needed here.", tl: "May kakayahan ako sa organisasyon, presentasyon, at pagho-host na kailangan dito." },
+                    { en: "I believe I could help make people feel welcomed through hospitality ministry.", tl: "Naniniwala akong makakatulong ako upang maramdaman ng tao ang welcome sa pamamagitan ng hospitality ministry." },
+                    { en: "I enjoy creating a warm and welcoming environment for church attendees.", tl: "Nasasaya ako sa paggawa ng mainit at magiliw na kapaligiran para sa mga dumadalo sa simbahan." }
                 ]
             },
             {
                 "ministry": "Administrative",
                 "questions": [
-                    "I would enjoy working in an environment that involves organization and planning.\n\nMasaya ako sa lugar na nakatuon sa organisasyon at pagpaplano.",
-                    "I want to help manage schedules, records, or communications for the ministry.\n\nGusto kong tumulong sa pag-manage ng schedules, records, o communications para sa ministry.",
-                    "I have the attention to detail, time management, and organization skills needed.\n\nMay kakayahan ako sa detalye, oras, at organisasyon na kailangan.",
-                    "I believe I could be effective in an administrative role.\n\nNaniniwala akong magiging epektibo ako sa isang administrative role.",
-                    "I have considered serving in an administrative capacity before.\n\nNasasaya ako sa pag-coordinate at pag-organize ng mga gawain para mas maging epektibo ang ministry."
+                    { en: "I would enjoy working in an environment that involves organization and planning.", tl: "I would enjoy working in an environment that involves organization and planning." },
+                    { en: "I want to help manage schedules, records, or communications for the ministry.", tl: "I want to help manage schedules, records, or communications for the ministry." },
+                    { en: "I have the attention to detail, time management, and organization skills needed.", tl: "I have the attention to detail, time management, and organization skills needed." },
+                    { en: "I believe I could be effective in an administrative role.", tl: "I believe I could be effective in an administrative role." },
+                    { en: "I have considered serving in an administrative capacity before.", tl: "Nasasaya ako sa pag-coordinate at pag-organize ng mga gawain para mas maging epektibo ang ministry." }
                 ]
             },
             {
                 "ministry": "Finance",
                 "questions": [
-                    "I enjoy helping manage and organize church finances and resources responsibly.\n\nNasasaya ako sa pagtulong sa maayos at responsableng pamamahala ng finances at resources ng simbahan.",
-                    "I am confident in handling budgeting, records, and financial tasks accurately.\n\nMay kumpiyansa ako sa paghawak ng budgeting, records, at financial tasks nang tama.",
-                    "I like tracking and monitoring expenses to ensure proper stewardship.\n\nGusto kong subaybayan at i-monitor ang gastusin upang masiguro ang tamang stewardship.",
-                    "I have the attention to detail, reliability, and accountability needed for this ministry.\n\nMay kakayahan ako sa detalye, pagiging maaasahan, at pananagutan na kailangan sa ministeryong ito.",
-                    "I am interested in using my financial and stewardship skills to support church activities.\n\nInteresado akong gamitin ang aking financial at stewardship skills para suportahan ang mga gawain ng simbahan."
+                    { en: "I enjoy helping manage and organize church finances and resources responsibly.", tl: "Nasasaya ako sa pagtulong sa maayos at responsableng pamamahala ng finances at resources ng simbahan." },
+                    { en: "I am confident in handling budgeting, records, and financial tasks accurately.", tl: "May kumpiyansa ako sa paghawak ng budgeting, records, at financial tasks nang tama." },
+                    { en: "I like tracking and monitoring expenses to ensure proper stewardship.", tl: "Gusto kong subaybayan at i-monitor ang gastusin upang masiguro ang tamang stewardship." },
+                    { en: "I have the attention to detail, reliability, and accountability needed for this ministry.", tl: "May kakayahan ako sa detalye, pagiging maaasahan, at pananagutan na kailangan sa ministeryong ito." },
+                    { en: "I am interested in using my financial and stewardship skills to support church activities.", tl: "Interesado akong gamitin ang aking financial at stewardship skills para suportahan ang mga gawain ng simbahan." }
                 ]
             },
             {
                 "ministry": "Security",
                 "questions": [
-                    "I would enjoy being in an environment focused on safety and order.\n\nMasaya ako sa lugar na nakatuon sa kaligtasan at kaayusan.",
-                    "I am interested in helping maintain safety and well-being during church events.\n\nInteresado akong tumulong sa pagpapanatili ng kaligtasan at kapakanan sa mga church events.",
-                    "I feel I have the alertness, calmness, and decisiveness needed for security work.\n\nMay alertness, kalmadong disposisyon, at pagiging matatag ako na kailangan sa security work.",
-                    "I believe I could fulfill the role of keeping events safe and orderly.\n\nNaniniwala akong magaling akong gampanan ang tungkulin na panatilihing ligtas at maayos ang mga events.",
-                    "I enjoy helping create a safe and secure environment for everyone.\n\nNasasaya ako sa pagtulong na magkaroon ng ligtas at maayos na kapaligiran para sa lahat."
+                    { en: "I would enjoy being in an environment focused on safety and order.", tl: "Masaya ako sa lugar na nakatuon sa kaligtasan at kaayusan." },
+                    { en: "I am interested in helping maintain safety and well-being during church events.", tl: "Interesado akong tumulong sa pagpapanatili ng kaligtasan at kapakanan sa mga church events." },
+                    { en: "I feel I have the alertness, calmness, and decisiveness needed for security work.", tl: "May alertness, kalmadong disposisyon, at pagiging matatag ako na kailangan sa security work." },
+                    { en: "I believe I could fulfill the role of keeping events safe and orderly.", tl: "Naniniwala akong magaling akong gampanan ang tungkulin na panatilihing ligtas at maayos ang mga events." },
+                    { en: "I enjoy helping create a safe and secure environment for everyone.", tl: "Nasasaya ako sa pagtulong na magkaroon ng ligtas at maayos na kapaligiran para sa lahat." }
                 ]
             },
             {
                 "ministry": "Facilities Maintenance",
                 "questions": [
-                    "I would enjoy being in a hands-on, task-focused work environment.\n\nMasaya ako sa lugar na hands-on at nakatuon sa mga gawain.",
-                    "I am interested in helping maintain, clean, and prepare church spaces.\n\nInteresado akong tumulong sa pagpapanatili, paglilinis, at paghahanda ng mga pasilidad ng simbahan.",
-                    "I believe I have the practical skills, energy, and attention to detail needed for this role.\n\nNaniniwala akong may praktikal na kakayahan, enerhiya, at pansin sa detalye ako na kailangan sa tungkuling ito.",
-                    "I feel capable of contributing effectively to keeping church facilities in good condition.\n\nPakiramdam ko kaya kong makapag-ambag nang epektibo sa pagpapanatili ng maayos na kondisyon ng simbahan.",
-                    "I enjoy helping maintain and organize church facilities.\n\nNasasaya ako sa pagtulong sa pagpapanatili at pag-aayos ng mga pasilidad ng simbahan."
+                    { en: "I would enjoy being in a hands-on, task-focused work environment.", tl: "Masaya ako sa lugar na hands-on at nakatuon sa mga gawain." },
+                    { en: "I am interested in helping maintain, clean, and prepare church spaces.", tl: "Interesado akong tumulong sa pagpapanatili, paglilinis, at paghahanda ng mga pasilidad ng simbahan." },
+                    { en: "I believe I have the practical skills, energy, and attention to detail needed for this role.", tl: "Naniniwala akong may praktikal na kakayahan, enerhiya, at pansin sa detalye ako na kailangan sa tungkuling ito." },
+                    { en: "I feel capable of contributing effectively to keeping church facilities in good condition.", tl: "Pakiramdam ko kaya kong makapag-ambag nang epektibo sa pagpapanatili ng maayos na kondisyon ng simbahan." },
+                    { en: "I enjoy helping maintain and organize church facilities.", tl: "Nasasaya ako sa pagtulong sa pagpapanatili at pag-aayos ng mga pasilidad ng simbahan." }
                 ]
             },
 
-            // Outreach ministry
+            //outreach ministry
             {
                 "ministry": "Evangelism",
                 "questions": [
-                    "I would enjoy being in an environment that actively connects with new people.\n\nMasaya ako sa lugar na aktibong nakikipag-ugnayan sa mga bagong tao.",
-                    "I am interested in sharing the message of Jesus through everyday conversations.\n\nInteresado akong ibahagi ang mensahe ni Jesus sa pamamagitan ng pang-araw-araw na pag-uusap.",
-                    "I feel I have the confidence, friendliness, and openness needed for evangelism.\n\nPakiramdam ko may kumpiyansa, pagiging palakaibigan, at bukas na disposisyon ako na kailangan sa evangelism.",
-                    "I believe I could be effective in reaching out to others with the Gospel.\n\nNaniniwala akong magiging epektibo ako sa pag-abot sa iba gamit ang Ebanghelyo.",
-                    "I enjoy sharing God’s message with others and helping them grow in faith.\n\nNasasaya ako sa pagbabahagi ng mensahe ng Diyos sa iba at pagtulong sa kanilang paglago sa pananampalataya."
+                    { en: "I would enjoy being in an environment that actively connects with new people.", tl: "Masaya ako sa lugar na aktibong nakikipag-ugnayan sa mga bagong tao." },
+                    { en: "I am interested in sharing the message of Jesus through everyday conversations.", tl: "Interesado akong ibahagi ang mensahe ni Jesus sa pamamagitan ng pang-araw-araw na pag-uusap." },
+                    { en: "I feel I have the confidence, friendliness, and openness needed for evangelism.", tl: "Pakiramdam ko may kumpiyansa, pagiging palakaibigan, at bukas na disposisyon ako na kailangan sa evangelism." },
+                    { en: "I believe I could be effective in reaching out to others with the Gospel.", tl: "Naniniwala akong magiging epektibo ako sa pag-abot sa iba gamit ang Ebanghelyo." },
+                    { en: "I enjoy sharing God’s message with others and helping them grow in faith.", tl: "Nasasaya ako sa pagbabahagi ng mensahe ng Diyos sa iba at pagtulong sa kanilang paglago sa pananampalataya." }
                 ]
             },
             {
                 "ministry": "Missions",
                 "questions": [
-                    "I would enjoy serving in different cultural or unfamiliar environments.\n\nMasaya ako sa paglilingkod sa iba't ibang kultura o hindi pamilyar na kapaligiran.",
-                    "I want to participate in outreach, whether locally or globally.\n\nInteresado akong lumahok sa outreach, lokal man o global.",
-                    "I have the adaptability, teamwork, and openness needed for missions work.\n\nMay kakayahan ako sa adaptability, teamwork, at pagiging bukas na disposisyon na kailangan sa missions work.",
-                    "I believe I could contribute meaningfully in a missions setting.\n\nNaniniwala akong makakapag-ambag ako ng may kahulugan sa missions setting.",
-                    "I am interested to take part in long-term or short-term mission projects.\n\nInteresado akong makilahok sa long-term o short-term na mission projects."
+                    { en: "I would enjoy serving in different cultural or unfamiliar environments.", tl: "Masaya ako sa paglilingkod sa iba't ibang kultura o hindi pamilyar na kapaligiran." },
+                    { en: "I want to participate in outreach, whether locally or globally.", tl: "Interesado akong lumahok sa outreach, lokal man o global." },
+                    { en: "I have the adaptability, teamwork, and openness needed for missions work.", tl: "May kakayahan ako sa adaptability, teamwork, at pagiging bukas na disposisyon na kailangan sa missions work." },
+                    { en: "I believe I could contribute meaningfully in a missions setting.", tl: "Naniniwala akong makakapag-ambag ako ng may kahulugan sa missions setting." },
+                    { en: "I am interested to take part in long-term or short-term mission projects.", tl: "Interesado akong makilahok sa long-term o short-term na mission projects." }
                 ]
             },
             {
                 "ministry": "Community Service",
                 "questions": [
-                    "I would enjoy being in an environment focused on serving the community.\n\nMasaya ako sa lugar na nakatuon sa paglilingkod sa komunidad.",
-                    "I want to help meet practical needs for people in my area.\n\nInteresado akong tumulong sa pagtugon sa praktikal na pangangailangan ng mga tao sa aking lugar.",
-                    "I have the willingness, compassion, and work ethic needed for community service.\n\nMay kagustuhan, malasakit, at sipag ako na kailangan sa community service.",
-                    "I believe I could make a difference through service-based ministry.\n\nNaniniwala akong makakagawa ako ng pagbabago sa pamamagitan ng service-based ministry.",
-                    "I enjoy actively helping improve the lives of people in my community.\n\nNasasaya ako sa aktibong pagtulong na mapabuti ang buhay ng mga tao sa aking komunidad."
+                    { en: "I would enjoy being in an environment focused on serving the community.", tl: "Masaya ako sa lugar na nakatuon sa paglilingkod sa komunidad." },
+                    { en: "I want to help meet practical needs for people in my area.", tl: "Interesado akong tumulong sa pagtugon sa praktikal na pangangailangan ng mga tao sa aking lugar." },
+                    { en: "I have the willingness, compassion, and work ethic needed for community service.", tl: "May kagustuhan, malasakit, at sipag ako na kailangan sa community service." },
+                    { en: "I believe I could make a difference through service-based ministry.", tl: "Naniniwala akong makakagawa ako ng pagbabago sa pamamagitan ng service-based ministry." },
+                    { en: "I enjoy actively helping improve the lives of people in my community.", tl: "Nasasaya ako sa aktibong pagtulong na mapabuti ang buhay ng mga tao sa aking komunidad." }
                 ]
             },
             {
                 "ministry": "Visitation",
                 "questions": [
-                    "I like spending time with and encouraging people who are sick, alone, or going through a hard time.\n\nNasasaya ako sa pakikipag-ugnayan at pagbibigay ng suporta sa mga may sakit, nag-iisa, o dumadaan sa mahirap na panahon.",
-                    "I want to spend time offering comfort and presence to others.\n\nGusto kong maglaan ng oras sa pagbibigay ng aliw at presensya sa iba.",
-                    "I have the empathy, patience, and gentleness needed for visitation work.\n\nMay empathy, pasensya, at kabaitan ako na kailangan sa visitation work.",
-                    "I believe I could offer meaningful support through this ministry.\n\nNaniniwala akong makakapagbigay ako ng makahulugang suporta sa pamamagitan ng ministeryong ito.",
-                    "I feel fulfilled when I can provide care and companionship to those who are struggling.\n\nPakiramdam ko ay nasisiyahan ako kapag nakakapagbigay ako ng pag-aalaga at kasama sa mga taong nahihirapan."
+                    { en: "I like spending time with and encouraging people who are sick, alone, or going through a hard time.", tl: "Nasasaya ako sa pakikipag-ugnayan at pagbibigay ng suporta sa mga may sakit, nag-iisa, o dumadaan sa mahirap na panahon." },
+                    { en: "I want to spend time offering comfort and presence to others.", tl: "Gusto kong maglaan ng oras sa pagbibigay ng aliw at presensya sa iba." },
+                    { en: "I have the empathy, patience, and gentleness needed for visitation work.", tl: "May empathy, pasensya, at kabaitan ako na kailangan sa visitation work." },
+                    { en: "I believe I could offer meaningful support through this ministry.", tl: "Naniniwala akong makakapagbigay ako ng makahulugang suporta sa pamamagitan ng ministeryong ito." },
+                    { en: "I feel fulfilled when I can provide care and companionship to those who are struggling.", tl: "Pakiramdam ko ay nasisiyahan ako kapag nakakapagbigay ako ng pag-aalaga at kasama sa mga taong nahihirapan." }
                 ]
             },
             {
                 "ministry": "New Believers",
                 "questions": [
-                    "I would enjoy helping newcomers in their early faith journey.\n\nMasaya ako sa pagtulong sa mga bagong mananampalataya sa kanilang unang hakbang sa pananampalataya.",
-                    "I want to guide others as they develop habits like prayer and Bible reading.\n\nGusto kong gabayan ang iba habang nagde-develop ng mga gawi tulad ng panalangin at pagbabasa ng Bibliya.",
-                    "I have the patience, understanding, and teaching skills needed here.\n\nMay pasensya, pag-unawa, at kakayahan sa pagtuturo ako na kailangan dito.",
-                    "I believe I could encourage and equip new believers effectively.\n\nNaniniwala akong makakapagbigay ako ng encouragement at gabay sa mga bagong mananampalataya nang epektibo.",
-                    "I enjoy supporting and mentoring new believers as they grow in faith.\n\nNasasaya ako sa pagtulong at paggabay sa mga bagong mananampalataya habang lumalago sila sa pananampalataya."
+                    { en: "I would enjoy helping newcomers in their early faith journey.", tl: "Masaya ako sa pagtulong sa mga bagong mananampalataya sa kanilang unang hakbang sa pananampalataya." },
+                    { en: "I want to guide others as they develop habits like prayer and Bible reading.", tl: "Gusto kong gabayan ang iba habang nagde-develop ng mga gawi tulad ng panalangin at pagbabasa ng Bibliya." },
+                    { en: "I have the patience, understanding, and teaching skills needed here.", tl: "May pasensya, pag-unawa, at kakayahan sa pagtuturo ako na kailangan dito." },
+                    { en: "I believe I could encourage and equip new believers effectively.", tl: "Naniniwala akong makakapagbigay ako ng encouragement at gabay sa mga bagong mananampalataya nang epektibo." },
+                    { en: "I enjoy supporting and mentoring new believers as they grow in faith.", tl: "Nasasaya ako sa pagtulong at paggabay sa mga bagong mananampalataya habang lumalago sila sa pananampalataya." }
                 ]
             },
+
             // Creative Media ministry
             {
                 "ministry": "Production Tech",
                 "questions": [
-                    "I would enjoy being in a setting that uses technology, screens, and equipment to enhance services.\n\nMasaya ako sa lugar na gumagamit ng teknolohiya, screens, at kagamitan upang pagandahin ang mga serbisyo.",
-                    "I want to help operate sound, video, lighting, or livestream tools.\n\nGusto kong tumulong sa pagpapatakbo ng sound, video, lighting, o livestream tools.",
-                    "I have the technical skill, focus, and adaptability needed for media work.\n\nMay teknikal na kakayahan, focus, at adaptability ako na kailangan sa media work.",
-                    "I believe I could serve effectively in a tech or media ministry.\n\nNaniniwala akong makakapaglingkod ako nang epektibo sa tech o media ministry.",
-                    "I enjoy using my technical skills to support and enhance church services.\n\nNasasaya ako sa paggamit ng aking teknikal na kakayahan upang suportahan at pagandahin ang mga serbisyo ng simbahan."
+                    { en: "I would enjoy being in a setting that uses technology, screens, and equipment to enhance services.", tl: "Masaya ako sa lugar na gumagamit ng teknolohiya, screens, at kagamitan upang pagandahin ang mga serbisyo." },
+                    { en: "I want to help operate sound, video, lighting, or livestream tools.", tl: "Gusto kong tumulong sa pagpapatakbo ng sound, video, lighting, o livestream tools." },
+                    { en: "I have the technical skill, focus, and adaptability needed for media work.", tl: "May teknikal na kakayahan, focus, at adaptability ako na kailangan sa media work." },
+                    { en: "I believe I could serve effectively in a tech or media ministry.", tl: "Naniniwala akong makakapaglingkod ako nang epektibo sa tech o media ministry." },
+                    { en: "I enjoy using my technical skills to support and enhance church services.", tl: "Nasasaya ako sa paggamit ng aking teknikal na kakayahan upang suportahan at pagandahin ang mga serbisyo ng simbahan." }
                 ]
             },
             {
                 "ministry": "Creative Arts",
                 "questions": [
-                    "I would enjoy working in a creative space that focuses on visuals and design.\n\nMasaya ako sa pagtatrabaho sa isang malikhaing lugar na nakatuon sa visuals at design.",
-                    "I want to help communicate church messages through digital or printed graphics.\n\nGusto kong tumulong sa pagpapahayag ng mensahe ng simbahan sa pamamagitan ng digital o printed graphics.",
-                    "I have the creativity, software skills, and attention to detail needed here.\n\nMay kakayahan sa creativity, software skills, at attention to detail ako na kailangan dito.",
-                    "I believe I could serve well by creating visual materials for the ministry.\n\nNaniniwala akong makakapaglingkod ako nang maayos sa paggawa ng visual materials para sa ministeryo.",
-                    "I enjoy using my creativity to design materials that inspire and engage others in ministry.\n\nNasasaya ako sa paggamit ng aking pagiging malikhain upang gumawa ng mga materyales na nakaka-inspire at nakaka-engage sa ministeryo."
+                    { en: "I would enjoy working in a creative space that focuses on visuals and design.", tl: "Masaya ako sa pagtatrabaho sa isang malikhaing lugar na nakatuon sa visuals at design." },
+                    { en: "I want to help communicate church messages through digital or printed graphics.", tl: "Gusto kong tumulong sa pagpapahayag ng mensahe ng simbahan sa pamamagitan ng digital o printed graphics." },
+                    { en: "I have the creativity, software skills, and attention to detail needed here.", tl: "May kakayahan sa creativity, software skills, at attention to detail ako na kailangan dito." },
+                    { en: "I believe I could serve well by creating visual materials for the ministry.", tl: "Naniniwala akong makakapaglingkod ako nang maayos sa paggawa ng visual materials para sa ministeryo." },
+                    { en: "I enjoy using my creativity to design materials that inspire and engage others in ministry.", tl: "Nasasaya ako sa paggamit ng aking pagiging malikhain upang gumawa ng mga materyales na nakaka-inspire at nakaka-engage sa ministeryo." }
                 ]
             },
             {
                 "ministry": "Communications & Social Media",
                 "questions": [
-                    "I would enjoy working in an environment that engages people online.\n\nMasaya ako sa pagtatrabaho sa isang kapaligiran na nakikipag-ugnayan sa mga tao online.",
-                    "I want to create, post, or manage social media content for the church.\n\nGusto kong gumawa, mag-post, o pamahalaan ang social media content para sa simbahan.",
-                    "I have the creativity, communication skills, and awareness of trends needed.\n\nMay creativity, communication skills, at kaalaman sa trends ako na kailangan dito.",
-                    "I think I could contribute meaningfully to an online outreach ministry.\n\nNaniniwala akong makakapag-ambag ako nang may kahulugan sa online outreach ministry.",
-                    "I enjoy using social media to connect with and inspire the church community.\n\nNasasaya ako sa paggamit ng social media upang makipag-ugnayan at magbigay inspirasyon sa komunidad ng simbahan."
+                    { en: "I would enjoy working in an environment that engages people online.", tl: "Masaya ako sa pagtatrabaho sa isang kapaligiran na nakikipag-ugnayan sa mga tao online." },
+                    { en: "I want to create, post, or manage social media content for the church.", tl: "Gusto kong gumawa, mag-post, o pamahalaan ang social media content para sa simbahan." },
+                    { en: "I have the creativity, communication skills, and awareness of trends needed.", tl: "May creativity, communication skills, at kaalaman sa trends ako na kailangan dito." },
+                    { en: "I think I could contribute meaningfully to an online outreach ministry.", tl: "Naniniwala akong makakapag-ambag ako nang may kahulugan sa online outreach ministry." },
+                    { en: "I enjoy using social media to connect with and inspire the church community.", tl: "Nasasaya ako sa paggamit ng social media upang makipag-ugnayan at magbigay inspirasyon sa komunidad ng simbahan." }
                 ]
             },
             {
                 "ministry": "Graphic & Video Design",
                 "questions": [
-                    "I enjoy capturing moments, events, and stories through photography or videography.\n\nNasasaya ako sa pagkuha ng mga sandali, kaganapan, at kwento sa pamamagitan ng photography o videography.",
-                    "I want to help document and share church activities through visual content like photos and videos.\n\nGusto kong tumulong sa pagdodokumento at pagbabahagi ng mga aktibidad ng simbahan gamit ang visual content tulad ng photos at videos.",
-                    "I have the creativity and technical skills needed for photography or video production.\n\nMay creativity at teknikal na kakayahan ako na kailangan para sa photography o video production.",
-                    "I believe I could serve well by visually documenting ministry events and projects.\n\nNaniniwala akong makakapaglingkod ako nang maayos sa pagdodokumento ng mga kaganapan at proyekto ng ministeryo.",
-                    "I enjoy using photography and videography to tell meaningful stories for ministry.\n\nNasasaya ako sa paggamit ng photography at videography upang maipahayag ang makabuluhang kwento para sa ministeryo."
+                    { en: "I enjoy capturing moments, events, and stories through photography or videography.", tl: "Nasasaya ako sa pagkuha ng mga sandali, kaganapan, at kwento sa pamamagitan ng photography o videography." },
+                    { en: "I want to help document and share church activities through visual content like photos and videos.", tl: "Gusto kong tumulong sa pagdodokumento at pagbabahagi ng mga aktibidad ng simbahan gamit ang visual content tulad ng photos at videos." },
+                    { en: "I have the creativity and technical skills needed for photography or video production.", tl: "May creativity at teknikal na kakayahan ako na kailangan para sa photography o video production." },
+                    { en: "I believe I could serve well by visually documenting ministry events and projects.", tl: "Naniniwala akong makakapaglingkod ako nang maayos sa pagdodokumento ng mga kaganapan at proyekto ng ministeryo." },
+                    { en: "I enjoy using photography and videography to tell meaningful stories for ministry.", tl: "Nasasaya ako sa paggamit ng photography at videography upang maipahayag ang makabuluhang kwento para sa ministeryo." }
                 ]
             },
+
             // Care & Healing ministry
             {
                 "ministry": "Counseling",
                 "questions": [
-                    "I would feel fulfilled serving in a ministry that supports people through life’s emotional challenges.\n\nAko ay makakaramdam ng kasiyahan kung ako ay makapaglilingkod sa isang ministeryo na tumutulong sa mga tao sa kanilang emosyonal na hamon sa buhay.",
-                    "I am interested to help individuals or families find healing and clarity through conversation and prayer.\n\nAko ay interesado na makatulong sa mga indibidwal o pamilya upang makahanap ng kagalingan at kaliwanagan sa pamamagitan ng pag-uusap at panalangin.",
-                    "I believe I have the empathy, wisdom, and discretion needed for counseling.\n\nNaniniwala ako na taglay ko ang empatiya, karunungan, at pagiging maingat na kailangan sa pagkonsulta o pakikinig.",
-                    "I believe I could serve well in a role that offers guidance and emotional support.\n\nNaniniwala ako na makapaglilingkod ako nang maayos sa isang tungkulin na nagbibigay ng gabay at emosyonal na suporta.",
-                    "I feel called to use my gifts in listening and compassion to support a counseling or care ministry.\n\nNararamdaman kong ako ay tinawag upang gamitin ang aking kakayahan sa pakikinig at malasakit upang makatulong sa isang ministeryo ng pagkalinga o pagkonsulta."
+                    { en: "I would feel fulfilled serving in a ministry that supports people through life’s emotional challenges.", tl: "Ako ay makakaramdam ng kasiyahan kung ako ay makapaglilingkod sa isang ministeryo na tumutulong sa mga tao sa kanilang emosyonal na hamon sa buhay." },
+                    { en: "I am interested to help individuals or families find healing and clarity through conversation and prayer.", tl: "Ako ay interesado na makatulong sa mga indibidwal o pamilya upang makahanap ng kagalingan at kaliwanagan sa pamamagitan ng pag-uusap at panalangin." },
+                    { en: "I believe I have the empathy, wisdom, and discretion needed for counseling.", tl: "Naniniwala ako na taglay ko ang empatiya, karunungan, at pagiging maingat na kailangan sa pagkonsulta o pakikinig." },
+                    { en: "I believe I could serve well in a role that offers guidance and emotional support.", tl: "Naniniwala ako na makapaglilingkod ako nang maayos sa isang tungkulin na nagbibigay ng gabay at emosyonal na suporta." },
+                    { en: "I feel called to use my gifts in listening and compassion to support a counseling or care ministry.", tl: "Nararamdaman kong ako ay tinawag upang gamitin ang aking kakayahan sa pakikinig at malasakit upang makatulong sa isang ministeryo ng pagkalinga o pagkonsulta." }
                 ]
             },
             {
                 "ministry": "Healing & Deliverance",
                 "questions": [
-                    "I would like to be part of a ministry that focuses on prayer for healing and freedom.\n\nNais kong maging bahagi ng isang ministeryo na nakatuon sa panalangin para sa kagalingan at kalayaan.",
-                    "I would like to pray for people’s physical, emotional, or spiritual restoration.\n\nNais kong ipanalangin ang pisikal, emosyonal, o espirituwal na paggaling ng mga tao.",
-                    "I feel I have the sensitivity, discernment, and perseverance for this type of ministry.\n\nNararamdaman ko na taglay ko ang pagiging sensitibo, pagkilala sa kalooban ng Diyos, at pagtitiyaga na kailangan para sa ganitong uri ng ministeryo.",
-                    "I believe I could serve effectively in healing and deliverance work.\n\nNaniniwala ako na makapaglilingkod ako nang mabisa sa gawain ng pagpapagaling at pagpapalaya.",
-                    "I am willing to dedicate my time and myself to be an instrument of prayer for the healing and freedom of others.\n\nHanda akong italaga ang oras at sarili ko upang maging kasangkapan sa panalangin para sa kagalingan at pagpapalaya ng iba."
+                    { en: "I would like to be part of a ministry that focuses on prayer for healing and freedom.", tl: "Nais kong maging bahagi ng isang ministeryo na nakatuon sa panalangin para sa kagalingan at kalayaan." },
+                    { en: "I would like to pray for people’s physical, emotional, or spiritual restoration.", tl: "Nais kong ipanalangin ang pisikal, emosyonal, o espirituwal na paggaling ng mga tao." },
+                    { en: "I feel I have the sensitivity, discernment, and perseverance for this type of ministry.", tl: "Nararamdaman ko na taglay ko ang pagiging sensitibo, pagkilala sa kalooban ng Diyos, at pagtitiyaga na kailangan para sa ganitong uri ng ministeryo." },
+                    { en: "I believe I could serve effectively in healing and deliverance work.", tl: "Naniniwala ako na makapaglilingkod ako nang mabisa sa gawain ng pagpapagaling at pagpapalaya." },
+                    { en: "I am willing to dedicate my time and myself to be an instrument of prayer for the healing and freedom of others.", tl: "Handa akong italaga ang oras at sarili ko upang maging kasangkapan sa panalangin para sa kagalingan at pagpapalaya ng iba." }
                 ]
             },
             {
                 "ministry": "Grief & Bereavement",
                 "questions": [
-                    "I would feel honored to walk alongside people during seasons of grief and loss.\n\nIkinalulugod kong makasama ang mga tao sa panahon ng dalamhati at pagkawala.",
-                    "I am comfortable being present with others in sorrow without needing to give quick answers.\n\nKomportable akong makasama ang iba sa kanilang kalungkutan kahit hindi agad magbigay ng kasagutan.",
-                    "I have the compassion, gentleness, and stability needed for this ministry.\n\nTaglay ko ang habag, kahinahunan, at katatagan na kailangan para sa ministeryong ito.",
-                    "I believe I could serve well in comforting those who are grieving.\n\nNaniniwala akong makapaglilingkod ako nang maayos sa pagpapalakas ng loob ng mga nagdadalamhati.",
-                    "I am willing to offer my time and presence to support individuals and families in their journey through grief.\n\nHanda kong ialay ang aking oras at presensya upang masuportahan ang mga indibidwal at pamilya sa kanilang paglalakbay sa pagdadalamhati."
+                    { en: "I would feel honored to walk alongside people during seasons of grief and loss.", tl: "Ikinalulugod kong makasama ang mga tao sa panahon ng dalamhati at pagkawala." },
+                    { en: "I am comfortable being present with others in sorrow without needing to give quick answers.", tl: "Komportable akong makasama ang iba sa kanilang kalungkutan kahit hindi agad magbigay ng kasagutan." },
+                    { en: "I have the compassion, gentleness, and stability needed for this ministry.", tl: "Taglay ko ang habag, kahinahunan, at katatagan na kailangan para sa ministeryong ito." },
+                    { en: "I believe I could serve well in comforting those who are grieving.", tl: "Naniniwala akong makapaglilingkod ako nang maayos sa pagpapalakas ng loob ng mga nagdadalamhati." },
+                    { en: "I am willing to offer my time and presence to support individuals and families in their journey through grief.", tl: "Handa kong ialay ang aking oras at presensya upang masuportahan ang mga indibidwal at pamilya sa kanilang paglalakbay sa pagdadalamhati." }
                 ]
             },
             {
                 "ministry": "Addiction Recovery",
                 "questions": [
-                    "I would be committed to helping people find freedom from harmful habits or addictions.\n\nIkokommite ko ang sarili ko sa pagtulong sa mga tao na makalaya mula sa mapanirang gawi o adiksyon.",
-                    "I want to support others with grace and patience through the recovery process.\n\nNais kong suportahan ang iba nang may biyaya at pagtitiyaga sa proseso ng kanilang paggaling.",
-                    "I have the understanding, encouragement, and nonjudgmental attitude needed for this work.\n\nTaglay ko ang pang-unawa, paghimok, at hindi mapanghusgang pag-uugali na kailangan para sa gawaing ito.",
-                    "I believe I could contribute meaningfully to an addiction recovery ministry.\n\nNaniniwala ako na makapag-aambag ako nang makabuluhan sa isang ministeryo ng pagbangon mula sa adiksyon.",
-                    "I am willing to walk alongside individuals consistently as they pursue healing and lasting recovery.\n\nHanda akong samahan ang mga indibidwal nang tuloy-tuloy habang sila ay nagsusumikap para sa kagalingan at pangmatagalang pagbabago."
+                    { en: "I would be committed to helping people find freedom from harmful habits or addictions.", tl: "Ikokommite ko ang sarili ko sa pagtulong sa mga tao na makalaya mula sa mapanirang gawi o adiksyon." },
+                    { en: "I want to support others with grace and patience through the recovery process.", tl: "Nais kong suportahan ang iba nang may biyaya at pagtitiyaga sa proseso ng kanilang paggaling." },
+                    { en: "I have the understanding, encouragement, and nonjudgmental attitude needed for this work.", tl: "Taglay ko ang pang-unawa, paghimok, at hindi mapanghusgang pag-uugali na kailangan para sa gawaing ito." },
+                    { en: "I believe I could contribute meaningfully to an addiction recovery ministry.", tl: "Naniniwala ako na makapag-aambag ako nang makabuluhan sa isang ministeryo ng pagbangon mula sa adiksyon." },
+                    { en: "I am willing to walk alongside individuals consistently as they pursue healing and lasting recovery.", tl: "Handa akong samahan ang mga indibidwal nang tuloy-tuloy habang sila ay nagsusumikap para sa kagalingan at pangmatagalang pagbabago." }
                 ]
             },
             {
                 "ministry": "Special Needs",
                 "questions": [
-                    "I would find joy in creating safe and welcoming spaces for people with special needs.\n\nMatatagpuan ko ang kagalakan sa paglikha ng ligtas at magiliw na lugar para sa mga taong may espesyal na pangangailangan.",
-                    "I want to help individuals of all abilities feel valued and included.\n\nNais kong tulungan ang mga indibidwal na may iba’t ibang kakayahan na maramdaman na sila ay mahalaga at kabilang.",
-                    "I have the patience, adaptability, and compassion needed for this ministry.\n\nTaglay ko ang pasensya, kakayahang umangkop, at malasakit na kailangan para sa ministeryong ito.",
-                    "I believe I could serve well in supporting people with special needs and their families.\n\nNaniniwala ako na makapaglilingkod ako nang maayos sa pagsuporta sa mga taong may espesyal na pangangailangan at kanilang pamilya.",
-                    "I am willing to dedicate my time and energy to build meaningful connections with individuals with special needs.\n\nHanda kong italaga ang aking oras at lakas upang makabuo ng makahulugang ugnayan sa mga indibidwal na may espesyal na pangangailangan."
+                    { en: "I would find joy in creating safe and welcoming spaces for people with special needs.", tl: "Matatagpuan ko ang kagalakan sa paglikha ng ligtas at magiliw na lugar para sa mga taong may espesyal na pangangailangan." },
+                    { en: "I want to help individuals of all abilities feel valued and included.", tl: "Nais kong tulungan ang mga indibidwal na may iba’t ibang kakayahan na maramdaman na sila ay mahalaga at kabilang." },
+                    { en: "I have the patience, adaptability, and compassion needed for this ministry.", tl: "Taglay ko ang pasensya, kakayahang umangkop, at malasakit na kailangan para sa ministeryong ito." },
+                    { en: "I believe I could serve well in supporting people with special needs and their families.", tl: "Naniniwala ako na makapaglilingkod ako nang maayos sa pagsuporta sa mga taong may espesyal na pangangailangan at kanilang pamilya." },
+                    { en: "I am willing to dedicate my time and energy to build meaningful connections with individuals with special needs.", tl: "Handa kong italaga ang aking oras at lakas upang makabuo ng makahulugang ugnayan sa mga indibidwal na may espesyal na pangangailangan." }
                 ]
             },
+
             // Special Interest ministry
             {
                 "ministry": "Seniors",
                 "questions": [
-                    "I would feel fulfilled serving in a ministry that supports and honors older adults.\n\nMakakaramdam ako ng kasiyahan sa paglilingkod sa isang ministeryo na sumusuporta at nagbibigay-pugay sa mga nakatatanda.",
-                    "I am interested in spending time listening to and learning from seniors’ life experiences.\n\nInteresado akong maglaan ng oras sa pakikinig at pagkatuto mula sa mga karanasan sa buhay ng mga nakatatanda.",
-                    "I believe I have the patience, kindness, and respect needed to serve elderly individuals.\n\nNaniniwala ako na taglay ko ang pasensya, kabaitan, at paggalang na kailangan upang maglingkod sa mga nakatatandang indibidwal.",
-                    "I believe I could thrive in a role that offers companionship and practical care for seniors.\n\nNaniniwala akong uunlad ako sa isang tungkulin na nag-aalok ng pakikipagkaibigan at praktikal na pag-aalaga para sa mga nakatatanda.",
-                    "I would find purpose in helping seniors share their wisdom and feel a continued sense of belonging.\n\nMakakakita ako ng layunin sa pagtulong sa mga nakatatanda na maibahagi ang kanilang karunungan at maramdaman na sila ay patuloy na kabilang."
+                    { en: "I would feel fulfilled serving in a ministry that supports and honors older adults.", tl: "Makakaramdam ako ng kasiyahan sa paglilingkod sa isang ministeryo na sumusuporta at nagbibigay-pugay sa mga nakatatanda." },
+                    { en: "I am interested in spending time listening to and learning from seniors’ life experiences.", tl: "Interesado akong maglaan ng oras sa pakikinig at pagkatuto mula sa mga karanasan sa buhay ng mga nakatatanda." },
+                    { en: "I believe I have the patience, kindness, and respect needed to serve elderly individuals.", tl: "Naniniwala ako na taglay ko ang pasensya, kabaitan, at paggalang na kailangan upang maglingkod sa mga nakatatandang indibidwal." },
+                    { en: "I believe I could thrive in a role that offers companionship and practical care for seniors.", tl: "Naniniwala akong uunlad ako sa isang tungkulin na nag-aalok ng pakikipagkaibigan at praktikal na pag-aalaga para sa mga nakatatanda." },
+                    { en: "I would find purpose in helping seniors share their wisdom and feel a continued sense of belonging.", tl: "Makakakita ako ng layunin sa pagtulong sa mga nakatatanda na maibahagi ang kanilang karunungan at maramdaman na sila ay patuloy na kabilang." }
                 ]
             },
             {
                 "ministry": "Single Adults",
                 "questions": [
-                    "I would enjoy being part of a community that connects and encourages single adults.\n\nMagiging kasiya-siya para sa akin ang maging bahagi ng isang komunidad na nag-uugnay at nagbibigay-lakas sa mga walang asawa.",
-                    "I am interested in participating in gatherings that support friendship and faith growth among singles.\n\nInteresado akong makilahok sa mga pagtitipon na sumusuporta sa pagkakaibigan at paglago sa pananampalataya ng mga single.",
-                    "I feel I have the empathy, openness, and encouragement needed for this ministry.\n\nNararamdaman kong taglay ko ang empatiya, pagiging bukas, at kakayahang magpalakas ng loob na kailangan para sa ministeryong ito.",
-                    "I believe I could contribute to helping single adults feel supported and connected.\n\nNaniniwala akong makapag-aambag ako sa pagtulong sa mga single adults na maramdaman ang suporta at koneksyon.",
-                    "I value the opportunity to affirm that single adults are an important and vital part of the church community.\n\nPinahahalagahan ko ang pagkakataong ipakita na ang mga single adults ay mahalaga at may mahalagang bahagi sa komunidad ng simbahan."
+                    { en: "I would enjoy being part of a community that connects and encourages single adults.", tl: "Magiging kasiya-siya para sa akin ang maging bahagi ng isang komunidad na nag-uugnay at nagbibigay-lakas sa mga walang asawa." },
+                    { en: "I am interested in participating in gatherings that support friendship and faith growth among singles.", tl: "Interesado akong makilahok sa mga pagtitipon na sumusuporta sa pagkakaibigan at paglago sa pananampalataya ng mga single." },
+                    { en: "I feel I have the empathy, openness, and encouragement needed for this ministry.", tl: "Nararamdaman kong taglay ko ang empatiya, pagiging bukas, at kakayahang magpalakas ng loob na kailangan para sa ministeryong ito." },
+                    { en: "I believe I could contribute to helping single adults feel supported and connected.", tl: "Naniniwala akong makapag-aambag ako sa pagtulong sa mga single adults na maramdaman ang suporta at koneksyon." },
+                    { en: "I value the opportunity to affirm that single adults are an important and vital part of the church community.", tl: "Pinahahalagahan ko ang pagkakataong ipakita na ang mga single adults ay mahalaga at may mahalagang bahagi sa komunidad ng simbahan." }
                 ]
             },
             {
                 "ministry": "Marketplace",
                 "questions": [
-                    "I would find purpose in a ministry that equips people to live out their faith in the workplace.\n\nMakakakita ako ng layunin sa isang ministeryo na naghahanda sa mga tao upang maisabuhay ang kanilang pananampalataya sa lugar ng trabaho.",
-                    "I am interested in supporting others to apply biblical values in their careers and leadership.\n\nInteresado akong suportahan ang iba sa pagpapatupad ng mga pagpapahalagang biblikal sa kanilang mga karera at pamumuno.",
-                    "I believe I have the insight, mentorship ability, and networking skills needed for this ministry.\n\nNaniniwala akong taglay ko ang kaalaman, kakayahang gumabay, at kasanayan sa pakikipag-ugnayan na kailangan para sa ministeryong ito.",
-                    "I believe I could serve well in encouraging professionals to honor God through their work.\n\nNaniniwala akong makapaglilingkod ako nang mabisa sa paghikayat sa mga propesyonal na parangalan ang Diyos sa kanilang trabaho.",
-                    "I see the value of influencing the marketplace with integrity and faith-centered leadership.\n\nNakikita ko ang kahalagahan ng pagpapalaganap ng integridad at pamumunong nakasentro sa pananampalataya sa mundo ng negosyo."
+                    { en: "I would find purpose in a ministry that equips people to live out their faith in the workplace.", tl: "Makakakita ako ng layunin sa isang ministeryo na naghahanda sa mga tao upang maisabuhay ang kanilang pananampalataya sa lugar ng trabaho." },
+                    { en: "I am interested in supporting others to apply biblical values in their careers and leadership.", tl: "Interesado akong suportahan ang iba sa pagpapatupad ng mga pagpapahalagang biblikal sa kanilang mga karera at pamumuno." },
+                    { en: "I believe I  have the insight, mentorship ability, and networking skills needed for this ministry.", tl: "Naniniwala akong taglay ko ang kaalaman, kakayahang gumabay, at kasanayan sa pakikipag-ugnayan na kailangan para sa ministeryong ito." },
+                    { en: "I believe I could serve well in encouraging professionals to honor God through their work.", tl: "Naniniwala akong makapaglilingkod ako nang mabisa sa paghikayat sa mga propesyonal na parangalan ang Diyos sa kanilang trabaho." },
+                    { en: "I see the value of influencing the marketplace with integrity and faith-centered leadership.", tl: "Nakikita ko ang kahalagahan ng pagpapalaganap ng integridad at pamumunong nakasentro sa pananampalataya sa mundo ng negosyo." }
                 ]
             },
             {
                 "ministry": "Sports",
                 "questions": [
-                    "I would enjoy participating in a ministry that connects with others through sports.\n\nMag-eenjoy ako sa pakikilahok sa isang ministeryo na kumokonekta sa iba sa pamamagitan ng palakasan.",
-                    "I am interested in athletic or recreational activities that foster relationships and community.\n\nInteresado ako sa mga aktibidad na pampalakasan o libangan na nagtataguyod ng ugnayan at komunidad.",
-                    "I believe I have the teamwork, energy, and leadership skills suited for this ministry.\n\nNaniniwala akong taglay ko ang pakikipagtulungan, sigla, at kakayahang mamuno na angkop para sa ministeryong ito.",
-                    "I think I could use sports as a way to share faith and encourage others.\n\nIniisip kong magagamit ko ang sports bilang paraan upang maibahagi ang pananampalataya at mahikayat ang iba.",
-                    "I value the opportunity to use sports as a tool to build unity and reach people for Christ.\n\nPinahahalagahan ko ang pagkakataong gamitin ang sports bilang kasangkapan upang magtayo ng pagkakaisa at maabot ang mga tao para kay Kristo."
+                    { en: "I would enjoy participating in a ministry that connects with others through sports.", tl: "Mag-eenjoy ako sa pakikilahok sa isang ministeryo na kumokonekta sa iba sa pamamagitan ng palakasan." },
+                    { en: "I am interested in athletic or recreational activities that foster relationships and community.", tl: "Interesado ako sa mga aktibidad na pampalakasan o libangan na nagtataguyod ng ugnayan at komunidad." },
+                    { en: "I believe I have the teamwork, energy, and leadership skills suited for this ministry.", tl: "Naniniwala akong taglay ko ang pakikipagtulungan, sigla, at kakayahang mamuno na angkop para sa ministeryong ito." },
+                    { en: "I think I could use sports as a way to share faith and encourage others.", tl: "Iniisip kong magagamit ko ang sports bilang paraan upang maibahagi ang pananampalataya at mahikayat ang iba." },
+                    { en: "I value the opportunity to use sports as a tool to build unity and reach people for Christ.", tl: "Pinahahalagahan ko ang pagkakataong gamitin ang sports bilang kasangkapan upang magtayo ng pagkakaisa at maabot ang mga tao para kay Kristo." }
                 ]
             },
             {
                 "ministry": "Writing Publications",
                 "questions": [
-                    "I would be fulfilled serving in a ministry that shares faith and stories through writing.\n\nMakakaramdam ako ng kaganapan sa paglilingkod sa isang ministeryo na nagbabahagi ng pananampalataya at mga kuwento sa pamamagitan ng pagsusulat.",
-                    "I am interested in creating devotionals, articles, or other written materials to encourage others.\n\nInteresado akong lumikha ng mga debosyonal, artikulo, o iba pang nakasulat na materyal upang mahikayat ang iba.",
-                    "I believe I have the clarity, creativity, and attention to detail needed for this ministry.\n\nNaniniwala akong taglay ko ang kalinawan, pagkamalikhain, at atensyon sa detalye na kailangan para sa ministeryong ito.",
-                    "I believe I could contribute well to a team that produces faith-based publications.\n\nNaniniwala akong makapag-aambag ako nang mabuti sa isang team na gumagawa ng mga publikasyong nakabatay sa pananampalataya.",
-                    "I see writing as a meaningful way to reach people who might not be reached through other ministries.\n\nNakikita ko ang pagsusulat bilang makabuluhang paraan upang maabot ang mga taong maaaring hindi maabot ng ibang ministeryo."
+                    { en: "I would be fulfilled serving in a ministry that shares faith and stories through writing.", tl: "Makakaramdam ako ng kaganapan sa paglilingkod sa isang ministeryo na nagbabahagi ng pananampalataya at mga kuwento sa pamamagitan ng pagsusulat." },
+                    { en: "I am interested in creating devotionals, articles, or other written materials to encourage others.", tl: "Interesado akong lumikha ng mga debosyonal, artikulo, o iba pang nakasulat na materyal upang mahikayat ang iba." },
+                    { en: "I believe I have the clarity, creativity, and attention to detail needed for this ministry.", tl: "Naniniwala akong taglay ko ang kalinawan, pagkamalikhain, at atensyon sa detalye na kailangan para sa ministeryong ito." },
+                    { en: "I believe I could contribute well to a team that produces faith-based publications.", tl: "Naniniwala akong makapag-aambag ako nang mabuti sa isang team na gumagawa ng mga publikasyong nakabatay sa pananampalataya." },
+                    { en: "I see writing as a meaningful way to reach people who might not be reached through other ministries.", tl: "Nakikita ko ang pagsusulat bilang makabuluhang paraan upang maabot ang mga taong maaaring hindi maabot ng ibang ministeryo." }
                 ]
             }
         ];
 
         let behavioralProfilingScore = [];
-        let filteredQuestion = [];
+        //let filteredQuestion = [];
+        let filteredQuestion = { en: {}, tl: {} };
         function showMinistrySpecific() {
             if(ministryInterest.length==0){
                 document.getElementById("overlay").style.display = "block";
@@ -1953,12 +2210,20 @@
                 console.log("The user's interest or personal profile doesn't match the ministry requirment yet.");
             }
             document.getElementById('step4').classList.add("disable");
+
+            let enCounter = 1;
+            let tlCounter = 1;
             for (let i = 0; i < ministryInterest.length; i++) {
                 let ministryName = ministryInterest[i];
-                // find the ministry object inside ministryQuestions array
-                let ministryObj = ministryQuestions.find(m => m.ministry === ministryName); 
+                let ministryObj = ministryQuestions.find(m => m.ministry === ministryName);
                 if (ministryObj) {
-                    filteredQuestion = filteredQuestion.concat(ministryObj.questions);
+                    for (const q of ministryObj.questions) {
+                        // Assign each question to q1, q2, ... for each language
+                        filteredQuestion.en["q" + enCounter] = q.en;
+                        filteredQuestion.tl["q" + tlCounter] = q.tl;
+                        enCounter++;
+                        tlCounter++;
+                    }
                 }
             }
             showPuzzle("right");
@@ -1975,44 +2240,56 @@
                     console.log("");
                     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     console.log(">> Ministry(specific) Profile");
-                    showQuestions("ministrySpecific", filteredQuestion, behavioralProfilingScore, "step4");
+                    showQuestions("ministrySpecific", filteredQuestion, selectedLanguage, behavioralProfilingScore, "step4");
             }, 3000);
-        }
+        };
 
-    //display question func
-        function showQuestions(portID, question, scorePort, btnId) {
+       function showQuestions(portID, questionSet, lang = 'en', scorePort, btnId) {
             const port = document.getElementById(portID);
-            // find the progress bar inside this container
-            const progressIndicator = port.querySelector('.progressIndicator');
+            if (!port) return;
 
-            // render questions
-            for (let i = 0; i < question.length; i++) {
+            const progressIndicator = port.querySelector('.progressIndicator');
+            const questionData = Object.values(questionSet[lang]);
+            const totalQuestions = questionData.length;
+
+            // Clear existing questions if any
+            port.querySelectorAll('.questionBox').forEach(q => q.remove());
+
+            // Render questions
+            questionData.forEach((qText, i) => {
                 const template = document.getElementById('questionTemp');
                 const clone = template.content.cloneNode(true);
                 const questionText = clone.querySelector('.questionText');
-                const questionBox  = clone.querySelector('.questionBox');
+                const questionBox = clone.querySelector('.questionBox');
 
-                questionText.innerText = question[i];
-                questionBox.dataset.qidx = i; // <- keep the question index
+                questionText.innerText = qText;
+                questionBox.dataset.qidx = i;
+                questionBox.dataset.qkey = Object.keys(questionSet[lang])[i]; // for language switching
+                
+                // Set rateBox button texts immediately according to current language
+                clone.querySelectorAll('.rateBox button').forEach(btn => {
+                    const translateKey = btn.getAttribute('translate');
+                    if (translateKey && uiTranslation[lang][translateKey]) {
+                        btn.textContent = uiTranslation[lang][translateKey];
+                    }
+                });
 
                 if (i !== 0) questionBox.classList.add('denyInput');
                 port.appendChild(clone);
-                if (i === 0) document.getElementById("inst2").scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
 
-            // ---------- scoring model ----------
-            const GROUP_SIZE = 5; // 5 questions per set/port
-            const totalQuestions = question.length;
+                if (i === 0) document.getElementById("inst2")?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+
+            // Initialize scoring
+            const GROUP_SIZE = 5;
             const portCount = Math.ceil(totalQuestions / GROUP_SIZE);
-
             const answers = new Array(totalQuestions).fill(null);
             for (let p = 0; p < portCount; p++) {
                 if (typeof scorePort[p] !== 'number') scorePort[p] = 0;
             }
+            let answeredCount = 0;
 
-            let answeredCount = 0; 
-
-            // ---------- event delegation ----------
+            // Event delegation for rating buttons
             port.addEventListener('click', (e) => {
                 const btn = e.target.closest('.rateBox button');
                 if (!btn) return;
@@ -2020,18 +2297,17 @@
                 const qBox = btn.closest('.questionBox');
                 if (!qBox || qBox.classList.contains('denyInput')) return;
 
-                // UI: one clicked per rateBox
+                // UI: mark clicked button
                 const rateBox = btn.closest('.rateBox');
                 rateBox.querySelectorAll('button').forEach(b => b.classList.remove('clicked'));
                 btn.classList.add('clicked');
 
                 const qIdx = parseInt(qBox.dataset.qidx, 10);
                 const portIdx = Math.floor(qIdx / GROUP_SIZE);
-
                 const newVal = parseInt(btn.value, 10);
                 if (isNaN(newVal)) return;
 
-                // scoring overwrite logic
+                // Update scoring
                 if (answers[qIdx] !== null) {
                     scorePort[portIdx] -= answers[qIdx];
                 } else {
@@ -2041,36 +2317,51 @@
                 answers[qIdx] = newVal;
                 scorePort[portIdx] += newVal;
 
-                // unlock next question
+                // Unlock next question
                 const nextBox = qBox.nextElementSibling;
-                if (nextBox && nextBox.classList.contains('questionBox')) {
+                if (nextBox?.classList.contains('questionBox')) {
                     nextBox.classList.remove('denyInput');
                     nextBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
 
-                // log per set
+                // Log per set
                 if ((qIdx + 1) % GROUP_SIZE === 0) {
                     console.log(`scorePort[${portIdx + 1}] = ${scorePort[portIdx]}`);
                 }
 
-                // -------- UPDATE PROGRESS BAR --------
-                const progressPercent = Math.round((answeredCount / totalQuestions) * 100);
+                // Update progress bar
                 if (progressIndicator) {
-                    progressIndicator.style.width = progressPercent + "%";
+                    progressIndicator.style.width = Math.round((answeredCount / totalQuestions) * 100) + "%";
                 }
 
-                // enable next-phase button when done
+                // Enable next button if complete
                 if (answeredCount === totalQuestions) {
+                    document.getElementById(btnId)?.classList.remove('disable');
+                    document.getElementById("review")?.classList.remove('disable');
                     console.log("Final Score: [" + scorePort.join(", ") + "]");
-                    const nextBtn = document.getElementById(btnId);
-                    if (nextBtn){
-                        nextBtn.classList.remove('disable');
-                        document.getElementById("review").classList.remove('disable');
-                    }
                 }
             });
-        }
 
+            // --- Language switch function ---
+            port.switchLanguage = (newLang) => {
+                if (!questionSet[newLang]) return;
+                const qKeys = Object.keys(questionSet[newLang]);
+                port.querySelectorAll('.questionBox').forEach((qBox, idx) => {
+                    const key = qBox.dataset.qkey;
+                    qBox.querySelector('.questionText').innerText = questionSet[newLang][key];
+                });
+
+                // Update buttons inside rateBox
+                port.querySelectorAll('.rateBox button').forEach(btn => {
+                    const translateKey = btn.getAttribute('translate');
+                    if (translateKey && uiTranslation[newLang][translateKey]) {
+                        btn.textContent = uiTranslation[newLang][translateKey];
+                    }
+                });
+            };
+
+            return port;
+        }
         //Stick next btn div
         function reviewAns(){
             document.getElementById('inst2').scrollIntoView({ behavior: 'smooth', block: 'center' });
