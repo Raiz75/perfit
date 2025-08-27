@@ -359,7 +359,7 @@
         .highlightPiece{
             filter: drop-shadow(0vw 0vw 5vw rgb(255, 255, 255));
         }
-        /*test*/
+        /*translation */
         .translateLang{
             position: absolute;
             top: 0;
@@ -591,7 +591,7 @@
     <p class="instruction" id="inst1" translate="i1">INSTRUCTION: Please provide your personal details accurately. This information helps us understand your profile better and will only be used for assessment purposes.</p>
     <div class="personalDetail move-up" id="personalForm">
         
-        <h2 translate="test">DEMOGRAPHICS</h2>
+        <h2 translate="ph1">DEMOGRAPHICS</h2>
         <div class="box move-up" id="genderBox">
             <span id="genderBoxttl" translate="ph1a">Gender</span><br>
             <label><input type="radio" name="genderBox" value="1" translate="ph1b"> Male</label>
@@ -703,32 +703,6 @@
             sessionStorage.setItem("selectedLanguage", selectedLanguage);
             changeLanguage(selectedLanguage)
         });
-
-
-//         function changeLanguage(lang){
-//             selectedLanguage = lang;
-//             sessionStorage.setItem("selectedLanguage", lang);
-//             console.log("Selected Language: "+selectedLanguage);
-
-//             document.querySelectorAll("[translate]").forEach(el => {
-//                 const key = el.getAttribute("translate");
-//                 el.textContent = uiTranslation[lang][key];
-//             });
-
-//             document.querySelectorAll("input[translate]").forEach(el => {
-//                 const key = el.getAttribute("translate");
-//                 const label = el.closest("label");
-//                 if(label) {
-//                     label.childNodes.forEach(node => {
-//                         if(node.nodeType === Node.TEXT_NODE) {
-//                             node.textContent = uiTranslation[lang][key];
-//                         }
-//                     });
-//                 }
-//             });
-// myPort.switchLanguage(selectedLanguage); // switches to Tagalog
-            
-//         }
         function changeLanguage(lang) {
             selectedLanguage = lang;
             sessionStorage.setItem("selectedLanguage", lang);
@@ -810,48 +784,47 @@
 
             },
             tl: {
-                title: "tagalog",
-                t1: "tagalog",
-                t2: "tagalog",
-                t3: "tagalog",
-                t4: "tagalog",
-                t5: "tagalog",
-                i1: "tagalog",
-                i2: "tagalog",
-                ph1: "tagalog",
-                ph1a: "tagalog",
-                ph1b: "tagalog",
-                ph1c: "tagalog",
-                ph1d: "tagalog",
-                ph1e: "tagalog",
-                ph1f: "tagalog",
-                ph1g: "tagalog",
-                ph1h: "tagalog",
-                ph1i: "tagalog",
-                ph1j: "tagalog",
-                ph1k: "tagalog",
-                ph1l: "tagalog",
-                ph1m: "tagalog",
-                ph1n: "tagalog",
-                ph1o: "tagalog",
-                ph1p: "tagalog",
-                i3: "tagalog",
-                ph2: "tagalog",
-                ph3: "tagalog",
-                ph4: "tagalog",
-                a1: "tagalog",
+                title: "PAGSUSURI",
+                t1: "Personal na Detalye",
+                t2: "Pagpuprofilo ng Kasanayan",
+                t3: "Pagpuprofilo ng Interes at Pasyon",
+                t4: "Pagpuprofilo ng Pag-uugali",
+                t5: "Resulta",
+                i1: "TAGUBILIN: Mangyaring ibigay ang iyong personal na detalye nang tapat. Makakatulong ito upang mas maunawaan ang iyong profile at gagamitin lamang para sa layunin ng pagsusuri.",
+                ph1: "DEMOGRAPIKO",
+                ph1a: "Kasarian",
+                ph1b: "Lalaki",
+                ph1c: "Babae",
+                ph1d: "Edad",
+                ph1e: "Taon",
+                ph1f: "Katayuan",
+                ph1g: "Binata/Dalaga",
+                ph1h: "May Asawa",
+                ph1i: "Nabinyagan",
+                ph1j: "Hindi",
+                ph1k: "Oo",
+                ph1l: "Panahon sa Pananampalataya",
+                ph1m: "Bago",
+                ph1n: "6 na buwan",
+                ph1o: "1 taon",
+                ph1p: "2+ taon",
+                i2: "TAGUBILIN: Mangyaring basahin nang mabuti ang bawat pahayag at sagutin nang tapat. Sagutan kung gaano ka sumasang-ayon o hindi sumasang-ayon — walang tama o maling sagot, tanging ang iyong tunay na opinyon lamang.",
+                ph2: "Pag-usad ng Pagpuprofilo ng Kasanayan",
+                ph3: "Pag-usad ng Pagpuprofilo ng Interes at Pasyon",
+                ph4: "Pag-usad ng Pagpuprofilo ng Pag-uugali",
+                a1: "ISARA",
                 s1: "Lubos na Sumasang-ayon",
                 s2: "Sumasang-ayon",
                 s3: "Bahagyang Sumasang-ayon",
                 s4: "Bahagyang Hindi Sumasang-ayon",
                 s5: "Hindi Sumasang-ayon",
                 s6: "Lubos na Hindi Sumasang-ayon",
-                r1: "tagalog",
-                r2: "tagalog",
-                b1: "tagalog",
-                b2: "tagalog",
-                b3: "tagalog",
-                b4: "tagalog"
+                r1: "PROFIL NG TAWAG AT PAGLILINGKOD",
+                r2: "Pagsusuri ng iyong mga kaloob at pagtawag",
+                b1: "SUSUNOD NA YUGTO",
+                b2: "SURIIN ANG SAGOT",
+                b3: "ISUMITE",
+                b4: "OKAY"
             }
         };
     //varibales
@@ -951,65 +924,6 @@
                 }, 3500);
             }
         };
-
-    //skill questions
-        // const skillProfilingQuestions = [
-        //     // Musical, Instrumental, Singing Skills
-        //    "I am confident in my ability to sing with proper pitch and rhythm.",
-        //    "I am able to learn and perform dance routines when given instruction.", 
-        //    "I can play a musical instrument with basic skill and technique.",
-        //    "I have experience expressing myself through singing, dancing, or playing music.",
-        //   "I have the ability to use my singing, dancing, or musical skills to contribute effectively in a ministry or group setting.",
-       
-        //     // Technological, Computer, Editing Skills
-        //    "I can operate computers and use software applications to support church tasks.",
-        //    "I have skills in editing, design, or coding that can be used for ministry projects.",
-        //     "I can troubleshoot basic technical issues to help in church activities.",
-        //    "I am able to learn and apply new digital tools that can benefit the church.",
-        //     "I can use my technological skills to serve and support church ministries effectively.",
-       
-        //     // Writing Skills
-        //     "I’m able to put ideas into clear and engaging writing.",
-        //     "Writing is something I do frequently in my personal or professional life.",
-        //     "I’ve had past experiences creating articles, reports, or scripts.",
-        //     "I’d like to further develop my writing abilities through practice or training.",
-        //     "I’d like to contribute to church-related materials, articles, or programs through writing.",
-       
-        //     // Technical, Electrical, Plumbing Skills
-        //     "I’m skilled in fixing, building, or handling technical tasks.",
-        //     "I often work on repair, maintenance, or hands-on technical projects.",
-        //     "I have previous experience in electrical, plumbing, or mechanical work.",
-        //     "I’d like to learn more about technical skills through guided training.",
-        //     "I’m willing to help the church with technical, electrical, or repair needs.",
-       
-        //     // Public Speaking Skills
-        //     "I feel confident speaking in front of a group of people.",
-        //     "I regularly speak or present in front of audiences, big or small.",
-        //     "I’ve had experience delivering talks, announcements, or presentations.",
-        //     "I can adjust my tone and pace when speaking to keep attention.",
-        //     "I can prepare and organize a talk or presentation effectively.",
-       
-        //     // Accounting Skills
-        //    "I’m good at keeping track of money, budgets, or financial records.",  
-        //     "I currently handle tasks that involve budgeting or expense tracking.",  
-        //     "I’ve had experience managing finances for a project or group.",  
-        //     "I can prepare simple financial reports or summaries.",  
-        //     "I can ensure accuracy when recording and monitoring financial transactions.",  
-
-        //     // Mentoring/Counseling Ability
-        //     "I have a natural ability to guide, encourage, or advise others.",
-        //     "I regularly help people through mentoring, counseling, or coaching.",
-        //     "I have experience providing advice or support to individuals or groups.",  
-        //     "I can actively mentor or counsel people when needed.",  
-        //     "I am capable of giving guidance and support to others in an organized way.",  
-
-        //     // Understanding of Bible and Scripture
-        //     "I feel confident in my understanding of Biblical stories and principles.",
-        //     "I often study and discuss the Bible.",
-        //     "I’ve had experience teaching or sharing lessons from Scripture.",
-        //     "I’d like to deepen my understanding of the Bible through study.",
-        //     "I’d like to share my knowledge of Scripture in church activities."
-        // ];
         const skillProfilingQuestions = {
             en: {
                 q1: "I am confident in my ability to sing with proper pitch and rhythm.",
@@ -1103,59 +1017,20 @@
         let skill=[];
         function skillSubmit(){
             //show question
-            if(age<13){
+            if(age<13 && selectedLanguage=="en"){
                 document.getElementById("overlay").style.display = "block";
                 document.getElementById("alertMessage").innerText = "it appears that you are not yet old enough to serve in a ministry. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.";
+                console.log("The user is not old enough yet");
+            }else{
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("alertMessage").innerText = "Mukhang hindi sapat ang iyong edad upang maglingkod sa isang ministeryo. Hinihikayat ka naming patuloy na lumago sa iyong pananampalataya at paglalakbay espirituwal. Kapag dumating ang tamang panahon, ikalulugod naming makita kang makibahagi. Pagpalain ka ng Diyos sa iyong landas ng paglago at paghahanda.";
                 console.log("The user is not old enough yet");
             }
             console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             console.log(">> Skill Profile");
             showQuestions('skillQuestion', skillProfilingQuestions, selectedLanguage, skillProfilingScore, 'step2');
         }
-    //interest and passion questions
-        // const interestAndPassionProfiling = [
-        //     //core ministry
-        //     "I enjoy helping others learn and grow a relationship with God.",
-        //     "I like participating in or helping lead worship, prayer or Bible study.",
-        //     "I’m interested in regularly engaging with specific age groups (children, youth, young adults, men/women).",
-        //     "I like sharing biblical ideas and supporting others in their spiritual journey.",
-        //     "I’d like to be part of ministries that focus on spiritual growth and discipleship.",
 
-        //     //support ministry
-        //     "I’m interested in working behind the scenes to help the church run smoothly.",
-        //     "I enjoy organizing events, managing tasks, or helping with logistics.",
-        //     "I like paying attention to details and making sure things run efficiently.",
-        //     "I enjoy helping create a welcoming and organized church environment.”",
-        //     "I’d like to be involved in roles such as ushering, administration, hospitality, or facility care",
-
-        //     //outreach ministry
-        //     "I am motivated to assist individuals beyond the church community.",
-        //     "Sharing my faith and helping others experience God’s love is important to me.",
-        //     "I feel a personal calling toward community outreach and service.",
-        //     "I am interested about going where people are hurting and bringing hope.",
-        //     "I am interested in participating in ministries focused on evangelism and community impact.",
-
-        //     //creative & media ministry
-        //     "I am passionate about using my creative talents and interests for God's glory.",
-        //     "I enjoy working with visuals, media, technology, or the arts to communicate messages.",
-        //     "I find fulfillment and energy in creating content, managing social media, or coordinating live events.",
-        //     "I would like to help improve the church’s communication and engagement through creative means.",
-        //     "I am interested in using my skills in drama, dance, video, graphic design, or tech to contribute to ministry.",
-            
-        //     //care & healing ministry
-        //     "I feel sincere and have a desire to help those who are hurting or in need.",
-        //     "I am a good listener and often find people sharing their struggles with me.",
-        //     "I feel strongly called to help others heal emotionally, spiritually, or physically.",
-        //     "I sense a calling to help others heal emotionally, spiritually, or physically.",
-        //     "I am open and eager to serve in counseling, healing prayer, or support ministries.",
-
-        //     //special interest ministry
-        //     "I am interested in ministering to specific groups such as seniors, singles, or working professionals.",
-        //     "I enjoy connecting with others who share common interests or hobbies (e.g., sports, writing).",
-        //     "I believe my personal experiences and skills can positively contribute to others’ growth.",
-        //     "I would enjoy leading or participating in ministries that align with my current life season or stage.",
-        //     "I feel drawn to serve in creative or unconventional ministry areas that embrace unique interests."
-        // ];
         const interestAndPassionProfiling = {
             en: {
                 q1: "I enjoy helping others learn and grow a relationship with God.",
@@ -1415,396 +1290,6 @@
             console.log(ministryInterest.join(", "));
             showMinistrySpecific();
         }
-    
-    //behavioral questions
-        // const ministryQuestions = [
-        //     // Core ministry
-        //     {
-        //         "ministry": "Worship",
-        //         "questions": [
-        //             "Being in a space filled with music, rehearsals, and live worship excites me.",
-        //             "I am interested in leading others through singing, playing instruments, or creative expression.",
-        // 	        "I have the musical talent, stage presence, or teamwork needed for worship ministry.",
-        //             "Serving in worship fits well with my personality and interests.",
-        //             "I have thought seriously about joining the worship team before."
-        //         ]
-        //     },
-        //     // {
-        //     //     "ministry": "Worship(Singing)",
-        //     //     "questions": [
-        //     //         "I think I am good at singing and can carry a tune confidently.",
-        //     //         "I currently practice singing or use my voice regularly in school, events, or personal time.",
-        //     //         "I have performed or sung in front of an audience before.",
-        //     //         "I am willing to learn proper vocal techniques to improve my singing.",
-        //     //         "I am willing to use my singing talent to serve in the church."
-        //     //     ]
-        //     // },
-        //     // {
-        //     //     "ministry": "Worship(Dancing)",
-        //     //     "questions": [
-        //     //         "I think I am good at dancing and can learn choreography quickly.",
-        //     //         "I currently dance or practice movement regularly in school, events, or personal time.",
-        //     //         "I have performed or joined a dance group or presentation before.",
-        //     //         "I am willing to learn new dance styles or techniques to improve my skills.",
-        //     //         "I am willing to use my dancing talent to serve in the church."
-        //     //     ]
-        //     // },
-        //     // {
-        //     //     "ministry": "Worship(Instrument)",
-        //     //     "questions": [
-        //     //         "I think I am good at playing at least one musical instrument.",
-        //     //         "I currently practice or play an instrument regularly.",
-        //     //         "I have performed or played an instrument in front of an audience before.",
-        //     //         "I am willing to learn new instruments or improve my existing skills.",
-        //     //         "I am willing to use my instrumental talent to serve in the church."
-        //     //     ]
-        //     // },
-        //     {
-        //         "ministry": "Prayer",
-        //         "questions": [
-        //             "A peaceful, prayer-focused environment would be fulfilling for me.",
-        //             "I am willing to spend regular time interceding for people, the church, and world needs.",
-        //             "I have the focus, persistence, and spiritual sensitivity to serve in prayer ministry.",
-        //             "I believe I would serve well in a ministry centered on prayer.",
-        //             "I think I would serve well in a ministry centered on prayer."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Preaching",
-        //         "questions": [
-        //             "I would enjoy spending time studying, preparing, and discussing God’s Word.",
-        //             "I want to share biblical truths through preaching or teaching.",
-        //             "I have the speaking ability, clarity, and understanding needed to communicate Scripture effectively.",
-        //             "I think preaching or teaching is a ministry where I could contribute greatly.",
-        //             "I have considered stepping into a preaching or teaching role before."
-        //     ]
-        //     },
-        //     {
-        //         "ministry": "Discipleship",
-        //         "questions": [
-        //             "I enjoy being in settings where people are guided and mentored in their faith.",
-        //             "I am motivated to invest in others’ spiritual growth over time.",
-        //             "I feel I have the patience, consistency, and listening skills that discipleship requires.",
-        //             "I believe walking alongside others in faith is a good fit for me.",
-        //             "I have thought about being part of a discipleship ministry in the past."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Children's",
-        //         "questions": [
-        //             "I would enjoy being in a lively, creative environment filled with children.",
-        //             "I am interested in teaching, guiding, and caring for kids in a faith context.",
-        //             "I feel I have the patience, energy, and creativity to engage well with children.", 
-        //             "I believe I can contribute effectively to a ministry focused on children’s growth and faith.",        
-        //             "I have considered joining the children’s ministry before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Youth",
-        //         "questions": [
-        //             "I would feel energized in a setting filled with teens and youth activities.",
-        //             "I feel I have the patience, energy, and creativity to engage well with children.", 
-        //             "I believe I can contribute effectively to a ministry focused on children’s growth and faith.",        
-        //             "I think youth ministry fits my strengths and personality.",
-        //             "I have thought about working with the youth ministry before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Young Adults",
-        //         "questions": [
-        //             "I enjoy being in environments where young adults share life experiences and challenges.",
-        //             "I want to support people in their early career or college years in making faith-based decisions.",
-        //             "I have the empathy, understanding, and guidance skills needed for this ministry.",
-        //             "I believe I could connect well with and serve in a young adults ministry.",
-        //             "I have previously considered joining this ministry."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Men's",
-        //         "questions": [
-        //             "I would enjoy building strong, faith-based relationships with other men.",
-        //             "I want to help men grow in integrity, leadership, and spiritual strength.",
-        //             "I have the openness, mentorship skills, and accountability mindset needed here.",
-        //             "I believe the men’s ministry is an area where I could have a strong impact.",
-        //             "I have thought about joining the men’s ministry before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Women's",
-        //         "questions": [
-        //             "I would enjoy a setting where women gather for support, faith, and encouragement.",
-        //             "I want to help women grow spiritually, emotionally, and in community.",
-        //             "I have the compassion, leadership, and listening skills suited for women’s ministry.",
-        //             "I believe I could thrive in a role that uplifts and supports women.",
-        //             "I have considered joining the women’s ministry in the past."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Family Or Couples",
-        //         "questions": [
-        //             "I would enjoy working in an environment that focuses on strengthening families and marriages.",
-        //             "I want to support couples and families through events, teaching, or guidance.",
-        //             "I have the wisdom, patience, and relationship skills needed here.",
-        //             "I believe I could contribute positively to a ministry focused on families and couples.",
-        //             "I have thought about joining this ministry before."
-        //         ]
-        //     },
-        //     // Support ministry
-        //     {
-        //         "ministry": "Ushering",
-        //         "questions": [
-        //             "I would enjoy being in a welcoming, people-focused environment.",
-        //             "I want to help create a warm and friendly atmosphere during services or events.",
-        //             "I have the friendliness, alertness, and helpfulness needed for ushering.",
-        //             "I believe I would do well in a ministry that serves as the first point of contact for guests.",
-        //             "I have considered serving as an usher before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Hospitality",
-        //         "questions": [
-        //             "I would enjoy being in a setting where food, comfort, and service are prioritized.",
-        //             "I want to help prepare and serve food or refreshments for others.",
-        //             "I have the organization, presentation, and hosting skills needed here.",
-        //             "I believe I could help make people feel welcomed through hospitality ministry.",
-        //             "I have thought about joining the hospitality ministry before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Administrative",
-        //         "questions": [
-        //             "I would enjoy working in an environment that involves organization and planning.",
-        //             "I want to help manage schedules, records, or communications for the ministry.",
-        //             "I have the attention to detail, time management, and organization skills needed.",
-        //             "I believe I could be effective in an administrative role.",
-        //             "I have considered serving in an administrative capacity before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Finance",
-        //         "questions": [
-        //             "I would enjoy working in a ministry that handles budgeting and stewardship.",
-        //             "I want to help manage and track church or ministry finances.",
-        //             "I have the responsibility, accuracy, and trustworthiness needed for this role.",
-        //             "I believe I could serve well in a finance or stewardship ministry.",
-        //             "I have thought about serving in the finance ministry before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Security",
-        //         "questions": [
-        //             "I would enjoy being in an environment focused on safety and order.",
-        //             "I am interested in helping maintain safety and well-being during church events.",
-        // 	        "I feel I have the alertness, calmness, and decisiveness needed for security work.",
-        //             "I believe I could fulfill the role of keeping events safe and orderly.",
-        //             "I have considered serving in the security ministry before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Facilities Maintenance",
-        //         "questions": [
-        //             "I would enjoy being in a hands-on, task-focused work environment.",
-        //             "I am interested in helping maintain, clean, and prepare church spaces.",
-        //             "I believe I have the practical skills, energy, and attention to detail needed for this role",
-        //             "I feel capable of contributing effectively to keeping church facilities in good condition.",
-        //             "I have thought about joining the facilities team before."
-        //         ]
-        //     },
-        //     // Outreach ministry
-        //     {
-        //         "ministry": "Evangelism",
-        //         "questions": [
-        //             "I would enjoy being in an environment that actively connects with new people.",
-        //             "I am interested in sharing the message of Jesus through everyday conversations.",
-        // 	        "I feel I have the confidence, friendliness, and openness needed for evangelism.",
-        //             "I believe I could be effective in reaching out to others with the Gospel.",
-        //             "I have considered joining an evangelism ministry before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Missions",
-        //         "questions": [
-        //             "I would enjoy serving in different cultural or unfamiliar environments.",
-        //             "I want to participate in outreach, whether locally or globally.",
-        //             "I have the adaptability, teamwork, and openness needed for missions work.",
-        //             "I believe I could contribute meaningfully in a missions setting.",
-        //             "I have thought about joining missions work before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Community Service",
-        //         "questions": [
-        //             "I would enjoy being in an environment focused on serving the community.",
-        //             "I want to help meet practical needs for people in my area.",
-        //             "I have the willingness, compassion, and work ethic needed for community service.",
-        //             "I believe I could make a difference through service-based ministry.",
-        //             "I have considered joining a community service ministry before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Visitation",
-        //         "questions": [
-        //             " I like spending time with and encouraging people who are sick, alone, or going through a hard time.",
-        //             "I want to spend time offering comfort and presence to others.",
-        //             "I have the empathy, patience, and gentleness needed for visitation work.",
-        //             "I believe I could offer meaningful support through this ministry.",
-        //             "I have thought about joining a visitation team before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "New Believers",
-        //         "questions": [
-        //             "I would enjoy helping newcomers in their early faith journey.",
-        //             "I want to guide others as they develop habits like prayer and Bible reading.",
-        //             "I have the patience, understanding, and teaching skills needed here.",
-        //             "I believe I could encourage and equip new believers effectively.",
-        //             "I have considered joining a ministry for new believers before."
-        //         ]
-        //     },
-        // // Creative Media ministry
-        //     {
-        //         "ministry": "Production Tech",
-        //         "questions": [
-        //             "I would enjoy being in a setting that uses technology, screens, and equipment to enhance services.",
-        //             "I want to help operate sound, video, lighting, or livestream tools.",
-        //             "I have the technical skill, focus, and adaptability needed for media work.",
-        //             "I believe I could serve effectively in a tech or media ministry.",
-        //             "I have considered joining the Production Tech team before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Creative Arts",
-        //         "questions": [
-        //             "I would enjoy working in a creative space that focuses on visuals and design.",
-        //             "I want to help communicate church messages through digital or printed graphics.",
-        //             "I have the creativity, software skills, and attention to detail needed here.",
-        //             "I believe I could serve well by creating visual materials for the ministry.",
-        //             "I have thought about joining a Creative Arts or creative team before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Communications & Social Media",
-        //         "questions": [
-        //             "I would enjoy working in an environment that engages people online.",
-        //             "I want to create, post, or manage social media content for the church.",
-        //             "I have the creativity, communication skills, and awareness of trends needed.",
-        //             "I think I could contribute meaningfully to an online outreach ministry.",
-        //             "I have considered serving in social media work before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Graphic & Video Design",
-        //         "questions": [
-        //             "I enjoy capturing moments, events, and stories through photography or videography.",
-        //             "I want to help document and share church activities through visual content like photos and videos.",
-        //             "I have the creativity and technical skills needed for photography or video production.",
-        //             "I believe I could serve well by visually documenting ministry events and projects.",
-        //             "I have considered joining a media team that handles both photography and video work."
-        //         ]
-        //     },
-        //     // Care & Healing ministry
-        //     {
-        //         "ministry": "Counseling",
-        //         "questions": [
-        //             "I would feel fulfilled serving in a ministry that supports people through life’s emotional challenges.",
-        //             "I am interested to help individuals or families find healing and clarity through conversation and prayer.",
-        // 	        "I believe I have the empathy, wisdom, and discretion needed for counseling.",
-        //             "I believe I could serve well in a role that offers guidance and emotional support.",
-        //             "I have considered being part of a counseling or care ministry before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Healing & Deliverance",
-        //         "questions": [
-        //             "I would like to be part of a ministry that focuses on prayer for healing and freedom.",
-        //             "I would like to pray for people’s physical, emotional, or spiritual restoration.",
-        //             "I feel I have the sensitivity, discernment, and perseverance for this type of ministry.",
-        //             "I believe I could serve effectively in healing and deliverance work.",
-        //             "I have thought about joining a ministry that prays for healing before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Grief & Bereavement",
-        //         "questions": [
-        //             "I would feel honored to walk alongside people during seasons of grief and loss.",
-        //             "I am comfortable being present with others in sorrow without needing to give quick answers.",
-        //             "I have the compassion, gentleness, and stability needed for this ministry.",
-        //             "I believe I could serve well in comforting those who are grieving.",
-        //             "I have considered joining a grief support or bereavement ministry before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Addiction Recovery",
-        //         "questions": [
-        //             "I would be committed to helping people find freedom from harmful habits or addictions.",
-        //             "I want to support others with grace and patience through the recovery process.",
-        //             "I have the understanding, encouragement, and nonjudgmental attitude needed for this work.",
-        //             "I believe I could contribute meaningfully to an addiction recovery ministry.",
-        //             "I have thought about serving in a recovery or support-based ministry before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Special Needs",
-        //         "questions": [
-        //             "I would find joy in creating safe and welcoming spaces for people with special needs.",
-        //             "I want to help individuals of all abilities feel valued and included.",
-        //             "I have the patience, adaptability, and compassion needed for this ministry.",
-        //             "I believe I could serve well in supporting people with special needs and their families.",
-        //             "I have considered joining a ministry that works with individuals with special needs before."
-        //         ]
-        //     },
-        //     // Special Interest ministry
-        //     {
-        //         "ministry": "Seniors",
-        //         "questions": [
-        //             "I would feel fulfilled serving in a ministry that supports and honors older adults.",
-        //            "I am interested in spending time listening to and learning from seniors’ life experiences.",
-        //         "I believe I have the patience, kindness, and respect needed to serve elderly individuals.",
-        //             "I believe I could thrive in a role that offers companionship and practical care for seniors.",
-        //             "I have considered joining a ministry that serves elderly members of the church before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Single Adults",
-        //         "questions": [
-        //             "I would enjoy being part of a community that connects and encourages single adults.",
-        //         "I am interested in participating in gatherings that support friendship and faith growth among singles.",
-        //           "I feel I have the empathy, openness, and encouragement needed for this ministry.",
-        //             "I believe I could contribute to helping single adults feel supported and connected.",
-        //             "I have thought about serving in a ministry for single adults before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Marketplace",
-        //         "questions": [
-        //             "I would find purpose in a ministry that equips people to live out their faith in the workplace.",
-        //           "I am interested in supporting others to apply biblical values in their careers and leadership.",
-        //             "I believe I  have the insight, mentorship ability, and networking skills needed for this ministry.",
-        //             "I believe I could serve well in encouraging professionals to honor God through their work.",
-        //             "I have considered being part of a marketplace or business-focused ministry before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Sports",
-        //         "questions": [
-        //           "I would enjoy participating in a ministry that connects with others through sports.",
-        //            "I am interested in athletic or recreational activities that foster relationships and community.",
-        //           "I believe I have the teamwork, energy, and leadership skills suited for this ministry.",
-        //          "I think I could use sports as a way to share faith and encourage others.",
-        //             "I have thought about joining a sports or recreation ministry before."
-        //         ]
-        //     },
-        //     {
-        //         "ministry": "Writing Publications",
-        //         "questions": [
-        //             "I would be fulfilled serving in a ministry that shares faith and stories through writing.",
-        //          "I am interested in creating devotionals, articles, or other written materials to encourage others.",
-        //             "I believe I have the clarity, creativity, and attention to detail needed for this ministry.",
-        //             "I believe I could contribute well to a team that produces faith-based publications.",
-        //             "I have considered serving in a writing or communications ministry before."
-        //         ]
-        //     }
-        // ];
 
         const ministryQuestions = [
             //coreMinistry
@@ -2201,12 +1686,15 @@
         ];
 
         let behavioralProfilingScore = [];
-        //let filteredQuestion = [];
         let filteredQuestion = { en: {}, tl: {} };
         function showMinistrySpecific() {
-            if(ministryInterest.length==0){
+            if(ministryInterest.length==0 && selectedLanguage=="en"){
                 document.getElementById("overlay").style.display = "block";
                 document.getElementById("alertMessage").innerText = "It appears that your interest or personal profile doesn't match with the ministries` requirments yet. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.";
+                console.log("The user's interest or personal profile doesn't match the ministry requirment yet.");
+            }else{
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("alertMessage").innerText = "Mukhang hindi tumutugma ang iyong interes o personal na profile sa mga kinakailangan ng ministeryo. Hinihikayat ka naming patuloy na lumago sa iyong pananampalataya at espirituwal na paglalakbay. Kapag dumating ang tamang panahon, ikalulugod naming makita kang makibahagi. Pagpalain ka ng Diyos sa iyong landas ng paglago at paghahanda.";
                 console.log("The user's interest or personal profile doesn't match the ministry requirment yet.");
             }
             document.getElementById('step4').classList.add("disable");
@@ -2359,7 +1847,6 @@
                     }
                 });
             };
-
             return port;
         }
         //Stick next btn div
@@ -2593,6 +2080,5 @@
         }, { threshold: 0.1 });
         moveUp.forEach(el => upObserver.observe(el));
     </script>
-    
 </body>
 </html>
