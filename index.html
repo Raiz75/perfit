@@ -16,6 +16,100 @@
             font-size: 1vw;
         }
 
+        nav{
+            width: 100%;
+            height: 100px;
+            border-bottom:3px solid rgb(128, 65, 128);
+            display: flex;
+            justify-content: space-between;
+            position: sticky;
+            top:0px;
+            background-color: white;
+            color:rgb(201, 137, 201);
+            z-index: 5;
+        }
+        .navFunc{
+            border:1px solid red;
+            display: flex;
+            padding: 20px;
+            gap: 100px;
+        }
+        .navBtn{
+            border:1px solid red;
+            margin-top: 10px;
+        }
+        .navBtn:hover{
+            cursor: pointer;
+            color: rgb(128, 65, 128);
+            border-bottom: 5px solid rgb(128, 65, 128);
+        }
+        .takeAssessmentTop {
+            width: 200px;
+            height: 100%;
+            border: 0.3vw solid rgb(128, 65, 128);
+            border-radius: 1.2vw;
+            font-size: 1em;
+            background-color: rgb(128, 65, 128);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+        .takeAssessmentTop:hover {
+            background-color: rgb(255, 223, 255);
+            color: rgb(128, 65, 128);
+        }
+        .selectedNav{
+            color: rgb(128, 65, 128);
+            border-bottom: 5px solid rgb(128, 65, 128);
+        }
+        .logo{
+            width: 5%;
+            height: 90%;
+            border: 1px solid red;
+            margin: auto 10px ;
+        }
+        /* Default hamburger hidden */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            cursor: pointer;
+        }
+        .hamburger div {
+            height: 4px;
+            background: rgb(128, 65, 128);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /*translation */
+        .translateLang{
+            width: auto;
+            height: auto;
+            color:rgb(128, 65, 128);
+            display: flex;
+            gap: 10px;
+            cursor: pointer;
+            border:3px solid rgb(128, 65, 128);
+            padding: 3px;
+            border-radius: 12px;
+            background:rgb(255, 255, 255);
+        }
+        .translateLang select{
+            border:1px solid rgb(128, 65, 128);
+            color:rgb(128, 65, 128);
+            cursor: pointer;
+            border: none;
+        }
+        .translateLang select:focus {
+            outline: none;
+        }
+        .translateLang img{
+            height: 30px;
+        }
+
         /*banner*/
         .banner {
             width: 100%;
@@ -89,8 +183,8 @@
         .howItWorks {
             display: flex;
             flex-direction: row;
-            padding: 7vw;
-            padding-bottom: 15vw;
+            height: 40vw;
+            padding: 120px;
             background-color: rgb(255, 223, 255);
             margin: 3vw auto;
             margin-bottom: 0vw;
@@ -132,9 +226,9 @@
             height: 11vw;
             padding: 0.3vw;
             border-top-left-radius: 0vw;
-            border-top-right-radius: 5vw;
+            border-top-right-radius: 4vw;
             border-bottom-right-radius: 0vw;
-            border-bottom-left-radius: 5vw;
+            border-bottom-left-radius: 4vw;
             background-color: rgb(128, 65, 128);
             border: 0.3vw solid rgb(128, 65, 128);
             box-shadow: 0vw 1vw 1vw rgb(51, 26, 51);
@@ -142,9 +236,9 @@
         }
 
         .stepBox:hover {
-            border-top-left-radius: 5vw;
+            border-top-left-radius: 4vw;
             border-top-right-radius: 0vw;
-            border-bottom-right-radius: 5vw;
+            border-bottom-right-radius: 4vw;
             border-bottom-left-radius: 0vw;
             background-color: rgb(255, 223, 255);
         }
@@ -179,16 +273,17 @@
         .ministrySelection {
             position: relative;
             width: 80%;
-            height: 28vw;
+            height: 40vw;
             overflow: hidden;
             text-align: center;
             color: rgb(128, 65, 128);
             margin: auto;
-            padding: 0.5vw;
+            padding:50px;
+            border:1px solid red;
         }
 
         .ministrySelection h1 {
-            font-size: 2em;
+            font-size: 2.8em;
         }
 
         .slides-container {
@@ -269,9 +364,77 @@
             border-radius: 50%;
         }
 
+        .seeMoreBtn{
+            width: 200px;
+            height: 50px;
+            border: 0.3vw solid rgb(128, 65, 128);
+            border-radius: 1.2vw;
+            font-size: 1.2em;
+            background-color: rgb(128, 65, 128);
+            color: white;
+            transition: 0.3s ease-in-out;
+        }
+        .seeMoreBtn:hover {
+            background-color: rgb(255, 223, 255);
+            color: rgb(128, 65, 128);
+        }
+
+        /* ABOUT US */
+        .aboutUs{
+            border: 1px solid red;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            height: 40vw;
+            padding:200px;
+            background-color: rgb(255, 223, 255);
+            margin: 3vw auto;
+            color:rgb(128, 65, 128);
+            margin-bottom: 0vw;
+            margin-top: 0vw;
+        }
+        .aboutUs h1{
+            border: 1px solid red;
+            width: 30%;
+            height: 200px;
+            text-align: center;
+            font-size: 2.8rem;
+        }
+        .aboutUs hr{
+            border: 2.5px solid rgb(128, 65, 128);
+        }
+        .aboutUs span{
+            font-size: 6rem;
+        }
+        .aboutUs p{
+            margin: 1vw;
+            width: 60%;
+            height: 250px;
+            padding: 0.3vw;
+            border-top-left-radius: 0vw;
+            border-top-right-radius: 4vw;
+            border-bottom-right-radius: 0vw;
+            border-bottom-left-radius: 4vw;
+            color: white;
+            text-align: center;
+            background-color: rgb(128, 65, 128);
+            border: 0.3vw solid rgb(128, 65, 128);
+            box-shadow: 0vw 1vw 1vw rgb(51, 26, 51);
+            padding: 40px;
+            transition: 0.5s ease-in-out;
+        }
+        .aboutUs p:hover {
+            border-top-left-radius: 4vw;
+            border-top-right-radius: 0vw;
+            border-bottom-right-radius: 4vw;
+            border-bottom-left-radius: 0vw;
+            color: rgb(128, 65, 128);
+            background-color: rgb(255, 223, 255);
+        }
+
         /*takeAssessment*/
         .takeAssessment {
-            border: 1px solid white;
+            border: .1px solid transparent;
             height: 40vw;
             position: relative;
             padding: 0;
@@ -299,6 +462,7 @@
             font-size: 2em;
             background-color: rgb(128, 65, 128);
             color: white;
+            cursor: pointer;
             transition: 0.3s ease-in-out;
             margin-top: 5vw;
         }
@@ -313,12 +477,13 @@
             position: absolute;
             top: 0vw;
             left: 0vw;
-            height: 158vw;
+            height: 1vw;
+            border: 1px solid red;
         }
 
         .dsn1 {
             position: absolute;
-            top: 145vw;
+            top: 190vw;
             right: 1vw;
             width: 20%;
             border-radius: 1.2vw;
@@ -329,7 +494,7 @@
 
         .dsn2 {
             position: relative;
-            top: 5vw;
+            top: 10vw;
             left: 2vw;
             width: 35%;
             border-radius: 1.2vw;
@@ -340,7 +505,7 @@
 
         .dsn3 {
             position: absolute;
-            top: 15vw;
+            top: 20vw;
             left: 28vw;
             width: 25%;
             border-radius: 1.2vw;
@@ -371,33 +536,7 @@
             opacity: 1;
             transform: translate(0);
         }
-        /*translation */
-        .translateLang{
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: auto;
-            height: auto;
-            margin: 5px;
-            color:rgb(128, 65, 128);
-            display: flex;
-            gap: 10px;
-            border:3px solid rgb(128, 65, 128);
-            padding: 3px;
-            border-radius: 12px;
-            background:rgb(255, 255, 255);
-        }
-        .translateLang select{
-            border:1px solid rgb(128, 65, 128);
-            color:rgb(128, 65, 128);
-            border: none;
-        }
-        .translateLang select:focus {
-            outline: none;
-        }
-        .translateLang img{
-            height: 30px;
-        }
+        
 
         /* DESKTOP-FIRST RESPONSIVE MEDIA QUERIES */
         @media (hover: none) {
@@ -439,10 +578,15 @@
                 background-color:  rgb(128, 65, 128);
                 color: white;
             }
+
+            .navBtn:hover{
+                border: none;
+                border-left: 5px solid rgb(128, 65, 128);
+            }
         }
 
         /* Tablet styles */
-        @media (max-width: 768px) {
+        @media (max-width: 1500px) {
             body {
                 font-size: 16px;
             }
@@ -462,7 +606,7 @@
             }
             
             .title p {
-                font-size: 3vw;
+                font-size: 3em;
             }
             
             .note {
@@ -472,7 +616,7 @@
             
             .n {
                 width: 100%;
-                font-size: 1.5rem;
+                font-size: 1.5em;
                 padding: 2vw;
                 margin: 2vw 0;
             }
@@ -484,6 +628,7 @@
             .howItWorks {
                 flex-direction: column;
                 padding: 5vw;
+                height: auto;
             }
             
             .howItWorks img {
@@ -496,7 +641,7 @@
             }
             
             .step h1 {
-                font-size: 6vw;
+                font-size: 6em;
             }
             
             .stepContiner {
@@ -513,7 +658,7 @@
             
             .stepBox h3,
             .stepBox p {
-                font-size: 3vw;
+                font-size: 3em;
             }
             
             .ministrySelection {
@@ -522,7 +667,7 @@
             }
             
             .ministrySelection h1 {
-                font-size: 6vw;
+                font-size: 6em;
             }
             
             .slide {
@@ -537,19 +682,19 @@
             }
             
             .mTtl {
-                font-size: 4vw;
+                font-size: 4em;
             }
             
             .card p {
-                font-size: 3vw;
+                font-size: 3em;
             }
             
             .lBtn,
             .rBtn {
                 width: 12vw;
                 height: 12vw;
-                font-size: 4.5vw;
-                top: 52%;
+                font-size: 4.5em;
+                top: 88%;
             }
             
             .takeAssessment {
@@ -558,13 +703,13 @@
             }
             
             .takeAssessment h1 {
-                font-size: 6vw;
+                font-size: 6em;
             }
             
             .takeAssessment button {
                 width: 50vw;
                 height: 12vw;
-                font-size: 4vw;
+                font-size: 4em;
             }
             
             .design {
@@ -573,6 +718,103 @@
             
             .footer {
                 height: 20vw;
+            }
+
+            nav {
+                position: relative;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 15px;
+                height: 70px;
+                position: sticky;
+                top:0px;
+            }
+            .logo{
+                width: 10%;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .navFunc {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                border-top: 2px solid rgb(128,65,128);
+                padding: 10px 0;
+                gap: 7px;
+                align-items: center;
+                z-index: 1000;
+            }
+            .selectedNav{
+                border: none;
+                border-left: 5px solid rgb(128,65,128);
+            }
+
+            /* Show menu when open */
+            .navFunc.open {
+                display: flex;
+            }
+            .navBtn, .takeAssessmentTop, .translateLang {
+                text-align: center;
+            }
+            .navBtn{
+                width: 100%;
+                height: 30px;
+                border-left: 5px solid transparent;
+            }
+            .takeAssessmentTop{
+                width: 90%;
+                height: 35px;
+            }
+            .translateLang{
+                height: 35px;
+                width: 35%;
+                border: 1px solid rgb(128, 65, 128);
+            }
+            .translateLang img{
+                border: 1px solid red;
+            }
+            
+            .translateLang select{
+                width: 70%;
+                margin:0px;
+                border: 1px solid red;
+            }
+            .aboutUs {
+                flex-direction: column;
+                height: auto;
+                padding: 20px;
+            }
+
+            .aboutUs p {
+                width: 90%;
+                padding: 30px;
+                font-size: 1.2em;
+                margin: 10px auto;
+                height: auto;
+            }
+
+            .aboutUs h1 {
+                width: 80%;
+                margin: auto;
+                height: auto;
+                font-size: 8em;
+                padding: 10px;
+            }
+            .aboutUs span {
+                font-size: 1.2em;
+            }
+
+            .takeAssessment {
+                height: auto;
+                padding: 15vw 0;
             }
         }
 
@@ -614,6 +856,7 @@
             
             .howItWorks {
                 padding: 3vw;
+                height: auto;
             }
             
             .howItWorks img {
@@ -622,6 +865,11 @@
             
             .step h1 {
                 font-size: 8vw;
+                margin-bottom: 50px;
+
+            }
+            .step hr{
+                display: none;
             }
             
             .stepBox {
@@ -636,12 +884,14 @@
             
             .ministrySelection {
                 width: 95%;
+                height: auto;
+                padding:0px;
             }
             
             .ministrySelection h1 {
                 font-size: 8vw;
             }
-            
+
             .card {
                 width: 90%;
                 padding: 4vw;
@@ -661,7 +911,10 @@
                 width: 18vw;
                 height: 18vw;
                 font-size: 6vw;
-                top:51%;
+                top:88%;
+            }
+            .seeMoreBtn{
+                margin-bottom: 15px;
             }
             
             .takeAssessment {
@@ -683,19 +936,102 @@
                 height: 25vw;
             }
 
+             nav {
+                position: relative;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 15px;
+                height: 70px;
+                position: sticky;
+                top:0px;
+            }
+            .logo{
+                width: 15%;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .navFunc {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                border-top: 2px solid rgb(128,65,128);
+                padding: 10px 0;
+                gap: 7px;
+                align-items: center;
+                z-index: 1000;
+            }
+            .selectedNav{
+                border: none;
+                border-left: 5px solid rgb(128,65,128);
+            }
+
+            /* Show menu when open */
+            .navFunc.open {
+                display: flex;
+            }
+            .navBtn, .takeAssessmentTop, .translateLang {
+                text-align: center;
+            }
+            .navBtn{
+                width: 100%;
+                height: 30px;
+                border-left: 5px solid transparent;
+            }
+            .takeAssessmentTop{
+                width: 90%;
+                height: 35px;
+            }
             .translateLang{
-                height: 25px;
-                width: 60px;
+                height: 35px;
+                width: 35%;
                 border: 1px solid rgb(128, 65, 128);
             }
             .translateLang img{
-                display:none;
+                border: 1px solid red;
             }
+            
             .translateLang select{
-                font-size: .5rem;
-                padding:0px;
-                width: 50px;
+                width: 70%;
                 margin:0px;
+                border: 1px solid red;
+            }
+            .aboutUs {
+                flex-direction: column;
+                height: auto;
+                padding: 20px;
+            }
+
+            .aboutUs p {
+                width: 90%;
+                padding: 20px;
+                font-size: 0.9rem;
+                margin: 10px auto;
+                height: auto;
+            }
+            .aboutUs hr{
+                display: none;
+            }
+            .aboutUs h1 {
+                width: 100%;
+                font-size: 8vw;
+                padding: 10px;
+                margin-bottom: 50px;
+            }
+            .aboutUs span {
+                font-size: 8vw;
+            }
+
+            .takeAssessment {
+                height: auto;
+                padding: 15vw 0;
             }
         }
     </style>
@@ -707,18 +1043,38 @@
     <img class="dsn2 move-up" src="img/img1.png">
     <img class="dsn3 move-up" src="img/el1.jpg">
 </div>
+<!-- nav -->
+    <nav>
+        <img class="logo" src="img/icn-find.png">
+
+        <!-- Hamburger Button (visible only on mobile) -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Nav Links -->
+        <div class="navFunc" id="navMenu">
+            <a class="navBtn selectedNav" onclick="document.getElementById('banner').scrollIntoView({ behavior: 'smooth', block: 'center' });">Home</a>
+            <a class="navBtn" onclick="document.getElementById('howItWorks').scrollIntoView({ behavior: 'smooth', block: 'center' });">How It Works</a>
+            <a class="navBtn" onclick="document.getElementById('ministrySelection').scrollIntoView({ behavior: 'smooth', block: 'center' });">Ministries</a>
+            <a class="navBtn" onclick="document.getElementById('aboutUs').scrollIntoView({ behavior: 'smooth', block: 'center' });">About Us</a>
+            <button class="takeAssessmentTop" onclick="window.location.href='assessment.html'">Take Assessment</button>
+            <div class="translateLang">
+                <select id="lang" name="language" onchange="changeLanguage(this.value)">
+                    <option value="en" selected>English</option>
+                    <option value="tl">Tagalog</option>
+                </select>
+                <img src="img/icn-language.png">
+            </div>
+        </div>
+    </nav>
 <!--banner-->
-    <div class="banner">
+    <div class="banner" id="banner">
         <div class="title move-up" >
             <h1>PERFIT</h1>
             <p>PerFit helps you discover where your strengths, passions, and purpose align so you can thrive in the role made just for you.</p>
-        </div>
-        <div class="translateLang">
-            <img src="img/icn-language.png">
-            <select id="lang" name="language" onchange="changeLanguage(this.value)">
-                <option value="en" selected>English</option>
-                <option value="tl">Tagalog</option>
-            </select>
         </div>
     </div>
 <!--note-->
@@ -740,7 +1096,7 @@
         </div>
     </div>
 <!--how it works-->
-    <div class="howItWorks">
+    <div class="howItWorks" id="howItWorks">
         <img class="move-up" src="img/howItWorks.png">
         <div class="step">
             <h1 class="move-up">HOW IT WORKS</h1>
@@ -769,7 +1125,7 @@
         </div>
     </div>
 <!--ministry carousel-->
-    <div class="ministrySelection">
+    <div class="ministrySelection" id="ministrySelection">
         <h1>JOIN OUR MINISTRY</h1>
         <div class="slides-container" id="carousel">
             <!-- Last slide (clone) -->
@@ -987,7 +1343,12 @@
         <button class="lBtn" onclick="moveSlide('left')">‹</button>
         <button class="rBtn" onclick="moveSlide('right')">›</button>
         <p><span id="page">1</span>/9</p>
-  </div>
+        <button class="seeMoreBtn" onclick="window.location.href='ministry.html'">See More</button>
+    </div>
+    <div class="aboutUs" id="aboutUs">
+        <h1 >ABOUT <hr><span>PERFIT</span></h1>
+        <p>PERFIT, is an AI-powered platform created to help Christian churches match volunteers to the right ministry roles. By considering each volunteer’s skills, passions, and availability, PERFIT ensures that service becomes more meaningful, effective, and fulfilling. Our goal is to make ministry coordination easier for church leaders while empowering volunteers to serve where they truly belong. With technology designed for the heart of the church, PERFIT builds stronger connections, reduces mismatches, and creates a thriving culture of service within the community.</p>
+    </div>
 <!--take assesment-->
     <div class="takeAssessment">
         <div class="bg"></div>
@@ -1012,6 +1373,33 @@
             sessionStorage.setItem("selectedLanguage", lang);
             console.log("Selected Language: "+selectedLanguage);
         }
+    // nav
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("open");
+        }
+    //scroll
+        const sections = document.querySelectorAll('#banner, #howItWorks, #ministrySelection, #aboutUs');
+        const navLinks = document.querySelectorAll('.navBtn');
+
+        const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+            // Remove active class from all links
+            navLinks.forEach(link => link.classList.remove('selectedNav'));
+
+            // Find the link that matches this section
+            const activeLink = document.querySelector(
+                `.navBtn[onclick*="${entry.target.id}"]`
+            );
+            if (activeLink) {
+                activeLink.classList.add('selectedNav');
+            }
+            }
+        });
+        }, { threshold: 0.7 }); // 60% of section must be visible
+
+        // Observe each section
+        sections.forEach(section => observer.observe(section));
     //carousel
         const carousel = document.getElementById('carousel');
         const totalSlides = 9;
