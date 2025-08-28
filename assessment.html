@@ -11,7 +11,7 @@
         body{
             padding: 0;
             margin: 0;
-            font-size: 16px;
+            font-size: 1vw;
             font-family: Arial, sans-serif;
         }
 
@@ -29,12 +29,9 @@
 
         /*stepCounter*/
         .stepCounter{
-            margin-top: 5vw;
             width: 90%;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 500px auto 30px auto;
             display: flex;
-            margin-bottom: 2rem;
         }
         .stepContainer{
             display: flex;
@@ -72,12 +69,16 @@
         /* assessment tools */
         .instruction{
             background: linear-gradient(to right, rgb(255, 223, 255), transparent);
-            max-width: 700px;
+            width: 90%;
             margin-left: 5%;
             border-radius: 5px;
-            border-left: 3px solid rgb(128, 65, 128);
+            border: 3px solid rgb(128, 65, 128);
             color: rgb(128, 65, 128);
-            padding: 10px;
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+        .instruction hr{
+            border:1px solid rgb(128, 65, 128);
         }
         .instruction span{
             font-weight: bold;
@@ -359,61 +360,31 @@
         .highlightPiece{
             filter: drop-shadow(0vw 0vw 5vw rgb(255, 255, 255));
         }
-        /*translation */
-        .translateLang{
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: auto;
-            height: 35px;
-            margin: 5px;
-            color:rgb(128, 65, 128);
-            display: flex;
-            gap: 10px;
-            border:2px solid rgb(128, 65, 128);
-            padding: 3px;
-            border-radius: 12px;
-            background:white;
-        }
-        .translateLang select{
-            border:1px solid rgb(128, 65, 128);
-            color:rgb(128, 65, 128);
-            border: none;
-            font-size: 1rem;
-        }
-        .translateLang select:focus {
-            outline: none;
-        }
-        .translateLang img{
-            height: auto;
-            width: 30px;
-        }
-
 
         /* Mobile Responsive Media Queries */
-        @media screen and (max-width: 768px) {
+        @media (max-width: 1000px) {
             .banner{
-                height: 30vh;
+                height: 25vh;
+                margin:0px;
             }
             .ttl {
-                font-size: 2.5rem;
-                margin-top: -10vw;
-                margin-bottom: 15vw;
+                font-size: 8em;
+                margin-top: -25vw;
             }
             
             .stepCounter {
                 width: 95%;
-                margin-top: 8vw;
+                margin: auto ;
             }
             
             .step {
                 width: 50px;
                 height: 50px;
-                font-size: 1rem;
                 margin: 4px;
             }
             .stepContainer{
                 width: 20%;
+                font-size: 3em;
             }
             .line {
                 height: 3px;
@@ -422,14 +393,17 @@
 
             .instruction{
                 margin: auto;
+                font-size: 2em;
             }
             .progressBarDiv{
                 margin: 10px auto;
+                font-size: 3em;
             }
 
             .personalDetail {
                 width: 95%;
                 padding: 1rem;
+                font-size: 3em;
             }
             
             .questionText {
@@ -462,18 +436,18 @@
                 padding: 1.5rem;
                 font-size: .98rem;
             }
+            .responseDiv{
+                font-size: 2.5em;
+            }
         }
 
         @media screen and (max-width: 480px) {
-            body {
-                font-size: 14px;
-            }
             .banner img{
                 height: 30vh;
             }
             .ttl {
-                font-size: 2rem;
-                margin-top: -50vw;
+                font-size: 10em;
+                margin-top: -55vw;
             }
             
             .stepCounter {
@@ -484,11 +458,12 @@
             .step {
                 width: 40px;
                 height: 40px;
-                font-size: 0.9rem;
-                margin: 3px;
+                font-size: 1.2rem;
+                margin-top: 80px;
             }
             .stepContainer{
                 width: 20%;
+                font-size: 3em;
             }
             
             .line {
@@ -497,52 +472,51 @@
 
             .instruction{
                 margin: auto 20px;
+                font-size:3em;
+            }
+
+            .personalDetail {
+                font-size:3em;
+            }
+            .questionBox{
+                font-size: 3em;
             }
             
             .questionText {
-                font-size: 1.1rem;
                 width: 100%;
             }
             
             .rateBox {
                 grid-template-columns: repeat(4, 1fr);
-                gap: 0.5rem;
+                gap: 0.5em;
             }
             
             .rateBox button {
                 height: 40px;
                 min-height: 40px;
-                font-size: 0.8rem;
+            }
+
+            .progressBarDiv{
+                font-size: 3em;
             }
             
             .nextBtn {
                 width: 150px;
                 height: 45px;
-                font-size: 1rem;
+                font-size: 3em;
             }
             
             .box input[type="number"] {
                 height: 35px;
-                font-size: 0.9rem;
+                font-size: 1em;
+            }
+
+            .responseDiv{
+                font-size: 3em;
             }
             
             .footer {
                 height: 120px;
-            }
-
-            .translateLang{
-                height: 25px;
-                width: 60px;
-                border: 1px solid rgb(128, 65, 128);
-            }
-            .translateLang img{
-                display:none;
-            }
-            .translateLang select{
-                font-size: .5rem;
-                padding:0px;
-                width: 50px;
-                margin:0px;
             }
         }
     </style>
@@ -552,13 +526,6 @@
     <div class="banner">
         <img src="img/banner-cut.png">
         <p class="ttl move-up" translate="title">ASSESSMENT</p>
-        <div class="translateLang">
-            <select id="lang" name="language" onchange="changeLanguage(this.value)">
-                <option value="en">English</option>
-                <option value="tl">Tagalog</option>
-            </select>
-            <img src="img/icn-language.png">
-        </div>
     </div>
 <!--step-->
     <div class="stepCounter move-up">
@@ -590,7 +557,6 @@
 <!--personal details-->
     <p class="instruction" id="inst1" translate="i1">INSTRUCTION: Please provide your personal details accurately. This information helps us understand your profile better and will only be used for assessment purposes.</p>
     <div class="personalDetail move-up" id="personalForm">
-        
         <h2 translate="ph1">DEMOGRAPHICS</h2>
         <div class="box move-up" id="genderBox">
             <span id="genderBoxttl" translate="ph1a">Gender</span><br>
@@ -620,7 +586,16 @@
             <label><input type="radio" name="timeInFaithBox" value="4" translate="ph1p"> 2+ years</label>
         </div>
     </div>
-    <p class="instruction" style="display: none;" id="inst2" translate="i2">INSTRUCTION: Please read each statement carefully and answer honestly. Use the scale to show how strongly you agree or disagree — there are no right or wrong answers, just your true opinion.</p>
+    <div class="instruction" style="display: none;" id="inst2">
+        <p translate="i2">INSTRUCTION: Please read each statement carefully and answer honestly. Use the scale to show how strongly you agree or disagree — there are no right or wrong answers, just your true opinion.</p>
+        <hr>
+        <p translate="ii1">Strongly Agree = 6 Points</p>
+        <p translate="ii2">Agree = 5 Points</p>
+        <p translate="ii3">Slightly Agree = 4 Points</p>
+        <p translate="ii4">Slightly Agree = 3 Points</p>
+        <p translate="ii5">Disagree = 2 Points</p>
+        <p translate="ii6">Strongly Disagree = 1 Points</p>
+    </div>
 <!--skill details-->
     <div id="skillQuestion" style="display: none;">
         <div class="progressBarDiv">
@@ -655,25 +630,24 @@
             <button onclick="window.location.href = 'index.html'" translate="a1">CLOSE</button>
         </div>
     </div>
-    <!-- <p>Base on your Personal & Skill Profiling Interest & Passion Profiling</p> -->
 <!--question box template-->
     <template id="questionTemp">
         <div class="questionBox">
             <p class="questionText">//test question//</p>
             <div class="rateBox">
-                <button value=3 translate="s1">Strongly Agree</button>
-                <button value=2 translate="s2">Agree</button>
-                <button value=1 translate="s3">Slightly Agree</button>
-                <button value=-1 translate="s4">Slightly Disagree</button>
-                <button value=-2 translate="s5">Disagree</button>
-                <button value=-3 translate="s6">Strongly Disagree</button>
+                <button value=3 translate="s1">Strongly Agree (6)</button>
+                <button value=2 translate="s2">Agree (5)</button>
+                <button value=1 translate="s3">Slightly Agree (4)</button>
+                <button value=-1 translate="s4">Slightly Disagree (3)</button>
+                <button value=-2 translate="s5">Disagree (2)</button>
+                <button value=-3 translate="s6">Strongly Disagree (1)</button>
             </div>
         </div>
     </template>
 <!--response div-->
     <div class="responseDiv" id="responseDiv">
         <h1 style="color:rgb(128, 65, 128);text-align: center;" translate="r1">CALLING AND SERVICE PROFILE</h1>
-        <div id="thinking" style="display:none; font-weight: bold; font-size: 1.2em;" translate="r2">Analyzing your gifts and calling<span id="dots">.</span></div>
+        <div id="thinking" style="display: none; font-weight: bold; font-size: 1.2em; font-family: sans-serif;">Analyzing your gifts and calling<span id="dots">.</span></div>
     </div>
 <!--next button-->
     <button class="move-up nextBtn" id="step1" onclick="personalDetailsSubmit()" translate="b1">NEXT PHASE</button>
@@ -699,19 +673,11 @@
     //language
         let selectedLanguage = sessionStorage.getItem("selectedLanguage") || "en";
         window.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("lang").value = selectedLanguage;
-            sessionStorage.setItem("selectedLanguage", selectedLanguage);
-            changeLanguage(selectedLanguage)
-        });
-        function changeLanguage(lang) {
-            selectedLanguage = lang;
-            sessionStorage.setItem("selectedLanguage", lang);
-
             // Update UI text
             document.querySelectorAll("[translate]").forEach(el => {
                 const key = el.getAttribute("translate");
-                if (uiTranslation[lang][key]) {
-                    el.textContent = uiTranslation[lang][key];
+                if (uiTranslation[selectedLanguage][key]) {
+                    el.textContent = uiTranslation[selectedLanguage][key];
                 }
             });
 
@@ -722,7 +688,7 @@
                 if(label) {
                     label.childNodes.forEach(node => {
                         if(node.nodeType === Node.TEXT_NODE) {
-                            node.textContent = uiTranslation[lang][key];
+                            node.textContent = uiTranslation[selectedLanguage][key];
                         }
                     });
                 }
@@ -731,11 +697,11 @@
             ['skillQuestion', 'ministryCategory', 'ministrySpecific'].forEach(portID => {
                 const port = document.getElementById(portID);
                 if (port && port.switchLanguage) {
-                    port.switchLanguage(lang);
+                    port.switchLanguage(selectedLanguage);
                 }
             });
             console.log("selected language: " + selectedLanguage);
-        }
+        });
 
         //language uiTranslation
         const uiTranslation = {
@@ -765,16 +731,22 @@
                 ph1o: "1 year",
                 ph1p: "2+ years",
                 i2: "INSTRUCTION: Please read each statement carefully and answer honestly. Use the scale to show how strongly you agree or disagree — there are no right or wrong answers, just your true opinion.",
+                ii1: "Strongly Agree = 6 Points",
+                ii2: "Agree = 5 Points",
+                ii3: "Slightly Agree = 4 Points",
+                ii4: "Slightly Disagree = 3 Points",
+                ii5: "Disagree = 2 Points",
+                ii6: "Strongly Disagree = 1 Point",
                 ph2: "Skill Profiling Progress",
                 ph3: "Interest and Passion Profiling Progress",
                 ph4: "Behavioral Profiling Progress",
                 a1: "CLOSE",
-                s1: "Strongly Agree",
-                s2: "Agree",
-                s3: "Slightly Agree",
-                s4: "Slightly Disagree",
-                s5: "Disagree",
-                s6: "Strongly Disagree",
+                s1: "Strongly Agree (6pts)",
+                s2: "Agree (5pts)",
+                s3: "Slightly Agree (4pts)",
+                s4: "Slightly Disagree (3pts)",
+                s5: "Disagree (2pts)",
+                s6: "Strongly Disagree (1pt)",
                 r1: "CALLING AND SERVICE PROFILE",
                 r2: "Analyzing your gifts and calling",
                 b1: "NEXT PHASE",
@@ -786,9 +758,9 @@
             tl: {
                 title: "PAGSUSURI",
                 t1: "Personal na Detalye",
-                t2: "Pagpuprofilo ng Kasanayan",
-                t3: "Pagpuprofilo ng Interes at Pasyon",
-                t4: "Pagpuprofilo ng Pag-uugali",
+                t2: "Pagsusuri ng Kasanayan",
+                t3: "Pagsusuri ng Interes at Pasyon",
+                t4: "Pagsusuri ng Kilos",
                 t5: "Resulta",
                 i1: "TAGUBILIN: Mangyaring ibigay ang iyong personal na detalye nang tapat. Makakatulong ito upang mas maunawaan ang iyong profile at gagamitin lamang para sa layunin ng pagsusuri.",
                 ph1: "DEMOGRAPIKO",
@@ -800,31 +772,37 @@
                 ph1f: "Katayuan",
                 ph1g: "Binata/Dalaga",
                 ph1h: "May Asawa",
-                ph1i: "Nabinyagan",
+                ph1i: "Bautismo",
                 ph1j: "Hindi",
                 ph1k: "Oo",
                 ph1l: "Panahon sa Pananampalataya",
-                ph1m: "Bago",
+                ph1m: "1 linggo",
                 ph1n: "6 na buwan",
                 ph1o: "1 taon",
                 ph1p: "2+ taon",
                 i2: "TAGUBILIN: Mangyaring basahin nang mabuti ang bawat pahayag at sagutin nang tapat. Sagutan kung gaano ka sumasang-ayon o hindi sumasang-ayon — walang tama o maling sagot, tanging ang iyong tunay na opinyon lamang.",
-                ph2: "Pag-usad ng Pagpuprofilo ng Kasanayan",
-                ph3: "Pag-usad ng Pagpuprofilo ng Interes at Pasyon",
-                ph4: "Pag-usad ng Pagpuprofilo ng Pag-uugali",
+                ii1: "Lubos na Sumasang-ayon = 6 Puntos",
+                ii2: "Sumasang-ayon = 5 Puntos",
+                ii3: "Bahagyang Sumasang-ayon = 4 Puntos",
+                ii4: "Bahagyang Hindi Sumasang-ayon = 3 Puntos",
+                ii5: "Hindi Sumasang-ayon = 2 Puntos",
+                ii6: "Lubos na Hindi Sumasang-ayon = 1 Punto",
+                ph2: "Progreso ng Pagsusuri ng Kasanayan",
+                ph3: "Progreso ng Pagsusuri ng Interes at Pasyon",
+                ph4: "Progreso ng Pagsusuri ng kilos",
                 a1: "ISARA",
-                s1: "Lubos na Sumasang-ayon",
-                s2: "Sumasang-ayon",
-                s3: "Bahagyang Sumasang-ayon",
-                s4: "Bahagyang Hindi Sumasang-ayon",
-                s5: "Hindi Sumasang-ayon",
-                s6: "Lubos na Hindi Sumasang-ayon",
-                r1: "PROFIL NG TAWAG AT PAGLILINGKOD",
-                r2: "Pagsusuri ng iyong mga kaloob at pagtawag",
+                s1: "Lubos na Sumasang-ayon (6pts)",
+                s2: "Sumasang-ayon (5pts)",
+                s3: "Bahagyang Sumasang-ayon (4pts)",
+                s4: "Bahagyang Hindi Sumasang-ayon (3pts)",
+                s5: "Hindi Sumasang-ayon (2pts)",
+                s6: "Lubos na Hindi Sumasang-ayon (1pt)",
+                r1: "BUOD NG RESULTA",
+                r2: "Pagsusuri ng iyong mga kaloob at tawag sa paglilingkod",
                 b1: "SUSUNOD NA YUGTO",
                 b2: "SURIIN ANG SAGOT",
                 b3: "ISUMITE",
-                b4: "OKAY"
+                b4: "OK"
             }
         };
     //varibales
@@ -1021,7 +999,8 @@
                 document.getElementById("overlay").style.display = "block";
                 document.getElementById("alertMessage").innerText = "it appears that you are not yet old enough to serve in a ministry. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.";
                 console.log("The user is not old enough yet");
-            }else{
+            }
+            if (age<13 && selectedLanguage=="tl"){
                 document.getElementById("overlay").style.display = "block";
                 document.getElementById("alertMessage").innerText = "Mukhang hindi sapat ang iyong edad upang maglingkod sa isang ministeryo. Hinihikayat ka naming patuloy na lumago sa iyong pananampalataya at paglalakbay espirituwal. Kapag dumating ang tamang panahon, ikalulugod naming makita kang makibahagi. Pagpalain ka ng Diyos sa iyong landas ng paglago at paghahanda.";
                 console.log("The user is not old enough yet");
@@ -1692,7 +1671,8 @@
                 document.getElementById("overlay").style.display = "block";
                 document.getElementById("alertMessage").innerText = "It appears that your interest or personal profile doesn't match with the ministries` requirments yet. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.";
                 console.log("The user's interest or personal profile doesn't match the ministry requirment yet.");
-            }else{
+            }
+            if(ministryInterest.length==0 && selectedLanguage=="tl"){
                 document.getElementById("overlay").style.display = "block";
                 document.getElementById("alertMessage").innerText = "Mukhang hindi tumutugma ang iyong interes o personal na profile sa mga kinakailangan ng ministeryo. Hinihikayat ka naming patuloy na lumago sa iyong pananampalataya at espirituwal na paglalakbay. Kapag dumating ang tamang panahon, ikalulugod naming makita kang makibahagi. Pagpalain ka ng Diyos sa iyong landas ng paglago at paghahanda.";
                 console.log("The user's interest or personal profile doesn't match the ministry requirment yet.");
@@ -1879,6 +1859,15 @@
             }, 3500);
             startThinkingAnimation();
 
+
+        // build ranking list
+            let message = `
+                You are an AI assistant for the Perfit: An Ai System for matching skills in church ministry.
+                A user has completed a test, and their scores are as follows:
+
+            `;
+            let topList = "";
+            let least = "";
             for (let i = 0; i < behavioralProfilingScore.length - 1; i++) {
                 for (let j = i + 1; j < behavioralProfilingScore.length; j++) {
                     if (Number(behavioralProfilingScore[i]) < Number(behavioralProfilingScore[j])) { 
@@ -1894,163 +1883,238 @@
                     }
                 }
             }
-            // build the dynamic top list
-                let topList = "";
-                let least = "";
-
-                for (let i = 0; i < ministryInterest.length; i++) {
-                    topList += `top ${i + 1} [${ministryInterest[i]}]`;
-                    if (i !== ministryInterest.length - 1) {
-                        topList += ", ";
-                    }
-                    if (i === ministryInterest.length - 1) {
-                        least = `${ministryInterest[i]}`;
-                    }
+            for (let i = 0; i < ministryInterest.length; i++) {
+                topList += `top ${i + 1} [${ministryInterest[i]}]`;
+                if (i !== ministryInterest.length - 1) {
+                    topList += ", ";
                 }
-
-                console.log(topList);
-                console.log("Lowest: "+least);
-
-            let message = `
-                You are an AI assistant for the Perfit: Am Ai System for matching skills in church ministry.
-                A user has completed a test, and their scores are as follows (highest score means top 1):
-
-                List: ${topList}
-
-                Least Aligned Ministry: [${least}]
-
+                if (i === ministryInterest.length - 1) {
+                    least = `${ministryInterest[i]}`;
+                }
+            }
+            console.log(topList);
+            console.log("Lowest: "+least);
+            console.log(ministryInterest.length);
+            message += `
+                \nlist: ${topList}\n
+                \nleast ministry:${least}\n
                 Your task is to give interpretation, focusing on the user's divine calling and how ministries align with the user's strengths and purpose. 
                 Include a spiritual connection between the top 3 ministries, emphasizing their complementary roles in the user's faith journey.
                 display the top 1 with this format:
-                <h2 style="color:rgb(128, 65, 128);">Best Fit: [top1 ministry] Ministry</h2>
-                //note: make this response 200 words minimum  
-                Provide a brief explanation of why this ministry is the user's top fit. 
-                Highlight how this ministry aligns with the user's natural gifts, strengths, and passion. 
-                Explain that this fit is part of their divine calling, as though this ministry was made for them. 
-                Emphasize the alignment between their purpose and this ministry's mission.
+            `; 
+            if(selectedLanguage=="en"){
+                message +=`\n\n
+                    <h1 style="color:rgb(128, 65, 128);text-align: center;">CALLING AND SERVICE PROFILE</h1>
+                    \n\n
+                    <h2 style="color:rgb(128, 65, 128);">Best Fit: [top1 ministry] Ministry</h2>
+                    //note: make this response 300 words minimum, use english language
+                    Provide a brief explanation of why this ministry is the user's top fit. 
+                    Highlight how this ministry aligns with the user's natural gifts, strengths, and passion. 
+                    Explain that this fit is part of their divine calling, as though this ministry was made for them. 
+                    Emphasize the alignment between their purpose and this ministry's mission.
+                `;
 
-                if there is top 2 do this format if not skip it:
-                <h2 style="color:rgb(128, 65, 128);">Top 2 Identified Fit: [top2 ministry] Ministry</h2>
-                //note: make this response 200 words minimum  
-                Provide a brief explanation of why this ministry is the user's second-best fit.
-                Focus on how it complements the bestfit, mention its connection.
-                Again, explain that this ministry feels like a divine part of their journey,
-                something that aligns with their unique gifts and purpose in life.
-
-                if there is top 3 do this format if not skip it:
-                <h2 style="color:rgb(128, 65, 128);">Top 3 Identified Fit: [top3 ministry] Ministry</h2>
-                //note: make this response 200 words minimum  
-                Provide a brief explanation of why this ministry is the user's third-best fit.
-                Focus on how it complements their spiritual hobby and quirks.
-                Again, explain that this ministry feels like a divine part of their journey,
-                something that aligns with their unique gifts and purpose in life.
-
-
-                Only if there is a top 4 should you display the least aligned ministry in this format; if not, skip it.
-                <h2 style="color:rgb(128, 65, 128);">Least Aligned Ministry: [Ministry] Ministry</h2> 
-                //note: make this response 150 words minimum  
-                Provide a thoughtful and compassionate reflection on why this ministry may have ranked lowest for the user.  
-                Emphasize that every ministry plays a vital role in the body of Christ, and a low score does not mean disqualification—it simply highlights a lesser alignment *at this moment*.  
-                Encourage the user not to see this as a weakness but as a potential area of spiritual growth.  
-                End with a note of affirmation: they are uniquely made, and every ministry—strong or weak—can be a stepping stone in their divine path.
-
-
-                then display the Spiritual Relationship Between Top Ministries in this format, if there is only 1 ministry skip this:
-                <h2 style="color:rgb(128, 65, 128);">Spiritual Relationship Between Top Ministries</h2>
-                //note: make this response 200 words minimum
-                Explain how these three ministries are connected and complement each other in a spiritual sense. 
-                Focus on how their roles support the individual's growth in faith, build on themes like service, prayer, worship, or leadership, and help fulfill the greater mission of the church. 
-                Illustrate how the combination of these ministries enhances the user’s role in God's work. 
-                
-                then display the Growth Opportunities in this format:
-                <h2 style="color:rgb(128, 65, 128);">Growth Opportunities:</h2>
-                //note: make this response 100 words minimum
-                Show how they can grow into their role. Include spiritual, emotional, or skill-based development suggestions. 
-                
-                then display the Compatibility with Team Dynamics in this format:
-                <h2 style="color:rgb(128, 65, 128);">Compatibility with Team Dynamics:</h2>
-                //note: make this response 100 words minimum
-                Give an insight like "You'd thrive best in teams that are..." (ex. collaborative, structured, spontaneous, etc.) 
-                Help them visualize what kind of team culture suits them base on their top ministry. 
-                
-                then display the Ministry Pathway / Journey Map in this format:
-                <h2 style="color:rgb(128, 65, 128);">Ministry Pathway / Journey Map:</h2>
-                //note: Put the path way in bullets
-                make a possible serving pathway, Help them think long-term, not just one-time serving.
-                example:
-                - start as an assisstant
-                - learn from your senior
-                - lead your juniors
-                - grow into a leader role. 
-
-                output format:
-                <h1 style="color:rgb(128, 65, 128);text-align: center;">CALLING AND SERVICE PROFILE</h1>
-
-                <h2 style="color:rgb(128, 65, 128);">Best Fit: [top1 ministry] Ministry</h2>
-
-                <h2 style="color:rgb(128, 65, 128);">Top 2 Identified Fit: [top2 ministry] Ministry</h2>
-
-                <h2 style="color:rgb(128, 65, 128);">Top 3 Identified Fit: [top3 ministry] Ministry</h2>
-
-                <h2 style="color:rgb(128, 65, 128);">Least Aligned Ministry: [Ministry] Ministry</h2> 
-
-                <h2 style="color:rgb(128, 65, 128);">Spiritual Relationship Between Top Ministries</h2>
-
-                <h2 style="color:rgb(128, 65, 128);">Growth Opportunities:</h2>
-
-                <h2 style="color:rgb(128, 65, 128);">Compatibility with Team Dynamics:</h2>
-
-                <h2 style="color:rgb(128, 65, 128);">Ministry Pathway / Journey Map:</h2>
-            `;
-
-                try {
-                    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${apiKey}`
-                        },
-                        body: JSON.stringify({
-                            model: 'gpt-3.5-turbo',
-                            messages: [
-                                { role: 'system', content: 'You are a helpful church ministry assistant.' },
-                                { role: 'user', content: message }
-                            ],
-                            temperature: 0.7
-                        })
-                    });
-
-                    if (!response.ok) {
-                        const error = await response.text();
-                        throw new Error(`OpenAI API error: ${error}`);
-                    }
-
-                    const data = await response.json();
-
-                    //Show response
-                    stopThinkingAnimation();
-                    document.getElementById("responseDiv").innerHTML =
-                        data.choices[0].message.content.replace(/\n/g, '<br>');
-
-                } catch (error) {
-                    stopThinkingAnimation();
-                    console.error("Error:", error);
-                    document.getElementById("responseDiv").innerHTML =
-                        `<span style="color:red;">Error: ${error.message}</span>`;
+                if(ministryInterest.length>=2){
+                    message +=`\n\n
+                        <h2 style="color:rgb(128, 65, 128);">Top 2 Identified Fit: [top2 ministry] Ministry</h2>
+                        //note: make this response 200 words minimum  
+                        Provide a brief explanation of why this ministry is the user's second-best fit.
+                        Focus on how it complements the bestfit, mention its connection.
+                        Again, explain that this ministry feels like a divine part of their journey,
+                        something that aligns with their unique gifts and purpose in life.
+                    `;
                 }
+
+                if(ministryInterest.length>=3){
+                    message +=`\n\n
+                        <h2 style="color:rgb(128, 65, 128);">Top 3 Identified Fit: [top3 ministry] Ministry</h2>
+                        //note: make this response 200 words minimum  
+                        Provide a brief explanation of why this ministry is the user's third-best fit.
+                        Focus on how it complements their spiritual hobby and quirks.
+                        Again, explain that this ministry feels like a divine part of their journey,
+                        something that aligns with their unique gifts and purpose in life.
+                    `;
+                }
+
+                if(ministryInterest.length>=4){
+                    message +=`\n\n
+                        <h2 style="color:rgb(128, 65, 128);">Least Aligned Ministry: [Ministry] Ministry</h2> 
+                        //note: make this response 150 words minimum  
+                        Provide a thoughtful and compassionate reflection on why this ministry may have ranked lowest for the user.  
+                        Emphasize that every ministry plays a vital role in the body of Christ, and a low score does not mean disqualification—it simply highlights a lesser alignment *at this moment*.  
+                        Encourage the user not to see this as a weakness but as a potential area of spiritual growth.  
+                        End with a note of affirmation: they are uniquely made, and every ministry—strong or weak—can be a stepping stone in their divine path.
+                    `;
+                }
+
+                if(ministryInterest.length>=2){
+                    message +=`\n\n
+                        <h2 style="color:rgb(128, 65, 128);">Spiritual Relationship Between Top Ministries</h2>
+                        //note: make this response 200 words minimum
+                        Explain how these three ministries are connected and complement each other in a spiritual sense. 
+                        Focus on how their roles support the individual's growth in faith, build on themes like service, prayer, worship, or leadership, and help fulfill the greater mission of the church. 
+                        Illustrate how the combination of these ministries enhances the user’s role in God's work.
+                    `;
+                }
+
+                message +=`\n\n
+                    <h2 style="color:rgb(128, 65, 128);">Growth Opportunities:</h2>
+                    //note: make this response 150 words minimum
+                    Show how they can grow into their role. Include spiritual, emotional, or skill-based development suggestions. 
+                    
+                    <h2 style="color:rgb(128, 65, 128);">Compatibility with Team Dynamics:</h2>
+                    //note: make this response 150 words minimum
+                    Give an insight like "You'd thrive best in teams that are..." (ex. collaborative, structured, spontaneous, etc.) 
+                    Help them visualize what kind of team culture suits them base on their top ministry. 
+                    
+                    <h2 style="color:rgb(128, 65, 128);">Ministry Pathway / Journey Map:</h2>
+                    //note: Put the path way in bullets
+                    make a possible serving pathway, Help them think long-term, not just one-time serving.
+                    example:
+                    - start as an assisstant
+                    - learn from your senior
+                    - lead your juniors
+                    - grow into a leader role. 
+                `;
+            }
+
+            if(selectedLanguage=="tl"){
+                message +=`\n\n
+                    <h1 style="color:rgb(128, 65, 128);text-align: center;">BUOD NG RESULTA</h1>
+                    \n\n
+                    <h2 style="color:rgb(128, 65, 128);">Pinakatugmang Ministeryo: [top1 ministry] Ministry</h2>
+                    //tandaan: gawin ang tugon na ito na may hindi bababa sa 300 salita, gumamit ng wikang Filipino  
+                    Magbigay ng maikling paliwanag kung bakit ito ang pinakamahusay na ministeryo para sa gumagamit.  
+                    Ipakita kung paano ito tumutugma sa kanilang likas na kakayahan, kalakasan, at passion.  
+                    Ipaliwanag na ang pagkakatugmang ito ay bahagi ng kanilang banal na tawag, na tila ginawa talaga para sa kanila ang ministeryong ito.  
+                    Bigyang-diin ang pagkakatugma ng kanilang layunin at misyon ng ministeryong ito.
+                `;
+
+                if(ministryInterest.length>=2){
+                    message +=`\n\n
+                        <h2 style="color:rgb(128, 65, 128);">Top 2 Tugmang Ministeryo: [top2 ministry] Ministry</h2>
+                        //tandaan: gawin ang tugon na ito na may hindi bababa sa 200 salita  
+                        Magbigay ng maikling paliwanag kung bakit ito ang pangalawang pinakamahusay na ministeryo para sa gumagamit.  
+                        Ituon sa kung paano nito pinupunan ang pangunahing ministeryo, at banggitin ang koneksyon nito.  
+                        Muli, ipaliwanag na ang ministeryong ito ay tila bahagi rin ng kanilang banal na paglalakbay,  
+                        isang bagay na kaayon ng kanilang natatanging kaloob at layunin sa buhay.
+                    `;
+                }
+
+                if(ministryInterest.length>=3){
+                    message +=`\n\n
+                        <h2 style="color:rgb(128, 65, 128);">Top 3 Tugmang Ministeryo: [top3 ministry] Ministry</h2>
+                        //tandaan: gawin ang tugon na ito na may hindi bababa sa 200 salita  
+                        Magbigay ng maikling paliwanag kung bakit ito ang pangatlong pinakamahusay na ministeryo para sa gumagamit.  
+                        Ituon sa kung paano ito umaakma sa kanilang espirituwal na hilig at mga kakaibang ugali.  
+                        Muli, ipaliwanag na ang ministeryong ito ay tila bahagi rin ng kanilang banal na paglalakbay,  
+                        isang bagay na kaayon ng kanilang natatanging kaloob at layunin sa buhay.
+                    `;
+                }
+
+                if(ministryInterest.length>=4){
+                    message +=`\n\n
+                        <h2 style="color:rgb(128, 65, 128);">Pinakamababang Pagkakatugmang Ministeryo: [Ministry] Ministry</h2> 
+                        //tandaan: gawin ang tugon na ito na may hindi bababa sa 150 salita  
+                        Magbigay ng maingat at may malasakit na paliwanag kung bakit maaaring ito ang pinakamababang ranggo para sa gumagamit.  
+                        Bigyang-diin na bawat ministeryo ay mahalagang bahagi ng katawan ni Cristo, at ang mababang marka ay hindi nangangahulugang hindi sila karapat-dapat—ito lamang ay nagpapakita ng mas mababang pagkakatugma *sa kasalukuyan*.  
+                        Hikayatin ang gumagamit na huwag itong ituring na kahinaan kundi bilang isang posibleng lugar para sa espirituwal na paglago.  
+                        Tapusin sa isang pahayag ng pagpapatibay: sila ay natatanging nilikha, at bawat ministeryo—malakas man o mahina—ay maaaring maging hakbang patungo sa kanilang banal na landas.
+                    `;
+                }
+
+                if(ministryInterest.length>=2){
+                    message +=`\n\n
+                        <h2 style="color:rgb(128, 65, 128);">Espirituwal na Ugnayan ng Nangungunang mga Ministeryo</h2>
+                        //tandaan: gawin ang tugon na ito na may hindi bababa sa 200 salita  
+                        Ipaliwanag kung paano magkakaugnay at nagkukumpleto ang tatlong ministeryong ito sa espirituwal na pananaw.  
+                        Ituon kung paano ang kanilang mga papel ay sumusuporta sa paglago ng pananampalataya ng gumagamit, binibigyang-diin ang mga tema gaya ng paglilingkod, panalangin, pagsamba, o pamumuno, at kung paano nila natutulungan na maisakatuparan ang mas malawak na misyon ng simbahan.  
+                        Ilarawan kung paano pinapahusay ng kombinasyong ito ng mga ministeryo ang papel ng gumagamit sa gawain ng Diyos.
+                    `;
+                }
+
+                message +=`\n\n
+                    <h2 style="color:rgb(128, 65, 128);">Mga Pagkakataon para sa Paglago:</h2>
+                    //tandaan: gawin ang tugon na ito na may hindi bababa sa 150 salita  
+                    Ipakita kung paano sila maaaring lumago sa kanilang papel. Isama ang espirituwal, emosyonal, o pag-unlad ng kasanayan. 
+                    
+                    <h2 style="color:rgb(128, 65, 128);">Pagiging Akma sa Dinamika ng Grupo:</h2>
+                    //tandaan: gawin ang tugon na ito na may hindi bababa sa 150 salita  
+                    Magbigay ng pananaw gaya ng "Mas uunlad ka sa mga grupong ganito..." (hal. kolaboratibo, may istruktura, kusang-loob, atbp.)  
+                    Tulungan silang mailarawan kung anong uri ng kultura ng grupo ang babagay sa kanila batay sa kanilang pangunahing ministeryo. 
+                    
+                    <h2 style="color:rgb(128, 65, 128);">Landas o Journey Map sa Ministeryo:</h2>
+                    //tandaan: ilagay ang landas sa bullets  
+                    Gumawa ng posibleng landas ng paglilingkod, tulungan silang mag-isip ng pangmatagalan, hindi lang panandalian.  
+                    halimbawa:  
+                    - magsimula bilang isang katulong  
+                    - matuto mula sa nakatatanda  
+                    - manguna sa mga nakababatang kasamahan  
+                    - lumago tungo sa isang posisyon ng pamumuno. 
+                `;
+            }
+            try {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-3.5-turbo',
+                        messages: [
+                            { role: 'system', content: 'You are a helpful church ministry assistant.' },
+                            { role: 'user', content: message }
+                        ],
+                        temperature: 0.7
+                    })
+                });
+
+                if (!response.ok) {
+                    const error = await response.text();
+                    throw new Error(`OpenAI API error: ${error}`);
+                }
+
+                const data = await response.json();
+
+
+                stopThinkingAnimation();
+                //Show response
+                let raw = data.choices[0].message.content;
+                // Remove starting ```html (or ```anything)
+                raw = raw.replace(/```[a-z]*\n?/gi, '');
+                // Remove ending ```
+                raw = raw.replace(/```/g, '');
+                // Replace line breaks with <br> for HTML display
+                raw = raw.replace(/\n/g, '<br>');
+
+                document.getElementById("responseDiv").innerHTML = raw;
+            } catch (error) {
+                stopThinkingAnimation();
+                console.error("Error:", error);
+                document.getElementById("responseDiv").innerHTML =
+                    `<span style="color:red;">Error: ${error.message}</span>`;
+            }
         }
 
 
     //thinking loading animation
         let thinkingInterval;
+
         function startThinkingAnimation() {
             const dots = document.getElementById("dots");
+            if (!dots) return; // element not found
+
             let dotCount = 1;
+
+            // Show the loading text
+            document.getElementById("thinking").style.display = "inline";
+
+            // Cycle the dots every 500ms
             thinkingInterval = setInterval(() => {
                 dotCount = (dotCount % 3) + 1;
                 dots.textContent = ".".repeat(dotCount);
             }, 500);
-            document.getElementById("thinking").style.display = "inline";
         }
 
         function stopThinkingAnimation() {

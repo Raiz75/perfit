@@ -29,13 +29,11 @@
             z-index: 5;
         }
         .navFunc{
-            border:1px solid red;
             display: flex;
             padding: 20px;
             gap: 100px;
         }
         .navBtn{
-            border:1px solid red;
             margin-top: 10px;
         }
         .navBtn:hover{
@@ -65,7 +63,6 @@
         .logo{
             width: 5%;
             height: 90%;
-            border: 1px solid red;
             margin: auto 10px ;
         }
         /* Default hamburger hidden */
@@ -83,33 +80,6 @@
             border-radius: 2px;
             transition: 0.3s;
         }
-
-        /*translation */
-        .translateLang{
-            width: auto;
-            height: auto;
-            color:rgb(128, 65, 128);
-            display: flex;
-            gap: 10px;
-            cursor: pointer;
-            border:3px solid rgb(128, 65, 128);
-            padding: 3px;
-            border-radius: 12px;
-            background:rgb(255, 255, 255);
-        }
-        .translateLang select{
-            border:1px solid rgb(128, 65, 128);
-            color:rgb(128, 65, 128);
-            cursor: pointer;
-            border: none;
-        }
-        .translateLang select:focus {
-            outline: none;
-        }
-        .translateLang img{
-            height: 30px;
-        }
-
         /*banner*/
         .banner {
             width: 100%;
@@ -128,17 +98,18 @@
             margin: auto;
             text-align: center;
             width: 50%;
-            padding: 5vw;
+            padding: 4vw;
+            z-index: 2;
         }
 
         .title h1 {
             font-size: 7vw;
-            margin-bottom: 5vw;
             color: rgb(128, 65, 128);
+            margin: 0px;
         }
 
         .title p {
-            font-size: 1.5vw;
+            font-size: 1vw;
             margin: 2vw 0;
         }
 
@@ -217,13 +188,13 @@
             padding: 0.5vw;
             display: flex;
             flex-direction: row;
-            height: 13vw;
+            height: 15vw;
         }
 
         .stepBox {
             margin: 1vw;
             width: 31%;
-            height: 11vw;
+            height: 13vw;
             padding: 0.3vw;
             border-top-left-radius: 0vw;
             border-top-right-radius: 4vw;
@@ -279,7 +250,6 @@
             color: rgb(128, 65, 128);
             margin: auto;
             padding:50px;
-            border:1px solid red;
         }
 
         .ministrySelection h1 {
@@ -381,7 +351,6 @@
 
         /* ABOUT US */
         .aboutUs{
-            border: 1px solid red;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -394,7 +363,6 @@
             margin-top: 0vw;
         }
         .aboutUs h1{
-            border: 1px solid red;
             width: 30%;
             height: 200px;
             text-align: center;
@@ -478,12 +446,11 @@
             top: 0vw;
             left: 0vw;
             height: 1vw;
-            border: 1px solid red;
         }
 
         .dsn1 {
             position: absolute;
-            top: 190vw;
+            top: 150vw;
             right: 1vw;
             width: 20%;
             border-radius: 1.2vw;
@@ -536,6 +503,73 @@
             opacity: 1;
             transform: translate(0);
         }
+        /*alert*/
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+        }
+
+        /* Centered alert */
+        .showSelectLanguage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 3px solid rgb(128, 65, 128);
+            width: 500px;
+            height: 300px;
+            background: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 1.17rem;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+        .showSelectLanguage p{
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .l{
+            border: 3px solid rgb(128, 65, 128);
+            padding: 10px;
+            width: 50%;
+            background-color: rgb(128, 65, 128);
+            border-radius: 12px;
+            color: white;
+            margin: auto;
+            font-size: 1.2rem;
+        }
+        .l:hover{
+            background-color: rgb(255, 223, 255);
+            color: rgb(128, 65, 128);
+        }
+        .close{
+            border: none;
+            padding: 10px;
+            width: 10%;
+            background-color: white;
+            border-radius: 12px;
+            color: black;
+            margin: auto;
+            font-size: 1.2rem;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover{
+            color: grey;
+        }
         
 
         /* DESKTOP-FIRST RESPONSIVE MEDIA QUERIES */
@@ -586,7 +620,7 @@
         }
 
         /* Tablet styles */
-        @media (max-width: 1500px) {
+        @media (max-width: 1000px) {
             body {
                 font-size: 16px;
             }
@@ -594,19 +628,24 @@
             .banner {
                 height: 60vw;
             }
+
+            .logo{
+                max-width: 60px;
+                height: 60px;
+            }
             
             .title {
-                width: 80%;
+                width: 95%;
                 position: relative;
                 margin:auto;
             }
             
             .title h1 {
-                font-size: 8vw;
+                font-size: 5em;
             }
             
             .title p {
-                font-size: 3em;
+                font-size: 1.1em;
             }
             
             .note {
@@ -641,7 +680,7 @@
             }
             
             .step h1 {
-                font-size: 6em;
+                font-size: 4em;
             }
             
             .stepContiner {
@@ -650,24 +689,28 @@
             }
             
             .stepBox {
-                width: 100%;
+                width: 90%;
                 height: auto;
                 padding: 3vw;
-                margin: 2vw 0;
+                margin: 2vw auto;
             }
             
-            .stepBox h3,
+            .stepBox h3{
+                font-size: 1.5em;
+            }
             .stepBox p {
-                font-size: 3em;
+                font-size: 1.3em;
             }
             
             .ministrySelection {
-                width: 90%;
+                width: 100%;
                 height: auto;
+                padding: 5vw;
             }
             
             .ministrySelection h1 {
-                font-size: 6em;
+                font-size: 4em;
+                margin:0px;
             }
             
             .slide {
@@ -675,43 +718,46 @@
             }
             
             .card {
-                width: 80%;
+                width: 88%;
                 height: auto;
-                margin: 2vw;
+                margin: 0px;
                 padding: 3vw;
             }
             
             .mTtl {
-                font-size: 4em;
+                width: 100%;
+                height: auto;
+                font-size: 20em;
             }
             
             .card p {
-                font-size: 3em;
+                font-size: 1.3em;
             }
             
             .lBtn,
             .rBtn {
-                width: 12vw;
-                height: 12vw;
-                font-size: 4.5em;
+                width: 10vw;
+                height: 10vw;
+                font-size: 4em;
+                margin: 2vw;
                 top: 88%;
             }
             
             .takeAssessment {
                 height: 80vw;
-                padding: 8vw 0;
+                padding: 15vw 0;
             }
             
             .takeAssessment h1 {
-                font-size: 6em;
+                font-size: 4em;
             }
             
             .takeAssessment button {
                 width: 50vw;
                 height: 12vw;
-                font-size: 4em;
+                font-size: 2.5em;
             }
-            
+
             .design {
                 display: none;
             }
@@ -761,7 +807,7 @@
             .navFunc.open {
                 display: flex;
             }
-            .navBtn, .takeAssessmentTop, .translateLang {
+            .navBtn, .takeAssessmentTop {
                 text-align: center;
             }
             .navBtn{
@@ -773,49 +819,7 @@
                 width: 90%;
                 height: 35px;
             }
-            .translateLang{
-                height: 35px;
-                width: 35%;
-                border: 1px solid rgb(128, 65, 128);
-            }
-            .translateLang img{
-                border: 1px solid red;
-            }
             
-            .translateLang select{
-                width: 70%;
-                margin:0px;
-                border: 1px solid red;
-            }
-            .aboutUs {
-                flex-direction: column;
-                height: auto;
-                padding: 20px;
-            }
-
-            .aboutUs p {
-                width: 90%;
-                padding: 30px;
-                font-size: 1.2em;
-                margin: 10px auto;
-                height: auto;
-            }
-
-            .aboutUs h1 {
-                width: 80%;
-                margin: auto;
-                height: auto;
-                font-size: 8em;
-                padding: 10px;
-            }
-            .aboutUs span {
-                font-size: 1.2em;
-            }
-
-            .takeAssessment {
-                height: auto;
-                padding: 15vw 0;
-            }
         }
 
         /* Mobile styles - 480px and below */
@@ -825,19 +829,19 @@
             }
             
             .title {
-                width: 80%;
+                width: 100%;
                 position: relative;
                 margin:auto;
-                padding:1vw;
             }
             
             .title h1 {
-                font-size: 10vw;
-                margin-bottom: 3vw;
+                font-size: 18vw;
+                margin: 50px auto;
             }
             
             .title p {
-                font-size: 4vw;
+                font-size: 3.7vw;
+                display: none;
             }
             
             .note {
@@ -874,7 +878,7 @@
             
             .stepBox {
                 padding: 4vw;
-                margin: 3vw 0;
+                margin: 3vw auto;
             }
             
             .stepBox h3,
@@ -933,7 +937,7 @@
             }
             
             .footer {
-                height: 25vw;
+                height: 20vw;
             }
 
              nav {
@@ -969,7 +973,6 @@
                 z-index: 1000;
             }
             .selectedNav{
-                border: none;
                 border-left: 5px solid rgb(128,65,128);
             }
 
@@ -977,31 +980,16 @@
             .navFunc.open {
                 display: flex;
             }
-            .navBtn, .takeAssessmentTop, .translateLang {
+            .navBtn, .takeAssessmentTop {
                 text-align: center;
             }
             .navBtn{
                 width: 100%;
                 height: 30px;
-                border-left: 5px solid transparent;
             }
             .takeAssessmentTop{
                 width: 90%;
                 height: 35px;
-            }
-            .translateLang{
-                height: 35px;
-                width: 35%;
-                border: 1px solid rgb(128, 65, 128);
-            }
-            .translateLang img{
-                border: 1px solid red;
-            }
-            
-            .translateLang select{
-                width: 70%;
-                margin:0px;
-                border: 1px solid red;
             }
             .aboutUs {
                 flex-direction: column;
@@ -1028,11 +1016,6 @@
             .aboutUs span {
                 font-size: 8vw;
             }
-
-            .takeAssessment {
-                height: auto;
-                padding: 15vw 0;
-            }
         }
     </style>
 </head>
@@ -1046,35 +1029,25 @@
 <!-- nav -->
     <nav>
         <img class="logo" src="img/icn-find.png">
-
         <!-- Hamburger Button (visible only on mobile) -->
         <div class="hamburger" onclick="toggleMenu()">
             <div></div>
             <div></div>
             <div></div>
         </div>
-
         <!-- Nav Links -->
         <div class="navFunc" id="navMenu">
             <a class="navBtn selectedNav" onclick="document.getElementById('banner').scrollIntoView({ behavior: 'smooth', block: 'center' });">Home</a>
             <a class="navBtn" onclick="document.getElementById('howItWorks').scrollIntoView({ behavior: 'smooth', block: 'center' });">How It Works</a>
             <a class="navBtn" onclick="document.getElementById('ministrySelection').scrollIntoView({ behavior: 'smooth', block: 'center' });">Ministries</a>
-            <a class="navBtn" onclick="document.getElementById('aboutUs').scrollIntoView({ behavior: 'smooth', block: 'center' });">About Us</a>
-            <button class="takeAssessmentTop" onclick="window.location.href='assessment.html'">Take Assessment</button>
-            <div class="translateLang">
-                <select id="lang" name="language" onchange="changeLanguage(this.value)">
-                    <option value="en" selected>English</option>
-                    <option value="tl">Tagalog</option>
-                </select>
-                <img src="img/icn-language.png">
-            </div>
+            <button class="takeAssessmentTop" onclick="document.getElementById('overlay').style.display = 'block';">Take Assessment</button>
         </div>
     </nav>
 <!--banner-->
     <div class="banner" id="banner">
         <div class="title move-up" >
             <h1>PERFIT</h1>
-            <p>PerFit helps you discover where your strengths, passions, and purpose align so you can thrive in the role made just for you.</p>
+        <p>PERFIT, is an AI-powered platform created to help Christian churches match volunteers to the right ministry roles. By considering each volunteer’s skills, passions, and availability, PERFIT ensures that service becomes more meaningful, effective, and fulfilling. Our goal is to make ministry coordination easier for church leaders while empowering volunteers to serve where they truly belong. With technology designed for the heart of the church, PERFIT builds stronger connections, reduces mismatches, and creates a thriving culture of service within the community.</p>
         </div>
     </div>
 <!--note-->
@@ -1104,19 +1077,25 @@
             <div class="stepContiner">
                 <div class="stepBox move-up">
                     <h3>STEP 1</h3>
+                    <p>Choose Language</p>
+                    <hr>
+                    <p>Choose your preferred language</p>
+                </div>
+                <div class="stepBox move-up">
+                    <h3>STEP 2</h3>
                     <p>answer the assesment</p>
                     <hr>
                     <p>Carefully go through each question and select you answer.</p>
                 </div>
                 <div class="stepBox move-up">
-                    <h3>STEP 2</h3>
+                    <h3>STEP 3</h3>
                     <p>submit the assessment</p>
                     <hr>
                     <p></p>
                     <p>Once you're done, Submit your response for processing and evaluation.</p>
                 </div>
                 <div class="stepBox move-up">
-                    <h3>STEP 3</h3>
+                    <h3>STEP 4</h3>
                     <p>see the result</p>
                     <hr>
                     <p>After submission, check your pesonalized result.</p>
@@ -1126,7 +1105,7 @@
     </div>
 <!--ministry carousel-->
     <div class="ministrySelection" id="ministrySelection">
-        <h1>JOIN OUR MINISTRY</h1>
+        <h1>CHURCH MINISTRIES</h1>
         <div class="slides-container" id="carousel">
             <!-- Last slide (clone) -->
             <div class="slide">
@@ -1345,40 +1324,33 @@
         <p><span id="page">1</span>/9</p>
         <button class="seeMoreBtn" onclick="window.location.href='ministry.html'">See More</button>
     </div>
-    <div class="aboutUs" id="aboutUs">
-        <h1 >ABOUT <hr><span>PERFIT</span></h1>
-        <p>PERFIT, is an AI-powered platform created to help Christian churches match volunteers to the right ministry roles. By considering each volunteer’s skills, passions, and availability, PERFIT ensures that service becomes more meaningful, effective, and fulfilling. Our goal is to make ministry coordination easier for church leaders while empowering volunteers to serve where they truly belong. With technology designed for the heart of the church, PERFIT builds stronger connections, reduces mismatches, and creates a thriving culture of service within the community.</p>
-    </div>
 <!--take assesment-->
     <div class="takeAssessment">
         <div class="bg"></div>
         <h1>Would you like to </h1>
         <h1>find your role?</h1>
-        <button onclick="next()">Take Assessment</button>
+        <button onclick="document.getElementById('overlay').style.display = 'block';">Take Assessment</button>
     <!--footer puzzle-->
         <div class="footer">
            <div class="puzzle" id="puzzle"></div>
         </div>
     </div>
+<!--selecte language-->
+   <div id="overlay" class="overlay">
+        <div class="showSelectLanguage">
+            <p>Choose your preferred language:</p>
+            <button class="l" onclick="sessionStorage.setItem('selectedLanguage', 'en'); window.location.href = 'assessment.html';">English</button>
+            <button class="l" onclick="sessionStorage.setItem('selectedLanguage', 'tl'); window.location.href = 'assessment.html';">Tagalog</button>
+            <button class="close" onclick="document.getElementById('overlay').style.display = 'none'">x</button>
+        </div>
+    </div>
     <script>
-    //language
-        let selectedLanguage = sessionStorage.getItem("selectedLanguage") || "en";
-        window.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("lang").value = selectedLanguage;
-            sessionStorage.setItem("selectedLanguage", selectedLanguage);
-            console.log("Selected Language: "+selectedLanguage);
-        });
-        function changeLanguage(lang){
-            selectedLanguage = lang;
-            sessionStorage.setItem("selectedLanguage", lang);
-            console.log("Selected Language: "+selectedLanguage);
-        }
     // nav
         function toggleMenu() {
             document.getElementById("navMenu").classList.toggle("open");
         }
     //scroll
-        const sections = document.querySelectorAll('#banner, #howItWorks, #ministrySelection, #aboutUs');
+        const sections = document.querySelectorAll('#banner, #howItWorks, #ministrySelection');
         const navLinks = document.querySelectorAll('.navBtn');
 
         const observer = new IntersectionObserver((entries) => {
@@ -1437,11 +1409,6 @@
                 carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
             }
         });
-        
-    //next
-        function next(){
-            window.location.href = "assessment.html";
-        }
     //animation
        const moveUp = document.querySelectorAll('.move-up');
         const upObserver = new IntersectionObserver((entries) => {
