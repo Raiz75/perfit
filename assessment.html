@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/icn-logo.png">
     <title>Perfit</title>
     <style>
         *{
@@ -36,7 +37,7 @@
         .stepContainer{
             display: flex;
             flex-direction: column;
-            align-items: center; 
+            align-items: center;
             justify-content: center;
             text-align: center;
             color: rgb(128, 65, 128);
@@ -125,6 +126,7 @@
             padding: 1rem;
             background-color: whitesmoke;
             box-shadow: 0 0 8px rgba(128, 128, 128, 0.3);
+            border: 1px solid rgba(128, 128, 128, 0.3);
             color:rgb(128, 65, 128);
         }
         .personalDetail span{
@@ -228,7 +230,7 @@
         .btnDivStuck{
             position: sticky;
             bottom: 0px;
-        } 
+        }
         .nextBtn{
             width: 200px;
             height: 60px;
@@ -252,7 +254,7 @@
             background-color: rgb(196, 171, 196);
             color: grey;
         }
-        
+
 
         /*footer*/
         .footer{
@@ -304,61 +306,64 @@
 
         /*puzzle*/
         .puzzle{
-            width: 40vw;
-            height: 40vw;
+            width: 25vw;
+            height: 25vw;
             position: absolute;
-            bottom:0vw;
-            left: 0vw;
-            background: radial-gradient(circle, rgb(128, 65, 128) 10%, transparent 70%);
+            bottom:3vw;
+            left: 3vw;
             z-index: -5;
         }
         .puzzle img{
-            width: 15vw;
-            height: 15vw;
+            width: 25vw;
+            height: auto;
         }
         .bottom{
             position: absolute;
-            bottom:5vw;
-            left:13vw;
+            bottom:0vw;
+            left: 0vw;
             opacity: 0;
-            filter: drop-shadow(0vw 0vw 3vw rgb(255, 255, 255));
+            filter: drop-shadow(0vw 0vw 0vw rgb(128, 65, 128));
             transform: scale(1.2);
+            margin:auto;
             transition: 1s ease-in-out;
         }
         .left{
             position: absolute;
-            top:13.1vw;
-            left:4.9vw;
+            bottom:0vw;
+            left: 0vw;
             opacity: 0;
-            filter: drop-shadow(0vw 0vw 3vw rgb(255, 255, 255));
+            filter: drop-shadow(0vw 0vw 0vw rgb(128, 65, 128));
             transform: scale(1.2);
             transition: 1s ease-in-out;
         }
         .right{
             position: absolute;
-            top:11.8vw;
-            right:5.1vw;
+            bottom:0vw;
+            left: 0vw;
             opacity: 0;
-            filter: drop-shadow(0vw 0vw 3vw rgb(255, 255, 255));
+            filter: drop-shadow(0vw 0vw 0vw rgb(128, 65, 128));
             transform: scale(1.2);
             transition: 1s ease-in-out;
         }
         .top{
             position: absolute;
-            top:5vw;
-            left:11.7vw;
+            bottom:0vw;
+            left: 0vw;
             opacity: 0;
-            filter: drop-shadow(0vw 0vw 3vw rgb(255, 255, 255));
+            filter: drop-shadow(0vw 0vw 0vw rgb(128, 65, 128));
             transform: scale(1.2);
             transition: 1s ease-in-out;
         }
+
+
+
         .showPiece{
             transform: scale(1);
-            filter: drop-shadow(0vw 0vw 0vw rgb(255, 255, 255));
+            filter: drop-shadow(0vw 0vw 0vw rgb(128, 65, 128));
             opacity: 1;
         }
         .highlightPiece{
-            filter: drop-shadow(0vw 0vw 5vw rgb(255, 255, 255));
+            filter: drop-shadow(0vw 0vw 3vw rgb(128, 65, 128));
         }
 
         /* Mobile Responsive Media Queries */
@@ -371,12 +376,12 @@
                 font-size: 8em;
                 margin-top: -25vw;
             }
-            
+
             .stepCounter {
                 width: 95%;
                 margin: auto ;
             }
-            
+
             .step {
                 width: 50px;
                 height: 50px;
@@ -405,27 +410,27 @@
                 padding: 1rem;
                 font-size: 3em;
             }
-            
+
             .questionText {
                 font-size: 1.3rem;
             }
-            
+
             .rateBox {
                 gap: 0.3rem;
             }
-            
+
             .rateBox button {
                 height: 45px;
                 min-height: 45px;
                 font-size: 0.9rem;
             }
-            
+
             .nextBtn {
                 width: 180px;
                 height: 50px;
                 font-size: 1.1rem;
             }
-            
+
             .footer {
                 height: 150px;
                 margin-top: 3rem;
@@ -449,12 +454,12 @@
                 font-size: 10em;
                 margin-top: -55vw;
             }
-            
+
             .stepCounter {
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
+
             .step {
                 width: 40px;
                 height: 40px;
@@ -465,7 +470,7 @@
                 width: 20%;
                 font-size: 3em;
             }
-            
+
             .line {
                 display: none;
             }
@@ -481,16 +486,16 @@
             .questionBox{
                 font-size: 3em;
             }
-            
+
             .questionText {
                 width: 100%;
             }
-            
+
             .rateBox {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 0.5em;
             }
-            
+
             .rateBox button {
                 height: 40px;
                 min-height: 40px;
@@ -499,13 +504,13 @@
             .progressBarDiv{
                 font-size: 3em;
             }
-            
+
             .nextBtn {
                 width: 150px;
                 height: 45px;
                 font-size: 3em;
             }
-            
+
             .box input[type="number"] {
                 height: 35px;
                 font-size: 1em;
@@ -514,7 +519,7 @@
             .responseDiv{
                 font-size: 3em;
             }
-            
+
             .footer {
                 height: 120px;
             }
@@ -661,10 +666,10 @@
 <!--footer puzzle-->
     <div class="footer">
         <div class="puzzle" id="puzzle">
-            <img class="bottom" id="bottom" src="img/y-bottom.png">
-            <img class="left" id="left" src="img/x-left.png">
-            <img class="right" id="right" src="img/x-right.png">
-            <img class="top" id="top" src="img/y-bottom.png">
+            <img class="top" id="top" src="img/pzl-top.png">
+            <img class="right" id="right" src="img/pzl-right.png">
+            <img class="left" id="left" src="img/pzl-left.png">
+            <img class="bottom" id="bottom" src="img/pzl-bottom.png">
          </div>
      </div>
 <!--script-->
@@ -1077,7 +1082,7 @@
             }
         };
 
-        
+
         let interestAndPassionProfilingScore = [0,0,0,0,0,0];
         function showMinistryCategory() {
             document.getElementById('step2').classList.add("disable");
@@ -1113,7 +1118,7 @@
                     showQuestions("ministryCategory", interestAndPassionProfiling, selectedLanguage, interestAndPassionProfilingScore, "step3");
                 }, 3500);
         }
-    
+
     //filter
         const ministries = [
         //core ministry/
@@ -1154,7 +1159,7 @@
         //find the highest category scorer(can be multiple)
             for (let i = 0; i < ranks.length; i++) {
                 for (let j = i+1; j < ranks.length; j++) {
-                    if (ranks[i] < ranks[j]) { 
+                    if (ranks[i] < ranks[j]) {
                         // Swap elements
                         const temp = ranks[i];
                         ranks[i] = ranks[j];
@@ -1702,7 +1707,7 @@
                     document.getElementById("step3").style.display = "none";
                     document.getElementById("step4").style.display = "block";
                     document.getElementById("step4").classList.add("disable");
-                    document.getElementById('ministrySpecific').style.display = "block"; 
+                    document.getElementById('ministrySpecific').style.display = "block";
                     document.getElementById('review').classList.add("disable");
                     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     console.log("");
@@ -1733,7 +1738,7 @@
                 questionText.innerText = qText;
                 questionBox.dataset.qidx = i;
                 questionBox.dataset.qkey = Object.keys(questionSet[lang])[i]; // for language switching
-                
+
                 // Set rateBox button texts immediately according to current language
                 clone.querySelectorAll('.rateBox button').forEach(btn => {
                     const translateKey = btn.getAttribute('translate');
@@ -1870,7 +1875,7 @@
             let least = "";
             for (let i = 0; i < behavioralProfilingScore.length - 1; i++) {
                 for (let j = i + 1; j < behavioralProfilingScore.length; j++) {
-                    if (Number(behavioralProfilingScore[i]) < Number(behavioralProfilingScore[j])) { 
+                    if (Number(behavioralProfilingScore[i]) < Number(behavioralProfilingScore[j])) {
                         // Swap scores
                         const temp = behavioralProfilingScore[i];
                         behavioralProfilingScore[i] = behavioralProfilingScore[j];
@@ -1898,26 +1903,26 @@
             message += `
                 \nlist: ${topList}\n
                 \nleast ministry:${least}\n
-                Your task is to give interpretation, focusing on the user's divine calling and how ministries align with the user's strengths and purpose. 
+                Your task is to give interpretation, focusing on the user's divine calling and how ministries align with the user's strengths and purpose.
                 Include a spiritual connection between the top 3 ministries, emphasizing their complementary roles in the user's faith journey.
                 display the top 1 with this format:
-            `; 
+            `;
             if(selectedLanguage=="en"){
                 message +=`\n\n
                     <h1 style="color:rgb(128, 65, 128);text-align: center;">CALLING AND SERVICE PROFILE</h1>
                     \n\n
                     <h2 style="color:rgb(128, 65, 128);">Best Fit: [top1 ministry] Ministry</h2>
-                    //note: make this response 300 words minimum, use english language
-                    Provide a brief explanation of why this ministry is the user's top fit. 
-                    Highlight how this ministry aligns with the user's natural gifts, strengths, and passion. 
-                    Explain that this fit is part of their divine calling, as though this ministry was made for them. 
+                    (make this response atleast 100 words)
+                    Provide a brief explanation of why this ministry is the user's top fit.
+                    Highlight how this ministry aligns with the user's natural gifts, strengths, and passion.
+                    Explain that this fit is part of their divine calling, as though this ministry was made for them.
                     Emphasize the alignment between their purpose and this ministry's mission.
                 `;
 
                 if(ministryInterest.length>=2){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Top 2 Identified Fit: [top2 ministry] Ministry</h2>
-                        //note: make this response 200 words minimum  
+                        (make this response atleast 100 words)
                         Provide a brief explanation of why this ministry is the user's second-best fit.
                         Focus on how it complements the bestfit, mention its connection.
                         Again, explain that this ministry feels like a divine part of their journey,
@@ -1928,7 +1933,7 @@
                 if(ministryInterest.length>=3){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Top 3 Identified Fit: [top3 ministry] Ministry</h2>
-                        //note: make this response 200 words minimum  
+                        (make this response atleast 100 words)
                         Provide a brief explanation of why this ministry is the user's third-best fit.
                         Focus on how it complements their spiritual hobby and quirks.
                         Again, explain that this ministry feels like a divine part of their journey,
@@ -1938,11 +1943,11 @@
 
                 if(ministryInterest.length>=4){
                     message +=`\n\n
-                        <h2 style="color:rgb(128, 65, 128);">Least Aligned Ministry: [Ministry] Ministry</h2> 
-                        //note: make this response 150 words minimum  
-                        Provide a thoughtful and compassionate reflection on why this ministry may have ranked lowest for the user.  
-                        Emphasize that every ministry plays a vital role in the body of Christ, and a low score does not mean disqualification—it simply highlights a lesser alignment *at this moment*.  
-                        Encourage the user not to see this as a weakness but as a potential area of spiritual growth.  
+                        <h2 style="color:rgb(128, 65, 128);">Least Aligned Ministry: [Ministry] Ministry</h2>
+                        (make this response atleast 100 words)
+                        Provide a thoughtful and compassionate reflection on why this ministry may have ranked lowest for the user.
+                        Emphasize that every ministry plays a vital role in the body of Christ, and a low score does not mean disqualification—it simply highlights a lesser alignment *at this moment*.
+                        Encourage the user not to see this as a weakness but as a potential area of spiritual growth.
                         End with a note of affirmation: they are uniquely made, and every ministry—strong or weak—can be a stepping stone in their divine path.
                     `;
                 }
@@ -1950,31 +1955,31 @@
                 if(ministryInterest.length>=2){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Spiritual Relationship Between Top Ministries</h2>
-                        //note: make this response 200 words minimum
-                        Explain how these three ministries are connected and complement each other in a spiritual sense. 
-                        Focus on how their roles support the individual's growth in faith, build on themes like service, prayer, worship, or leadership, and help fulfill the greater mission of the church. 
+                        (make this response atleast 100 words)
+                        Explain how these three ministries are connected and complement each other in a spiritual sense.
+                        Focus on how their roles support the individual's growth in faith, build on themes like service, prayer, worship, or leadership, and help fulfill the greater mission of the church.
                         Illustrate how the combination of these ministries enhances the user’s role in God's work.
                     `;
                 }
 
                 message +=`\n\n
                     <h2 style="color:rgb(128, 65, 128);">Growth Opportunities:</h2>
-                    //note: make this response 150 words minimum
-                    Show how they can grow into their role. Include spiritual, emotional, or skill-based development suggestions. 
-                    
+                    (make this response atleast 100 words)
+                    Show how they can grow into their role. Include spiritual, emotional, or skill-based development suggestions.
+
                     <h2 style="color:rgb(128, 65, 128);">Compatibility with Team Dynamics:</h2>
-                    //note: make this response 150 words minimum
-                    Give an insight like "You'd thrive best in teams that are..." (ex. collaborative, structured, spontaneous, etc.) 
-                    Help them visualize what kind of team culture suits them base on their top ministry. 
-                    
+                    (make this response atleast 100 words)
+                    Give an insight like "You'd thrive best in teams that are..." (ex. collaborative, structured, spontaneous, etc.)
+                    Help them visualize what kind of team culture suits them base on their top ministry.
+
                     <h2 style="color:rgb(128, 65, 128);">Ministry Pathway / Journey Map:</h2>
-                    //note: Put the path way in bullets
+                    (make this response atleast 100 words)
                     make a possible serving pathway, Help them think long-term, not just one-time serving.
                     example:
                     - start as an assisstant
                     - learn from your senior
                     - lead your juniors
-                    - grow into a leader role. 
+                    - grow into a leader role.
                 `;
             }
 
@@ -1983,20 +1988,20 @@
                     <h1 style="color:rgb(128, 65, 128);text-align: center;">BUOD NG RESULTA</h1>
                     \n\n
                     <h2 style="color:rgb(128, 65, 128);">Pinakatugmang Ministeryo: [top1 ministry] Ministry</h2>
-                    //tandaan: gawin ang tugon na ito na may hindi bababa sa 300 salita, gumamit ng wikang Filipino  
-                    Magbigay ng maikling paliwanag kung bakit ito ang pinakamahusay na ministeryo para sa gumagamit.  
-                    Ipakita kung paano ito tumutugma sa kanilang likas na kakayahan, kalakasan, at passion.  
-                    Ipaliwanag na ang pagkakatugmang ito ay bahagi ng kanilang banal na tawag, na tila ginawa talaga para sa kanila ang ministeryong ito.  
+                    (Gawin itong tugon na may hindi bababa sa 100 salita.)
+                    Magbigay ng maikling paliwanag kung bakit ito ang pinakamahusay na ministeryo para sa gumagamit.
+                    Ipakita kung paano ito tumutugma sa kanilang likas na kakayahan, kalakasan, at passion.
+                    Ipaliwanag na ang pagkakatugmang ito ay bahagi ng kanilang banal na tawag, na tila ginawa talaga para sa kanila ang ministeryong ito.
                     Bigyang-diin ang pagkakatugma ng kanilang layunin at misyon ng ministeryong ito.
                 `;
 
                 if(ministryInterest.length>=2){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Top 2 Tugmang Ministeryo: [top2 ministry] Ministry</h2>
-                        //tandaan: gawin ang tugon na ito na may hindi bababa sa 200 salita  
-                        Magbigay ng maikling paliwanag kung bakit ito ang pangalawang pinakamahusay na ministeryo para sa gumagamit.  
-                        Ituon sa kung paano nito pinupunan ang pangunahing ministeryo, at banggitin ang koneksyon nito.  
-                        Muli, ipaliwanag na ang ministeryong ito ay tila bahagi rin ng kanilang banal na paglalakbay,  
+                        (Gawin itong tugon na may hindi bababa sa 100 salita.)
+                        Magbigay ng maikling paliwanag kung bakit ito ang pangalawang pinakamahusay na ministeryo para sa gumagamit.
+                        Ituon sa kung paano nito pinupunan ang pangunahing ministeryo, at banggitin ang koneksyon nito.
+                        Muli, ipaliwanag na ang ministeryong ito ay tila bahagi rin ng kanilang banal na paglalakbay,
                         isang bagay na kaayon ng kanilang natatanging kaloob at layunin sa buhay.
                     `;
                 }
@@ -2004,21 +2009,21 @@
                 if(ministryInterest.length>=3){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Top 3 Tugmang Ministeryo: [top3 ministry] Ministry</h2>
-                        //tandaan: gawin ang tugon na ito na may hindi bababa sa 200 salita  
-                        Magbigay ng maikling paliwanag kung bakit ito ang pangatlong pinakamahusay na ministeryo para sa gumagamit.  
-                        Ituon sa kung paano ito umaakma sa kanilang espirituwal na hilig at mga kakaibang ugali.  
-                        Muli, ipaliwanag na ang ministeryong ito ay tila bahagi rin ng kanilang banal na paglalakbay,  
+                        (Gawin itong tugon na may hindi bababa sa 100 salita.)
+                        Magbigay ng maikling paliwanag kung bakit ito ang pangatlong pinakamahusay na ministeryo para sa gumagamit.
+                        Ituon sa kung paano ito umaakma sa kanilang espirituwal na hilig at mga kakaibang ugali.
+                        Muli, ipaliwanag na ang ministeryong ito ay tila bahagi rin ng kanilang banal na paglalakbay,
                         isang bagay na kaayon ng kanilang natatanging kaloob at layunin sa buhay.
                     `;
                 }
 
                 if(ministryInterest.length>=4){
                     message +=`\n\n
-                        <h2 style="color:rgb(128, 65, 128);">Pinakamababang Pagkakatugmang Ministeryo: [Ministry] Ministry</h2> 
-                        //tandaan: gawin ang tugon na ito na may hindi bababa sa 150 salita  
-                        Magbigay ng maingat at may malasakit na paliwanag kung bakit maaaring ito ang pinakamababang ranggo para sa gumagamit.  
-                        Bigyang-diin na bawat ministeryo ay mahalagang bahagi ng katawan ni Cristo, at ang mababang marka ay hindi nangangahulugang hindi sila karapat-dapat—ito lamang ay nagpapakita ng mas mababang pagkakatugma *sa kasalukuyan*.  
-                        Hikayatin ang gumagamit na huwag itong ituring na kahinaan kundi bilang isang posibleng lugar para sa espirituwal na paglago.  
+                        <h2 style="color:rgb(128, 65, 128);">Pinakamababang Pagkakatugmang Ministeryo: [Ministry] Ministry</h2>
+                        (Gawin itong tugon na may hindi bababa sa 100 salita.)
+                        Magbigay ng maingat at may malasakit na paliwanag kung bakit maaaring ito ang pinakamababang ranggo para sa gumagamit.
+                        Bigyang-diin na bawat ministeryo ay mahalagang bahagi ng katawan ni Cristo, at ang mababang marka ay hindi nangangahulugang hindi sila karapat-dapat—ito lamang ay nagpapakita ng mas mababang pagkakatugma *sa kasalukuyan*.
+                        Hikayatin ang gumagamit na huwag itong ituring na kahinaan kundi bilang isang posibleng lugar para sa espirituwal na paglago.
                         Tapusin sa isang pahayag ng pagpapatibay: sila ay natatanging nilikha, at bawat ministeryo—malakas man o mahina—ay maaaring maging hakbang patungo sa kanilang banal na landas.
                     `;
                 }
@@ -2026,31 +2031,31 @@
                 if(ministryInterest.length>=2){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Espirituwal na Ugnayan ng Nangungunang mga Ministeryo</h2>
-                        //tandaan: gawin ang tugon na ito na may hindi bababa sa 200 salita  
-                        Ipaliwanag kung paano magkakaugnay at nagkukumpleto ang tatlong ministeryong ito sa espirituwal na pananaw.  
-                        Ituon kung paano ang kanilang mga papel ay sumusuporta sa paglago ng pananampalataya ng gumagamit, binibigyang-diin ang mga tema gaya ng paglilingkod, panalangin, pagsamba, o pamumuno, at kung paano nila natutulungan na maisakatuparan ang mas malawak na misyon ng simbahan.  
+                        (Gawin itong tugon na may hindi bababa sa 100 salita.)
+                        Ipaliwanag kung paano magkakaugnay at nagkukumpleto ang tatlong ministeryong ito sa espirituwal na pananaw.
+                        Ituon kung paano ang kanilang mga papel ay sumusuporta sa paglago ng pananampalataya ng gumagamit, binibigyang-diin ang mga tema gaya ng paglilingkod, panalangin, pagsamba, o pamumuno, at kung paano nila natutulungan na maisakatuparan ang mas malawak na misyon ng simbahan.
                         Ilarawan kung paano pinapahusay ng kombinasyong ito ng mga ministeryo ang papel ng gumagamit sa gawain ng Diyos.
                     `;
                 }
 
                 message +=`\n\n
                     <h2 style="color:rgb(128, 65, 128);">Mga Pagkakataon para sa Paglago:</h2>
-                    //tandaan: gawin ang tugon na ito na may hindi bababa sa 150 salita  
-                    Ipakita kung paano sila maaaring lumago sa kanilang papel. Isama ang espirituwal, emosyonal, o pag-unlad ng kasanayan. 
-                    
+                    (Gawin itong tugon na may hindi bababa sa 100 salita.)
+                    Ipakita kung paano sila maaaring lumago sa kanilang papel. Isama ang espirituwal, emosyonal, o pag-unlad ng kasanayan.
+
                     <h2 style="color:rgb(128, 65, 128);">Pagiging Akma sa Dinamika ng Grupo:</h2>
-                    //tandaan: gawin ang tugon na ito na may hindi bababa sa 150 salita  
-                    Magbigay ng pananaw gaya ng "Mas uunlad ka sa mga grupong ganito..." (hal. kolaboratibo, may istruktura, kusang-loob, atbp.)  
-                    Tulungan silang mailarawan kung anong uri ng kultura ng grupo ang babagay sa kanila batay sa kanilang pangunahing ministeryo. 
-                    
+                    (Gawin itong tugon na may hindi bababa sa 100 salita.)
+                    Magbigay ng pananaw gaya ng "Mas uunlad ka sa mga grupong ganito..." (hal. kolaboratibo, may istruktura, kusang-loob, atbp.)
+                    Tulungan silang mailarawan kung anong uri ng kultura ng grupo ang babagay sa kanila batay sa kanilang pangunahing ministeryo.
+
                     <h2 style="color:rgb(128, 65, 128);">Landas o Journey Map sa Ministeryo:</h2>
-                    //tandaan: ilagay ang landas sa bullets  
-                    Gumawa ng posibleng landas ng paglilingkod, tulungan silang mag-isip ng pangmatagalan, hindi lang panandalian.  
-                    halimbawa:  
-                    - magsimula bilang isang katulong  
-                    - matuto mula sa nakatatanda  
-                    - manguna sa mga nakababatang kasamahan  
-                    - lumago tungo sa isang posisyon ng pamumuno. 
+                    (Gawin itong tugon na may hindi bababa sa 100 salita.)
+                    Gumawa ng posibleng landas ng paglilingkod, tulungan silang mag-isip ng pangmatagalan, hindi lang panandalian.
+                    halimbawa:
+                    - magsimula bilang isang katulong
+                    - matuto mula sa nakatatanda
+                    - manguna sa mga nakababatang kasamahan
+                    - lumago tungo sa isang posisyon ng pamumuno.
                 `;
             }
             try {
