@@ -2097,8 +2097,12 @@
             } catch (error) {
                 stopThinkingAnimation();
                 console.error("Error:", error);
+                let msg = error.message.includes("rate_limit_exceeded")
+                    ? "Please try again later."
+                    : error.message;
                 document.getElementById("responseDiv").innerHTML =
-                    `<span style="color:red;">Error: ${error.message}</span>`;
+                    `<span style="color:red;">Error: ${msg}</span>`;
+                
             }
         }
 
