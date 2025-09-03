@@ -289,25 +289,6 @@
             transition: 0.5s ease-in-out;
         }
 
-        .card:nth-child(1) {
-            background: url('img/el1.jpg') center/cover no-repeat, rgba(255,255,255,0.5);
-        }
-
-        .card:nth-child(2) {
-            background: url('img/pzl-top.png') center/cover no-repeat, rgba(255,255,255,0.5);
-        }
-
-        .card:nth-child(3) {
-            background: url('img/pzl-left.png') center/cover no-repeat, rgba(255,255,255,0.5);
-        }
-
-        .card:nth-child(4) {
-            background: url('img/icn-grow.png') center/cover no-repeat, rgba(255,255,255,0.5);
-        }
-        .card:nth-child(5) {
-            background: url('img/icn-find.png') center/cover no-repeat, rgba(255,255,255,0.5);
-        }
-
         .card:hover {
             box-shadow: 0px 1.2vw 1.2vw rgb(51, 26, 51);
             transform: translateY(-5px);
@@ -544,7 +525,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             border: 3px solid rgb(128, 65, 128);
-            width: 500px;
+            width: 25%;
             height: 300px;
             background: white;
             padding: 2rem;
@@ -798,7 +779,7 @@
                 top:0px;
             }
             .logo{
-                width: 10%;
+                width: 100px;
             }
 
             .hamburger {
@@ -819,6 +800,7 @@
                 align-items: center;
                 z-index: 1000;
             }
+
             .selectedNav{
                 border: none;
                 border-left: 5px solid rgb(128,65,128);
@@ -837,10 +819,12 @@
                 border-left: 5px solid transparent;
             }
             .takeAssessmentTop{
-                width: 90%;
-                height: 35px;
+                width: 50%;
+                height: 50px;
             }
-            
+            .showSelectLanguage {
+                width: 50%;
+            }
         }
 
         /* Mobile styles - 480px and below */
@@ -932,10 +916,10 @@
             
             .lBtn,
             .rBtn {
-                width: 18vw;
-                height: 18vw;
+                width: 15vw;
+                height: 15vw;
                 font-size: 6vw;
-                top:88%;
+                top:85%;
             }
             .seeMoreBtn{
                 margin-bottom: 15px;
@@ -971,7 +955,7 @@
                 top:0px;
             }
             .logo{
-                width: 15%;
+                width: 100px;
             }
 
             .hamburger {
@@ -986,7 +970,7 @@
                 left: 0;
                 width: 100%;
                 background: white;
-                border-top: 2px solid rgb(128,65,128);
+                border-bottom: 2px solid rgb(128,65,128);
                 padding: 10px 0;
                 gap: 7px;
                 align-items: center;
@@ -1008,8 +992,8 @@
                 height: 30px;
             }
             .takeAssessmentTop{
-                width: 90%;
-                height: 35px;
+                width: 70%;
+                height: 50px;
             }
             .aboutUs {
                 flex-direction: column;
@@ -1035,6 +1019,9 @@
             }
             .aboutUs span {
                 font-size: 8vw;
+            }
+            .showSelectLanguage {
+                width: 80%;
             }
         }
     </style>
