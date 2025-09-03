@@ -912,6 +912,7 @@
                 }, 3500);
             }
         };
+    //skills questiion
         const skillProfilingQuestions = {
             en: {
                 q1: "I am confident in my ability to sing with proper pitch and rhythm.",
@@ -998,9 +999,6 @@
                 q40: "Nais kong ibahagi ang aking kaalaman tungkol sa Kasulatan sa mga gawain ng simbahan."
             }
         };
-
-
-
         let skillProfilingScore = [0,0,0,0,0,0,0,0];
         let skill=[];
         function skillSubmit(){
@@ -1019,7 +1017,7 @@
             console.log(">> Skill Profile");
             showQuestions('skillQuestion', skillProfilingQuestions, selectedLanguage, skillProfilingScore, 'step2');
         }
-
+    //interest and passion questions(category ministry filter)
         const interestAndPassionProfiling = {
             en: {
                 q1: "I enjoy helping others learn and grow a relationship with God.",
@@ -1124,7 +1122,7 @@
                 }, 3500);
         }
 
-    //filter
+    //available ministries
         const ministries = [
         //core ministry/
             ["Worship", //"Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)",
@@ -1279,7 +1277,7 @@
             console.log(ministryInterest.join(", "));
             showMinistrySpecific();
         }
-
+    //behavioral questions(specific ministry filter)
         const ministryQuestions = [
             //coreMinistry
             {
