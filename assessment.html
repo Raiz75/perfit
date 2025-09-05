@@ -219,6 +219,16 @@
             border-radius: 12px;
             display: none;
         }
+        .topMinistryChart{
+            height: 1;
+            width:3;
+            margin: 20px 300px;
+            border-radius: 12px;
+            background-color: rgb(255, 223, 255);
+            padding: 30px;
+            box-shadow: 0 0 8px rgba(51, 26, 51, 0.3);
+            display: none;
+        }
 
         /*next*/
         .btnDiv{
@@ -286,9 +296,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            border: 3px solid rgb(128, 65, 128);
+            border: 3px solid red;
             width: 500px;
-            height: 300px;
+            height: auto;
             background: white;
             padding: 2rem;
             text-align: center;
@@ -356,8 +366,6 @@
             transition: 1s ease-in-out;
         }
 
-
-
         .showPiece{
             transform: scale(1);
             filter: drop-shadow(0vw 0vw 0vw rgb(128, 65, 128));
@@ -367,17 +375,8 @@
             filter: drop-shadow(0vw 0vw 3vw rgb(128, 65, 128));
         }
 
-
-        /* test  */
-        .topMinistryChart{
-            width:80%;
-            height: 500px;
-            border: 1px solid red;
-            padding: 10px;
-        }
-
         /* Mobile Responsive Media Queries */
-        @media (max-width: 1023px) {
+        @media (max-width: 1024px) {
             .banner{
                 height: 25vh;
                 margin:0px;
@@ -389,7 +388,7 @@
 
             .stepCounter {
                 width: 95%;
-                margin: auto ;
+                margin: 100px auto;
             }
 
             .step {
@@ -399,7 +398,7 @@
             }
             .stepContainer{
                 width: 20%;
-                font-size: 3em;
+                font-size: 2em;
             }
             .line {
                 height: 3px;
@@ -408,17 +407,17 @@
 
             .instruction{
                 margin: auto;
-                font-size: 2em;
+                font-size: 1.9em;
             }
             .progressBarDiv{
                 margin: 10px auto;
-                font-size: 3em;
+                font-size: 2em;
             }
 
             .personalDetail {
                 width: 95%;
                 padding: 1rem;
-                font-size: 3em;
+                font-size: 1.9em;
             }
 
             .questionText {
@@ -451,8 +450,14 @@
                 padding: 1.5rem;
                 font-size: .98rem;
             }
+            .showAlert button{
+                font-size: .98rem;
+            }
             .responseDiv{
-                font-size: 2.5em;
+                font-size: 2em;
+            }
+            .topMinistryChart{
+                display: none;
             }
         }
 
@@ -528,6 +533,10 @@
 
             .responseDiv{
                 font-size: 3em;
+            }
+
+            .topMinistryChart{
+                display: none;
             }
 
             .footer {
@@ -646,7 +655,7 @@
    <div id="overlay" class="overlay">
         <div class="showAlert">
             <p id="alertMessage">Alert message here</p>
-            <button onclick="window.location.href = 'index.html'" translate="a1">CLOSE</button>
+            <button onclick="window.location.href = 'index.html'" translate="a1" id="a1">HOME</button>
         </div>
     </div>
 <!--question box template-->
@@ -654,12 +663,12 @@
         <div class="questionBox">
             <p class="questionText">//test question//</p>
             <div class="rateBox">
-                <button value=3 translate="s1">Strongly Agree (6)</button>
-                <button value=2 translate="s2">Agree (5)</button>
-                <button value=1 translate="s3">Slightly Agree (4)</button>
-                <button value=-1 translate="s4">Slightly Disagree (3)</button>
-                <button value=-2 translate="s5">Disagree (2)</button>
-                <button value=-3 translate="s6">Strongly Disagree (1)</button>
+                <button value=6 translate="s1">Strongly Agree (6)</button>
+                <button value=5 translate="s2">Agree (5)</button>
+                <button value=4 translate="s3">Slightly Agree (4)</button>
+                <button value=3 translate="s4">Slightly Disagree (3)</button>
+                <button value=2 translate="s5">Disagree (2)</button>
+                <button value=1 translate="s6">Strongly Disagree (1)</button>
             </div>
         </div>
     </template>
@@ -669,27 +678,7 @@
             <h1 style="color:rgb(128, 65, 128);text-align: center;" translate="r1">CALLING AND SERVICE PROFILE</h1>
             <div id="thinking" style="display: none; font-weight: bold; font-size: 1.2em; font-family: sans-serif;">Analyzing your gifts and calling<span id="dots">.</span></div>
         </div>
-        <canvas class="topMinistryChart" id="topMinistryChart"></canvas>
-        <!-- <div class="testDiv">
-        <p>
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-            rkoewgijdnbkflseijgodnklmeoijgfdnkbleojgds dasfoigjkbnfgsbjlkfsajbdkojifkjnsfg
-        </p>
-    </div> -->
+        <canvas class="topMinistryChart" id="topMinistryChart" ></canvas>
         <div class="part2" id="part2"></div>
     </div>
 <!--next button-->
@@ -784,7 +773,7 @@
                 ph2: "Skill Profiling Progress",
                 ph3: "Interest and Passion Profiling Progress",
                 ph4: "Behavioral Profiling Progress",
-                a1: "CLOSE",
+                a1: "RETURN TO HOME PAGE",
                 s1: "Strongly Agree (6)",
                 s2: "Agree (5)",
                 s3: "Slightly Agree (4)",
@@ -834,7 +823,7 @@
                 ph2: "Progreso ng Pagsusuri ng Kasanayan",
                 ph3: "Progreso ng Pagsusuri ng Interes at Pasyon",
                 ph4: "Progreso ng Pagsusuri ng kilos",
-                a1: "ISARA",
+                a1: "BUMALIK SA HOME PAGE",
                 s1: "Lubos na Sumasang-ayon (6)",
                 s2: "Sumasang-ayon (5)",
                 s3: "Bahagyang Sumasang-ayon (4)",
@@ -866,8 +855,6 @@
                 document.getElementById('genderBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
                 let blink = 0;
                 const blinkInterval = setInterval(() => {
-                    document.getElementById('genderBoxttl').style.color = (blink % 2 === 0) ? "red" : "grey";
-                    document.getElementById('genderBoxttl').style.fontSize = (blink % 2 === 0) ? "1em" : ".8em";
                     document.getElementById('genderBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
                     blink++;
                     if (blink > 5) clearInterval(blinkInterval);
@@ -876,8 +863,6 @@
                 document.getElementById('ageBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
                 let blink = 0;
                 const blinkInterval = setInterval(() => {
-                    document.getElementById('ageBoxttl').style.color = (blink % 2 === 0) ? "red" : "grey";
-                    document.getElementById('ageBoxttl').style.fontSize = (blink % 2 === 0) ? "1em" : ".8em";
                     document.getElementById('ageBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
                     document.getElementById('ageInput').value = '';
                     blink++;
@@ -887,8 +872,6 @@
                 document.getElementById('statusBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
                 let blink = 0;
                 const blinkInterval = setInterval(() => {
-                    document.getElementById('statusBoxttl').style.color = (blink % 2 === 0) ? "red" : "grey";
-                    document.getElementById('statusBoxttl').style.fontSize = (blink % 2 === 0) ? "1em" : ".8em";
                     document.getElementById('statusBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
                     blink++;
                     if (blink > 5) clearInterval(blinkInterval);
@@ -897,8 +880,6 @@
                 document.getElementById('baptizedBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
                 let blink = 0;
                 const blinkInterval = setInterval(() => {
-                    document.getElementById('baptizedBoxttl').style.color = (blink % 2 === 0) ? "red" : "grey";
-                    document.getElementById('baptizedBoxttl').style.fontSize = (blink % 2 === 0) ? "1em" : ".8em";
                     document.getElementById('baptizedBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
                     blink++;
                     if (blink > 5) clearInterval(blinkInterval);
@@ -907,8 +888,6 @@
                 document.getElementById('timeInFaithBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
                 let blink = 0;
                 const blinkInterval = setInterval(() => {
-                    document.getElementById('timeInFaithBoxttl').style.color = (blink % 2 === 0) ? "red" : "grey";
-                    document.getElementById('timeInFaithBoxttl').style.fontSize = (blink % 2 === 0) ? "1em" : ".8em";
                     document.getElementById('timeInFaithBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
                     blink++;
                     if (blink > 5) clearInterval(blinkInterval);
@@ -1159,7 +1138,8 @@
     //available ministries
         const ministries = [
         //core ministry/
-            ["Worship", //"Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)",
+            [//"Worship", 
+            "Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)",
             "Prayer","Preaching","Discipleship","Children's",
             "Youth","Young Adults","Men's","Women's","Family Or Couples"],
         //support ministry
@@ -1314,16 +1294,16 @@
     //behavioral questions(specific ministry filter)
         const ministryQuestions = [
             //coreMinistry
-            {
-                "ministry": "Worship",
-                "questions": [
-                    { en: "Being in a space filled with music, rehearsals, and live worship excites me.", tl: "Nasasabik ako sa lugar na puno ng musika, rehearsals, at live worship." },
-                    { en: "I am interested in leading others through singing, playing instruments, or creative expression.", tl: "Interesado akong manguna sa iba sa pamamagitan ng pagkanta, pagtugtog ng instrumento, o creative na pagpapahayag." },
-                    { en: "I have the musical talent, stage presence, or teamwork needed for worship ministry.", tl: "May kakayahan ako sa musika, stage presence, o teamwork na kailangan para sa worship ministry." },
-                    { en: "Serving in worship fits well with my personality and interests.", tl: "Ang paglilingkod sa worship ay bagay sa aking personalidad at interes." },
-                    { en: "I enjoy using my musical or creative talents to lead others in worship.", tl: "Nasasaya akong gamitin ang aking musikal o malikhaing talento upang pangunahan ang iba sa pagsamba." }
-                ]
-            },
+            // {
+            //     "ministry": "Worship",
+            //     "questions": [
+            //         { en: "Being in a space filled with music, rehearsals, and live worship excites me.", tl: "Nasasabik ako sa lugar na puno ng musika, rehearsals, at live worship." },
+            //         { en: "I am interested in leading others through singing, playing instruments, or creative expression.", tl: "Interesado akong manguna sa iba sa pamamagitan ng pagkanta, pagtugtog ng instrumento, o creative na pagpapahayag." },
+            //         { en: "I have the musical talent, stage presence, or teamwork needed for worship ministry.", tl: "May kakayahan ako sa musika, stage presence, o teamwork na kailangan para sa worship ministry." },
+            //         { en: "Serving in worship fits well with my personality and interests.", tl: "Ang paglilingkod sa worship ay bagay sa aking personalidad at interes." },
+            //         { en: "I enjoy using my musical or creative talents to lead others in worship.", tl: "Nasasaya akong gamitin ang aking musikal o malikhaing talento upang pangunahan ang iba sa pagsamba." }
+            //     ]
+            // },
             {
                 "ministry": "Worship(Singing)",
                 "questions": [
@@ -1879,6 +1859,8 @@
         }
 
         //AI interpretation
+        let behavioralProfilingScoreUnranked = [];
+        let ministryInterestUnranked = [];
         async function interpret(){
             document.getElementById('step4').classList.add("disable");
             document.getElementById('review').classList.add("disable");
@@ -1900,14 +1882,18 @@
                     document.getElementById('responseDiv').scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 3500);
             startThinkingAnimation();
-
-
-        // build ranking list
+        
             let message = `
                 You are an AI assistant for the Perfit: An Ai System for matching skills in church ministry.
                 A user has completed a test, and their scores are as follows:
 
             `;
+            //record unrank for display
+            for(let i = 0; i < behavioralProfilingScore.length; i++){
+                behavioralProfilingScoreUnranked[i]=behavioralProfilingScore[i];
+                ministryInterestUnranked[i]=ministryInterest[i];
+            }
+            // build ranking list
             let topList = "";
             let least = "";
             for (let i = 0; i < behavioralProfilingScore.length - 1; i++) {
@@ -1936,7 +1922,6 @@
             }
             console.log(topList);
             console.log("Lowest: "+least);
-            console.log(ministryInterest.length);
             message += `
                 \nlist: ${topList}\n
                 \nleast ministry:${least}\n
@@ -1988,7 +1973,7 @@
                         End with a note of affirmation: they are uniquely made, and every ministry—strong or weak—can be a stepping stone in their divine path.
                     `;
                 }
-                message +=`<p>cutHere</p>`;
+                message +=`\n<p>cutHere</p>`;
                 if(ministryInterest.length>=2){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Spiritual Relationship Between Top Ministries</h2>
@@ -2064,7 +2049,7 @@
                         Tapusin sa isang pahayag ng pagpapatibay: sila ay natatanging nilikha, at bawat ministeryo—malakas man o mahina—ay maaaring maging hakbang patungo sa kanilang banal na landas.
                     `;
                 }
-                message +=`<p>cutHere</p>`;
+                message +=`\n<p>cutHere</p>`;
                 if(ministryInterest.length>=2){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Espirituwal na Ugnayan ng Nangungunang mga Ministeryo</h2>
@@ -2130,7 +2115,6 @@
                 // Replace line breaks with <br> for HTML display
                 raw = raw.replace(/\n/g, '<br>');
 
-
                 // cut the string
                 let keyword = "<p>cutHere</p>";
                 let index = raw.indexOf(keyword);
@@ -2144,13 +2128,9 @@
                 }
 
                 document.getElementById("part1").innerHTML = part1;
-                console.log("Part 1:", part1);
-
                 document.getElementById("part2").innerHTML = part2;
-                console.log("Part 2:", part2);
-
-                // document.getElementById("responseDiv").innerHTML = raw;
             } catch (error) {
+                document.getElementById("step5").classList.remove("disable");
                 stopThinkingAnimation();
                 console.error("Error:", error);
                 let msg = error.message.includes("rate_limit_exceeded")
@@ -2163,28 +2143,36 @@
         }
 
         //charts
-        const ctx = document.getElementById('topMinistryChart').getContext('2d');
-        const topMinistryChart = new Chart(ctx, {
-        type: 'bar', // change to 'line', 'pie', 'doughnut', etc.
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May'],
-            datasets: [{
-            label: 'Sales',
-            data: [12, 19, 3, 5, 2],
-            borderWidth: 3,
-            backgroundColor: 'rgb(128, 65, 128, .5)',
-            borderColor: 'rgb(128, 65, 128)',
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-            y: {
-                beginAtZero: true
+        function displayChart(){
+            if (window.matchMedia("(max-width: 1023px)").matches) {
+                Chart.defaults.font.size = 20;
+            } else {
+                Chart.defaults.font.size = 16;
             }
+            const ctx = document.getElementById('topMinistryChart').getContext('2d');
+            const topMinistryChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ministryInterestUnranked,
+                datasets: [{
+                label: 'SCORE',
+                data: behavioralProfilingScoreUnranked,
+                borderWidth: 3,
+                backgroundColor: 'rgb(128, 65, 128, .7)',
+                borderColor: 'rgb(128, 65, 128)',
+                borderRadius: 12
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
+            });
         }
-        });
 
         //goto home
         function gotoHome(){
@@ -2215,6 +2203,11 @@
             clearInterval(thinkingInterval);
             document.getElementById("thinking").style.display = "none";
             document.getElementById("step5").classList.remove("disable");
+
+            if (window.matchMedia("(min-width: 1025px)").matches) {
+                document.getElementById("topMinistryChart").style.display = "block";
+                displayChart();
+            }
         }
     //show puzzle
         function showPuzzle(side){
@@ -2237,6 +2230,39 @@
             });
         }, { threshold: 0.1 });
         moveUp.forEach(el => upObserver.observe(el));
+
+    //error handling
+    // Catch errors in synchronous code
+        window.onerror = function(message, source, lineno, colno, error) {
+            console.error("Global error:", message);
+            sessionStorage.clear();
+            document.getElementById("overlay").style.display = "block";
+            if(selectedLanguage=="en"){
+                document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";
+                document.getElementById("a1").innerText = "RETURN TO HOME PAGE";
+            }
+            if(selectedLanguage=="tl"){
+                document.getElementById("alertMessage").innerText = "May hindi inaasahang error na naganap, mangyaring bumalik sa home page.";
+                document.getElementById("a1").innerText = "BUMALIK SA HOME PAGE";
+            }
+            console.log("An unknown Error");
+        };
+
+        // Catch errors in promises/async
+        window.onunhandledrejection = function(event) {
+            console.error("Unhandled promise error:", event.reason);
+            sessionStorage.clear();
+            document.getElementById("overlay").style.display = "block";
+            if(selectedLanguage=="en"){
+                document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";
+                document.getElementById("a1").innerText = "RETURN TO HOME PAGE";
+            }
+            if(selectedLanguage=="tl"){
+                document.getElementById("alertMessage").innerText = "May hindi inaasahang error na naganap, mangyaring bumalik sa home page.";
+                document.getElementById("a1").innerText = "BUMALIK SA HOME PAGE";
+            }
+            console.log("An unknown Error");
+        };
     </script>
 </body>
 </html>
