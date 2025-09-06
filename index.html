@@ -316,14 +316,13 @@
             background-color: rgb(255, 223, 255);
             color: rgb(128, 65, 128);
         }
-
-        .mTtl {
-            font-weight: bold;
-            font-size: 1.5em;
-        }
-
         .card p {
             font-size: 1em;
+        }
+        .mTtl {
+            font-weight: bolder;
+            font-size: 1.2em!important;
+            margin:10px auto 0px auto;
         }
 
         .lBtn {
@@ -626,16 +625,64 @@
             body {
                 font-size: 16px;
             }
-            
             .banner {
                 height: 60vw;
             }
-
             .logo{
                 max-width: 60px;
                 height: 60px;
             }
-            
+            nav {
+                position: relative;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 15px;
+                height: 70px;
+                position: sticky;
+                top:0px;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .navFunc {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                border-top: 3px solid rgb(128,65,128);
+                padding: 10px 0;
+                gap: 7px;
+                align-items: center;
+                z-index: 1000;
+                border-bottom: 3px solid rgb(128,65,128);
+            }
+            .selectedNav{
+                border-left: 5px solid rgb(128,65,128);
+                border-bottom: none;
+            }
+
+            /* Show menu when open */
+            .navFunc.open {
+                display: flex;
+            }
+            .navBtn, .takeAssessmentTop {
+                text-align: center;
+            }
+            .navBtn{
+                width: 100%;
+                height: 30px;
+            }
+            .takeAssessmentTop{
+                width: 50%;
+                height: 50px;
+            }
+            .showSelectLanguage {
+                width: 50%;
+            }
             .title {
                 width: 95%;
                 position: relative;
@@ -744,30 +791,31 @@
                 margin: 2vw;
                 top: 88%;
             }
-            
             .takeAssessment {
                 height: 80vw;
                 padding: 15vw 0;
             }
-            
             .takeAssessment h1 {
                 font-size: 4em;
             }
-            
             .takeAssessment button {
                 width: 50vw;
                 height: 12vw;
                 font-size: 2.5em;
             }
-
             .design {
                 display: none;
             }
-            
             .footer {
                 height: 20vw;
             }
+        }
 
+        /* Mobile styles - 480px and below */
+        @media (max-width: 480px) {
+            .banner {
+                height: 80vw;
+            }
             nav {
                 position: relative;
                 flex-direction: row;
@@ -781,56 +829,15 @@
             .logo{
                 width: 100px;
             }
-
+            .showSelectLanguage {
+                width: 90%;
+            }
             .hamburger {
                 display: flex;
             }
-
-            .navFunc {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                border-top: 2px solid rgb(128,65,128);
-                padding: 10px 0;
-                gap: 7px;
-                align-items: center;
-                z-index: 1000;
-            }
-
-            .selectedNav{
-                border: none;
-                border-left: 5px solid rgb(128,65,128);
-            }
-
-            /* Show menu when open */
-            .navFunc.open {
-                display: flex;
-            }
-            .navBtn, .takeAssessmentTop {
-                text-align: center;
-            }
-            .navBtn{
-                width: 100%;
-                height: 30px;
-                border-left: 5px solid transparent;
-            }
             .takeAssessmentTop{
-                width: 50%;
+                width: 70%;
                 height: 50px;
-            }
-            .showSelectLanguage {
-                width: 50%;
-            }
-        }
-
-        /* Mobile styles - 480px and below */
-        @media (max-width: 480px) {
-            .banner {
-                height: 80vw;
             }
             .title {
                 width: 100%;
@@ -898,6 +905,8 @@
             
             .ministrySelection h1 {
                 font-size: 8vw;
+                border:1px solid red;
+                margin: 20px auto 0px auto;
             }
 
             .card {
@@ -943,86 +952,6 @@
             .footer {
                 height: 20vw;
             }
-
-             nav {
-                position: relative;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                padding: 0 15px;
-                height: 70px;
-                position: sticky;
-                top:0px;
-            }
-            .logo{
-                width: 100px;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .navFunc {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                border-bottom: 2px solid rgb(128,65,128);
-                padding: 10px 0;
-                gap: 7px;
-                align-items: center;
-                z-index: 1000;
-            }
-            .selectedNav{
-                border-left: 5px solid rgb(128,65,128);
-            }
-
-            /* Show menu when open */
-            .navFunc.open {
-                display: flex;
-            }
-            .navBtn, .takeAssessmentTop {
-                text-align: center;
-            }
-            .navBtn{
-                width: 100%;
-                height: 30px;
-            }
-            .takeAssessmentTop{
-                width: 70%;
-                height: 50px;
-            }
-            .aboutUs {
-                flex-direction: column;
-                height: auto;
-                padding: 20px;
-            }
-
-            .aboutUs p {
-                width: 90%;
-                padding: 20px;
-                font-size: 0.9rem;
-                margin: 10px auto;
-                height: auto;
-            }
-            .aboutUs hr{
-                display: none;
-            }
-            .aboutUs h1 {
-                width: 100%;
-                font-size: 8vw;
-                padding: 10px;
-                margin-bottom: 50px;
-            }
-            .aboutUs span {
-                font-size: 8vw;
-            }
-            .showSelectLanguage {
-                width: 80%;
-            }
         }
     </style>
 </head>
@@ -1044,9 +973,9 @@
         </div>
         <!-- Nav Links -->
         <div class="navFunc" id="navMenu">
-            <a class="navBtn selectedNav" onclick="document.getElementById('banner').scrollIntoView({ behavior: 'smooth', block: 'center' });">Home</a>
-            <a class="navBtn" onclick="document.getElementById('howItWorks').scrollIntoView({ behavior: 'smooth', block: 'center' });">How It Works</a>
-            <a class="navBtn" onclick="document.getElementById('ministrySelection').scrollIntoView({ behavior: 'smooth', block: 'center' });">Ministries</a>
+            <a class="navBtn" onclick="navigateTo('banner')">Home</a>
+            <a class="navBtn" onclick="navigateTo('howItWorks')">How It Works</a>
+            <a class="navBtn" onclick="navigateTo('ministrySelection')">Ministries</a>
             <button class="takeAssessmentTop" onclick="document.getElementById('overlay').style.display = 'block';">Take Assessment</button>
         </div>
     </nav>
@@ -1116,15 +1045,15 @@
         <div class="slides-container" id="carousel">
             <!-- Last slide (clone) -->
             <div class="slide">
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Marketplace Ministry</p>
                     <p>Encourages professionals to integrate their faith into their workplaces, promoting ethical practices and spiritual influence in the marketplace.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Sports Ministry</p>
                     <p>Uses athletic activities to foster community, promote health, and provide outreach opportunities.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Writing and Publications Ministry</p>
                     <p>Produces written materials—such as newsletters, devotionals, and educational content—to inform and inspire the church body.</p>
                 </div>
@@ -1132,19 +1061,19 @@
 
             <!-- Slide 1 -->
             <div class="slide">
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Worship Ministry</p>
                     <p>Leads the congregation in praising and honoring God through music, song, and other artistic expressions during services.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Prayer Ministry</p>
                     <p>Focuses on intercessory prayer, organizing prayer meetings, and encouraging a culture of continuous prayer within the church community.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Preaching Ministry</p>
                     <p>Responsible for delivering sermons and teachings that convey biblical truths and inspire spiritual growth among congregants.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Discipleship Ministry</p>
                     <p>Aims to mentor and guide individuals in their spiritual journey, fostering maturity and deeper understanding of faith.</p>
                 </div>
@@ -1152,19 +1081,19 @@
 
             <!-- Slide 2 -->
             <div class="slide">
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Children's Ministry</p>
                     <p>Provides age-appropriate biblical education and activities for children, laying a foundation for lifelong faith.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Youth Ministry</p>
                     <p>Engages teenagers through relevant programs, discussions, and events that address their unique challenges and encourage spiritual development.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Young Adults Ministry</p>
                     <p>Supports individuals in their late teens to early thirties, offering fellowship and guidance as they navigate adulthood and faith.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Men's Ministry</p>
                     <p>Encourages men to grow spiritually, providing opportunities for fellowship, mentorship, and service.</p>
                 </div>
@@ -1172,19 +1101,19 @@
 
             <!-- Slide 3 -->
             <div class="slide">
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Women's Ministry</p>
                     <p>Empowers women through spiritual growth, community building, and service opportunities. Key objectives include fostering spiritual growth, promoting biblical literacy, and encouraging active service.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Family or Couples Ministry</p>
                     <p>Strengthens marital and family relationships through counseling, workshops, and events that promote healthy dynamics.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Ushering Ministry</p>
                     <p>Ensures order during services by welcoming attendees, assisting with seating, and facilitating offerings. Ushers play a crucial role in creating a welcoming atmosphere and maintaining order during services.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Hospitality Ministry</p>
                     <p>Creates a welcoming environment by greeting visitors, providing information, and organizing refreshments or events. provide love, acceptance, comfort, support, care, and unity.</p>
                 </div>
@@ -1192,19 +1121,19 @@
 
             <!-- Slide 4 -->
             <div class="slide">
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Administrative Ministry</p>
                     <p>Handles the organizational aspects of church operations, including scheduling, communication, and record-keeping.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Finance Ministry</p>
                     <p>Manages the church's financial resources, overseeing budgeting, accounting, and stewardship programs.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Security Ministry</p>
                     <p>Ensures the safety of congregants during church activities, coordinating emergency responses and maintaining a secure environment.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Facilities Maintenance Ministry</p>
                     <p>Maintains the church's physical infrastructure, ensuring that buildings and equipment are functional and welcoming.</p>
                 </div>
@@ -1212,19 +1141,19 @@
 
             <!-- Slide 5 -->
             <div class="slide">
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Evangelism Ministry</p>
                     <p>Focuses on sharing the gospel message with non-believers through various outreach efforts and personal witnessing.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Missions Ministry</p>
                     <p>Supports local and international mission work, including sending missionaries and providing resources to spread the faith.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Community Service Ministry</p>
                     <p>Engages in activities that serve the local community, addressing needs such as food distribution, shelter, and education.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Visitation Ministry</p>
                     <p>Provides support and companionship to those unable to attend church services, including the sick and elderly.</p>
                 </div>
@@ -1232,19 +1161,19 @@
 
             <!-- Slide 6 -->
             <div class="slide">
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">New Believers Ministry</p>
                     <p>Guides recent converts through foundational teachings and integration into the church community.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Production Tech Ministry</p>
                     <p>Manages technical aspects of services, including sound, lighting, and audiovisual elements to enhance worship experiences.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Creative Arts Ministry</p>
                     <p>Utilizes various art forms—such as drama, dance, and visual arts—to convey spiritual messages and enrich worship.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Communications & Social Media Ministry</p>
                     <p>Handles the church's online presence, disseminating information and engaging with the community through digital platforms.</p>
                 </div>
@@ -1252,19 +1181,19 @@
 
             <!-- Slide 7 -->
             <div class="slide">
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Graphic and Video Design Ministry</p>
                     <p>Creates visual content for church materials, including promotional graphics, videos, and presentations.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Counseling Ministry</p>
                     <p>Offers spiritual and emotional guidance to individuals facing personal challenges, providing support and resources.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Healing & Deliverance Ministry</p>
                     <p>Focuses on prayer and spiritual practices aimed at healing physical, emotional, and spiritual ailments.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Grief & Bereavement Ministry</p>
                     <p>Supports individuals coping with loss, offering counseling and group support during times of mourning.</p>
                 </div>
@@ -1272,19 +1201,19 @@
 
             <!-- Slide 8 -->
             <div class="slide">
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Addiction Recovery Ministry</p>
                     <p>Provides assistance and programs for individuals seeking freedom from various addictions, promoting healing and restoration.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Special Needs Ministry</p>
                     <p>Ensures that individuals with disabilities are included and supported within the church community through tailored programs and assistance.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Seniors Ministry</p>
                     <p>Caters to the spiritual and social needs of older adults, offering fellowship and activities suited to their stage of life.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Single Adults Ministry</p>
                     <p>Supports unmarried individuals through community building, spiritual growth opportunities, and service projects.</p>
                 </div>
@@ -1292,15 +1221,15 @@
 
             <!-- Slide 9 -->
             <div class="slide">
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Marketplace Ministry</p>
                     <p>Encourages professionals to integrate their faith into their workplaces, promoting ethical practices and spiritual influence in the marketplace.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Sports Ministry</p>
                     <p>Uses athletic activities to foster community, promote health, and provide outreach opportunities.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Writing and Publications Ministry</p>
                     <p>Produces written materials—such as newsletters, devotionals, and educational content—to inform and inspire the church body.</p>
                 </div>
@@ -1308,19 +1237,19 @@
 
             <!-- First slide (clone) -->
             <div class="slide">
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Worship Ministry</p>
                     <p>Leads the congregation in praising and honoring God through music, song, and other artistic expressions during services.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Prayer Ministry</p>
                     <p>Focuses on intercessory prayer, organizing prayer meetings, and encouraging a culture of continuous prayer within the church community.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Preaching Ministry</p>
                     <p>Responsible for delivering sermons and teachings that convey biblical truths and inspire spiritual growth among congregants.</p>
                 </div>
-                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.5);">
+                <div class="card" style="background: url('img/icn-logo.png') center/cover no-repeat, rgba(255,255,255,0.9);">
                     <p class="mTtl">Discipleship Ministry</p>
                     <p>Aims to mentor and guide individuals in their spiritual journey, fostering maturity and deeper understanding of faith.</p>
                 </div>
@@ -1360,13 +1289,11 @@
     //scroll
         const sections = document.querySelectorAll('#banner, #howItWorks, #ministrySelection');
         const navLinks = document.querySelectorAll('.navBtn');
-
         const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
             // Remove active class from all links
             navLinks.forEach(link => link.classList.remove('selectedNav'));
-
             // Find the link that matches this section
             const activeLink = document.querySelector(
                 `.navBtn[onclick*="${entry.target.id}"]`
@@ -1376,10 +1303,14 @@
             }
             }
         });
-        }, { threshold: 0.7 }); // 60% of section must be visible
-
+        }, { threshold: 0.5 }); // 50% of section must be visible
         // Observe each section
         sections.forEach(section => observer.observe(section));
+     // navigate section
+        function navigateTo(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'center' });
+            document.getElementById("navMenu").classList.remove("open"); 
+        }
     //carousel
         const carousel = document.getElementById('carousel');
         const totalSlides = 9;
