@@ -232,7 +232,7 @@
         .topMinistryChart{
             height: 1;
             width:3;
-            margin: 20px 300px;
+            margin: 20px 400px;
             border-radius: 12px;
             background-color: rgb(255, 223, 255);
             padding: 30px;
@@ -468,7 +468,8 @@
                 font-size: 2em;
             }
             .topMinistryChart{
-                display: none;
+                margin: 10px 5px;
+                padding: 3px;
             }
         }
 
@@ -540,11 +541,6 @@
             .responseDiv{
                 font-size: 3em;
             }
-
-            .topMinistryChart{
-                display: none;
-            }
-
             .footer {
                 height: 120px;
                 
@@ -707,6 +703,7 @@
 <!--script-->
     <script src="callApi.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script>
     //language
         let selectedLanguage = sessionStorage.getItem("selectedLanguage") || "en";
@@ -937,42 +934,42 @@
                 q2: "I am able to learn and perform dance routines when given instruction.",
                 q3: "I can play a musical instrument with basic skill and technique.",
                 q4: "I have experience expressing myself through singing, dancing, or playing music.",
-                q5: "I have the ability to use my singing, dancing, or musical skills to contribute effectively in a ministry or group setting.",
-                q6: "I can operate computers and use software applications to support church tasks.",
-                q7: "I have skills in editing, design, or coding that can be used for ministry projects.",
-                q8: "I can troubleshoot basic technical issues to help in church activities.",
-                q9: "I am able to learn and apply new digital tools that can benefit the church.",
-                q10: "I can use my technological skills to serve and support church ministries effectively.",
-                q11: "I’m able to put ideas into clear and engaging writing.",
-                q12: "Writing is something I do frequently in my personal or professional life.",
-                q13: "I’ve had past experiences creating articles, reports, or scripts.",
-                q14: "I’d like to further develop my writing abilities through practice or training.",
-                q15: "I’d like to contribute to church-related materials, articles, or programs through writing.",
-                q16: "I’m skilled in fixing, building, or handling technical tasks.",
-                q17: "I often work on repair, maintenance, or hands-on technical projects.",
-                q18: "I have previous experience in electrical, plumbing, or mechanical work.",
-                q19: "I’d like to learn more about technical skills through guided training.",
-                q20: "I’m willing to help the church with technical, electrical, or repair needs.",
-                q21: "I feel confident speaking in front of a group of people.",
-                q22: "I regularly speak or present in front of audiences, big or small.",
-                q23: "I’ve had experience delivering talks, announcements, or presentations.",
-                q24: "I can adjust my tone and pace when speaking to keep attention.",
-                q25: "I can prepare and organize a talk or presentation effectively.",
-                q26: "I’m good at keeping track of money, budgets, or financial records.",
-                q27: "I currently handle tasks that involve budgeting or expense tracking.",
-                q28: "I’ve had experience managing finances for a project or group.",
-                q29: "I can prepare simple financial reports or summaries.",
-                q30: "I can ensure accuracy when recording and monitoring financial transactions.",
-                q31: "I have a natural ability to guide, encourage, or advise others.",
-                q32: "I regularly help people through mentoring, counseling, or coaching.",
-                q33: "I have experience providing advice or support to individuals or groups.",
-                q34: "I can actively mentor or counsel people when needed.",
-                q35: "I am capable of giving guidance and support to others in an organized way.",
-                q36: "I feel confident in my understanding of Biblical stories and principles.",
-                q37: "I often study and discuss the Bible.",
-                q38: "I’ve had experience teaching or sharing lessons from Scripture.",
-                q39: "I’d like to deepen my understanding of the Bible through study.",
-                q40: "I’d like to share my knowledge of Scripture in church activities."
+                q5: "I have the ability to use my singing, dancing, or musical skills to contribute effectively in a ministry or group setting."
+                // q6: "I can operate computers and use software applications to support church tasks.",
+                // q7: "I have skills in editing, design, or coding that can be used for ministry projects.",
+                // q8: "I can troubleshoot basic technical issues to help in church activities.",
+                // q9: "I am able to learn and apply new digital tools that can benefit the church.",
+                // q10: "I can use my technological skills to serve and support church ministries effectively.",
+                // q11: "I’m able to put ideas into clear and engaging writing.",
+                // q12: "Writing is something I do frequently in my personal or professional life.",
+                // q13: "I’ve had past experiences creating articles, reports, or scripts.",
+                // q14: "I’d like to further develop my writing abilities through practice or training.",
+                // q15: "I’d like to contribute to church-related materials, articles, or programs through writing.",
+                // q16: "I’m skilled in fixing, building, or handling technical tasks.",
+                // q17: "I often work on repair, maintenance, or hands-on technical projects.",
+                // q18: "I have previous experience in electrical, plumbing, or mechanical work.",
+                // q19: "I’d like to learn more about technical skills through guided training.",
+                // q20: "I’m willing to help the church with technical, electrical, or repair needs.",
+                // q21: "I feel confident speaking in front of a group of people.",
+                // q22: "I regularly speak or present in front of audiences, big or small.",
+                // q23: "I’ve had experience delivering talks, announcements, or presentations.",
+                // q24: "I can adjust my tone and pace when speaking to keep attention.",
+                // q25: "I can prepare and organize a talk or presentation effectively.",
+                // q26: "I’m good at keeping track of money, budgets, or financial records.",
+                // q27: "I currently handle tasks that involve budgeting or expense tracking.",
+                // q28: "I’ve had experience managing finances for a project or group.",
+                // q29: "I can prepare simple financial reports or summaries.",
+                // q30: "I can ensure accuracy when recording and monitoring financial transactions.",
+                // q31: "I have a natural ability to guide, encourage, or advise others.",
+                // q32: "I regularly help people through mentoring, counseling, or coaching.",
+                // q33: "I have experience providing advice or support to individuals or groups.",
+                // q34: "I can actively mentor or counsel people when needed.",
+                // q35: "I am capable of giving guidance and support to others in an organized way.",
+                // q36: "I feel confident in my understanding of Biblical stories and principles.",
+                // q37: "I often study and discuss the Bible.",
+                // q38: "I’ve had experience teaching or sharing lessons from Scripture.",
+                // q39: "I’d like to deepen my understanding of the Bible through study.",
+                // q40: "I’d like to share my knowledge of Scripture in church activities."
             },
             tl: {
                 q1: "May tiwala ako sa aking kakayahang umawit nang may tamang tono at ritmo.",
@@ -1042,32 +1039,32 @@
                 q2: "I like participating in or helping lead worship, prayer, or Bible study.",
                 q3: "I’m interested in regularly engaging with specific age groups (children, youth, young adults, men/women).",
                 q4: "I like sharing biblical ideas and supporting others in their spiritual journey.",
-                q5: "I’d like to be part of ministries that focus on spiritual growth and discipleship.",
-                q6: "I’m interested in working behind the scenes to help the church run smoothly.",
-                q7: "I enjoy organizing events, managing tasks, or helping with logistics.",
-                q8: "I like paying attention to details and making sure things run efficiently.",
-                q9: "I enjoy helping create a welcoming and organized church environment.",
-                q10: "I’d like to be involved in roles such as ushering, administration, hospitality, or facility care.",
-                q11: "I am motivated to assist individuals beyond the church community.",
-                q12: "Sharing my faith and helping others experience God’s love is important to me.",
-                q13: "I feel a personal calling toward community outreach and service.",
-                q14: "I am interested about going where people are hurting and bringing hope.",
-                q15: "I am interested in participating in ministries focused on evangelism and community impact.",
-                q16: "I am passionate about using my creative talents and interests for God's glory.",
-                q17: "I enjoy working with visuals, media, technology, or the arts to communicate messages.",
-                q18: "I find fulfillment and energy in creating content, managing social media, or coordinating live events.",
-                q19: "I would like to help improve the church’s communication and engagement through creative means.",
-                q20: "I am interested in using my skills in drama, dance, video, graphic design, or tech to contribute to ministry.",
-                q21: "I feel sincere and have a desire to help those who are struggling or in need.",
-                q22: "I am a good listener and often find people sharing their struggles with me.",
-                q23: "I feel strongly called to help others heal emotionally, spiritually, or physically.",
-                q24: "I am willing to give my time and understanding to support those in need.",
-                q25: "I am open and eager to serve in counseling, healing prayer, or support ministries.",
-                q26: "I am interested in ministering to specific groups such as seniors, singles, or working professionals.",
-                q27: "I enjoy connecting with others who share common interests or hobbies (e.g., sports, writing).",
-                q28: "I believe my personal experiences and skills can positively contribute to others’ growth.",
-                q29: "I would enjoy leading or participating in ministries that align with my current life season or stage.",
-                q30: "I feel drawn to serve in creative or unconventional ministry areas that embrace unique interests."
+                q5: "I’d like to be part of ministries that focus on spiritual growth and discipleship."
+                // q6: "I’m interested in working behind the scenes to help the church run smoothly.",
+                // q7: "I enjoy organizing events, managing tasks, or helping with logistics.",
+                // q8: "I like paying attention to details and making sure things run efficiently.",
+                // q9: "I enjoy helping create a welcoming and organized church environment.",
+                // q10: "I’d like to be involved in roles such as ushering, administration, hospitality, or facility care.",
+                // q11: "I am motivated to assist individuals beyond the church community.",
+                // q12: "Sharing my faith and helping others experience God’s love is important to me.",
+                // q13: "I feel a personal calling toward community outreach and service.",
+                // q14: "I am interested about going where people are hurting and bringing hope.",
+                // q15: "I am interested in participating in ministries focused on evangelism and community impact.",
+                // q16: "I am passionate about using my creative talents and interests for God's glory.",
+                // q17: "I enjoy working with visuals, media, technology, or the arts to communicate messages.",
+                // q18: "I find fulfillment and energy in creating content, managing social media, or coordinating live events.",
+                // q19: "I would like to help improve the church’s communication and engagement through creative means.",
+                // q20: "I am interested in using my skills in drama, dance, video, graphic design, or tech to contribute to ministry.",
+                // q21: "I feel sincere and have a desire to help those who are struggling or in need.",
+                // q22: "I am a good listener and often find people sharing their struggles with me.",
+                // q23: "I feel strongly called to help others heal emotionally, spiritually, or physically.",
+                // q24: "I am willing to give my time and understanding to support those in need.",
+                // q25: "I am open and eager to serve in counseling, healing prayer, or support ministries.",
+                // q26: "I am interested in ministering to specific groups such as seniors, singles, or working professionals.",
+                // q27: "I enjoy connecting with others who share common interests or hobbies (e.g., sports, writing).",
+                // q28: "I believe my personal experiences and skills can positively contribute to others’ growth.",
+                // q29: "I would enjoy leading or participating in ministries that align with my current life season or stage.",
+                // q30: "I feel drawn to serve in creative or unconventional ministry areas that embrace unique interests."
             },
             tl: {
                 q1: "Nasasiyahan akong tumulong sa iba na matuto at lumago ang kanilang relasyon sa Diyos.",
@@ -2149,33 +2146,76 @@
 
         //charts
         function displayChart(){
-            if (window.matchMedia("(max-width: 1023px)").matches) {
-                Chart.defaults.font.size = 20;
-            } else {
-                Chart.defaults.font.size = 16;
+            let fontSize = 16;
+            if (window.matchMedia("(max-width: 480px)").matches) {
+                fontSize = 12;
+            } else if(window.matchMedia("(max-width: 1023px)").matches) {
+                fontSize = 15;
             }
             const ctx = document.getElementById('topMinistryChart').getContext('2d');
             const topMinistryChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ministryInterestUnranked,
-                datasets: [{
-                label: 'SCORE',
-                data: behavioralProfilingScoreUnranked,
-                borderWidth: 3,
-                backgroundColor: 'rgb(128, 65, 128, .7)',
-                borderColor: 'rgb(128, 65, 128)',
-                borderRadius: 12
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
+                type: 'pie',
+                data: {
+                    labels: ministryInterestUnranked,
+                    datasets: [{
+                        label: 'SCORE',
+                        data: behavioralProfilingScoreUnranked,
+                        backgroundColor: [
+                            'rgba(128, 65, 128, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(153, 102, 255, 0.7)',
+                            'rgba(255, 159, 64, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(128, 65, 128)',
+                            'rgb(75, 192, 192)',
+                            'rgb(255, 206, 86)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 99, 132)',
+                            'rgb(153, 102, 255)',
+                            'rgb(255, 159, 64)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Top Ministry Interest Breakdown',
+                            font: {
+                                size: fontSize + 4,
+                                weight: 'bold'
+                            },
+                            color: 'rgb(128, 65, 128)',
+                            padding: {
+                                top: 10,
+                                bottom: 30
+                            }
+                        },
+                        legend: {
+                            position: 'right'
+                        },
+                        datalabels: {
+                            color: '#fff',
+                            font: {
+                                weight: 'bold',
+                                size: fontSize
+                            },
+                            formatter: (value, context) => {
+                                let dataset = context.chart.data.datasets[0].data;
+                                let total = dataset.reduce((a, b) => a + b, 0);
+                                let percentage = ((value / total) * 100).toFixed(1) + "%";
+                                return percentage;
+                            }
+                        }
                     }
-                }
-            }
+                },
+                plugins: [ChartDataLabels]  // activate the plugin
             });
         }
 
@@ -2208,11 +2248,7 @@
             clearInterval(thinkingInterval);
             document.getElementById("thinking").style.display = "none";
             document.getElementById("step5").classList.remove("disable");
-
-            if (window.matchMedia("(min-width: 1025px)").matches) {
-                document.getElementById("topMinistryChart").style.display = "block";
-                displayChart();
-            }
+            displayChart();
         }
     //show puzzle
         function showPuzzle(side){

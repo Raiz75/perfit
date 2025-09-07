@@ -5,8 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/icn-logo.png">
     <title>Perfit</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            padding: 0;
+            margin: 0;
+            font-size: 1vw;
+            font-family: Arial, sans-serif;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+        /* testing */
+        .q{
+            border:1px solid red;
+        }
+
+        /* sections */
+        section{
+            border:1px solid red;
+            width: 100%;
+            height: 100vh;
+            scroll-snap-align: start;
+            display:flex;
+        }
+        h1{
+            border: 1px solid red;
+            width: 20%;
+            background-color: rgb(195, 253, 213);
+        }
+        .carouselContainer{
+            border: 1px solid red;
+            width: 80%;
+            background-color: aqua;
+        }
+    </style>
 </head>
 <body>
-    <p>mga ministry data d2</p>
+    <section>
+        <h1>CORE MINISTRIES</h1>
+        <div class="carouselContainer">ministry carousel here</div>
+    </section>
+    <section>
+        <h1>SUPPORT MINISTRIES</h1>
+        <div class="carouselContainer">ministry carousel here</div>
+    </section>
+    <section>
+        <h1>OUTREACH MINISTRIES</h1>
+        <div class="carouselContainer">ministry carousel here</div>
+    </section>
+    <section>
+        <h1>CREATIVE AND MEDIA MINISTRIES</h1>
+        <div class="carouselContainer">ministry carousel here</div>
+    </section>
+    <section>
+        <h1>CARE AND HEALING MINISTRIES</h1>
+        <div class="carouselContainer">ministry carousel here</div>
+    </section>
+    <section>
+        <h1>SPECIAL INTEREST MINISTRIES</h1>
+        <div class="carouselContainer">ministry carousel here</div>
+    </section>
 </body>
 </html>
