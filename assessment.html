@@ -612,7 +612,7 @@
             <label><input type="radio" name="timeInFaithBox" value="1" translate="ph1m"> New</label>
             <label><input type="radio" name="timeInFaithBox" value="2" translate="ph1n"> 6 months</label>
             <label><input type="radio" name="timeInFaithBox" value="3" translate="ph1o"> 1 year</label>
-            <label><input type="radio" name="timeInFaithBox" value="4" translate="ph1p"> 2+ years</label>
+            <label><input type="radio" name="timeInFaithBox" value="3" translate="ph1p"> 2+ years</label>
         </div>
     </div>
     <div class="instruction" style="display: none;" id="inst2">
@@ -737,8 +737,7 @@
             });
             console.log("selected language: " + selectedLanguage);
         });
-
-        //language uiTranslation
+    //assessemnt language uiTranslation
         const uiTranslation = {
             en: {
                 title: "ASSESSMENT",
@@ -775,7 +774,7 @@
                 ph2: "Skill Profiling Progress",
                 ph3: "Interest and Passion Profiling Progress",
                 ph4: "Behavioral Profiling Progress",
-                a1: "RETURN TO HOME PAGE",
+                a1: "CLOSE",
                 s1: "Strongly Agree (6)",
                 s2: "Agree (5)",
                 s3: "Slightly Agree (4)",
@@ -788,7 +787,6 @@
                 b2: "REVIEW ANSWER",
                 b3: "SUBMIT",
                 b4: "DONE"
-
             },
             tl: {
                 title: "PAGSUSURI",
@@ -825,7 +823,7 @@
                 ph2: "Progreso ng Pagsusuri ng Kasanayan",
                 ph3: "Progreso ng Pagsusuri ng Interes at Pasyon",
                 ph4: "Progreso ng Pagsusuri ng kilos",
-                a1: "BUMALIK SA HOME PAGE",
+                a1: "ISARA",
                 s1: "Lubos na Sumasang-ayon (6)",
                 s2: "Sumasang-ayon (5)",
                 s3: "Bahagyang Sumasang-ayon (4)",
@@ -840,6 +838,7 @@
                 b4: "OK"
             }
         };
+
     //varibales
         let gender=0;
         let age=0;
@@ -902,14 +901,14 @@
                 status = document.querySelector('input[name="statusBox"]:checked')?.value || "";
                 baptized = document.querySelector('input[name="baptizedBox"]:checked')?.value || "";
                 timeInFaith = document.querySelector('input[name="timeInFaithBox"]:checked')?.value || "";
-                console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                 console.log(">> Personal Profile");
                 console.log("gender[1=male 2=female]: "+gender);
                 console.log("age: "+age);
                 console.log("status[1=single 2=married]: "+status);
                 console.log("baptized[1=no 2=yes]: "+baptized);
-                console.log("time in faith[1-new 2=6mth 3=1yr 4=2yr]: "+ timeInFaith);
-                console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                console.log("time in faith[1-new 2=6mth 3=1yr 3=2yr]: "+ timeInFaith);
+                console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                 console.log("");
                 showPuzzle("bottom");
                 setTimeout(function() {
@@ -1028,11 +1027,11 @@
                 document.getElementById("alertMessage").innerText = "Mukhang hindi sapat ang iyong edad upang maglingkod sa isang ministeryo. Hinihikayat ka naming patuloy na lumago sa iyong pananampalataya at paglalakbay espirituwal. Kapag dumating ang tamang panahon, ikalulugod naming makita kang makibahagi. Pagpalain ka ng Diyos sa iyong landas ng paglago at paghahanda.";
                 console.log("The user is not old enough yet");
             }
-            console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             console.log(">> Skill Profile");
             showQuestions('skillQuestion', skillProfilingQuestions, selectedLanguage, skillProfilingScore, 'step2');
         }
-    //interest and passion questions(category ministry filter)
+        //interest and passion questions(category ministry filter)
         const interestAndPassionProfiling = {
             en: {
                 q1: "I enjoy helping others learn and grow a relationship with God.",
@@ -1107,8 +1106,8 @@
             document.getElementById('review').classList.add("disable");
             //record skill
             for (let i = 0; i < skillProfilingScore.length; i++) {
-                if(skillProfilingScore[i]>=5){
-                    skill = skill.concat(i);
+                if(skillProfilingScore[i]>=10){
+                    skill = skill.concat(i+1);
                 }
             }
             console.log("music,technology,writing,technical,speaking,accounting,mentoring,bible: "+skill);
@@ -1122,28 +1121,19 @@
                     document.getElementById('s3').classList.add("currentStep");
                     document.getElementById('ministryCategory').style.display = "block";
                     document.getElementById('review').classList.add("disable");
-
-                    //record skill
-                    for (let i = 0; i < skillProfilingScore.length; i++) {
-                        if(skillProfilingScore[i]>=10){
-                            skill = skill.concat(i+1);
-                        }
-                    }
-                    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                    console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     console.log("");
-                    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                    console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     console.log(">> Ministry(Category) Profile");
                     showQuestions("ministryCategory", interestAndPassionProfiling, selectedLanguage, interestAndPassionProfilingScore, "step3");
                 }, 3500);
         }
 
-    //available ministries
+    //available ministries (to be edited)
         const ministries = [
         //core ministry/
-            [//"Worship", 
-            "Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)",
-            "Prayer","Preaching","Discipleship","Children's",
-            "Youth","Young Adults","Men's","Women's","Family Or Couples"],
+            ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)",
+            "Prayer","Preaching","Discipleship","Youth","Young Adults","Men's","Women's","Family Or Couples"],
         //support ministry
             ["Ushering","Hospitality","Administrative","Finance","Security","Facilities Maintenance"],
         //outreach ministry
@@ -1153,18 +1143,24 @@
         //care and healing ministry
             ["Counseling","Healing & Deliverance","Grief & Bereavement","Addiction Recovery","Special Needs"],
         //special interest ministry
-            ["Seniors","Single Adults","Marketplace","Sports","Writing Publications"]
+            ["Seniors","Single Adults", "Writing Publications"]
         ];
+
         let ranks = [0,0,0,0,0,0];
         let highest = [];
         let q = 0;
         let ministryInterest = [];
+        function logFilterResult(before, after, filterName) {
+            let removed = before.filter(item => !after.includes(item));
+            console.log(`>> ${filterName} Applied`);
+            console.log("Removed:", removed.join(", ") || "None");
+        }
         function filter(){
             document.getElementById('step3').classList.add("disable");
             document.getElementById('review').classList.add("disable");
-            console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             console.log("");
-            console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             console.log(">> Applying Filter");
             //combine all ministry interest
             for (let i = 0; i < highest.length; i++) {
@@ -1201,111 +1197,124 @@
         //test
             console.log(">> Ministry Interest(raw)");
             console.log(ministryInterest.join(", "));
-        //apply restriction
+            let before = [...ministryInterest];
+    //apply restriction
             //gender filter
             let maleRestriction = ["Women's"];
-            let femaleRestriction = ["Men's", "Preaching"];
+            let femaleRestriction = ["Men's"];
             if (gender == "1") { // male
                 ministryInterest = ministryInterest.filter(item => !maleRestriction.includes(item));
             } else if (gender == "2") { // female
                 ministryInterest = ministryInterest.filter(item => !femaleRestriction.includes(item));
             }
-            console.log(">> Gender filter Applied");
+            logFilterResult(before, ministryInterest, "Gender filter");
             //age filter
-            let age13Restriction = ["Prayer","Preaching","Seniors","Single Adults","Marketplace","Writing Publications","Evangelism","Counseling","Healing & Deliverance","Grief & Bereavement","Addiction Recovery","Special Needs","Missions","Communications & Social Media","Visitation","New Believers","Discipleship","Children's","Young Adults","Men's","Women's","Family Or Couples","Administrative","Finance","Security","Facilities Maintenance"];
-            let age16Restriction = ["Prayer","Visitation","Seniors","Single Adults","Marketplace","New Believers","Preaching","Counseling","Healing & Deliverance","Grief & Bereavement","Addiction Recovery","Young Adults","Men's","Women's","Family Or Couples","Administrative","Finance","Security"];
-            let age18Restriction = ["Seniors","Family Or Couples","Finance","Counseling","Healing & Deliverance"];
-            let age21Restriction = ["Youth","Seniors"];
-            let age60Restriction = ["Youth","Young Adults","Marketplace"];
-            if(age>=60){
-                ministryInterest = ministryInterest.filter(item => !age60Restriction.includes(item));
-            }else if(age>=21){
-                ministryInterest = ministryInterest.filter(item => !age21Restriction.includes(item));
-            }else if(age>=18){
+            let age15Restriction = ["Men's","Women's","Family Or Couples","Administrative","Finance","Security","Missions","Communications & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Seniors","Single Adults","Writing Publications"];
+            let age18Restriction = ["Men's","Women's","Family Or Couples","Missions","Communications & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Seniors","Single Adults","Writing Publications"];
+            let age20Restriction = ["Addiction Recovery","Seniors"];
+            if(age>=21){
+                ministryInterest = ministryInterest.filter(item => !age20Restriction.includes(item));
+            }else if(age>=19){
                 ministryInterest = ministryInterest.filter(item => !age18Restriction.includes(item));
             }else if(age>=16){
-                ministryInterest = ministryInterest.filter(item => !age16Restriction.includes(item));
-            }else if(age>=13){
-                ministryInterest = ministryInterest.filter(item => !age13Restriction.includes(item));
+                ministryInterest = ministryInterest.filter(item => !age15Restriction.includes(item));
             }
-            console.log(">> Age filter Applied");
+            logFilterResult(before, ministryInterest, "Age filter");
             //baptized filter
-            let nonBaptizedRestriction = ["Worship","Counseling","Healing & Deliverance","Evangelism","Missions","Visitation","New Believers","Finance","Prayer","Preaching","Discipleship","Children's",];
-            if (baptized == "1") { // not Baptized
+            let nonBaptizedRestriction = ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)","Prayer","Preaching","Discipleship","Children's","Youth","Young Adults","Men's","Women's","Family Or Couples","Ushering","Administrative","Finance","Security","Evangelism","Missions","Production Tech","Creative Arts","Communications & Social Media","Graphic & Video Design","Counseling","Healing & Deliverance","Grief & Bereavement","Addiction Recovery","Seniors","Single Adults"];
+            if (baptized == "1") { // bawal sa not Baptized
                 ministryInterest = ministryInterest.filter(item => !nonBaptizedRestriction.includes(item));
             }
-            console.log(">> Baptized/Non-Baptized filter Applied");
+            logFilterResult(before, ministryInterest, "Baptized filter");
             //status
             let singleRestriction = ["Family Or Couples"];
             let marriedRestriction = ["Single Adults"];
-            if (status == "1") { // singleRestriction
+            if (status == "1") { // bawal sa single
                 ministryInterest = ministryInterest.filter(item => !singleRestriction.includes(item));
-            }else if(status == "2"){//marriedRestriction
+            }else if(status == "2"){//bawala sa married
                 ministryInterest = ministryInterest.filter(item => !marriedRestriction.includes(item));
             }
-            console.log(">> Status filter Applied");
+            logFilterResult(before, ministryInterest, "Status filter");
             //time in faith filter
-            let newComerRestriction = ["Counseling","New Believers","Healing & Deliverance","Marketplace","Grief & Bereavement","Addiction Recovery","Worship","Evangelism","Communications & Social Media","Missions","Visitation","Administrative","Finance","Security","Prayer","Preaching","Discipleship","Children's","Youth","Young Adults","Men's","Women's","Family Or Couples"];
-            let sixMonthRestriction = ["Preaching","Finance","Counseling","Healing & Deliverance","Discipleship","New Believers"];
-            if (timeInFaith == "1") { // singleRestriction
-                ministryInterest = ministryInterest.filter(item => !newComerRestriction.includes(item));
-            }else if(timeInFaith == "2"){//marriedRestriction
-                ministryInterest = ministryInterest.filter(item => !sixMonthRestriction.includes(item));
+            let week1 = ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)","Prayer","Preaching","Discipleship","Children's","Youth","Young Adults","Men's","Women's","Family Or Couples","Hospitality","Administrative","Finance","Security","Evangelism","Missions","Community Service","Visitation","New Believers","Creative Arts","Communications & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Seniors","Single Adults","Writing Publications"];
+            let month6 = ["Preaching","Discipleship","Administrative","Finance","Security","Counseling","Healing & Deliverance","Addiction Recovery","Seniors"];
+            if (timeInFaith == "1") { // bawal sa 1 week palang
+                ministryInterest = ministryInterest.filter(item => !week1.includes(item));
+            }else if(timeInFaith == "2"){//bawal sa 6 month palang
+                ministryInterest = ministryInterest.filter(item => !month6.includes(item));
             }
-            console.log(">> Time in Faith filter Applied");
+            logFilterResult(before, ministryInterest, "Status filter");
             //skill filter
-            if(!skill.includes("1")){
-                ministryInterest = ministryInterest.filter(item => item !== "Worship");
+            if(!skill.includes(1) && !skill.includes(3) && !skill.includes(5)){
+                ministryInterest = ministryInterest.filter(item => item !== "Worship(Singing)");
             }
-            if(!skill.includes("2")){
+            if(!skill.includes(1) && !skill.includes(3)){
+                ministryInterest = ministryInterest.filter(item => item !== "Worship(Dancing)");
+                ministryInterest = ministryInterest.filter(item => item !== "Worship(Instrument)");
+            }
+            if(!skill.includes(7) && !skill.includes(8)){
+                ministryInterest = ministryInterest.filter(item => item !== "Prayer");
+                ministryInterest = ministryInterest.filter(item => item !== "Healing & Deliverance");
+                ministryInterest = ministryInterest.filter(item => item !== "Addiction Recovery");
+                ministryInterest = ministryInterest.filter(item => item !== "Seniors");
+                ministryInterest = ministryInterest.filter(item => item !== "Single Adults");
+            }
+            if(!skill.includes(5) && !skill.includes(8)){
+                ministryInterest = ministryInterest.filter(item => item !== "Preaching");
+                ministryInterest = ministryInterest.filter(item => item !== "Discipleship");
+                ministryInterest = ministryInterest.filter(item => item !== "Evangelism");
+                ministryInterest = ministryInterest.filter(item => item !== "Missions");
+                ministryInterest = ministryInterest.filter(item => item !== "Preaching");
+            }
+            if(!skill.includes(8)){
+                ministryInterest = ministryInterest.filter(item => item !== "Youth");
+                ministryInterest = ministryInterest.filter(item => item !== "Young Adults");
+                ministryInterest = ministryInterest.filter(item => item !== "Men's");
+                ministryInterest = ministryInterest.filter(item => item !== "Women's");
+                ministryInterest = ministryInterest.filter(item => item !== "Family Or Couples");
+                ministryInterest = ministryInterest.filter(item => item !== "Ushering");
+                ministryInterest = ministryInterest.filter(item => item !== "Hospitality");
+                ministryInterest = ministryInterest.filter(item => item !== "Community Service");
+                ministryInterest = ministryInterest.filter(item => item !== "New Believers");
+            }
+            if(!skill.includes(5) && !skill.includes(7)){
                 ministryInterest = ministryInterest.filter(item => item !== "Administrative");
+            }
+            if(!skill.includes(6) && !skill.includes(8)){
+                ministryInterest = ministryInterest.filter(item => item !== "Finance");
+            }
+            if(!skill.includes(4)){
+                ministryInterest = ministryInterest.filter(item => item !== "Security");
+                ministryInterest = ministryInterest.filter(item => item !== "Facilities Maintenanceere");
+            }
+            if(!skill.includes(5)){
+                ministryInterest = ministryInterest.filter(item => item !== "Visitation");
+            }
+            if(!skill.includes(2)){
                 ministryInterest = ministryInterest.filter(item => item !== "Production Tech");
+                ministryInterest = ministryInterest.filter(item => item !== "Creative Arts");
                 ministryInterest = ministryInterest.filter(item => item !== "Graphic & Video Design");
+            }
+            if(!skill.includes(2) && !skill.includes(5) && !skill.includes(8)){
                 ministryInterest = ministryInterest.filter(item => item !== "Communications & Social Media");
             }
-            if(!skill.includes("3")){
-                ministryInterest = ministryInterest.filter(item => item !== "Writing Publications");
-                ministryInterest = ministryInterest.filter(item => item !== "Communications & Social Media");
-            }
-            if(!skill.includes("4")){
-                ministryInterest = ministryInterest.filter(item => item !== "Facilities Maintenance");
-            }
-            if(!skill.includes("5") && !skill.includes(8)){
-                ministryInterest = ministryInterest.filter(item => item !== "Preaching");
-                ministryInterest = ministryInterest.filter(item => item !== "Evangelism");
-            }
-            if(!skill.includes("6")){
-                ministryInterest = ministryInterest.filter(item => item !== "Finance")
-                ministryInterest = ministryInterest.filter(item => item !== "Marketplace");
-            }
-            if(!skill.includes("7")){
-                ministryInterest = ministryInterest.filter(item => item !== "Discipleship")
+            if(!skill.includes(7)){
                 ministryInterest = ministryInterest.filter(item => item !== "Counseling");
-                ministryInterest = ministryInterest.filter(item => item !== "New Believers");
+                ministryInterest = ministryInterest.filter(item => item !== "Grief & Bereavement");
+                ministryInterest = ministryInterest.filter(item => item !== "Special Needs");
             }
-            if(!skill.includes("8")){
-                ministryInterest = ministryInterest.filter(item => item !== "Preaching");
-                ministryInterest = ministryInterest.filter(item => item !== "Evangelism");
-                ministryInterest = ministryInterest.filter(item => item !== "New Believers");
+            if(!skill.includes(3)){
+                ministryInterest = ministryInterest.filter(item => item !== "Writing Publications");
             }
-            console.log(">> Skill filter Applied");
-            console.log(">> Ministry Interest(filtered)");
+            logFilterResult(before, ministryInterest, "Status filter");
+            console.alert(">> Ministry Interest(filtered)");
             console.log(ministryInterest.join(", "));
             showMinistrySpecific();
         }
+        
     //behavioral questions(specific ministry filter)
         const ministryQuestions = [
             //coreMinistry
-            // {
-            //     "ministry": "Worship",
-            //     "questions": [
-            //         { en: "Being in a space filled with music, rehearsals, and live worship excites me.", tl: "Nasasabik ako sa lugar na puno ng musika, rehearsals, at live worship." },
-            //         { en: "I am interested in leading others through singing, playing instruments, or creative expression.", tl: "Interesado akong manguna sa iba sa pamamagitan ng pagkanta, pagtugtog ng instrumento, o creative na pagpapahayag." },
-            //         { en: "I have the musical talent, stage presence, or teamwork needed for worship ministry.", tl: "May kakayahan ako sa musika, stage presence, o teamwork na kailangan para sa worship ministry." },
-            //         { en: "Serving in worship fits well with my personality and interests.", tl: "Ang paglilingkod sa worship ay bagay sa aking personalidad at interes." },
-            //         { en: "I enjoy using my musical or creative talents to lead others in worship.", tl: "Nasasaya akong gamitin ang aking musikal o malikhaing talento upang pangunahan ang iba sa pagsamba." }
-            //     ]
-            // },
             {
                 "ministry": "Worship(Singing)",
                 "questions": [
@@ -1353,7 +1362,7 @@
                     { en: "I want to share biblical truths through preaching or teaching.", tl: "Nais kong ibahagi ang mga katotohanang biblikal sa pamamagitan ng pangangaral o pagtuturo." },
                     { en: "I have the speaking ability, clarity, and understanding needed to communicate Scripture effectively.", tl: "May kakayahan akong magsalita, malinaw na magpaliwanag, at maunawaan ang Biblia upang maiparating ito ng epektibo." },
                     { en: "I think preaching or teaching is a ministry where I could contribute greatly.", tl: "Sa tingin ko, ang pangangaral o pagtuturo ay ministeryo kung saan malaki ang maiaambag ko." },
-                    { en: "I have considered stepping into a preaching or teaching role before.", tl: "Naisip ko na rin noon na pumasok sa tungkulin ng pangangaral o pagtuturo." }
+                    { en: "I take notes from sermons and reflect on how I might explain those lessons to others.", tl: "Naglalaan ako ng oras na magtala mula sa mga sermon at pag-isipan kung paano ko maipapaliwanag ang mga iyon sa iba." }
                 ]
             },
             {
@@ -1363,17 +1372,7 @@
                     { en: "I am motivated to invest in others’ spiritual growth over time.", tl: "Interesado akong tulungan ang iba na lumago sa kanilang espiritwal na buhay." },
                     { en: "I feel I have the patience, consistency, and listening skills that discipleship requires.", tl: "May pasensya, palagian sa pagtulong, at kakayahang makinig ako para sa discipleship." },
                     { en: "I believe walking alongside others in faith is a good fit for me.", tl: "Sa tingin ko bagay sa akin ang kasama ang iba sa kanilang pananampalataya." },
-                    { en: "I have thought about being part of a discipleship ministry in the past.", tl: "Naisip ko na rin noon na sumali sa isang discipleship ministry." }
-                ]
-            },
-            {
-                "ministry": "Children's",
-                "questions": [
-                    { en: "I would enjoy being in a lively, creative environment filled with children.", tl: "Masaya ako sa masigla at malikhaing lugar na puno ng mga bata." },
-                    { en: "I am interested in teaching, guiding, and caring for kids in a faith context.", tl: "Interesado akong magturo, gumabay, at mag-alaga sa mga bata sa konteksto ng pananampalataya." },
-                    { en: "I feel I have the patience, energy, and creativity to engage well with children.", tl: "May pasensya, enerhiya, at kakayahan akong makipag-ugnayan nang maayos sa mga bata." },
-                    { en: "I believe I can contribute effectively to a ministry focused on children’s growth and faith.", tl: "Naniniwala akong makakatulong ako sa ministeryo na nakatuon sa paglago at pananampalataya ng mga bata." },
-                    { en: "I have considered joining the children’s ministry before.", tl: "Naisip ko na rin noon na sumali sa children’s ministry." }
+                    { en: "I am willing to help others apply biblical principles in their daily life decisions.", tl: "Handa akong tumulong sa iba na maisabuhay ang mga prinsipyo ng Biblia sa kanilang araw-araw na mga desisyon." }
                 ]
             },
             {
@@ -1383,7 +1382,7 @@
                     { en: "I feel I have the patience, energy, and creativity to engage well with teens and youth.", tl: "May pasensya, enerhiya, at kakayahan akong makipag-ugnayan nang maayos sa teens at youth." },
                     { en: "I believe I can contribute effectively to a ministry focused on youth growth and faith.", tl: "Naniniwala akong makakatulong ako sa ministeryo na nakatuon sa paglago at pananampalataya ng youth." },
                     { en: "I think youth ministry fits my strengths and personality.", tl: "Sa tingin ko bagay sa akin ang youth ministry at tugma sa aking kakayahan." },
-                    { en: "I have thought about working with the youth ministry before.", tl: "Naisip ko na rin noon na sumali sa youth ministry." }
+                    { en: "I take initiative to help and participate whenever there are youth ministry activities.", tl: "Nagpapakita ako ng kusa na tumulong at makibahagi kapag may mga aktibidad ang youth ministry." }
                 ]
             },
             {
@@ -1393,7 +1392,7 @@
                     { en: "I want to support people in their early career or college years in making faith-based decisions.", tl: "Gusto kong tulungan ang mga tao sa kanilang early career o college years sa paggawa ng desisyon base sa pananampalataya." },
                     { en: "I have the empathy, understanding, and guidance skills needed for this ministry.", tl: "May empatiya, pag-unawa, at kakayahan akong magbigay-gabay para sa ministeryong ito." },
                     { en: "I believe I could connect well with and serve in a young adults ministry.", tl: "Naniniwala akong makakaugnay ako nang maayos at makakapaglingkod sa young adults ministry." },
-                    { en: "I have previously considered joining this ministry.", tl: "Naisip ko na rin noon na sumali sa ministeryong ito." }
+                    { en: "I am open to building meaningful friendships and accountability with fellow young adults in the ministry.", tl: "Bukas ako sa pagbuo ng makabuluhang pagkakaibigan at pananagutan kasama ng kapwa young adults sa ministry." }
                 ]
             },
             {
@@ -1426,7 +1425,6 @@
                     { en: "I enjoy participating in events or programs that help families build stronger bonds.", tl: "Nasasaya ako sa pagsali sa mga events o programa na tumutulong sa pamilya na magkaroon ng mas matibay na ugnayan." }
                 ]
             },
-
             //support ministry
             {
                 "ministry": "Ushering",
@@ -1488,7 +1486,6 @@
                     { en: "I enjoy helping maintain and organize church facilities.", tl: "Nasasaya ako sa pagtulong sa pagpapanatili at pag-aayos ng mga pasilidad ng simbahan." }
                 ]
             },
-
             //outreach ministry
             {
                 "ministry": "Evangelism",
@@ -1540,7 +1537,6 @@
                     { en: "I enjoy supporting and mentoring new believers as they grow in faith.", tl: "Nasasaya ako sa pagtulong at paggabay sa mga bagong mananampalataya habang lumalago sila sa pananampalataya." }
                 ]
             },
-
             // Creative Media ministry
             {
                 "ministry": "Production Tech",
@@ -1582,7 +1578,6 @@
                     { en: "I enjoy using photography and videography to tell meaningful stories for ministry.", tl: "Nasasaya ako sa paggamit ng photography at videography upang maipahayag ang makabuluhang kwento para sa ministeryo." }
                 ]
             },
-
             // Care & Healing ministry
             {
                 "ministry": "Counseling",
@@ -1634,7 +1629,6 @@
                     { en: "I am willing to dedicate my time and energy to build meaningful connections with individuals with special needs.", tl: "Handa kong italaga ang aking oras at lakas upang makabuo ng makahulugang ugnayan sa mga indibidwal na may espesyal na pangangailangan." }
                 ]
             },
-
             // Special Interest ministry
             {
                 "ministry": "Seniors",
@@ -1657,26 +1651,6 @@
                 ]
             },
             {
-                "ministry": "Marketplace",
-                "questions": [
-                    { en: "I would find purpose in a ministry that equips people to live out their faith in the workplace.", tl: "Makakakita ako ng layunin sa isang ministeryo na naghahanda sa mga tao upang maisabuhay ang kanilang pananampalataya sa lugar ng trabaho." },
-                    { en: "I am interested in supporting others to apply biblical values in their careers and leadership.", tl: "Interesado akong suportahan ang iba sa pagpapatupad ng mga pagpapahalagang biblikal sa kanilang mga karera at pamumuno." },
-                    { en: "I believe I  have the insight, mentorship ability, and networking skills needed for this ministry.", tl: "Naniniwala akong taglay ko ang kaalaman, kakayahang gumabay, at kasanayan sa pakikipag-ugnayan na kailangan para sa ministeryong ito." },
-                    { en: "I believe I could serve well in encouraging professionals to honor God through their work.", tl: "Naniniwala akong makapaglilingkod ako nang mabisa sa paghikayat sa mga propesyonal na parangalan ang Diyos sa kanilang trabaho." },
-                    { en: "I see the value of influencing the marketplace with integrity and faith-centered leadership.", tl: "Nakikita ko ang kahalagahan ng pagpapalaganap ng integridad at pamumunong nakasentro sa pananampalataya sa mundo ng negosyo." }
-                ]
-            },
-            {
-                "ministry": "Sports",
-                "questions": [
-                    { en: "I would enjoy participating in a ministry that connects with others through sports.", tl: "Mag-eenjoy ako sa pakikilahok sa isang ministeryo na kumokonekta sa iba sa pamamagitan ng palakasan." },
-                    { en: "I am interested in athletic or recreational activities that foster relationships and community.", tl: "Interesado ako sa mga aktibidad na pampalakasan o libangan na nagtataguyod ng ugnayan at komunidad." },
-                    { en: "I believe I have the teamwork, energy, and leadership skills suited for this ministry.", tl: "Naniniwala akong taglay ko ang pakikipagtulungan, sigla, at kakayahang mamuno na angkop para sa ministeryong ito." },
-                    { en: "I think I could use sports as a way to share faith and encourage others.", tl: "Iniisip kong magagamit ko ang sports bilang paraan upang maibahagi ang pananampalataya at mahikayat ang iba." },
-                    { en: "I value the opportunity to use sports as a tool to build unity and reach people for Christ.", tl: "Pinahahalagahan ko ang pagkakataong gamitin ang sports bilang kasangkapan upang magtayo ng pagkakaisa at maabot ang mga tao para kay Kristo." }
-                ]
-            },
-            {
                 "ministry": "Writing Publications",
                 "questions": [
                     { en: "I would be fulfilled serving in a ministry that shares faith and stories through writing.", tl: "Makakaramdam ako ng kaganapan sa paglilingkod sa isang ministeryo na nagbabahagi ng pananampalataya at mga kuwento sa pamamagitan ng pagsusulat." },
@@ -1689,7 +1663,7 @@
         ];
 
         let behavioralProfilingScore = [];
-        let filteredQuestion = { en: {}, tl: {} };
+        let filteredQuestion = {en: {}, tl: {}};
         function showMinistrySpecific() {
             if(ministryInterest.length==0 && selectedLanguage=="en"){
                 document.getElementById("overlay").style.display = "block";
@@ -1728,9 +1702,9 @@
                     document.getElementById("step4").classList.add("disable");
                     document.getElementById('ministrySpecific').style.display = "block";
                     document.getElementById('review').classList.add("disable");
-                    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                    console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     console.log("");
-                    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                    console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     console.log(">> Ministry(specific) Profile");
                     showQuestions("ministrySpecific", filteredQuestion, selectedLanguage, behavioralProfilingScore, "step4");
             }, 3000);
@@ -1866,9 +1840,9 @@
         async function interpret(){
             document.getElementById('step4').classList.add("disable");
             document.getElementById('review').classList.add("disable");
-            console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             console.log("");
-            console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             console.log(">> Interpret Data...");
             showPuzzle("top");
             setTimeout(function() {
