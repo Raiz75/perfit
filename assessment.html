@@ -612,7 +612,6 @@
             <label><input type="radio" name="timeInFaithBox" value="1" translate="ph1m"> New</label>
             <label><input type="radio" name="timeInFaithBox" value="2" translate="ph1n"> 6 months</label>
             <label><input type="radio" name="timeInFaithBox" value="3" translate="ph1o"> 1 year</label>
-            <label><input type="radio" name="timeInFaithBox" value="3" translate="ph1p"> 2+ years</label>
         </div>
     </div>
     <div class="instruction" style="display: none;" id="inst2">
@@ -763,7 +762,6 @@
                 ph1m: "New",
                 ph1n: "6 months",
                 ph1o: "1 year",
-                ph1p: "2+ years",
                 i2: "INSTRUCTION: Please read each statement carefully and answer honestly. Use the scale to show how strongly you agree or disagree — there are no right or wrong answers, just your true opinion.",
                 ii1: "Strongly Agree = 6",
                 ii2: "Agree = 5",
@@ -812,7 +810,6 @@
                 ph1m: "1 linggo",
                 ph1n: "6 na buwan",
                 ph1o: "1 taon",
-                ph1p: "2+ taon",
                 i2: "TAGUBILIN: Mangyaring basahin nang mabuti ang bawat pahayag at sagutin nang tapat. Sagutan kung gaano ka sumasang-ayon o hindi sumasang-ayon — walang tama o maling sagot, tanging ang iyong tunay na opinyon lamang.",
                 ii1: "Lubos na Sumasang-ayon = 6",
                 ii2: "Sumasang-ayon = 5",
@@ -929,41 +926,49 @@
     //skills questiion
         const skillProfilingQuestions = {
             en: {
+                //music
                 q1: "I am confident in my ability to sing with proper pitch and rhythm.",
                 q2: "I am able to learn and perform dance routines when given instruction.",
                 q3: "I can play a musical instrument with basic skill and technique.",
                 q4: "I have experience expressing myself through singing, dancing, or playing music.",
                 q5: "I have the ability to use my singing, dancing, or musical skills to contribute effectively in a ministry or group setting.",
+                //technology
                 q6: "I can operate computers and use software applications to support church tasks.",
                 q7: "I have skills in editing, design, or coding that can be used for ministry projects.",
                 q8: "I can troubleshoot basic technical issues to help in church activities.",
                 q9: "I am able to learn and apply new digital tools that can benefit the church.",
                 q10: "I can use my technological skills to serve and support church ministries effectively.",
+                //writing
                 q11: "I’m able to put ideas into clear and engaging writing.",
                 q12: "Writing is something I do frequently in my personal or professional life.",
                 q13: "I’ve had past experiences creating articles, reports, or scripts.",
                 q14: "I’d like to further develop my writing abilities through practice or training.",
                 q15: "I’d like to contribute to church-related materials, articles, or programs through writing.",
+                //technical
                 q16: "I’m skilled in fixing, building, or handling technical tasks.",
                 q17: "I often work on repair, maintenance, or hands-on technical projects.",
                 q18: "I have previous experience in electrical, plumbing, or mechanical work.",
                 q19: "I’d like to learn more about technical skills through guided training.",
                 q20: "I’m willing to help the church with technical, electrical, or repair needs.",
+                //speaking
                 q21: "I feel confident speaking in front of a group of people.",
                 q22: "I regularly speak or present in front of audiences, big or small.",
                 q23: "I’ve had experience delivering talks, announcements, or presentations.",
                 q24: "I can adjust my tone and pace when speaking to keep attention.",
                 q25: "I can prepare and organize a talk or presentation effectively.",
+                //accounting
                 q26: "I’m good at keeping track of money, budgets, or financial records.",
                 q27: "I currently handle tasks that involve budgeting or expense tracking.",
                 q28: "I’ve had experience managing finances for a project or group.",
                 q29: "I can prepare simple financial reports or summaries.",
                 q30: "I can ensure accuracy when recording and monitoring financial transactions.",
+                //mentoring
                 q31: "I have a natural ability to guide, encourage, or advise others.",
                 q32: "I regularly help people through mentoring, counseling, or coaching.",
                 q33: "I have experience providing advice or support to individuals or groups.",
                 q34: "I can actively mentor or counsel people when needed.",
                 q35: "I am capable of giving guidance and support to others in an organized way.",
+                //understanding scriptures
                 q36: "I feel confident in my understanding of Biblical stories and principles.",
                 q37: "I often study and discuss the Bible.",
                 q38: "I’ve had experience teaching or sharing lessons from Scripture.",
@@ -971,41 +976,49 @@
                 q40: "I’d like to share my knowledge of Scripture in church activities."
             },
             tl: {
+                //music
                 q1: "May tiwala ako sa aking kakayahang umawit nang may tamang tono at ritmo.",
                 q2: "Kaya kong matutunan at isayaw ang mga rutinang itinuturo sa akin.",
                 q3: "Kaya kong tumugtog ng isang instrumento gamit ang batayang kasanayan at tamang pamamaraan.",
                 q4: "May karanasan ako sa pagpapahayag ng aking sarili sa pamamagitan ng pag-awit, pagsayaw, o pagtugtog ng musika.",
                 q5: "May kakayahan akong gamitin ang aking talento sa pag-awit, pagsayaw, o pagtugtog upang maging mabisa ang aking ambag sa isang ministeryo o grupo.",
+                //technology
                 q6: "Marunong akong gumamit ng kompyuter at mga software upang makatulong sa simbahan.",
                 q7: "May kakayahan ako sa pag-eedit, pagdidisenyo, o coding para sa mga proyekto ng ministeryo.",
                 q8: "Kaya kong ayusin ang mga simpleng teknikal na problema sa mga gawain ng simbahan.",
                 q9: "Handa akong matuto gumamit ng mga bagong digital tools na makabubuti sa simbahan.",
                 q10: "Magagamit ko ang aking tech skills upang makapagsilbi at makasuporta sa mga ministeryo ng simbahan.",
+                //writing
                 q11: "Nakakaya kong magsulat ng malinaw at nakakaengganyong ideya.",
                 q12: "Madalas kong ginagawa ang pagsusulat sa personal o propesyonal na buhay.",
                 q13: "May karanasan ako sa paggawa ng articles, reports, o scripts.",
                 q14: "Nais ko pang mapaunlad ang aking kakayahan sa pagsusulat sa pamamagitan ng pageensayo .",
                 q15: "Gusto kong mag-ambag sa paggawa ng church materials, articles, o programs sa pamamagitan ng pagsusulat.",
+                //technical
                 q16: "May kasanayan ako sa pagkukumpuni, paggawa, o paghawak ng mga teknikal na gawain.",
                 q17: "Madalas akong gumagawa ng repair, maintenance, o iba pang hands-on na teknikal na proyekto.",
                 q18: "May karanasan na ako sa electrical, plumbing, o mechanical na trabaho.",
                 q19: "Gusto kong matuto pa ng mas maraming teknikal na skills sa pamamagitan ng guided training.",
                 q20: "Handa akong tumulong sa simbahan pagdating sa teknikal, electrical, o repair na pangangailangan.",
+                //speaking
                 q21: "May kumpiyansa akong magsalita sa harap ng isang grupo ng tao.",
                 q22: "Madalas akong magsalita o magpresenta sa harap ng mga tagapakinig, maliit man o malaki.",
                 q23: "Nagkaroon na ako ng karanasan sa pagbibigay ng mga talumpati, anunsyo, o presentasyon.",
                 q24: "Kaya kong iakma ang aking tono at bilis ng pananalita upang mapanatili ang atensyon.",
                 q25: "Kaya kong maghanda at mag-ayos ng isang talumpati o presentasyon nang epektibo.",
+                //accounting
                 q26: "Magaling ako sa pagtatala ng pera, badyet, o mga rekord na pinansyal.",
                 q27: "Kasalukuyan akong humahawak ng mga gawain na may kinalaman sa pagbabadget o pagsubaybay ng gastos.",
                 q28: "Nagkaroon na ako ng karanasan sa pamamahala ng pananalapi para sa isang proyekto o grupo.",
                 q29: "Kaya kong gumawa ng simpleng ulat o buod na pinansyal.",
                 q30: "Natitiyak kong tama ang pagtatala at pagsubaybay ng mga transaksyong pinansyal.",
+                //mentoring
                 q31: "May likas akong kakayahan na gumabay, magpalakas ng loob, o magbigay ng payo sa iba.",
                 q32: "Madalas akong tumutulong sa mga tao sa pamamagitan ng mentoring, counseling, o coaching.",
                 q33: "May karanasan ako sa pagbibigay ng payo o suporta sa mga indibidwal o grupo.",
                 q34: "Kaya kong aktibong mag-mentor o mag-counsel sa mga tao kapag kinakailangan.",
                 q35: "May kakayahan akong magbigay ng gabay at suporta sa iba sa isang organisadong paraan.",
+                //understanding scriptures
                 q36: "May tiwala ako sa aking pag-unawa sa mga kwento at prinsipyo sa Biblia.",
                 q37: "Madalas akong mag-aral at makipag-usap tungkol sa Biblia.",
                 q38: "Nagkaroon na ako ng karanasan sa pagtuturo o pagbabahagi ng aral mula sa Kasulatan.",
@@ -1017,14 +1030,14 @@
         let skill=[];
         function skillSubmit(){
             //show question
-            if(age<13 && selectedLanguage=="en"){
+            if(baptized=="1" && selectedLanguage=="en"){
                 document.getElementById("overlay").style.display = "block";
-                document.getElementById("alertMessage").innerText = "it appears that you are not yet old enough to serve in a ministry. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.";
+                document.getElementById("alertMessage").innerText = "it appears that you are not water baptized yet. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.";
                 console.log("The user is not old enough yet");
             }
-            if (age<13 && selectedLanguage=="tl"){
+            if (baptized=="1" && selectedLanguage=="tl"){
                 document.getElementById("overlay").style.display = "block";
-                document.getElementById("alertMessage").innerText = "Mukhang hindi sapat ang iyong edad upang maglingkod sa isang ministeryo. Hinihikayat ka naming patuloy na lumago sa iyong pananampalataya at paglalakbay espirituwal. Kapag dumating ang tamang panahon, ikalulugod naming makita kang makibahagi. Pagpalain ka ng Diyos sa iyong landas ng paglago at paghahanda.";
+                document.getElementById("alertMessage").innerText = "Mukhang hindi ka pa water baptized. Hinihikayat ka naming patuloy na lumago sa iyong pananampalataya at paglalakbay espirituwal. Kapag dumating ang tamang panahon, ikalulugod naming makita kang makibahagi. Pagpalain ka ng Diyos sa iyong landas ng paglago at paghahanda.";
                 console.log("The user is not old enough yet");
             }
             console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -1034,31 +1047,37 @@
         //interest and passion questions(category ministry filter)
         const interestAndPassionProfiling = {
             en: {
+                //core
                 q1: "I enjoy helping others learn and grow a relationship with God.",
                 q2: "I like participating in or helping lead worship, prayer, or Bible study.",
                 q3: "I’m interested in regularly engaging with specific age groups (children, youth, young adults, men/women).",
                 q4: "I like sharing biblical ideas and supporting others in their spiritual journey.",
                 q5: "I’d like to be part of ministries that focus on spiritual growth and discipleship.",
+                //support
                 q6: "I’m interested in working behind the scenes to help the church run smoothly.",
                 q7: "I enjoy organizing events, managing tasks, or helping with logistics.",
                 q8: "I like paying attention to details and making sure things run efficiently.",
                 q9: "I enjoy helping create a welcoming and organized church environment.",
-                q10: "I’d like to be involved in roles such as ushering, administration, hospitality, or facility care.",
+                q10: "I’d like to be involved in roles such as ushering, administration, or facility care.",
+                //outreach
                 q11: "I am motivated to assist individuals beyond the church community.",
                 q12: "Sharing my faith and helping others experience God’s love is important to me.",
                 q13: "I feel a personal calling toward community outreach and service.",
                 q14: "I am interested about going where people are hurting and bringing hope.",
                 q15: "I am interested in participating in ministries focused on evangelism and community impact.",
+                //creative media
                 q16: "I am passionate about using my creative talents and interests for God's glory.",
                 q17: "I enjoy working with visuals, media, technology, or the arts to communicate messages.",
                 q18: "I find fulfillment and energy in creating content, managing social media, or coordinating live events.",
                 q19: "I would like to help improve the church’s communication and engagement through creative means.",
                 q20: "I am interested in using my skills in drama, dance, video, graphic design, or tech to contribute to ministry.",
+                //care and healing
                 q21: "I feel sincere and have a desire to help those who are struggling or in need.",
                 q22: "I am a good listener and often find people sharing their struggles with me.",
                 q23: "I feel strongly called to help others heal emotionally, spiritually, or physically.",
                 q24: "I am willing to give my time and understanding to support those in need.",
                 q25: "I am open and eager to serve in counseling, healing prayer, or support ministries.",
+                //special interest
                 q26: "I am interested in ministering to specific groups such as seniors, singles, or working professionals.",
                 q27: "I enjoy connecting with others who share common interests or hobbies (e.g., sports, writing).",
                 q28: "I believe my personal experiences and skills can positively contribute to others’ growth.",
@@ -1066,31 +1085,37 @@
                 q30: "I feel drawn to serve in creative or unconventional ministry areas that embrace unique interests."
             },
             tl: {
+                //core
                 q1: "Nasasiyahan akong tumulong sa iba na matuto at lumago ang kanilang relasyon sa Diyos.",
                 q2: "Gusto kong makibahagi o tumulong mamuno sa pagsamba, panalangin, o pag-aaral ng Biblia.",
                 q3: "Interesado akong regular na makisalamuha sa partikular na mga grupo ayon sa edad (mga bata, kabataan, young adults, kalalakihan/kababaihan).",
                 q4: "Gusto kong magbahagi ng mga ideya mula sa Biblia at sumuporta sa iba sa kanilang espirituwal na paglalakbay.",
                 q5: "Gusto kong maging bahagi ng mga ministeryo na nakatuon sa espirituwal na paglago at discipleship.",
+                //support
                 q6: "Interesado akong magtrabaho sa likod ng mga gawain upang maging maayos ang takbo ng simbahan.",
                 q7: "Nasasayahan akong mag-organisa ng mga event, mag-manage ng mga gawain, o tumulong sa logistics.",
                 q8: "Gusto kong bigyang pansin ang mga detalye at matiyak na maayos ang takbo ng mga bagay.",
                 q9: "Nasasiyahan akong tumulong sa paglikha ng isang magiliw at organisadong kapaligiran sa simbahan.",
-                q10: "Gusto kong maging kasali sa mga tungkulin gaya ng ushering, administration, hospitality, o pag-aalaga ng pasilidad.",
+                q10: "Gusto kong maging kasali sa mga tungkulin gaya ng ushering, administration, o pag-aalaga ng pasilidad.",
+                //outreach
                 q11: "May hangarin akong tumulong sa mga tao sa labas ng komunidad ng simbahan.",
                 q12: "Mahalaga sa akin ang pagbabahagi ng aking pananampalataya at pagtulong sa iba na maranasan ang pag-ibig ng Diyos.",
                 q13: "Nararamdaman ko ang personal na pagtawag tungo sa community outreach at paglilingkod.",
                 q14: "Interesado akong pumunta sa mga lugar kung saan may mga taong nasasaktan at magdala ng pag-asa.",
                 q15: "Interesado akong sumali sa mga ministeryo na nakatuon sa evangelism at community impact.",
+                //creative media
                 q16: "Ipinapakita ko ang aking pagmamahal sa paggamit ng aking malikhaing talento at interes para sa kaluwalhatian ng Diyos.",
                 q17: "Nasasiyahan akong magtrabaho gamit ang biswal, media, teknolohiya, o sining upang maipahayag ang mga mensahe.",
                 q18: "Natagpuan ko ang kasiyahan at sigla sa paggawa ng nilalaman, pamamahala ng social media, o pag-aayos ng mga live na gawain.",
                 q19: "Nais kong makatulong sa pagpapabuti ng komunikasyon at pakikipag-ugnayan ng simbahan sa pamamagitan ng malikhaing paraan.",
                 q20: "Interesado akong gamitin ang aking kakayahan sa dula, sayaw, video, graphic design, o teknolohiya upang makatulong sa ministeryo.",
+                //care and healing
                 q21: "Magaan sa loob ko at may hangarin akong tumulong sa mga taong nahihirapan o nangangailangan.",
                 q22: "Magaling akong makinig at madalas akong nasasabihan ng mga tao tungkol sa kanilang pinagdadaanan.",
                 q23: "Malakas ang pakiramdam kong tinatawag akong tumulong sa paggaling ng iba—emosyonal, espiritwal, o pisikal.",
                 q24: "Handa akong maglaan ng oras at pag-unawa para sumuporta sa nangangailangan.",
                 q25: "Bukas ako at sabik na maglingkod sa pamamagitan ng counseling, panalangin para sa kagalingan, o mga support ministries.",
+                //special interest
                 q26: "Interesado akong maglingkod sa mga partikular na grupo gaya ng mga nakatatanda, single, o mga propesyonal.",
                 q27: "Nasasayahan akong makipag-ugnayan sa iba na may parehong interes o hilig (hal. sports, pagsusulat).",
                 q28: "Naniniwala ako na ang aking mga personal na karanasan at kakayahan ay makatutulong nang positibo sa paglago ng iba.",
@@ -1129,21 +1154,21 @@
                 }, 3500);
         }
 
-    //available ministries (to be edited)
+    //available ministries
         const ministries = [
         //core ministry/
             ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)",
             "Prayer","Preaching","Discipleship","Youth","Young Adults","Men's","Women's","Family Or Couples"],
         //support ministry
-            ["Ushering","Hospitality","Administrative","Finance","Security","Facilities Maintenance"],
+            ["Ushering","Administrative","Finance","Marshal","Facilities Maintenance"],
         //outreach ministry
-            ["Evangelism","Missions","Community Service","Visitation","New Believers"],
+            ["Evangelism","Missions","Community Service","Visitation"],
         //creative and media ministry/
-            ["Production Tech","Creative Arts","Communications & Social Media","Graphic & Video Design"],
+            ["Production Tech","Creative & Social Media"],
         //care and healing ministry
-            ["Counseling","Healing & Deliverance","Grief & Bereavement","Addiction Recovery","Special Needs"],
+            ["Counseling","Healing & Deliverance","Funeral","Addiction Recovery","Special Needs"],
         //special interest ministry
-            ["Seniors","Single Adults", "Writing Publications"]
+            ["Seniors","Single Adults"]
         ];
 
         let ranks = [0,0,0,0,0,0];
@@ -1198,6 +1223,7 @@
             console.log(">> Ministry Interest(raw)");
             console.log(ministryInterest.join(", "));
             let before = [...ministryInterest];
+    
     //apply restriction
             //gender filter
             let maleRestriction = ["Women's"];
@@ -1209,24 +1235,37 @@
             }
             logFilterResult(before, ministryInterest, "Gender filter");
             //age filter
-            let age15Restriction = ["Men's","Women's","Family Or Couples","Administrative","Finance","Security","Missions","Communications & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Seniors","Single Adults","Writing Publications"];
-            let age18Restriction = ["Men's","Women's","Family Or Couples","Missions","Communications & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Seniors","Single Adults","Writing Publications"];
-            let age20Restriction = ["Addiction Recovery","Seniors"];
-            if(age>=21){
+            let age12Restriction = ["Prayer","Preaching","Young Adults","Men's","Women's","Family Or Couples","Administrative","Finance","Marshal","Facilities Maintenance","Missions","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
+            let age15Restriction = ["Preaching","Young Adults","Men's","Women's","Family Or Couples","Administrative","Finance","Marshal","Facilities Maintenance","Missions","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
+            let age20Restriction = ["Men's","Women's","Family Or Couples","Administrative","Finance","Marshal","Facilities Maintenance","Missions","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
+            let age21Restriction = ["Administrative","Finance","Marshal","Facilities Maintenance","Missions","Production Tech","Creative & Social Media","Seniors"];
+            let age22Restriction = ["Administrative","Finance","Marshal","Facilities Maintenance","Missions","Seniors"];
+            let age25Restriction = ["Seniors"];
+            let age26Restriction = ["Youth","Seniors"];
+            let age30Restriction = ["Young Adults","Youth","Seniors"];
+            let age50Restriction = ["Young Adults","Youth"];
+            if(age>=50){
+                ministryInterest = ministryInterest.filter(item => !age50Restriction.includes(item));
+            }else if(age>=30){
+                ministryInterest = ministryInterest.filter(item => !age30Restriction.includes(item));
+            }else if(age>=26){
+                ministryInterest = ministryInterest.filter(item => !age26Restriction.includes(item));
+            }else if(age>=25){
+                ministryInterest = ministryInterest.filter(item => !age25Restriction.includes(item));
+            }else if(age>=22){
+                ministryInterest = ministryInterest.filter(item => !age22Restriction.includes(item));
+            }else if(age>=21){
+                ministryInterest = ministryInterest.filter(item => !age21Restriction.includes(item));
+            }else if(age>=20){
                 ministryInterest = ministryInterest.filter(item => !age20Restriction.includes(item));
-            }else if(age>=19){
-                ministryInterest = ministryInterest.filter(item => !age18Restriction.includes(item));
-            }else if(age>=16){
+            }else if(age>=15){
                 ministryInterest = ministryInterest.filter(item => !age15Restriction.includes(item));
+            }else if(age>=12){
+                ministryInterest = ministryInterest.filter(item => !age12Restriction.includes(item));
             }
             logFilterResult(before, ministryInterest, "Age filter");
-            //baptized filter
-            let nonBaptizedRestriction = ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)","Prayer","Preaching","Discipleship","Children's","Youth","Young Adults","Men's","Women's","Family Or Couples","Ushering","Administrative","Finance","Security","Evangelism","Missions","Production Tech","Creative Arts","Communications & Social Media","Graphic & Video Design","Counseling","Healing & Deliverance","Grief & Bereavement","Addiction Recovery","Seniors","Single Adults"];
-            if (baptized == "1") { // bawal sa not Baptized
-                ministryInterest = ministryInterest.filter(item => !nonBaptizedRestriction.includes(item));
-            }
-            logFilterResult(before, ministryInterest, "Baptized filter");
-            //status
+            console.log(">> Baptized filter Applied");
+            //status filter
             let singleRestriction = ["Family Or Couples"];
             let marriedRestriction = ["Single Adults"];
             if (status == "1") { // bawal sa single
@@ -1236,8 +1275,8 @@
             }
             logFilterResult(before, ministryInterest, "Status filter");
             //time in faith filter
-            let week1 = ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)","Prayer","Preaching","Discipleship","Children's","Youth","Young Adults","Men's","Women's","Family Or Couples","Hospitality","Administrative","Finance","Security","Evangelism","Missions","Community Service","Visitation","New Believers","Creative Arts","Communications & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Seniors","Single Adults","Writing Publications"];
-            let month6 = ["Preaching","Discipleship","Administrative","Finance","Security","Counseling","Healing & Deliverance","Addiction Recovery","Seniors"];
+            let week1 = ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)","Preaching","Discipleship","Youth","Young Adults","Men's","Women's","Family Or Couples","Ushering","Administrative","Finance","Marshal","Facilities Maintenance","Evangelism","Missions","Community Service","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Funeral","Addiction Recovery","Special Needs","Seniors","Single Adults"];
+            let month6 = ["Preaching","Discipleship","Youth","Young Adults","Men's","Women's","Family Or Couples","Ushering","Administrative","Finance","Marshal","Facilities Maintenance","Evangelism","Missions","Community Service","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Funeral","Addiction Recovery","Special Needs","Seniors","Single Adults"];
             if (timeInFaith == "1") { // bawal sa 1 week palang
                 ministryInterest = ministryInterest.filter(item => !week1.includes(item));
             }else if(timeInFaith == "2"){//bawal sa 6 month palang
@@ -1245,69 +1284,48 @@
             }
             logFilterResult(before, ministryInterest, "Status filter");
             //skill filter
-            if(!skill.includes(1) && !skill.includes(3) && !skill.includes(5)){
-                ministryInterest = ministryInterest.filter(item => item !== "Worship(Singing)");
+            let skillset128 = ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)"];
+            let skillset3578 = ["Prayer","Preaching","Discipleship","Evangelism","Missions","Community Service","Visitation"];
+            let skillset23578 = ["Creative & Social Media"];
+            let skillset368 = ["Administrative","Finance"];
+            let skillset238 = ["Production Tech"];
+            let skillset158 = ["Funeral"];
+            let skillset578 = ["Addiction Recovery"];
+            let skillset78 = ["Men's","Women's","Family Or Couples","Counseling"];
+            let skillset48 = ["Marshal","Facilities Maintenance"];
+            let skillset8 = ["Youth","Young Adults","Ushering","Healing & Deliverance","Special Needs","Seniors","Single Adults"];
+            if(!skill.includes(1) && !skill.includes(2) && !skill.includes(8)){
+                ministryInterest = ministryInterest.filter(item => !skillset128.includes(item));
             }
-            if(!skill.includes(1) && !skill.includes(3)){
-                ministryInterest = ministryInterest.filter(item => item !== "Worship(Dancing)");
-                ministryInterest = ministryInterest.filter(item => item !== "Worship(Instrument)");
+            if(!skill.includes(3) && !skill.includes(5) && !skill.includes(7) && !skill.includes(8)){
+                ministryInterest = ministryInterest.filter(item => !skillset3578.includes(item));
+            }
+            if(!skill.includes(2) && !skill.includes(3) && !skill.includes(5) && !skill.includes(7) && !skill.includes(8)){
+                ministryInterest = ministryInterest.filter(item => !skillset23578.includes(item));
+            }
+            if(!skill.includes(3) && !skill.includes(6) && !skill.includes(8)){
+                ministryInterest = ministryInterest.filter(item => !skillset368.includes(item));
+            }
+            if(!skill.includes(2) && !skill.includes(3) && !skill.includes(8)){
+                ministryInterest = ministryInterest.filter(item => !skillset238.includes(item));
+            }
+            if(!skill.includes(1) && !skill.includes(5) && !skill.includes(8)){
+                ministryInterest = ministryInterest.filter(item => !skillset158.includes(item));
+            }
+            if(!skill.includes(5) && !skill.includes(7) && !skill.includes(8)){
+                ministryInterest = ministryInterest.filter(item => !skillset578.includes(item));
             }
             if(!skill.includes(7) && !skill.includes(8)){
-                ministryInterest = ministryInterest.filter(item => item !== "Prayer");
-                ministryInterest = ministryInterest.filter(item => item !== "Healing & Deliverance");
-                ministryInterest = ministryInterest.filter(item => item !== "Addiction Recovery");
-                ministryInterest = ministryInterest.filter(item => item !== "Seniors");
-                ministryInterest = ministryInterest.filter(item => item !== "Single Adults");
+                ministryInterest = ministryInterest.filter(item => !skillset78.includes(item));
             }
-            if(!skill.includes(5) && !skill.includes(8)){
-                ministryInterest = ministryInterest.filter(item => item !== "Preaching");
-                ministryInterest = ministryInterest.filter(item => item !== "Discipleship");
-                ministryInterest = ministryInterest.filter(item => item !== "Evangelism");
-                ministryInterest = ministryInterest.filter(item => item !== "Missions");
-                ministryInterest = ministryInterest.filter(item => item !== "Preaching");
+            if(!skill.includes(4) && !skill.includes(8)){
+                ministryInterest = ministryInterest.filter(item => !skillset48.includes(item));
             }
             if(!skill.includes(8)){
-                ministryInterest = ministryInterest.filter(item => item !== "Youth");
-                ministryInterest = ministryInterest.filter(item => item !== "Young Adults");
-                ministryInterest = ministryInterest.filter(item => item !== "Men's");
-                ministryInterest = ministryInterest.filter(item => item !== "Women's");
-                ministryInterest = ministryInterest.filter(item => item !== "Family Or Couples");
-                ministryInterest = ministryInterest.filter(item => item !== "Ushering");
-                ministryInterest = ministryInterest.filter(item => item !== "Hospitality");
-                ministryInterest = ministryInterest.filter(item => item !== "Community Service");
-                ministryInterest = ministryInterest.filter(item => item !== "New Believers");
-            }
-            if(!skill.includes(5) && !skill.includes(7)){
-                ministryInterest = ministryInterest.filter(item => item !== "Administrative");
-            }
-            if(!skill.includes(6) && !skill.includes(8)){
-                ministryInterest = ministryInterest.filter(item => item !== "Finance");
-            }
-            if(!skill.includes(4)){
-                ministryInterest = ministryInterest.filter(item => item !== "Security");
-                ministryInterest = ministryInterest.filter(item => item !== "Facilities Maintenanceere");
-            }
-            if(!skill.includes(5)){
-                ministryInterest = ministryInterest.filter(item => item !== "Visitation");
-            }
-            if(!skill.includes(2)){
-                ministryInterest = ministryInterest.filter(item => item !== "Production Tech");
-                ministryInterest = ministryInterest.filter(item => item !== "Creative Arts");
-                ministryInterest = ministryInterest.filter(item => item !== "Graphic & Video Design");
-            }
-            if(!skill.includes(2) && !skill.includes(5) && !skill.includes(8)){
-                ministryInterest = ministryInterest.filter(item => item !== "Communications & Social Media");
-            }
-            if(!skill.includes(7)){
-                ministryInterest = ministryInterest.filter(item => item !== "Counseling");
-                ministryInterest = ministryInterest.filter(item => item !== "Grief & Bereavement");
-                ministryInterest = ministryInterest.filter(item => item !== "Special Needs");
-            }
-            if(!skill.includes(3)){
-                ministryInterest = ministryInterest.filter(item => item !== "Writing Publications");
+                ministryInterest = ministryInterest.filter(item => !skillset8.includes(item));
             }
             logFilterResult(before, ministryInterest, "Status filter");
-            console.alert(">> Ministry Interest(filtered)");
+            console.log(">> Ministry Interest(filtered)");
             console.log(ministryInterest.join(", "));
             showMinistrySpecific();
         }
@@ -1437,16 +1455,6 @@
                 ]
             },
             {
-                "ministry": "Hospitality",
-                "questions": [
-                    { en: "I would enjoy being in a setting where food, comfort, and service are prioritized.", tl: "Masaya ako sa lugar na nakatuon sa pagkain, kaginhawahan, at serbisyo." },
-                    { en: "I want to help prepare and serve food or refreshments for others.", tl: "Gusto kong tumulong sa paghahanda at paghahain ng pagkain o refreshments para sa iba." },
-                    { en: "I have the organization, presentation, and hosting skills needed here.", tl: "May kakayahan ako sa organisasyon, presentasyon, at pagho-host na kailangan dito." },
-                    { en: "I believe I could help make people feel welcomed through hospitality ministry.", tl: "Naniniwala akong makakatulong ako upang maramdaman ng tao ang welcome sa pamamagitan ng hospitality ministry." },
-                    { en: "I enjoy creating a warm and welcoming environment for church attendees.", tl: "Nasasaya ako sa paggawa ng mainit at magiliw na kapaligiran para sa mga dumadalo sa simbahan." }
-                ]
-            },
-            {
                 "ministry": "Administrative",
                 "questions": [
                     { en: "I would enjoy working in an environment that involves organization and planning.", tl: "I would enjoy working in an environment that involves organization and planning." },
@@ -1467,11 +1475,11 @@
                 ]
             },
             {
-                "ministry": "Security",
+                "ministry": "Marshal",
                 "questions": [
                     { en: "I would enjoy being in an environment focused on safety and order.", tl: "Masaya ako sa lugar na nakatuon sa kaligtasan at kaayusan." },
                     { en: "I am interested in helping maintain safety and well-being during church events.", tl: "Interesado akong tumulong sa pagpapanatili ng kaligtasan at kapakanan sa mga church events." },
-                    { en: "I feel I have the alertness, calmness, and decisiveness needed for security work.", tl: "May alertness, kalmadong disposisyon, at pagiging matatag ako na kailangan sa security work." },
+                    { en: "I feel I have the alertness, calmness, and decisiveness needed for Marshal work.", tl: "May alertness, kalmadong disposisyon, at pagiging matatag ako na kailangan sa Marshal work." },
                     { en: "I believe I could fulfill the role of keeping events safe and orderly.", tl: "Naniniwala akong magaling akong gampanan ang tungkulin na panatilihing ligtas at maayos ang mga events." },
                     { en: "I enjoy helping create a safe and secure environment for everyone.", tl: "Nasasaya ako sa pagtulong na magkaroon ng ligtas at maayos na kapaligiran para sa lahat." }
                 ]
@@ -1527,16 +1535,6 @@
                     { en: "I feel fulfilled when I can provide care and companionship to those who are struggling.", tl: "Pakiramdam ko ay nasisiyahan ako kapag nakakapagbigay ako ng pag-aalaga at kasama sa mga taong nahihirapan." }
                 ]
             },
-            {
-                "ministry": "New Believers",
-                "questions": [
-                    { en: "I would enjoy helping newcomers in their early faith journey.", tl: "Masaya ako sa pagtulong sa mga bagong mananampalataya sa kanilang unang hakbang sa pananampalataya." },
-                    { en: "I want to guide others as they develop habits like prayer and Bible reading.", tl: "Gusto kong gabayan ang iba habang nagde-develop ng mga gawi tulad ng panalangin at pagbabasa ng Bibliya." },
-                    { en: "I have the patience, understanding, and teaching skills needed here.", tl: "May pasensya, pag-unawa, at kakayahan sa pagtuturo ako na kailangan dito." },
-                    { en: "I believe I could encourage and equip new believers effectively.", tl: "Naniniwala akong makakapagbigay ako ng encouragement at gabay sa mga bagong mananampalataya nang epektibo." },
-                    { en: "I enjoy supporting and mentoring new believers as they grow in faith.", tl: "Nasasaya ako sa pagtulong at paggabay sa mga bagong mananampalataya habang lumalago sila sa pananampalataya." }
-                ]
-            },
             // Creative Media ministry
             {
                 "ministry": "Production Tech",
@@ -1549,33 +1547,13 @@
                 ]
             },
             {
-                "ministry": "Creative Arts",
-                "questions": [
-                    { en: "I would enjoy working in a creative space that focuses on visuals and design.", tl: "Masaya ako sa pagtatrabaho sa isang malikhaing lugar na nakatuon sa visuals at design." },
-                    { en: "I want to help communicate church messages through digital or printed graphics.", tl: "Gusto kong tumulong sa pagpapahayag ng mensahe ng simbahan sa pamamagitan ng digital o printed graphics." },
-                    { en: "I have the creativity, software skills, and attention to detail needed here.", tl: "May kakayahan sa creativity, software skills, at attention to detail ako na kailangan dito." },
-                    { en: "I believe I could serve well by creating visual materials for the ministry.", tl: "Naniniwala akong makakapaglingkod ako nang maayos sa paggawa ng visual materials para sa ministeryo." },
-                    { en: "I enjoy using my creativity to design materials that inspire and engage others in ministry.", tl: "Nasasaya ako sa paggamit ng aking pagiging malikhain upang gumawa ng mga materyales na nakaka-inspire at nakaka-engage sa ministeryo." }
-                ]
-            },
-            {
-                "ministry": "Communications & Social Media",
-                "questions": [
-                    { en: "I would enjoy working in an environment that engages people online.", tl: "Masaya ako sa pagtatrabaho sa isang kapaligiran na nakikipag-ugnayan sa mga tao online." },
-                    { en: "I want to create, post, or manage social media content for the church.", tl: "Gusto kong gumawa, mag-post, o pamahalaan ang social media content para sa simbahan." },
-                    { en: "I have the creativity, communication skills, and awareness of trends needed.", tl: "May creativity, communication skills, at kaalaman sa trends ako na kailangan dito." },
-                    { en: "I think I could contribute meaningfully to an online outreach ministry.", tl: "Naniniwala akong makakapag-ambag ako nang may kahulugan sa online outreach ministry." },
-                    { en: "I enjoy using social media to connect with and inspire the church community.", tl: "Nasasaya ako sa paggamit ng social media upang makipag-ugnayan at magbigay inspirasyon sa komunidad ng simbahan." }
-                ]
-            },
-            {
-                "ministry": "Graphic & Video Design",
+                "ministry": "Creative & Social Media",
                 "questions": [
                     { en: "I enjoy capturing moments, events, and stories through photography or videography.", tl: "Nasasaya ako sa pagkuha ng mga sandali, kaganapan, at kwento sa pamamagitan ng photography o videography." },
                     { en: "I want to help document and share church activities through visual content like photos and videos.", tl: "Gusto kong tumulong sa pagdodokumento at pagbabahagi ng mga aktibidad ng simbahan gamit ang visual content tulad ng photos at videos." },
                     { en: "I have the creativity and technical skills needed for photography or video production.", tl: "May creativity at teknikal na kakayahan ako na kailangan para sa photography o video production." },
-                    { en: "I believe I could serve well by visually documenting ministry events and projects.", tl: "Naniniwala akong makakapaglingkod ako nang maayos sa pagdodokumento ng mga kaganapan at proyekto ng ministeryo." },
-                    { en: "I enjoy using photography and videography to tell meaningful stories for ministry.", tl: "Nasasaya ako sa paggamit ng photography at videography upang maipahayag ang makabuluhang kwento para sa ministeryo." }
+                    { en: "I think I could contribute meaningfully to an online outreach ministry.", tl: "Naniniwala akong makakapag-ambag ako nang may kahulugan sa online outreach ministry." },
+                    { en: "I enjoy using social media to connect with and inspire the church community.", tl: "Nasasaya ako sa paggamit ng social media upang makipag-ugnayan at magbigay inspirasyon sa komunidad ng simbahan." }
                 ]
             },
             // Care & Healing ministry
@@ -1600,7 +1578,7 @@
                 ]
             },
             {
-                "ministry": "Grief & Bereavement",
+                "ministry": "Funeral",
                 "questions": [
                     { en: "I would feel honored to walk alongside people during seasons of grief and loss.", tl: "Ikinalulugod kong makasama ang mga tao sa panahon ng dalamhati at pagkawala." },
                     { en: "I am comfortable being present with others in sorrow without needing to give quick answers.", tl: "Komportable akong makasama ang iba sa kanilang kalungkutan kahit hindi agad magbigay ng kasagutan." },
@@ -1650,16 +1628,6 @@
                     { en: "I value the opportunity to affirm that single adults are an important and vital part of the church community.", tl: "Pinahahalagahan ko ang pagkakataong ipakita na ang mga single adults ay mahalaga at may mahalagang bahagi sa komunidad ng simbahan." }
                 ]
             },
-            {
-                "ministry": "Writing Publications",
-                "questions": [
-                    { en: "I would be fulfilled serving in a ministry that shares faith and stories through writing.", tl: "Makakaramdam ako ng kaganapan sa paglilingkod sa isang ministeryo na nagbabahagi ng pananampalataya at mga kuwento sa pamamagitan ng pagsusulat." },
-                    { en: "I am interested in creating devotionals, articles, or other written materials to encourage others.", tl: "Interesado akong lumikha ng mga debosyonal, artikulo, o iba pang nakasulat na materyal upang mahikayat ang iba." },
-                    { en: "I believe I have the clarity, creativity, and attention to detail needed for this ministry.", tl: "Naniniwala akong taglay ko ang kalinawan, pagkamalikhain, at atensyon sa detalye na kailangan para sa ministeryong ito." },
-                    { en: "I believe I could contribute well to a team that produces faith-based publications.", tl: "Naniniwala akong makapag-aambag ako nang mabuti sa isang team na gumagawa ng mga publikasyong nakabatay sa pananampalataya." },
-                    { en: "I see writing as a meaningful way to reach people who might not be reached through other ministries.", tl: "Nakikita ko ang pagsusulat bilang makabuluhang paraan upang maabot ang mga taong maaaring hindi maabot ng ibang ministeryo." }
-                ]
-            }
         ];
 
         let behavioralProfilingScore = [];
@@ -1971,7 +1939,7 @@
                     Help them visualize what kind of team culture suits them base on their top ministry.
 
                     <h2 style="color:rgb(128, 65, 128);">Ministry Pathway / Journey Map:</h2>
-                    (make this response atleast 100 words)
+                    (make this response atleast 100 words, display in bullets)
                     make a possible serving pathway, Help them think long-term, not just one-time serving.
                     example:
                     - start as an assisstant
@@ -2047,7 +2015,7 @@
                     Tulungan silang mailarawan kung anong uri ng kultura ng grupo ang babagay sa kanila batay sa kanilang pangunahing ministeryo.
 
                     <h2 style="color:rgb(128, 65, 128);">Landas o Journey Map sa Ministeryo:</h2>
-                    (Gawin itong tugon na may hindi bababa sa 100 salita.)
+                    (Gawin itong tugon na may hindi bababa sa 100 salita. ilagay sa bullets)
                     Gumawa ng posibleng landas ng paglilingkod, tulungan silang mag-isip ng pangmatagalan, hindi lang panandalian.
                     halimbawa:
                     - magsimula bilang isang katulong
