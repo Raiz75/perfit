@@ -8,6 +8,7 @@
     <style>
         *{
             box-sizing: border-box;
+            /* border: 1px solid red; */
         }
         body{
             padding: 0;
@@ -21,55 +22,614 @@
             scroll-behavior: smooth;
             scroll-snap-type: y mandatory;
         }
-        /* testing */
-        .q{
-            border:1px solid red;
-        }
 
         /* sections */
         section{
-            border:1px solid red;
             width: 100%;
             height: 100vh;
             scroll-snap-align: start;
-            display:flex;
+            border: .1px solid transparent;
+        }
+        .bg2{
+            background-color: rgb(255, 223, 255);
         }
         h1{
-            border: 1px solid red;
-            width: 20%;
-            background-color: rgb(195, 253, 213);
+            width: 50%;
+            margin: 30px auto;
+            text-align: center;
+            color:rgb(128, 65, 128);
         }
-        .carouselContainer{
-            border: 1px solid red;
+        .carouselContainer {
             width: 80%;
-            background-color: aqua;
+            height: 80%;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+            background: #f5f5f5;
+            border-radius: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .carouselTrack {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .specificMinistry {
+            flex: 0 0 100%;
+            justify-content: center;
+            background: whitesmoke;
+            color: rgb(128, 65, 128);
+            font-size: 1.5em;
+            font-weight: bold;
+            position: relative;
+            background-image: url("img/icn-logo.png");
+            background-repeat: no-repeat;
+            background-position: 120% center;
+            background-size: auto 100%;
+            background-color: rgba(255,255,255,0.8);
+            background-blend-mode: lighten;
+            padding: 30px 50px;
+        }
+        .specificMinistry h2{
+            align-items: left;
+            margin: 0px;
+        }
+        .specificMinistry p{
+            text-align: justify;
+            width: 90%;
+            margin: 10px auto;
+        }
+        table, th, td {
+            border: 1px solid rgb(128, 65, 128);
+            border-collapse: collapse;
+            padding: 8px;
+            text-align: center;
+        }
+        table{
+            width: 80%;
+            white-space: normal;
+            margin: 30px auto;
+        }
+        th:nth-child(1), td:nth-child(1) { width: 11%; } /* Gender */
+        th:nth-child(2), td:nth-child(2) { width: 11%; } /* Age */
+        th:nth-child(3), td:nth-child(3) { width: 11%; } /* status */
+        th:nth-child(4), td:nth-child(4) { width: 11%; } /* baptized */
+        th:nth-child(5), td:nth-child(5) { width: 11%; } /* time in faith */
+        th:nth-child(6), td:nth-child(6) { width: 40%; } /* Skills */
+        /* .m1 { background: crimson; }
+        .m2 { background: seagreen; }
+        .m3 { background: steelblue; } */
+
+        .btn {
+            width: 4vw;
+            height: 4vw;
+            position: absolute;
+            top: 90%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            font-size: 1em;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+        .prev { 
+            left: 10px; 
+        }
+        .next { 
+            right: 10px; 
+        }
+        .prev, .next{
+            border: 0.2vw solid rgb(128, 65, 128);
+            background-color: rgb(128, 65, 128);
+            transition: 0.5s ease-in-out;
+        }
+        .prev:hover, .next:hover{
+            background-color: rgb(255, 223, 255);
+            color: rgb(128, 65, 128);
+        }
+
+    /* dots container */
+        .indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+        .dot.active {
+            background: rgb(128, 65, 128);
+        }
+        .gotoHome{
+            position: fixed;
+            top:10px;
+            left:10px;
+            width: 200px;
+            height: 50px;
+            border: 0.3vw solid rgb(128, 65, 128);
+            border-radius: 1.2vw;
+            font-size: 1.2em;
+            background-color: rgb(128, 65, 128);
+            color: white;
+            z-index: 2;
+            transition: 0.3s ease-in-out;
+        }
+        .gotoHome:hover {
+            background-color: rgb(255, 223, 255);
+            color: rgb(128, 65, 128);
+        }
+        /*animation */
+        .move-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 0.5s ease-in-out;
+        }
+
+        .move-up.visible1 {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        @media (hover: none) {
+            .prev:hover, .next:hover{
+                background-color: rgb(128, 65, 128);
+                color: white;
+            }
+        }
+        /* Tablet styles */
+        @media (max-width: 1024px) {
+            h1{
+                font-size: 5em;
+                width: 70%;
+            }
+            .specificMinistry {
+                padding: 6px 2px;
+                background-position: center;
+                background-size: auto 60%;
+            }
+            .specificMinistry h2{
+                font-size: 3em;
+                text-align: center;
+                margin-top: 10px;
+            }
+            .specificMinistry p{
+                font-size: 1.8em;
+            }
+            table, th, td {
+                padding: 1px;
+            }
+            table{
+                width: 90%;
+                font-size: 1.4em;
+            }
+            caption{
+                font-size: 1.5em;
+            }
+            .prev, .next{
+                width: 60px;
+                height: 60px;
+                font-size: 1.8em;
+            }
+            .indicators{
+                bottom: 10%;
+            }
+        }
+        @media (max-width: 480px) {
+            h1{
+                font-size: 5em;
+                width: 70%;
+            }
+            .specificMinistry {
+                background-size: auto 50%;
+            }
+            .specificMinistry h2{
+                font-size: 3em;
+                text-align: center;
+            }
+            .specificMinistry p{
+                font-size: 2.2em;
+            }
+            table, th, td {
+                padding: 1px;
+            }
+            table{
+                margin: 10px auto;
+                width: 95%;
+                font-size: 1.7em;
+                padding: 3px;
+            }
+            .prev, .next{
+                width: 40px;
+                height: 40px;
+                font-size: 1.8em;
+            }
+            .dot {
+                width: 8px;
+                height: 8px;
+            }
         }
     </style>
 </head>
 <body>
-    <section>
-        <h1>CORE MINISTRIES</h1>
-        <div class="carouselContainer">ministry carousel here</div>
+    <button class="gotoHome" onclick="window.location.href='index.html'">Go Back</button>
+    <section class="bg2">
+        <h1 class="move-up">CORE MINISTRIES</h1>
+        <div class="carouselContainer  move-up">
+            <div class="carouselTrack">
+                <div class="specificMinistry">
+                    <h2>Worship (Singing) Ministry</h2>
+                    <p>The Worship (Singing) Ministry exists to lead the congregation into heartfelt praise and worship through music. Members use their vocal abilities to create an atmosphere where people can encounter God’s presence. This ministry emphasizes spiritual preparation, teamwork, and excellence in delivery, understanding that worship is not just performance but an offering to God. Singers also support special events, church gatherings, and outreach services, making worship accessible to people of all ages. Training often includes vocal exercises, learning new songs, and practicing harmonies. Their goal is to help the church focus on God and encourage a lifestyle of continuous worship.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>12+</td><td>any</td><td>yes</td><td>6 months+</td><td>Singing, Technology, and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Worship (Dancing) Ministry</h2>
+                    <p>The Worship (Dancing) Ministry expresses worship through movement and choreography. Members of this ministry use dance to visually convey the message of God’s love, grace, and power. Their purpose is to inspire others to worship in freedom, using creative expressions that go beyond words. Dancers prepare for services and special events, performing pieces that align with sermons or themes. This ministry requires discipline, practice, and sensitivity to the Spirit, as dance is not for entertainment but as an act of worship. It also allows individuals to use their physical talents to glorify God and lead others closer to Him.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>12</td><td>any</td><td>yes</td><td>6 months+</td><td>Dancing, Technology, and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Worship (Instrument) Ministry</h2>
+                    <p>The Worship (Instrument) Ministry provides the instrumental foundation for church worship. Musicians play instruments such as guitars, keyboards, drums, or other instruments to support congregational singing and create a dynamic worship atmosphere. This ministry requires both musical skill and spiritual commitment, as members must play with excellence while remaining humble servants. Practices and rehearsals are essential to ensure unity and flow in worship. Beyond Sunday services, they may also accompany prayer gatherings, youth services, and outreach events. Their primary purpose is not to showcase talent but to help the congregation experience God’s presence through the beauty of instrumental music.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>12</td><td>any</td><td>yes</td><td>6 months+</td><td>Instrument, Technology and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Prayer Ministry</h2>
+                    <p>The Prayer Ministry serves as the church’s spiritual backbone, dedicating time to intercede for individuals, families, the congregation, and the world. Members gather regularly to pray for healing, guidance, revival, and breakthroughs. They also support the church during services, praying for pastors, leaders, and worship teams as they minister. This ministry emphasizes spiritual discipline, faith, and compassion for others. Members may also offer prayer counseling to those in need, encouraging people with scripture and intercession. The Prayer Ministry plays a vital role in spiritual warfare, covering the church in prayer and ensuring that every activity is rooted in God’s will.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>15</td><td>any</td><td>yes</td><td>1 week+</td><td>Writing, Public speaking, Mentoring and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Preaching Ministry</h2>
+                    <p>The Preaching Ministry focuses on teaching and proclaiming God’s Word with clarity and conviction. Preachers are called to study scripture deeply, prepare messages faithfully, and deliver sermons that inspire transformation. Their role is not only to inform but also to challenge, encourage, and guide believers in their spiritual journey. This ministry requires dedication to continuous learning, prayer, and dependence on the Holy Spirit. Preachers often take part in worship services, bible studies, and outreach events. They must also model Christlike living, as their influence extends beyond the pulpit. Their ultimate purpose is to spread the gospel and build strong disciples.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>20</td><td>any</td><td>yes</td><td>1 year+</td><td>Writing, Public speaking, Mentoring and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Discipleship Ministry</h2>
+                    <p>The Discipleship Ministry is responsible for helping believers grow in their faith and spiritual maturity. Members of this ministry guide new Christians, teaching them biblical principles, prayer, and practical ways to live as followers of Christ. Through small groups, bible studies, and mentoring, they create opportunities for deeper learning and accountability. Discipleship leaders are patient, caring, and committed to walking alongside others in their spiritual journey. They help believers apply scripture to daily life and encourage them to develop a personal relationship with God. The ultimate goal is to equip disciples who, in turn, can disciple others and multiply faith.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>any</td><td>any</td><td>yes</td><td>1 year+</td><td>Writing, Public speaking, Mentoring and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Youth Ministry</h2>
+                    <p>The Youth Ministry engages and nurtures the younger generation, guiding teenagers to live Christ-centered lives. Through bible studies, fellowship, worship nights, and community activities, this ministry provides a safe space for young people to grow spiritually and socially. Leaders act as mentors and role models, encouraging youth to develop their talents, serve in church, and make wise decisions in life. The ministry emphasizes building strong relationships, addressing real-life challenges, and empowering youth to stand firm in their faith. By involving them in church activities, it prepares the next generation of leaders and strengthens their commitment to God’s calling.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>12-25</td><td>any</td><td>yes</td><td>1 year+</td><td>Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Young Adults Ministry</h2>
+                    <p>The Young Adults Ministry serves individuals transitioning from youth to adulthood, often those in college or starting their careers. This ministry provides support for spiritual, emotional, and professional growth during a crucial stage of life. Through bible studies, fellowships, and service opportunities, young adults find a community where they can share experiences and grow in faith. Leaders encourage them to pursue godly values while facing modern challenges such as relationships, work, and independence. The ministry aims to build confident, faith-driven adults who can influence their workplaces, communities, and families for Christ while staying connected to the church family.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>20-30</td><td>any</td><td>yes</td><td>1 year+</td><td>Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Men's Ministry</h2>
+                    <p>The Men’s Ministry is dedicated to equipping men to fulfill their roles as leaders in their homes, churches, and communities. This ministry encourages men to grow spiritually, emotionally, and relationally through prayer meetings, bible studies, and mentorship. Activities often focus on strengthening family relationships, developing integrity, and providing support in facing challenges unique to men. Fellowship events also allow men to build strong bonds, encourage accountability, and find encouragement. The Men’s Ministry seeks to raise godly men who are responsible, compassionate, and faithful, serving as role models for younger generations and standing firm as pillars of strength in the church.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>Male only</td><td>21</td><td>any</td><td>yes</td><td>1 year+</td><td>Mentoring and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Women's Ministry</h2>
+                    <p>The Women’s Ministry provides a supportive and nurturing community for women of all ages. It focuses on encouraging women to grow in their faith, strengthen their families, and use their gifts to serve others. Activities may include bible studies, prayer groups, workshops, and fellowship events tailored to the needs of women. This ministry often emphasizes spiritual growth, emotional support, and mentorship, helping women navigate different life seasons. It also empowers women to discover their unique callings and contribute actively to the church’s mission. The Women’s Ministry celebrates sisterhood and unity, helping women flourish in their walk with Christ.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>Female only</td><td>21</td><td>any</td><td>yes</td><td>1 year+</td><td>Mentoring and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Family or Couples Ministry</h2>
+                    <p>The Family or Couples Ministry is dedicated to strengthening marriages and families through biblical guidance and fellowship. This ministry provides support for couples at different stages of life, from newlyweds to parents with children. Programs often include marriage enrichment seminars, counseling, prayer sessions, and family-centered activities. The goal is to nurture strong, Christ-centered relationships that can withstand life’s challenges. Leaders encourage open communication, forgiveness, and teamwork within families, emphasizing God’s design for marriage. By fostering healthy households, this ministry not only strengthens individual families but also builds a stronger church community rooted in love and unity.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>21</td><td>Must be Married</td><td>yes</td><td>1 year+</td><td>Mentoring and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+            </div>
+            <button class="btn prev">&#10094;</button>
+            <button class="btn next">&#10095;</button>
+        </div>
     </section>
     <section>
-        <h1>SUPPORT MINISTRIES</h1>
-        <div class="carouselContainer">ministry carousel here</div>
+        <h1 class="move-up">SUPPORT MINISTRIES</h1>
+        <div class="carouselContainer  move-up">
+            <div class="carouselTrack">
+                <div class="specificMinistry">
+                    <h2>Ushering Ministry</h2>
+                    <p>The Ushering Ministry plays a vital role in creating a welcoming and orderly atmosphere during church services and events. Ushers are often the first people members and visitors meet, so they represent the warmth and hospitality of the church. Their responsibilities include greeting attendees, helping people find seats, collecting offerings, distributing materials, and providing directions when needed. Ushers also ensure that services run smoothly by maintaining order and assisting during emergencies. This ministry requires patience, attentiveness, and a heart for service. Ultimately, the Ushering Ministry reflects God’s love through hospitality, helping everyone feel valued and comfortable in worship.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>any</td><td>any</td><td>yes</td><td>1 year+</td><td>Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Administration Ministry</h2>
+                    <p>The Administrative Ministry ensures that the church operates efficiently by managing records, schedules, and communication. Members of this ministry handle clerical work, organize files, oversee correspondence, and assist with planning church programs or events. They may also prepare reports, manage supplies, and coordinate with leaders across different ministries. This ministry requires organizational skills, attention to detail, and a sense of responsibility, as their work supports the smooth functioning of church operations. Although often behind the scenes, their contribution is essential to ensuring that pastoral staff and ministry leaders can focus on their spiritual duties while administrative tasks are managed effectively.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>25</td><td>any</td><td>yes</td><td>1 year+</td><td>Writing, Accounting and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Finance Ministry</h2>
+                    <p>The Finance Ministry manages the church’s financial resources with transparency, accountability, and stewardship. Members are responsible for counting offerings, recording contributions, preparing budgets, and ensuring funds are used according to the church’s mission. They may also provide financial counseling to members and organize fundraising events. Integrity is crucial in this ministry, as financial decisions directly impact the church’s ability to serve its community and support missions. Beyond bookkeeping, this ministry also teaches biblical principles of giving and stewardship, encouraging members to honor God with their resources. Their goal is to handle church finances faithfully and responsibly for God’s glory.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>25</td><td>any</td><td>yes</td><td>1 year+</td><td>Writing, Accounting and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Marshal Ministry</h2>
+                    <p>The Marshal Ministry is dedicated to maintaining safety, security, and order within church premises. Members oversee crowd management, especially during large gatherings, ensuring that people can worship without distractions. They may guide parking, assist with seating, and act quickly in emergencies. This ministry requires discipline, vigilance, and a calm presence, as marshals often serve as first responders in unexpected situations. They work closely with ushers and leaders to provide a safe worship environment. More than just security, the Marshal Ministry demonstrates care and responsibility, helping the church function peacefully while protecting both members and visitors during services and events.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>25</td><td>any</td><td>yes</td><td>1 year+</td><td>Technical and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Facilities Maintenance Ministry</h2>
+                    <p>The Facilities Maintenance Ministry ensures that the church building and equipment are kept in excellent condition. Members handle repairs, cleaning, and upkeep of areas such as worship halls, classrooms, offices, and restrooms. They may also take charge of setting up equipment, maintaining electrical or sound systems, and ensuring everything runs smoothly during services. This ministry requires practical skills, dedication, and a willingness to serve behind the scenes. Though often unnoticed, their work directly impacts the comfort and safety of everyone who attends church. The Facilities Maintenance Ministry is a crucial part of stewardship, caring for the resources God has provided.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>25</td><td>any</td><td>yes</td><td>1 year+</td><td>Technical and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+            </div>
+            <button class="btn prev">&#10094;</button>
+            <button class="btn next">&#10095;</button>
+        </div>
+    </section>
+    <section class="bg2">
+        <h1 class="move-up">OUTREACH MINISTRIES</h1>
+        <div class="carouselContainer  move-up">
+            <div class="carouselTrack">
+                <div class="specificMinistry">
+                    <h2>Evangelism Ministry</h2>
+                    <p>The Evangelism Ministry is focused on spreading the gospel of Jesus Christ to those who have not yet accepted Him as Lord and Savior. Members actively share their faith through personal witnessing, community outreach, and organized evangelistic events. They may conduct Bible studies, distribute gospel tracts, and engage in conversations that lead people to Christ. Evangelists often work outside the church walls, reaching out to neighborhoods, workplaces, schools, and public spaces. This ministry requires courage, compassion, and a deep love for people. Its mission is to fulfill the Great Commission by bringing hope and salvation to the lost through the message of Jesus.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>any</td><td>any</td><td>yes</td><td>1 year+</td><td>Writing, Public speaking, Mentoring and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Missions Ministry</h2>
+                    <p>The Missions Ministry extends the church’s reach beyond local communities to other regions and even nations. Members support and participate in mission trips, partnering with local churches and organizations to spread the gospel and provide humanitarian aid. Their work often includes teaching, medical missions, and relief operations for those in need. This ministry requires cultural sensitivity, flexibility, and a servant’s heart, as missionaries adapt to different environments and lifestyles. They also raise awareness within the congregation about global missions, encouraging prayer and financial support. Ultimately, they embody the heart of God for the nations and the unity of His church worldwide.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>25</td><td>any</td><td>yes</td><td>1 year+</td><td>Writing, Public speaking, Mentoring and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Community Service Ministry</h2>
+                    <p>The Community Service Ministry demonstrates God’s love through practical acts of kindness and service. Members engage in projects that benefit local communities, such as feeding programs, clothing drives, clean-up campaigns, and educational support. They aim to meet physical, emotional, and spiritual needs by being the hands and feet of Jesus in everyday life. This ministry requires compassion, teamwork, and a willingness to serve people from all walks of life. Beyond providing aid, community service builds relationships, strengthens trust, and creates opportunities to share the gospel. Through their efforts, the church becomes a light to society, showing love in action.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>any</td><td>any</td><td>yes</td><td>1 year+</td><td>Writing, Public speaking, Mentoring and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Visitation Ministry</h2>
+                    <p>The Visitation Ministry reaches out personally to members and non-members who may need encouragement, prayer, or companionship. Members visit the sick, elderly, bereaved, and those unable to attend church services due to health or personal reasons. They also connect with new members to help them feel welcomed and integrated into the church family. This ministry requires empathy, patience, and the ability to listen with care. By being present in times of joy and sorrow, the Visitation Ministry reflects God’s compassion and strengthens relationships within the church. It reminds people that they are not forgotten but are valued members of God’s family.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>21</td><td>any</td><td>yes</td><td>1 year+</td><td>Writing, Public speaking, Mentoring and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+            </div>
+            <button class="btn prev">&#10094;</button>
+            <button class="btn next">&#10095;</button>
+        </div>
     </section>
     <section>
-        <h1>OUTREACH MINISTRIES</h1>
-        <div class="carouselContainer">ministry carousel here</div>
+        <h1 class="move-up">CREATIVE AND MEDIA MINISTRIES</h1>
+        <div class="carouselContainer  move-up">
+            <div class="carouselTrack">
+                <div class="specificMinistry">
+                    <h2>Production Tech Ministry</h2>
+                    <p>The Production Tech Ministry is responsible for managing the technical aspects of worship and church events. Members operate sound systems, lighting, video recording, live streaming, and projection equipment to ensure a smooth and engaging service experience. This ministry supports both on-site and online worshippers by creating a clear, distraction-free environment where God’s Word can be effectively communicated. It requires technical skills, attention to detail, and the ability to troubleshoot under pressure. Beyond just handling equipment, production tech volunteers work as behind-the-scenes servants who make worship more accessible. Their efforts allow the gospel to reach not only those in the sanctuary but also people across the globe through digital platforms.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>22</td><td>any</td><td>yes</td><td>1 year+</td><td>Technology, Writing and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Creative & Social Media Ministry</h2>
+                    <p>The Creative & Social Media Ministry uses creativity and digital platforms to communicate the church’s message and inspire others. Members design graphics, write content, capture photos and videos, and manage the church’s presence on social media platforms. They create engaging posts, devotionals, and announcements that reach a wide audience and reflect the church’s values. This ministry requires artistic talent, storytelling skills, and an understanding of digital trends. By using visual design and media strategically, they help spread the gospel beyond the church walls, connecting with people where they already spend much of their time. Ultimately, the ministry blends creativity with purpose, showing that art and technology can be powerful tools for advancing God’s kingdom.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>22</td><td>any</td><td>yes</td><td>1 year+</td><td>Technology, Writing, Public speaking, Mentoring and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+            </div>
+            <button class="btn prev">&#10094;</button>
+            <button class="btn next">&#10095;</button>
+        </div>
+    </section>
+    <section class="bg2">
+        <h1 class="move-up">CARE AND HEALING MINISTRIES</h1>
+        <div class="carouselContainer  move-up">
+            <div class="carouselTrack">
+                <div class="specificMinistry">
+                    <h2>Counseling Ministry</h2>
+                    <p>The Counseling Ministry provides emotional, mental, and spiritual support to individuals and families within the church and community. Members offer guidance based on biblical principles, helping people navigate struggles such as stress, grief, relationships, or personal challenges. Counselors listen with compassion, provide encouragement, and pray for healing and clarity. This ministry requires empathy, wisdom, and confidentiality, as people often share deep and personal issues. Its goal is to bring restoration and hope through God’s Word, pointing individuals toward a deeper relationship with Christ. Ultimately, the Counseling Ministry acts as a safe space for healing hearts and strengthening faith.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>21</td><td>any</td><td>yes</td><td>1 year+</td><td>Mentoring and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Healing & Deliverance Ministry</h2>
+                    <p>The Healing & Deliverance Ministry is focused on praying for people who need spiritual, emotional, or physical healing. Members intercede for the sick, oppressed, and those struggling with burdens that hinder their walk with God. They minister with faith, using prayer, Scripture, and the power of the Holy Spirit to bring freedom and restoration. This ministry requires spiritual maturity, discernment, and compassion, as it deals with sensitive situations and deep struggles. It emphasizes that true healing comes from Christ, who is the ultimate healer. Through their prayers and service, members demonstrate God’s love and power to transform lives.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>21</td><td>any</td><td>yes</td><td>1 year+</td><td>Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Funeral Ministry</h2>
+                    <p>The Funeral Ministry serves grieving families by providing comfort, guidance, and practical support during one of life’s most difficult moments. Members help with funeral arrangements, coordinate services, and ensure that families feel the compassion of the church community. They also offer prayers, scripture readings, and words of encouragement that point to the hope of eternal life in Christ. This ministry requires sensitivity, patience, and the ability to walk alongside others in grief. By serving in times of loss, the Funeral Ministry reminds people of God’s presence and promises, providing strength and comfort when it is needed most.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>21</td><td>any</td><td>yes</td><td>1 year+</td><td>Musical, Public speaking and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Addiction Recovery Ministry</h2>
+                    <p>The Addiction Recovery Ministry supports individuals who are struggling with addictions such as drugs, alcohol, gambling, or other harmful habits. Members provide a safe and non-judgmental environment where people can find encouragement, accountability, and spiritual guidance. They may organize support groups, Bible studies, and mentoring relationships to help individuals overcome bondage and experience freedom in Christ. This ministry requires patience, understanding, and a strong foundation in God’s Word, as recovery is often a long and challenging process. By walking with people step by step, the Addiction Recovery Ministry offers hope and reminds them that lasting change is possible through God’s power.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>21</td><td>any</td><td>yes</td><td>1 year+</td><td>Public speaking, Mentoring and Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Special Needs Ministry</h2>
+                    <p>The Special Needs Ministry provides care, support, and inclusion for individuals with physical, mental, or developmental challenges. Members assist families by ensuring that every person, regardless of ability, feels welcomed and valued in the church. They may offer specialized programs, accessible facilities, and one-on-one support during worship services or events. This ministry requires patience, compassion, and creativity in adapting teaching methods and activities. It highlights the truth that every individual is uniquely created and loved by God. Through their service, the Special Needs Ministry helps break barriers, showing that the church is a place where everyone belongs and can experience God’s love.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>21</td><td>any</td><td>yes</td><td>1 year+</td><td>Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+            </div>
+            <button class="btn prev">&#10094;</button>
+            <button class="btn next">&#10095;</button>
+        </div>
     </section>
     <section>
-        <h1>CREATIVE AND MEDIA MINISTRIES</h1>
-        <div class="carouselContainer">ministry carousel here</div>
+        <h1 class="move-up">SPECIAL INTEREST MINISTRIES</h1>
+        <div class="carouselContainer move-up">
+            <div class="carouselTrack">
+                <div class="specificMinistry">
+                    <h2>Seniors Ministry</h2>
+                    <p>The Seniors Ministry is dedicated to caring for and empowering older members of the church. It provides fellowship, encouragement, and opportunities for seniors to continue serving God and others. Activities may include Bible studies, prayer groups, social gatherings, and outreach projects designed to keep seniors spiritually and socially engaged. This ministry also offers support for health concerns, emotional needs, and life transitions such as retirement or loss. It requires patience, respect, and deep appreciation for the wisdom and experiences of older generations. By honoring and valuing seniors, the ministry reminds the church that every stage of life has purpose and dignity in God’s kingdom.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>60</td><td>any</td><td>yes</td><td>1 year+</td><td>Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+                <div class="specificMinistry">
+                    <h2>Single Adults Ministry</h2>
+                    <p>The Single Adults Ministry serves individuals who are unmarried, whether young professionals, those who have never married, or those who are divorced or widowed. It creates a supportive community where singles can grow spiritually, build meaningful friendships, and discover their unique calling. Members may participate in Bible studies, service projects, mentoring, and social activities that foster fellowship and personal growth. This ministry requires inclusivity, encouragement, and sensitivity to the diverse needs of single adults. It emphasizes that being single is not a limitation but an opportunity to focus fully on God and His plans. Ultimately, it empowers individuals to thrive in faith, purpose, and community.</p>
+                    <table>
+                        <caption>Requirements to Join</caption>
+                        <tr><th>Gender</th><th>Age</th><th>Status</th><th>Baptized</th><th>Time in Faith</th><th>Skills</th></tr>
+                        <tr><td>any</td><td>21</td><td>Must be single</td><td>yes</td><td>1 year+</td><td>Understanding the scriptures</td></tr>
+                    </table>
+                </div>
+            </div>
+            <button class="btn prev">&#10094;</button>
+            <button class="btn next">&#10095;</button>
+        </div>
     </section>
-    <section>
-        <h1>CARE AND HEALING MINISTRIES</h1>
-        <div class="carouselContainer">ministry carousel here</div>
-    </section>
-    <section>
-        <h1>SPECIAL INTEREST MINISTRIES</h1>
-        <div class="carouselContainer">ministry carousel here</div>
-    </section>
+
+    
+    <script>
+        document.querySelectorAll(".carouselContainer").forEach(container => {
+            const track = container.querySelector(".carouselTrack");
+            const slides = container.querySelectorAll(".specificMinistry");
+            const prev = container.querySelector(".prev");
+            const next = container.querySelector(".next");
+            let index = 0;
+            // create indicator container
+            const indicatorContainer = document.createElement("div");
+            indicatorContainer.classList.add("indicators");
+            // create dots
+            slides.forEach((_, i) => {
+            const dot = document.createElement("div");
+            dot.classList.add("dot");
+            if (i === 0) dot.classList.add("active");
+            dot.addEventListener("click", () => {
+                index = i;
+                updateSlide();
+            });
+            indicatorContainer.appendChild(dot);
+            });
+            container.appendChild(indicatorContainer);
+            const dots = indicatorContainer.querySelectorAll(".dot");
+            function updateSlide() {
+            track.style.transform = `translateX(-${index * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle("active", i === index);
+            });
+            }
+            next.addEventListener("click", () => {
+            index = (index + 1) % slides.length;
+            updateSlide();
+            });
+            prev.addEventListener("click", () => {
+            index = (index - 1 + slides.length) % slides.length;
+            updateSlide();
+            });
+        });
+
+    //animation
+        const moveUp = document.querySelectorAll('.move-up');
+        const upObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible1');
+                }
+            });
+        }, { threshold: 0.1 });
+        moveUp.forEach(el => upObserver.observe(el));
+    </script>
 </body>
 </html>
