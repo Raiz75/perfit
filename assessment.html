@@ -198,10 +198,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .rateBox button:hover{
-            color: white;
-            background-color: rgb(128, 65, 128);
-        }
         .denyInput {
             filter: blur(5px);
             pointer-events: none;
@@ -264,23 +260,40 @@
             cursor: pointer;
             transition: .3s ease-in-out;
         }
-        .nextBtn:hover{
-            background-color: rgb(255, 223, 255);
-            color: rgb(128, 65, 128);
-        }
         .btnDivStuck{
             position: sticky;
             bottom: 50px;
             z-index: 6;
         }
+
+        .exportBtnDiv{
+            justify-content: center;
+            align-items: center;
+            transition: .3s ease-in-out;
+            display: none;
+        }
+        .exportBtn{
+            display: flex;
+            gap: 7%;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 60px;
+            border: 3px solid rgb(128, 65, 128);
+            border-radius: 12px;
+            font-size: 1.2rem;
+            background-color: rgb(128, 65, 128);
+            color: white;
+            margin: 10px auto;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+        }
         .disable{
             pointer-events: none;
             border: 3px solid grey;
             background-color: rgb(196, 171, 196);
-            color: grey;
+            color: white;
         }
-
-
         /*footer*/
         .footer{
             background-image: url('img/footer.png');
@@ -289,7 +302,6 @@
             height: 200px;
             position: relative;
         }
-
         /*alert*/
         .overlay {
             display: none;
@@ -302,14 +314,13 @@
             backdrop-filter: blur(5px);
             z-index: 999;
         }
-
         /* Centered alert */
         .showAlert {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            border: 3px solid red;
+            border: 3px solid rgb(128, 65, 128);
             width: 500px;
             height: auto;
             background: white;
@@ -389,6 +400,29 @@
         }
 
         /* Mobile Responsive Media Queries */
+        @media(hover:hover){
+            .nextBtn:hover{
+                background-color: rgb(255, 223, 255);
+                color: rgb(128, 65, 128);
+            }
+            .rateBox button:hover{
+                color: white;
+                background-color: rgb(128, 65, 128);
+            }
+            .exportBtn:hover{
+                background-color: rgb(255, 223, 255);
+                color: rgb(128, 65, 128);
+            }
+            .exportBtn::before {
+                content: "";
+                width: 24px;
+                height: 24px;
+                background: url("img/icn-export1.png") no-repeat center/contain;
+            }
+            .exportBtn:hover::before {
+                background-image: url("img/icn-export2.png");
+            }
+        }
         @media (max-width: 1024px) {
             .banner{
                 margin:0px;
@@ -448,6 +482,12 @@
                 height: 50px;
                 font-size: 1.1rem;
             }
+            
+            .exportBtn{
+                width: 180px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
 
             .footer {
                 height: 150px;
@@ -472,7 +512,7 @@
             }
         }
 
-        @media screen and (max-width: 480px) {
+        @media (max-width: 480px) {
             .ttl {
                 font-size: 10em;
             }
@@ -532,6 +572,12 @@
                 font-size: 3em;
             }
 
+            .exportBtn{
+                width: 150px;
+                height: 45px;
+                font-size: 3em;
+            }
+
             .box input[type="number"] {
                 height: 35px;
                 font-size: 1em;
@@ -546,6 +592,29 @@
             }
             .puzzle{
                 bottom:10vw;
+            }
+        }
+        @media (max-width: 1023px) and (orientation: landscape) {
+            .progressBarDiv{
+                padding: 1px;
+            }
+            .progressBarDiv p{
+                font-size: 0.6rem;
+            }
+            .progressBar {
+                height: 7px;
+                margin: 7px auto;
+            }
+            .questionText{
+                font-size: 1rem;
+            }
+            .questionBox{
+                padding: 1rem;
+            }
+            .rateBox button {
+                height: 30px;
+                min-height: 30px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -609,8 +678,8 @@
         <div class="box move-up" id="timeInFaithBox">
             <span id="timeInFaithBoxttl" translate="ph1l">Time In Faith</span><br>
             <label><input type="radio" name="timeInFaithBox" value="1" translate="ph1m"> New</label>
-            <label><input type="radio" name="timeInFaithBox" value="2" translate="ph1n"> 6 months</label>
-            <label><input type="radio" name="timeInFaithBox" value="3" translate="ph1o"> 1 year</label>
+            <label><input type="radio" name="timeInFaithBox" value="2" translate="ph1n"> 6+ months</label>
+            <label><input type="radio" name="timeInFaithBox" value="3" translate="ph1o"> 1+ year</label>
         </div>
     </div>
     <div class="instruction" style="display: none;" id="inst2">
@@ -621,7 +690,7 @@
         <p translate="ii3">Slightly Agree = 4 Points</p>
         <p translate="ii4">Slightly Agree = 3 Points</p>
         <p translate="ii5">Disagree = 2 Points</p>
-        <p translate="ii6">Strongly Disagree = 1 Points</p>
+        <p translate="ii6">Strongly Disagree = 1 Point</p>
     </div>
 <!--skill details-->
     <div id="skillQuestion" style="display: none;">
@@ -682,7 +751,10 @@
     </div>
 <!--next button-->
     <button class="move-up nextBtn" id="step1" onclick="personalDetailsSubmit()" translate="b1">NEXT PHASE</button>
-    <button class="move-up nextBtn" id="step5" style="display:none;" onclick="gotoHome()" translate="b4">DONE</button>
+    <div class="exportBtnDiv" id="exportBtnDiv">
+        <button class="exportBtn" id="exportBtn" onclick="exportResult()">EXPORT</button>
+        <button class="move-up nextBtn" id="step5" onclick="gotoHome()" translate="b4">DONE</button>
+    </div>
     <div class="btnDiv" id="btnDiv">
         <button class="move-up nextBtn" onclick="reviewAns()" id="review" style="display: none;" translate="b2">REVIEW ANSWER</button>
         <button class="move-up nextBtn" id="step2"  style="display: none;" onclick="showMinistryCategory()" translate="b1">NEXT PHASE</button>
@@ -699,9 +771,13 @@
          </div>
      </div>
 <!--script-->
+    <!-- api -->
     <script src="callApi.js"></script>
+    <!-- charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> -->
+    <!-- export func -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
     //language
         let selectedLanguage = sessionStorage.getItem("selectedLanguage") || "en";
@@ -1817,8 +1893,12 @@
                     document.getElementById('l4').classList.add("currentStep");
                     document.getElementById('s5').classList.add("currentStep");
                     document.getElementById("step4").style.display = "none";
-                    document.getElementById("step5").style.display = "block";
+
+                    document.getElementById("exportBtnDiv").style.display = "flex";
                     document.getElementById("step5").classList.add("disable");
+                    document.getElementById("exportBtn").classList.add("disable");
+
+
                     document.getElementById('responseDiv').style.display = "block";
                     document.getElementById('inst2').style.display = "none";
                     document.getElementById('review').style.display = "none";
@@ -2088,7 +2168,7 @@
             } catch (error) {
                 document.getElementById("step5").classList.remove("disable");
                 stopThinkingAnimation();
-                console.error("Error:", error);
+                console.error("Error server side:", error);
                 let msg = error.message.includes("rate_limit_exceeded")
                     ? "Please try again later."
                     : error.message;
@@ -2159,6 +2239,137 @@
             });
         }
 
+        //export result
+        function exportResult() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: "portrait",
+                unit: "mm",
+                format: [216, 279]
+            });
+            // Example user data
+            //let age = 25, gender = 1, status = 1, baptized = 2, timeInFaith = 3, skill = [1,2,3,4,5,6,7,8], ministryInterest = ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)","Prayer", "Preaching", "Discipleship", "Youth", "Young Adults", "Men's", "Women's", "Family Or Couples","Ushering", "Administrative", "Finance", "Marshal", "Facilities Maintenance","Evangelism", "Missions", "Community Service", "Visitation","Production Tech", "Creative & Social Media","Counseling", "Healing & Deliverance", "Grievance", "Addiction Recovery", "Special Needs","Seniors", "Single Adults"];//for test
+            let genderData = (gender == 1) ? "Male" : (gender == 2) ? "Female" : "None";
+            let statusData = (status == 1) ? "Single" : (status == 2) ? "Married" : "None";
+            let baptizedData = (baptized == 1) ? "No" : (baptized == 2) ? "Yes" : "None";
+            let timeInFaithData = (timeInFaith == 1) ? "New" : (timeInFaith == 2) ? "6 months" : (timeInFaith == 3) ? "1+ year" : "None";
+            const skillMap = {
+                1: "Musical skills",
+                2: "Technological Skills",
+                3: "Writing Skills",
+                4: "Technical Skills",
+                5: "Public Speaking Skills",
+                6: "Accounting Skills",
+                7: "Mentoring Skills",
+                8: "Knowledge in Scriptures"
+            };
+            let skillsData = (skill.length > 0) ? (skill.map(num => skillMap[num] || "None")) : ["None"];
+            let eligibleMinistriesData = ministryInterest.length > 0 ? ministryInterest.map(item => item + " Ministry") : ["None"];
+
+            let y = 20;// cursor
+
+            // ===== Title =====
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(16);
+            doc.setTextColor(128, 65, 128);
+            doc.text("CALLING AND SERVICE PROFILE", 108, y, { align: "center" });
+            y += 20;
+
+            // ===== Personal Information =====
+            doc.setFontSize(14);
+            doc.text("Volunteer's Information", 15, y); y += 10;
+            doc.setTextColor(0, 0, 0);
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(11);
+            doc.text("Fullname: _______________________________________________________________________", 20, y); y += 8;
+            doc.text("Home Address: __________________________________________________________________", 20, y); y += 8;
+            doc.text("Contact number: __________________________________________________________________", 20, y); y += 8;
+            doc.text("Email address: ___________________________________________________________________", 20, y); y += 10;
+
+            //divider
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.5);
+            doc.line(15, y, 195, y);  y += 12;
+            // ===== Demographics ===== Skills =====
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(14);
+            doc.setTextColor(128, 65, 128);
+            doc.text("Demographics", 25, y);
+            doc.text("Skill(s)", 120, y); y += 10;
+
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(11);
+            doc.setTextColor(0, 0, 0);
+            doc.text("Gender: " + genderData, 20, y); y += 8;
+            doc.text("Age: " + age, 20, y); y += 8;
+            doc.text("Status: " + statusData, 20, y); y += 8;
+            doc.text("Baptized: " + baptizedData, 20, y); y += 8;
+            doc.text("Time in faith: " + timeInFaithData, 20, y);
+
+            //divider
+            y -= 50;
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.5);
+            doc.line(70, y, 70, y+55);  y += 18;
+            
+            const skillsPerColumn = 4;
+            const skillColumnWidth = 60;
+            let skillCol = 0;
+            let skillRow = 0;
+            skillsData.forEach(skill => {
+                let x = 80 + (skillCol * skillColumnWidth);
+                let yPos = y + (skillRow * 8);
+                doc.text("• " + skill, x, yPos);
+                skillRow++;
+                if (skillRow >= skillsPerColumn) {
+                    skillRow = 0;
+                    skillCol++;
+                }
+            });
+            y += (skillsPerColumn * 8)+10;
+
+            //divider
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.5);
+            doc.line(15, y, 195, y);  y += 12;
+            // ===== Eligible Ministries =====
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(14);
+            doc.setTextColor(128, 65, 128);
+            doc.text("Eligible Ministries", 15, y); 
+            y += 10;
+
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(11);
+             doc.setTextColor(0, 0, 0);
+            const itemsPerColumn = 10;
+            const columnWidth = 60;
+            let col = 0;
+            let row = 0;
+            eligibleMinistriesData.forEach((ministry, index) => {
+                let x = 20 + (col * columnWidth);
+                let yPos = y + (row * 8);
+
+                doc.text("• " + ministry, x, yPos);
+
+                row++;
+                if (row >= itemsPerColumn) {
+                    row = 0;
+                    col++;
+                }
+            });
+            //logo water mark
+            doc.saveGraphicsState();
+            doc.setGState(new doc.GState({ opacity: 0.3 }));
+            doc.addImage("img/icn-logo.png", "PNG", 100, 150, 150, 150);
+            doc.restoreGraphicsState();
+            // ===== Footer =====
+            doc.setFontSize(10);
+            doc.text("Generated by PERFIT System", 108, 270, { align: "center" });
+            // Save file
+            doc.save("volunteer_profile.pdf");
+        }
+
         //goto home
         function gotoHome(){
             sessionStorage.clear(); 
@@ -2188,6 +2399,7 @@
             clearInterval(thinkingInterval);
             document.getElementById("thinking").style.display = "none";
             document.getElementById("step5").classList.remove("disable");
+            document.getElementById("exportBtn").classList.remove("disable");
             displayChart();
         }
     //show puzzle
@@ -2215,7 +2427,6 @@
     //error handling
     // Catch errors in synchronous code
         window.onerror = function(message, source, lineno, colno, error) {
-            console.error("Global error:", message);
             sessionStorage.clear();
             document.getElementById("overlay").style.display = "block";
             if(selectedLanguage=="en"){
@@ -2228,7 +2439,6 @@
             }
             console.log("An unknown Error");
         };
-
         // Catch errors in promises/async
         window.onunhandledrejection = function(event) {
             console.error("Unhandled promise error:", event.reason);
