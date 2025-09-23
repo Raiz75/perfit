@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/icn-logo.png">
-    <title>perfit</title>
+    <title>PERFIT</title>
     <style>
+        :root{
+            --a:rgb(128, 65, 128);
+            --b: rgb(255, 223, 255);
+        }
         * {
             box-sizing: border-box;
         }
@@ -18,13 +22,13 @@
         nav{
             width: 100%;
             height: 100px;
-            border-bottom:3px solid rgb(128, 65, 128);
+            border-bottom:3px solid var(--a);
             display: flex;
             justify-content: space-between;
             position: sticky;
             top:0px;
             background-color: white;
-            color:rgb(201, 137, 201);
+            color: rgb(201, 137, 201);
             z-index: 5;
         }
         .navFunc{
@@ -38,17 +42,17 @@
         .takeAssessmentTop {
             width: 200px;
             height: 100%;
-            border: 0.3vw solid rgb(128, 65, 128);
+            border: 0.3vw solid var(--a);
             border-radius: 1.2vw;
             font-size: 1em;
-            background-color: rgb(128, 65, 128);
+            background-color: var(--a);
             color: white;
             cursor: pointer;
             transition: 0.3s ease-in-out;
         }
         .selectedNav{
-            color: rgb(128, 65, 128);
-            border-bottom: 5px solid rgb(128, 65, 128);
+            color: var(--a);
+            border-bottom: 5px solid var(--a);
         }
         .logo{
             min-width: 5%;
@@ -66,7 +70,7 @@
         }
         .hamburger div {
             height: 4px;
-            background: rgb(128, 65, 128);
+            background: var(--a);
             border-radius: 2px;
             transition: 0.3s;
         }
@@ -92,7 +96,7 @@
         }
         .title h1 {
             font-size: 7vw;
-            color: rgb(128, 65, 128);
+            color: var(--a);
             margin: 0px;
         }
         .title p {
@@ -107,7 +111,7 @@
             justify-content: space-evenly;
             margin: auto;
             width: 70%;
-            color: rgb(128, 65, 128);
+            color: var(--a);
         }
         .n {
             font-size: 1.2em;
@@ -116,8 +120,8 @@
             margin: 3vw 0;
             padding: 0.1vw;
             border-radius: 12%;
-            border: 0.3vw solid rgb(128, 65, 128);
-            background-color: rgb(255, 255, 255);
+            border: 0.3vw solid var(--a);
+            background-color: white;
             transition: 0.5s ease-in-out;
         }
         .n img {
@@ -130,7 +134,7 @@
             flex-direction: row;
             height: 40vw;
             padding: 120px;
-            background-color: rgb(255, 223, 255);
+            background-color: var(--b);
             margin: 3vw auto;
             margin-bottom: 0vw;
         }
@@ -145,13 +149,13 @@
             text-align: center;
         }
         .step h1 {
-            color: rgb(128, 65, 128);
+            color: var(--a);
             font-size: 2.8em;
             margin-top: 5vw;
         }
         .step hr {
             width: 80%;
-            border: 1px solid rgb(128, 65, 128);
+            border: 1px solid var(--a);
         }
         .stepContiner {
             padding: 0.5vw;
@@ -168,8 +172,8 @@
             border-top-right-radius: 4vw;
             border-bottom-right-radius: 0vw;
             border-bottom-left-radius: 4vw;
-            background-color: rgb(128, 65, 128);
-            border: 0.3vw solid rgb(128, 65, 128);
+            background-color: var(--a);
+            border: 0.3vw solid var(--a);
             box-shadow: 0vw 1vw 1vw rgb(51, 26, 51);
             transition: 0.5s ease-in-out;
         }
@@ -190,7 +194,7 @@
             height: 40vw;
             overflow: hidden;
             text-align: center;
-            color: rgb(128, 65, 128);
+            color: var(--a);
             margin: auto;
             padding:50px;
         }
@@ -215,7 +219,7 @@
             width: 20%;
             height: 15vw;
             background-color: white;
-            border: 0.3vw solid rgb(128, 65, 128);
+            border: 0.3vw solid var(--a);
             margin: 0.3vw;
             padding: 0.3vw;
             border-radius: 2vw;
@@ -233,8 +237,8 @@
             position: absolute;
             top: 45%;
             cursor: pointer;
-            border: 0.2vw solid rgb(128, 65, 128);
-            background-color: rgb(128, 65, 128);
+            border: 0.2vw solid var(--a);
+            background-color: var(--a);
             color: white;
             transition: 0.5s ease-in-out;
             font-size: 2em;
@@ -261,10 +265,10 @@
         .seeMoreBtn{
             width: 200px;
             height: 50px;
-            border: 0.3vw solid rgb(128, 65, 128);
+            border: 0.3vw solid var(--a);
             border-radius: 1.2vw;
             font-size: 1.2em;
-            background-color: rgb(128, 65, 128);
+            background-color: var(--a);
             color: white;
             transition: 0.3s ease-in-out;
         }
@@ -290,10 +294,10 @@
         .takeAssessment button {
             width: 20vw;
             height: 5vw;
-            border: 0.3vw solid rgb(128, 65, 128);
+            border: 0.3vw solid var(--a);
             border-radius: 1.2vw;
             font-size: 2em;
-            background-color: rgb(128, 65, 128);
+            background-color: var(--a);
             color: white;
             cursor: pointer;
             transition: 0.3s ease-in-out;
@@ -367,7 +371,7 @@
             height: 100%;
             background-color: rgba(0,0,0,0.4);
             backdrop-filter: blur(5px);
-            z-index: 999;
+            z-index: 100;
         }
         /* Centered alert */
         .showSelectLanguage {
@@ -375,9 +379,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            border: 3px solid rgb(128, 65, 128);
+            border: 3px solid var(--a);
             width: 25%;
-            height: 300px;
+            height: auto;
             background: white;
             padding: 2rem;
             text-align: center;
@@ -391,14 +395,24 @@
             font-weight: bold;
         }
         .l{
-            border: 3px solid rgb(128, 65, 128);
+            border: 3px solid var(--a);
             padding: 10px;
             width: 50%;
-            background-color: rgb(128, 65, 128);
+            background-color: var(--a);
             border-radius: 12px;
             color: white;
-            margin: auto;
+            margin: 10px auto;
             font-size: 1.2rem;
+        }
+        /* privacy */
+        .privacyPolicy{
+            font-size: .7em;
+            color:grey;
+        }
+        .privacyPolicy a{
+            color:rgb(83, 83, 83);
+            font-weight: 100;
+            text-decoration: underline;
         }
         .close{
             border: none;
@@ -416,41 +430,79 @@
             font-weight: bold;
             cursor: pointer;
         }
+        /* loading */
+        .overlayLoad {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            z-index: 101;
+        }
+        .loaderContainer{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: auto; 
+            text-align: center; 
+        }
+        .loader {
+            border: 30px solid var(--b);
+            border-top: 30px solid var(--a);
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin: auto;
+            animation: spin 1s linear infinite;
+        }
+        .overlayLoad p{
+            color: var(--b);
+            width: 100%;
+            font-size: 1.5em;
+        }
         /* DESKTOP-FIRST RESPONSIVE MEDIA QUERIES */
         @media(hover:hover){
             .close:hover{
                 color: grey;
             }
             .l:hover{
-                background-color: rgb(255, 223, 255);
-                color: rgb(128, 65, 128);
+                background-color: var(--b);
+                color: var(--a);
+            }
+            .privacyPolicy a:hover{
+                color: var(--a);
             }
             .takeAssessment button:hover {
-                background-color: rgb(255, 223, 255);
-                color: rgb(128, 65, 128);
+                background-color: var(--b);
+                color: var(--a);
             }
             .seeMoreBtn:hover {
-                background-color: rgb(255, 223, 255);
-                color: rgb(128, 65, 128);
+                background-color: var(--b);
+                color: var(--a);
             }
             .lBtn:hover,
             .rBtn:hover {
                 background-color: rgb(255, 223, 255);
-                color: rgb(128, 65, 128);
+                color: var(--a);
             }
             .card:hover {
                 box-shadow: 0px 1.2vw 1.2vw rgb(51, 26, 51);
                 transform: translateY(-5px);
             }
             .stepBox:hover hr {
-                border: 0.1vw solid rgb(128, 65, 128);
+                border: 0.1vw solid var(--a);
             }
             .stepBox:hover h3 {
-                color: rgb(128, 65, 128);
+                color: var(--a);
                 transform: scale(1.2);
             }
             .stepBox:hover p {
-                color: rgb(128, 65, 128);
+                color: var(--a);
             }
             .stepBox:hover {
                 border-top-left-radius: 4vw;
@@ -468,12 +520,12 @@
             }
             .takeAssessmentTop:hover {
                 background-color: rgb(255, 223, 255);
-                color: rgb(128, 65, 128);
+                color: var(--a);
             }
             .navBtn:hover{
                 cursor: pointer;
-                color: rgb(128, 65, 128);
-                border-bottom: 5px solid rgb(128, 65, 128);
+                color: var(--a);
+                border-bottom: 5px solid var(--a);
             }
         }
         /* Tablet styles */
@@ -536,6 +588,10 @@
             }
             .showSelectLanguage {
                 width: 50%;
+            }
+            .l{
+                width: 80%;
+                margin: 10px auto;
             }
             .title {
                 width: 95%;
@@ -685,6 +741,11 @@
             }
             .showSelectLanguage {
                 width: 90%;
+                height: auto;
+            }
+            .l{
+                width: 80%;
+                margin: 10px auto;
             }
             .hamburger {
                 display: flex;
@@ -805,21 +866,32 @@
             .footer {
                 height: 20vw;
             }
+            .loaderContainer{
+                width: 300px;
+            }
+            .loader {
+                border: 20px solid var(--b);
+                border-top: 20px solid var(--a);
+                width: 100px;
+                height: 100px;
+            }
+            .overlayLoad p{
+                font-size: 1.1em;
+            }
         }
         @media (max-width: 1024px) and (orientation: landscape) {
             .title p {
                 font-size: 2vw;
             }
         }
-        
     </style>
 </head>
 <body>
 <!--design-->
 <div class="design">
-    <img class="dsn1 move-up" src="img/pray.png">
-    <img class="dsn2 move-up" src="img/img1.png">
-    <img class="dsn3 move-up" src="img/el1.jpg">
+    <img class="dsn1 move-up" src="img/pray.webp" loading="lazy">
+    <img class="dsn2 move-up" src="img/img1.webp" loading="lazy">
+    <img class="dsn3 move-up" src="img/el1.jpg" loading="lazy">
 </div>
 <!-- nav -->
     <nav>
@@ -865,7 +937,7 @@
     </div>
 <!--how it works-->
     <div class="howItWorks" id="howItWorks">
-        <img class="move-up" src="img/howItWorks.png">
+        <img class="move-up" src="img/howItWorks.webp">
         <div class="step">
             <h1 class="move-up">HOW IT WORKS</h1>
             <hr>
@@ -1094,12 +1166,43 @@
    <div id="overlay" class="overlay">
         <div class="showSelectLanguage">
             <p>Choose your preferred language:</p>
-            <button class="l" onclick="sessionStorage.setItem('selectedLanguage', 'en'); window.location.href = 'assessment.html';">English</button>
-            <button class="l" onclick="sessionStorage.setItem('selectedLanguage', 'tl'); window.location.href = 'assessment.html';">Tagalog</button>
+            <button class="l" onclick="setLang('en')">English</button>
+            <button class="l" onclick="setLang('tl')">Tagalog</button>
             <button class="close" onclick="document.getElementById('overlay').style.display = 'none'">x</button>
+            <label class="privacyPolicy" id="privacyPolicyLabel"><input type="checkbox"  id="privacyPolicy"> I have read and accept the <a id="privacyPolicyLink" onclick="window.location.href = 'privacyPolicy.html';">Privacy policy</a>.</label>
+        </div>
+    </div>
+<!-- loading -->
+    <div id="overlayLoad" class="overlayLoad">
+        <div class="loaderContainer">
+            <div class="loader"></div>
+            <p>Loading, Please wait.</p>
         </div>
     </div>
     <script>
+    // privacy policy
+        function setLang(selLang){
+            const privacyPolicy = document.getElementById("privacyPolicy");
+            const privacyPolicyLabel = document.getElementById("privacyPolicyLabel");
+            const privacyPolicyLink = document.getElementById("privacyPolicyLink");
+            if(privacyPolicy.checked){
+                document.getElementById('overlayLoad').style.display = "block";
+                setTimeout(function() {
+                    document.getElementById('overlayLoad').style.display = "none";
+                    sessionStorage.setItem('selectedLanguage', selLang);
+                    window.location.href = 'assessment.html';
+                    
+                }, 2000);
+            }else{
+                let blink = 0;
+                const blinkInterval = setInterval(() => {
+                    privacyPolicyLabel.style.color = (blink % 2 === 0) ? "red" : "rgb(83, 83, 83)";
+                    privacyPolicyLink.style.color = (blink % 2 === 0) ? "red" : "rgb(83, 83, 83)";
+                    blink++;
+                    if (blink > 5) clearInterval(blinkInterval);
+                }, 300);
+            }
+        }
     // nav
         function toggleMenu() {
             document.getElementById("navMenu").classList.toggle("open");
@@ -1176,7 +1279,6 @@
             });
         }, { threshold: 0.1 });
         moveUp.forEach(el => upObserver.observe(el));
-
     </script>
 </body>
 </html>

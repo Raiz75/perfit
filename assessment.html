@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/icn-logo.png">
-    <title>Perfit</title>
+    <title>PERFIT</title>
     <style>
+        :root{
+            --a:rgb(128, 65, 128);
+            --b: rgb(255, 223, 255);
+        }
         *{
             box-sizing: border-box;
         }
@@ -398,6 +402,45 @@
         .highlightPiece{
             filter: drop-shadow(0vw 0vw 3vw rgb(128, 65, 128));
         }
+        /* loading */
+        .overlayLoad {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            z-index: 101;
+        }
+        .loaderContainer{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: auto; 
+            text-align: center; 
+        }
+        .loader {
+            border: 30px solid var(--b);
+            border-top: 30px solid var(--a);
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin: auto;
+            animation: spin 1s linear infinite;
+        }
+        .overlayLoad p{
+            color: var(--b);
+            width: 100%;
+            font-size: 1.5em;
+        }
+        @keyframes spin {
+            0%   { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
         /* Mobile Responsive Media Queries */
         @media(hover:hover){
@@ -593,8 +636,20 @@
             .puzzle{
                 bottom:10vw;
             }
+            .loaderContainer{
+                width: 300px;
+            }
+            .loader {
+                border: 20px solid var(--b);
+                border-top: 20px solid var(--a);
+                width: 100px;
+                height: 100px;
+            }
+            .overlayLoad p{
+                font-size: 1.1em;
+            }
         }
-        @media (max-width: 1023px) and (orientation: landscape) {
+        @media (max-width: 1024px) and (orientation: landscape) {
             .progressBarDiv{
                 padding: 1px;
             }
@@ -677,7 +732,7 @@
         </div>
         <div class="box move-up" id="timeInFaithBox">
             <span id="timeInFaithBoxttl" translate="ph1l">Time In Faith</span><br>
-            <label><input type="radio" name="timeInFaithBox" value="1" translate="ph1m"> New</label>
+            <label><input type="radio" name="timeInFaithBox" value="1" translate="ph1m"> 1+ week</label>
             <label><input type="radio" name="timeInFaithBox" value="2" translate="ph1n"> 6+ months</label>
             <label><input type="radio" name="timeInFaithBox" value="3" translate="ph1o"> 1+ year</label>
         </div>
@@ -752,11 +807,11 @@
 <!--next button-->
     <button class="move-up nextBtn" id="step1" onclick="personalDetailsSubmit()" translate="b1">NEXT PHASE</button>
     <div class="exportBtnDiv" id="exportBtnDiv">
-        <button class="exportBtn" id="exportBtn" onclick="exportResult()">EXPORT</button>
+        <button class="exportBtn" id="exportBtn" onclick="exportResult()" translate="b44">EXPORT</button>
         <button class="move-up nextBtn" id="step5" onclick="gotoHome()" translate="b4">DONE</button>
     </div>
     <div class="btnDiv" id="btnDiv">
-        <button class="move-up nextBtn" onclick="reviewAns()" id="review" style="display: none;" translate="b2">REVIEW ANSWER</button>
+        <button class="move-up nextBtn" id="review" style="display: none;" onclick="reviewAns()" translate="b2">REVIEW ANSWER</button>
         <button class="move-up nextBtn" id="step2"  style="display: none;" onclick="showMinistryCategory()" translate="b1">NEXT PHASE</button>
         <button class="move-up nextBtn" id="step3"  style="display: none;" onclick="filter()" translate="b1">NEXT PHASE</button>
         <button class="move-up nextBtn" id="step4"  style="display: none;" onclick="interpret()" translate="b3">SUBMIT</button>
@@ -770,6 +825,13 @@
             <img class="bottom" id="bottom" src="img/pzl-bottom.png">
          </div>
      </div>
+<!-- loading -->
+    <div id="overlayLoad" class="overlayLoad">
+        <div class="loaderContainer">
+            <div class="loader"></div>
+            <p>Loading, Please wait.</p>
+        </div>
+    </div>
 <!--script-->
     <!-- api -->
     <script src="callApi.js"></script>
@@ -834,9 +896,9 @@
                 ph1j: "No",
                 ph1k: "Yes",
                 ph1l: "Time In Faith",
-                ph1m: "New",
-                ph1n: "6 months",
-                ph1o: "1 year",
+                ph1m: "1+ week",
+                ph1n: "6+ months",
+                ph1o: "1+ year",
                 i2: "INSTRUCTION: Please read each statement carefully and answer honestly. Use the scale to show how strongly you agree or disagree — there are no right or wrong answers, just your true opinion.",
                 ii1: "Strongly Agree = 6",
                 ii2: "Agree = 5",
@@ -859,7 +921,8 @@
                 b1: "NEXT PHASE",
                 b2: "REVIEW ANSWER",
                 b3: "SUBMIT",
-                b4: "DONE"
+                b4: "DONE",
+                b44: "EXPORT"
             },
             tl: {
                 title: "PAGSUSURI",
@@ -907,7 +970,8 @@
                 b1: "SUSUNOD NA YUGTO",
                 b2: "SURIIN ANG SAGOT",
                 b3: "ISUMITE",
-                b4: "OK"
+                b4: "OK",
+                b44: "I-DOWNLOAD"
             }
         };
 
@@ -979,22 +1043,27 @@
                 console.log("age: "+age);
                 console.log("status[1=single 2=married]: "+status);
                 console.log("baptized[1=no 2=yes]: "+baptized);
-                console.log("time in faith[1-new 2=6mth 3=1yr 3=2yr]: "+ timeInFaith);
+                console.log("time in faith[1-1wk 2=6mth 3=1yr]: "+ timeInFaith);
                 console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                 console.log("");
                 showPuzzle("bottom");
                 setTimeout(function() {
-                    document.getElementById('personalForm').style.display = "none";
-                    document.getElementById('step1').style.display = "none";
-                    document.getElementById('step2').style.display = "block";
-                    document.getElementById('step2').classList.add("disable");
-                    document.getElementById('l1').classList.add("currentStep");
-                    document.getElementById('s2').classList.add("currentStep");
-                    document.getElementById('skillQuestion').style.display = "block";
-                    document.getElementById('inst1').style.display = "none";
-                    document.getElementById('inst2').style.display = "block";
-                    document.getElementById('review').classList.add("disable");
-                    skillSubmit();
+                    document.getElementById('overlayLoad').style.display = "block";
+                    setTimeout(function() {
+                        document.getElementById('overlayLoad').style.display = "none";
+                        document.getElementById('personalForm').style.display = "none";
+                        document.getElementById('step1').style.display = "none";
+                        document.getElementById('step2').style.display = "block";
+                        document.getElementById('step2').classList.add("disable");
+                        document.getElementById('l1').classList.add("currentStep");
+                        document.getElementById('s2').classList.add("currentStep");
+                        document.getElementById('skillQuestion').style.display = "block";
+                        document.getElementById('inst1').style.display = "none";
+                        document.getElementById('inst2').style.display = "block";
+                        document.getElementById('review').style.display = "block";
+                        document.getElementById('review').classList.add("disable");
+                        skillSubmit();
+                    }, 2000);
                 }, 3500);
             }
         };
@@ -1213,19 +1282,24 @@
             console.log("music,technology,writing,technical,speaking,accounting,mentoring,bible: "+skill);
             showPuzzle("left");
                 setTimeout(function() {
-                    document.getElementById('skillQuestion').style.display = "none";
-                    document.getElementById('step2').style.display = "none";
-                    document.getElementById('step3').style.display = "block";
-                    document.getElementById('step3').classList.add("disable");
-                    document.getElementById('l2').classList.add("currentStep");
-                    document.getElementById('s3').classList.add("currentStep");
-                    document.getElementById('ministryCategory').style.display = "block";
-                    document.getElementById('review').classList.add("disable");
-                    console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                    console.log("");
-                    console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                    console.log(">> Ministry(Category) Profile");
-                    showQuestions("ministryCategory", interestAndPassionProfiling, selectedLanguage, interestAndPassionProfilingScore, "step3");
+                    document.getElementById('overlayLoad').style.display = "block";
+                    setTimeout(function() {
+                        document.getElementById('overlayLoad').style.display = "none";
+                        document.getElementById('skillQuestion').style.display = "none";
+                        document.getElementById('step2').style.display = "none";
+                        document.getElementById('step3').style.display = "block";
+                        document.getElementById('step3').classList.add("disable");
+                        document.getElementById('l2').classList.add("currentStep");
+                        document.getElementById('s3').classList.add("currentStep");
+                        document.getElementById('ministryCategory').style.display = "block";
+                        document.getElementById('review').style.display = "block";
+                        document.getElementById('review').classList.add("disable");
+                        console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                        console.log("");
+                        console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                        console.log(">> Ministry(Category) Profile");
+                        showQuestions("ministryCategory", interestAndPassionProfiling, selectedLanguage, interestAndPassionProfilingScore, "step3");
+                    }, 2000);
                 }, 3500);
         }
 
@@ -1737,6 +1811,9 @@
             }
             showPuzzle("right");
             setTimeout(function() {
+                document.getElementById('overlayLoad').style.display = "block";
+                setTimeout(function() {
+                    document.getElementById('overlayLoad').style.display = "none";
                     document.getElementById('ministryCategory').style.display = "none";
                     document.getElementById('l3').classList.add("currentStep");
                     document.getElementById('s4').classList.add("currentStep");
@@ -1744,12 +1821,14 @@
                     document.getElementById("step4").style.display = "block";
                     document.getElementById("step4").classList.add("disable");
                     document.getElementById('ministrySpecific').style.display = "block";
+                    document.getElementById('review').style.display = "block";
                     document.getElementById('review').classList.add("disable");
                     console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     console.log("");
                     console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     console.log(">> Ministry(specific) Profile");
                     showQuestions("ministrySpecific", filteredQuestion, selectedLanguage, behavioralProfilingScore, "step4");
+                }, 2000);
             }, 3000);
         };
 
@@ -1889,20 +1968,22 @@
             console.log(">> Interpret Data...");
             showPuzzle("top");
             setTimeout(function() {
+                document.getElementById('overlayLoad').style.display = "block";
+                setTimeout(function() {
+                    document.getElementById('overlayLoad').style.display = "none";
                     document.getElementById('ministrySpecific').style.display = "none";
                     document.getElementById('l4').classList.add("currentStep");
                     document.getElementById('s5').classList.add("currentStep");
                     document.getElementById("step4").style.display = "none";
-
                     document.getElementById("exportBtnDiv").style.display = "flex";
                     document.getElementById("step5").classList.add("disable");
                     document.getElementById("exportBtn").classList.add("disable");
-
-
                     document.getElementById('responseDiv').style.display = "block";
                     document.getElementById('inst2').style.display = "none";
+                    document.getElementById('review').style.display = "block";
                     document.getElementById('review').style.display = "none";
                     document.getElementById('responseDiv').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 2000);
             }, 3500);
             startThinkingAnimation();
         
@@ -2372,8 +2453,12 @@
 
         //goto home
         function gotoHome(){
-            sessionStorage.clear(); 
-            window.location.href = 'index.html';
+            document.getElementById('overlayLoad').style.display = "block";
+            setTimeout(function() {
+                document.getElementById('overlayLoad').style.display = "none";
+                sessionStorage.clear(); 
+                window.location.href = 'index.html';
+            }, 2000);
         }
 
     //thinking loading animation
@@ -2409,7 +2494,6 @@
             setTimeout(function() {document.getElementById(side).classList.add("highlightPiece");}, 1000);
             setTimeout(function() {document.getElementById(side).classList.remove("highlightPiece");}, 2000);
             setTimeout(function() {
-                document.getElementById('review').style.display = "block";
                 document.getElementById("btnDiv").classList.remove("btnDivStuck");
             }, 3500);
         }
