@@ -30,7 +30,6 @@
             margin-top: -25vw;
             margin-bottom: 20vw;
         }
-
         /*stepCounter*/
         .stepCounter{
             width: 90%;
@@ -71,7 +70,6 @@
             background-color: rgb(128, 65, 128);
             color: white
         }
-
         /* assessment tools */
         .instruction{
             background: linear-gradient(to right, rgb(255, 223, 255), transparent);
@@ -120,7 +118,6 @@
             background: rgb(128, 65, 128);
             transition: width 0.3s ease;
         }
-
         /*personalDetail*/
         .personalDetail{
             height: auto;
@@ -167,7 +164,6 @@
             padding:4px;
             width:fit-content;
         }
-
         /*question box*/
         .questionBox{
             width: 90%;
@@ -211,14 +207,12 @@
             background-color: rgb(128, 65, 128) !important;
             color: white !important;
         }
-
         /*specific questions*/
         .specificQuestion{
             width: 90%;
             margin: 0 auto;
             display: none;
         }
-
         /*responseDiv*/
         .responseDiv{
             width: 90%;
@@ -237,7 +231,6 @@
             box-shadow: 0 0 8px rgba(51, 26, 51, 0.3);
             display: none;
         }
-
         /*next*/
         .btnDiv{
             display: flex;
@@ -269,7 +262,6 @@
             bottom: 50px;
             z-index: 6;
         }
-
         .exportBtnDiv{
             justify-content: center;
             align-items: center;
@@ -342,7 +334,6 @@
             color: white;
             font-size: 1.2rem;
         }
-
         /*puzzle*/
         .puzzle{
             width: 25vw;
@@ -393,7 +384,6 @@
             transform: scale(1.2);
             transition: 1s ease-in-out;
         }
-
         .showPiece{
             transform: scale(1);
             filter: drop-shadow(0vw 0vw 0vw rgb(128, 65, 128));
@@ -441,7 +431,6 @@
             0%   { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         /* Mobile Responsive Media Queries */
         @media(hover:hover){
             .nextBtn:hover{
@@ -474,7 +463,6 @@
                 font-size: 8em;
                 margin-top: -25vw;
             }
-
             .stepCounter {
                 margin: 0px auto 10px auto;
                 grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -490,7 +478,6 @@
             .line {
                 display: none;
             }
-
             .instruction{
                 margin: auto;
                 font-size: 1.9em;
@@ -499,44 +486,36 @@
                 margin: 10px auto;
                 font-size: 2em;
             }
-
             .personalDetail {
                 width: 95%;
                 padding: 1rem;
                 font-size: 1.9em;
             }
-
             .questionText {
                 font-size: 1.3rem;
             }
-
             .rateBox {
                 gap: 0.3rem;
             }
-
             .rateBox button {
                 height: 45px;
                 min-height: 45px;
                 font-size: 0.9rem;
             }
-
             .nextBtn {
                 width: 180px;
                 height: 50px;
                 font-size: 1.1rem;
             }
-            
             .exportBtn{
                 width: 180px;
                 height: 50px;
                 font-size: 1.1rem;
             }
-
             .footer {
                 height: 150px;
                 margin-top: 3rem;
             }
-
             .showAlert{
                 width: 300px;
                 padding: 1.5rem;
@@ -551,15 +530,12 @@
             .topMinistryChart{
                 margin: 10px 5px;
                 padding: 3px;
-
             }
         }
-
         @media (max-width: 480px) {
             .ttl {
                 font-size: 10em;
             }
-
             .stepCounter {
                 margin: auto auto 10px auto;
                 grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -574,64 +550,52 @@
                 width: 45px;
                 height: 45px;
             }
-
             .line {
                 display: none;
             }
-
             .instruction{
                 margin: auto 20px;
                 font-size:3em;
             }
-
             .personalDetail {
                 font-size:3em;
             }
             .questionBox{
                 font-size: 3em;
             }
-
             .questionText {
                 width: 100%;
             }
-
             .rateBox {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 0.5em;
             }
-
             .rateBox button {
                 height: 40px;
                 min-height: 40px;
             }
-
             .progressBarDiv{
                 font-size: 3em;
             }
-
             .nextBtn {
                 width: 150px;
                 height: 45px;
                 font-size: 3em;
             }
-
             .exportBtn{
                 width: 150px;
                 height: 45px;
                 font-size: 3em;
             }
-
             .box input[type="number"] {
                 height: 35px;
                 font-size: 1em;
             }
-
             .responseDiv{
                 font-size: 3em;
             }
             .footer {
                 height: 120px;
-                
             }
             .puzzle{
                 bottom:10vw;
@@ -837,7 +801,6 @@
     <script src="callApi.js"></script>
     <!-- charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> -->
     <!-- export func -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
@@ -851,7 +814,6 @@
                     el.textContent = uiTranslation[selectedLanguage][key];
                 }
             });
-
             // Update labels if needed
             document.querySelectorAll("input[translate]").forEach(el => {
                 const key = el.getAttribute("translate");
@@ -974,7 +936,6 @@
                 b44: "I-DOWNLOAD"
             }
         };
-
     //varibales
         let gender=0;
         let age=0;
@@ -1267,8 +1228,6 @@
                 q30: "Nararamdaman kong tinatawag ako na maglingkod sa malikhaing o kakaibang ministeryo na tumatanggap ng natatanging interes."
             }
         };
-
-
         let interestAndPassionProfilingScore = [0,0,0,0,0,0];
         function showMinistryCategory() {
             document.getElementById('step2').classList.add("disable");
@@ -1281,28 +1240,27 @@
             }
             console.log("music,technology,writing,technical,speaking,accounting,mentoring,bible: "+skill);
             showPuzzle("left");
+            setTimeout(function() {
+                document.getElementById('overlayLoad').style.display = "block";
                 setTimeout(function() {
-                    document.getElementById('overlayLoad').style.display = "block";
-                    setTimeout(function() {
-                        document.getElementById('overlayLoad').style.display = "none";
-                        document.getElementById('skillQuestion').style.display = "none";
-                        document.getElementById('step2').style.display = "none";
-                        document.getElementById('step3').style.display = "block";
-                        document.getElementById('step3').classList.add("disable");
-                        document.getElementById('l2').classList.add("currentStep");
-                        document.getElementById('s3').classList.add("currentStep");
-                        document.getElementById('ministryCategory').style.display = "block";
-                        document.getElementById('review').style.display = "block";
-                        document.getElementById('review').classList.add("disable");
-                        console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                        console.log("");
-                        console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                        console.log(">> Ministry(Category) Profile");
-                        showQuestions("ministryCategory", interestAndPassionProfiling, selectedLanguage, interestAndPassionProfilingScore, "step3");
-                    }, 2000);
-                }, 3500);
+                    document.getElementById('overlayLoad').style.display = "none";
+                    document.getElementById('skillQuestion').style.display = "none";
+                    document.getElementById('step2').style.display = "none";
+                    document.getElementById('step3').style.display = "block";
+                    document.getElementById('step3').classList.add("disable");
+                    document.getElementById('l2').classList.add("currentStep");
+                    document.getElementById('s3').classList.add("currentStep");
+                    document.getElementById('ministryCategory').style.display = "block";
+                    document.getElementById('review').style.display = "block";
+                    document.getElementById('review').classList.add("disable");
+                    console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                    console.log("");
+                    console.warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                    console.log(">> Ministry(Category) Profile");
+                    showQuestions("ministryCategory", interestAndPassionProfiling, selectedLanguage, interestAndPassionProfilingScore, "step3");
+                }, 2000);
+            }, 3500);
         }
-
     //available ministries
         const ministries = [
         //core ministry/
@@ -1319,7 +1277,6 @@
         //special interest ministry
             ["Seniors","Single Adults"]
         ];
-
         let ranks = [0,0,0,0,0,0];
         let highest = [];
         let q = 0;
@@ -1372,7 +1329,6 @@
             console.log(">> Ministry Interest(raw)");
             console.log(ministryInterest.join(", "));
             let before = [...ministryInterest];
-    
     //apply restriction
             //gender filter
             let maleRestriction = ["Women's"];
@@ -1478,7 +1434,6 @@
             console.log(ministryInterest.join(", "));
             showMinistrySpecific();
         }
-        
     //behavioral questions(specific ministry filter)
         const ministryQuestions = [
             //coreMinistry
@@ -1778,7 +1733,6 @@
                 ]
             },
         ];
-
         let behavioralProfilingScore = [];
         let filteredQuestion = {en: {}, tl: {}};
         function showMinistrySpecific() {
@@ -1793,7 +1747,6 @@
                 console.log("The user's interest or personal profile doesn't match the ministry requirment yet.");
             }
             document.getElementById('step4').classList.add("disable");
-
             let enCounter = 1;
             let tlCounter = 1;
             for (let i = 0; i < ministryInterest.length; i++) {
@@ -1831,29 +1784,23 @@
                 }, 2000);
             }, 3000);
         };
-
        function showQuestions(portID, questionSet, lang = 'en', scorePort, btnId) {
             const port = document.getElementById(portID);
             if (!port) return;
-
             const progressIndicator = port.querySelector('.progressIndicator');
             const questionData = Object.values(questionSet[lang]);
             const totalQuestions = questionData.length;
-
             // Clear existing questions if any
             port.querySelectorAll('.questionBox').forEach(q => q.remove());
-
             // Render questions
             questionData.forEach((qText, i) => {
                 const template = document.getElementById('questionTemp');
                 const clone = template.content.cloneNode(true);
                 const questionText = clone.querySelector('.questionText');
                 const questionBox = clone.querySelector('.questionBox');
-
                 questionText.innerText = qText;
                 questionBox.dataset.qidx = i;
                 questionBox.dataset.qkey = Object.keys(questionSet[lang])[i]; // for language switching
-
                 // Set rateBox button texts immediately according to current language
                 clone.querySelectorAll('.rateBox button').forEach(btn => {
                     const translateKey = btn.getAttribute('translate');
@@ -1861,13 +1808,10 @@
                         btn.textContent = uiTranslation[lang][translateKey];
                     }
                 });
-
                 if (i !== 0) questionBox.classList.add('denyInput');
                 port.appendChild(clone);
-
                 if (i === 0) document.getElementById("inst2")?.scrollIntoView({ behavior: 'smooth', block: 'center' });
             });
-
             // Initialize scoring
             const GROUP_SIZE = 5;
             const portCount = Math.ceil(totalQuestions / GROUP_SIZE);
@@ -1876,52 +1820,42 @@
                 if (typeof scorePort[p] !== 'number') scorePort[p] = 0;
             }
             let answeredCount = 0;
-
             // Event delegation for rating buttons
             port.addEventListener('click', (e) => {
                 const btn = e.target.closest('.rateBox button');
                 if (!btn) return;
-
                 const qBox = btn.closest('.questionBox');
                 if (!qBox || qBox.classList.contains('denyInput')) return;
-
                 // UI: mark clicked button
                 const rateBox = btn.closest('.rateBox');
                 rateBox.querySelectorAll('button').forEach(b => b.classList.remove('clicked'));
                 btn.classList.add('clicked');
-
                 const qIdx = parseInt(qBox.dataset.qidx, 10);
                 const portIdx = Math.floor(qIdx / GROUP_SIZE);
                 const newVal = parseInt(btn.value, 10);
                 if (isNaN(newVal)) return;
-
                 // Update scoring
                 if (answers[qIdx] !== null) {
                     scorePort[portIdx] -= answers[qIdx];
                 } else {
                     answeredCount++;
                 }
-
                 answers[qIdx] = newVal;
                 scorePort[portIdx] += newVal;
-
                 // Unlock next question
                 const nextBox = qBox.nextElementSibling;
                 if (nextBox?.classList.contains('questionBox')) {
                     nextBox.classList.remove('denyInput');
                     nextBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
-
                 // Log per set
                 if ((qIdx + 1) % GROUP_SIZE === 0) {
                     console.log(`scorePort[${portIdx + 1}] = ${scorePort[portIdx]}`);
                 }
-
                 // Update progress bar
                 if (progressIndicator) {
                     progressIndicator.style.width = Math.round((answeredCount / totalQuestions) * 100) + "%";
                 }
-
                 // Enable next button if complete
                 if (answeredCount === totalQuestions) {
                     document.getElementById(btnId)?.classList.remove('disable');
@@ -1929,7 +1863,6 @@
                     console.log("Final Score: [" + scorePort.join(", ") + "]");
                 }
             });
-
             // --- Language switch function ---
             port.switchLanguage = (newLang) => {
                 if (!questionSet[newLang]) return;
@@ -1938,7 +1871,6 @@
                     const key = qBox.dataset.qkey;
                     qBox.querySelector('.questionText').innerText = questionSet[newLang][key];
                 });
-
                 // Update buttons inside rateBox
                 port.querySelectorAll('.rateBox button').forEach(btn => {
                     const translateKey = btn.getAttribute('translate');
@@ -1955,7 +1887,6 @@
             document.getElementById('review').style.display = "none";
             document.getElementById('btnDiv').classList.add("btnDivStuck");
         }
-
         //AI interpretation
         let behavioralProfilingScoreUnranked = [];
         let ministryInterestUnranked = [];
@@ -1986,11 +1917,9 @@
                 }, 2000);
             }, 3500);
             startThinkingAnimation();
-        
             let message = `
                 You are an AI assistant for the Perfit: An Ai System for matching skills in church ministry.
                 A user has completed a test, and their scores are as follows:
-
             `;
             //record unrank for display
             for(let i = 0; i < behavioralProfilingScore.length; i++){
@@ -2045,7 +1974,6 @@
                         Emphasize the alignment between their purpose and this ministry's mission.
                     </p>
                 `;
-
                 if(ministryInterest.length>=2){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Top 2 Identified Fit: [top2 ministry] Ministry</h2>
@@ -2057,7 +1985,6 @@
                         </p>
                     `;
                 }
-
                 if(ministryInterest.length>=3){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Top 3 Identified Fit: [top3 ministry] Ministry</h2>
@@ -2069,7 +1996,6 @@
                         </p>
                     `;
                 }
-
                 if(ministryInterest.length>=4){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Least Aligned Ministry: [Ministry] Ministry</h2>
@@ -2092,13 +2018,11 @@
                         </p>
                     `;
                 }
-
                 message +=`\n\n
                     <h2 style="color:rgb(128, 65, 128);">Growth Opportunities:</h2>
                     <p style="text-align: justify;">(make this response atleast 100 words)
                         Show how they can grow into their role. Include spiritual, emotional, or skill-based development suggestions.
                     </p>
-
                     <h2 style="color:rgb(128, 65, 128);">Compatibility with Team Dynamics:</h2>
                     <p style="text-align: justify;">(make this response atleast 100 words)
                         Give an insight like "You'd thrive best in teams that are..." (ex. collaborative, structured, spontaneous, etc.)
@@ -2115,7 +2039,6 @@
                     - grow into a leader role.
                 `;
             }
-
             if(selectedLanguage=="tl"){
                 message +=`\n\n
                     <h1 style="color:rgb(128, 65, 128);text-align: center;">BUOD NG RESULTA</h1>
@@ -2128,7 +2051,6 @@
                         Bigyang-diin ang pagkakatugma ng kanilang layunin at misyon ng ministeryong ito.
                     </p>
                 `;
-
                 if(ministryInterest.length>=2){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Top 2 Tugmang Ministeryo: [top2 ministry] Ministry</h2>
@@ -2140,7 +2062,6 @@
                         </p>
                     `;
                 }
-
                 if(ministryInterest.length>=3){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Top 3 Tugmang Ministeryo: [top3 ministry] Ministry</h2>
@@ -2152,7 +2073,6 @@
                         </p>
                     `;
                 }
-
                 if(ministryInterest.length>=4){
                     message +=`\n\n
                         <h2 style="color:rgb(128, 65, 128);">Pinakamababang Pagkakatugmang Ministeryo: [Ministry] Ministry</h2>
@@ -2175,18 +2095,15 @@
                         </p>
                     `;
                 }
-
                 message +=`\n\n
                     <h2 style="color:rgb(128, 65, 128);">Mga Pagkakataon para sa Paglago:</h2>
                     (Gawin itong tugon na may hindi bababa sa 100 salita.)
                     <p style="text-align: justify;">Ipakita kung paano sila maaaring lumago sa kanilang papel. Isama ang espirituwal, emosyonal, o pag-unlad ng kasanayan.</p>
-
                     <h2 style="color:rgb(128, 65, 128);">Pagiging Akma sa Dinamika ng Grupo:</h2>
                     <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
                         Magbigay ng pananaw gaya ng "Mas uunlad ka sa mga grupong ganito..." (hal. kolaboratibo, may istruktura, kusang-loob, atbp.)
                         Tulungan silang mailarawan kung anong uri ng kultura ng grupo ang babagay sa kanila batay sa kanilang pangunahing ministeryo.
                     </p>
-
                     <h2 style="color:rgb(128, 65, 128);">Landas o Journey Map sa Ministeryo:</h2>
                     (Gawin itong tugon na may hindi bababa sa 100 salita. ilagay sa bullets)
                     Gumawa ng posibleng landas ng paglilingkod, tulungan silang mag-isip ng pangmatagalan, hindi lang panandalian.
@@ -2213,15 +2130,11 @@
                         temperature: 0.7
                     })
                 });
-
                 if (!response.ok) {
                     const error = await response.text();
                     throw new Error(`OpenAI API error: ${error}`);
                 }
-
                 const data = await response.json();
-
-
                 stopThinkingAnimation();
                 //Show response
                 let raw = data.choices[0].message.content;
@@ -2231,19 +2144,15 @@
                 raw = raw.replace(/```/g, '');
                 // Replace line breaks with <br> for HTML display
                 raw = raw.replace(/\n/g, '<br>');
-
                 // cut the string
                 let keyword = "<p>cutHere</p>";
                 let index = raw.indexOf(keyword);
-
                 let part1 = ""; // top side
                 let part2 = ""; // bottom side
-
                 if (index !== -1) {
-                part1 = raw.substring(0, index).trim();
-                part2 = raw.substring(index + keyword.length).trim();
+                    part1 = raw.substring(0, index).trim();
+                    part2 = raw.substring(index + keyword.length).trim();
                 }
-
                 document.getElementById("part1").innerHTML = part1;
                 document.getElementById("part2").innerHTML = part2;
             } catch (error) {
@@ -2255,7 +2164,6 @@
                     : error.message;
                 document.getElementById("responseDiv").innerHTML =
                     `<span style="color:red;">Error: ${msg}</span>`;
-                
             }
         }
         //charts
@@ -2319,7 +2227,6 @@
                 }
             });
         }
-
         //export result
         function exportResult() {
             const { jsPDF } = window.jspdf;
@@ -2346,16 +2253,13 @@
             };
             let skillsData = (skill.length > 0) ? (skill.map(num => skillMap[num] || "None")) : ["None"];
             let eligibleMinistriesData = ministryInterest.length > 0 ? ministryInterest.map(item => item + " Ministry") : ["None"];
-
             let y = 20;// cursor
-
             // ===== Title =====
             doc.setFont("helvetica", "bold");
             doc.setFontSize(16);
             doc.setTextColor(128, 65, 128);
             doc.text("CALLING AND SERVICE PROFILE", 108, y, { align: "center" });
             y += 20;
-
             // ===== Personal Information =====
             doc.setFontSize(14);
             doc.text("Volunteer's Information", 15, y); y += 10;
@@ -2366,7 +2270,6 @@
             doc.text("Home Address: __________________________________________________________________", 20, y); y += 8;
             doc.text("Contact number: __________________________________________________________________", 20, y); y += 8;
             doc.text("Email address: ___________________________________________________________________", 20, y); y += 10;
-
             //divider
             doc.setDrawColor(0, 0, 0);
             doc.setLineWidth(0.5);
@@ -2377,7 +2280,6 @@
             doc.setTextColor(128, 65, 128);
             doc.text("Demographics", 25, y);
             doc.text("Skill(s)", 120, y); y += 10;
-
             doc.setFont("helvetica", "normal");
             doc.setFontSize(11);
             doc.setTextColor(0, 0, 0);
@@ -2386,13 +2288,11 @@
             doc.text("Status: " + statusData, 20, y); y += 8;
             doc.text("Baptized: " + baptizedData, 20, y); y += 8;
             doc.text("Time in faith: " + timeInFaithData, 20, y);
-
             //divider
             y -= 50;
             doc.setDrawColor(0, 0, 0);
             doc.setLineWidth(0.5);
             doc.line(70, y, 70, y+55);  y += 18;
-            
             const skillsPerColumn = 4;
             const skillColumnWidth = 60;
             let skillCol = 0;
@@ -2408,7 +2308,6 @@
                 }
             });
             y += (skillsPerColumn * 8)+10;
-
             //divider
             doc.setDrawColor(0, 0, 0);
             doc.setLineWidth(0.5);
@@ -2419,10 +2318,9 @@
             doc.setTextColor(128, 65, 128);
             doc.text("Eligible Ministries", 15, y); 
             y += 10;
-
             doc.setFont("helvetica", "normal");
             doc.setFontSize(11);
-             doc.setTextColor(0, 0, 0);
+            doc.setTextColor(0, 0, 0);
             const itemsPerColumn = 10;
             const columnWidth = 60;
             let col = 0;
@@ -2430,9 +2328,7 @@
             eligibleMinistriesData.forEach((ministry, index) => {
                 let x = 20 + (col * columnWidth);
                 let yPos = y + (row * 8);
-
                 doc.text("• " + ministry, x, yPos);
-
                 row++;
                 if (row >= itemsPerColumn) {
                     row = 0;
@@ -2450,7 +2346,6 @@
             // Save file
             doc.save("volunteer_profile.pdf");
         }
-
         //goto home
         function gotoHome(){
             document.getElementById('overlayLoad').style.display = "block";
@@ -2460,26 +2355,20 @@
                 window.location.href = 'index.html';
             }, 2000);
         }
-
     //thinking loading animation
         let thinkingInterval;
-
         function startThinkingAnimation() {
             const dots = document.getElementById("dots");
             if (!dots) return; // element not found
-
             let dotCount = 1;
-
             // Show the loading text
             document.getElementById("thinking").style.display = "inline";
-
             // Cycle the dots every 500ms
             thinkingInterval = setInterval(() => {
                 dotCount = (dotCount % 3) + 1;
                 dots.textContent = ".".repeat(dotCount);
             }, 500);
         }
-
         function stopThinkingAnimation() {
             clearInterval(thinkingInterval);
             document.getElementById("thinking").style.display = "none";
@@ -2507,7 +2396,6 @@
             });
         }, { threshold: 0.1 });
         moveUp.forEach(el => upObserver.observe(el));
-
     //error handling
     // Catch errors in synchronous code
         window.onerror = function(message, source, lineno, colno, error) {

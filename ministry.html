@@ -8,7 +8,6 @@
     <style>
         *{
             box-sizing: border-box;
-            /* border: 1px solid red; */
         }
         body{
             padding: 0;
@@ -48,13 +47,11 @@
             border-radius: 24px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
-
         .carouselTrack {
             display: flex;
             transition: transform 0.5s ease-in-out;
             height: 100%;
         }
-
         .specificMinistry {
             flex: 0 0 100%;
             justify-content: center;
@@ -97,10 +94,6 @@
         th:nth-child(4), td:nth-child(4) { width: 11%; } /* baptized */
         th:nth-child(5), td:nth-child(5) { width: 11%; } /* time in faith */
         th:nth-child(6), td:nth-child(6) { width: 40%; } /* Skills */
-        /* .m1 { background: crimson; }
-        .m2 { background: seagreen; }
-        .m3 { background: steelblue; } */
-
         .btn {
             width: 4vw;
             height: 4vw;
@@ -130,7 +123,6 @@
             background-color: rgb(255, 223, 255);
             color: rgb(128, 65, 128);
         }
-
     /* dots container */
         .indicators {
             position: absolute;
@@ -175,12 +167,10 @@
             transform: translateY(50px);
             transition: 0.5s ease-in-out;
         }
-
         .move-up.visible1 {
             opacity: 1;
             transform: translate(0);
         }
-
         @media (hover: none) {
             .prev:hover, .next:hover{
                 background-color: rgb(128, 65, 128);
@@ -664,7 +654,6 @@
             updateSlide();
             });
         });
-
     //animation
         const moveUp = document.querySelectorAll('.move-up');
         const upObserver = new IntersectionObserver((entries) => {
