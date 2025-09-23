@@ -465,6 +465,10 @@
             width: 100%;
             font-size: 1.5em;
         }
+        @keyframes spin {
+            0%   { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         /* DESKTOP-FIRST RESPONSIVE MEDIA QUERIES */
         @media(hover:hover){
             .close:hover{
@@ -1120,7 +1124,7 @@
             <button class="l" onclick="setLang('en')">English</button>
             <button class="l" onclick="setLang('tl')">Tagalog</button>
             <button class="close" onclick="document.getElementById('overlay').style.display = 'none'">x</button>
-            <label class="privacyPolicy" id="privacyPolicyLabel"><input type="checkbox"  id="privacyPolicy"> I have read and accept the <a id="privacyPolicyLink" onclick="window.location.href = 'privacyPolicy.html';">Privacy policy</a>.</label>
+            <label class="privacyPolicy" id="privacyPolicyLabel"><input type="checkbox"  id="privacyPolicy"> I have read and accept the <a id="privacyPolicyLink" onclick="window.location.href = 'privacyPolicy.html';" >Privacy policy</a>.</label>
         </div>
     </div>
 <!-- loading -->
@@ -1227,6 +1231,12 @@
             });
         }, { threshold: 0.1 });
         moveUp.forEach(el => upObserver.observe(el));
+    //referrer
+        const referrer = document.referrer;
+        const referrerFile = referrer.split("/").pop();
+        if (referrerFile == "privacyPolicy.html") {
+            document.getElementById('overlay').style.display = "block";
+        }
     </script>
 </body>
 </html>
