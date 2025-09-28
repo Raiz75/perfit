@@ -272,6 +272,133 @@
             color: white;
             transition: 0.3s ease-in-out;
         }
+        /* random Verse */
+        .randomVerseDiv1{
+            width: 15%;
+            text-align: center;
+            font-size: .7em;
+            color: white;
+            position:absolute;
+            top: 150vw;
+            left: 5vw;
+            z-index: 4;
+        }
+        .randomVerse{
+            border: none;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            padding: 0px;
+            margin: auto;
+            background-color: transparent;
+            background: radial-gradient(circle, grey, transparent 60%);
+            z-index: 2;
+            animation: orbGlow .5s infinite alternate ease-in-out;
+        }
+        .randomVerse img{
+            width: 100%;
+            margin: 0px;
+            z-index: 2;
+        }
+        .doveOverlay {
+            display: none;
+            position: fixed;
+            align-items: center;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+        }
+        .dynamicDove{
+            width: 15%;
+            padding: 20px;
+            margin-left: 5vw;
+            display: none;
+            animation: orbGlow .5s infinite alternate ease-in-out,
+                move 4s ease-in-out forwards;
+        }
+        @keyframes orbGlow {
+            0% {
+                background: radial-gradient(circle, grey, transparent 60%);
+            }
+            25%{
+                background: radial-gradient(circle, grey, transparent 61%);
+            }
+            50%{
+                background: radial-gradient(circle, grey, transparent 64%);
+            }
+            75%{
+                background: radial-gradient(circle, grey, transparent 67%);
+            }
+            100% {
+                background: radial-gradient(circle, grey, transparent 69%);
+            }
+        }
+        @keyframes move {
+            0% {
+                transform: scale(1);
+                margin-left: 5vw;
+            }
+            25% {
+                transform: scale(1.2);
+                margin-left: 10vw;
+            }
+            50% {
+                transform: scale(1.3);
+                margin-left: 14vw;
+            }
+            75% {
+                transform: scale(1.4);
+                margin-left: 17vw;
+            }
+            100% {
+                transform: scale(1.5);
+                margin-left: 20vw;
+            }
+        }
+        .verseDiv{
+            border: 0.2vw solid var(--a);
+            color:var(--a);
+            border-radius: 1.2vw;
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30%;
+            height: auto;
+            opacity: 0;
+            font-size: 1.2em;
+            padding: 5px;
+            text-align: center;
+            transition: .5s ease-in-out;
+        }
+        .verseDiv img{
+            position: absolute;
+            top: 5px;
+            left:5px;
+            width: 13%;
+            opacity: .5;
+        }
+        .verseDiv p{
+            width: 90%;
+            margin: 10px auto;
+        }
+        .verseDiv button{
+            width: 200px;
+            height: 50px;
+            border: 0.3vw solid var(--a);
+            border-radius: 1.2vw;
+            font-size: 1em;
+            background-color: var(--a);
+            color: white;
+            margin: 10px auto;
+            transition: 0.3s ease-in-out;
+        }
+
         /*takeAssessment*/
         .takeAssessment {
             border: .1px solid transparent;
@@ -489,6 +616,10 @@
                 background-color: var(--b);
                 color: var(--a);
             }
+            .verseDiv button:hover{
+                background-color: var(--b);
+                color: var(--a);
+            }
             .lBtn:hover,
             .rBtn:hover {
                 background-color: rgb(255, 223, 255);
@@ -652,6 +783,47 @@
             .stepBox p {
                 font-size: 1.3em;
             }
+            .randomVerseDiv1{
+                width: 30%;
+                font-size: 1em;
+                margin: auto;
+                color: var(--a);
+                position:inherit;
+                z-index: 4;
+            }
+            .dynamicDove{
+                width: 30%;
+                margin: auto;
+            }
+            @keyframes move {
+                0% {
+                    transform: scale(1);
+                    margin-top: 5vw;
+                }
+                25% {
+                    transform: scale(1.2);
+                    margin-top: 10vw;
+                }
+                50% {
+                    transform: scale(1.3);
+                    margin-top: 14vw;
+                }
+                75% {
+                    transform: scale(1.4);
+                    margin-top: 17vw;
+                }
+                100% {
+                    transform: scale(1.5);
+                    margin-top: 20vw;
+                }
+            }
+            .verseDiv{
+                width: 80%;
+                font-size: 1.5em;
+            }
+            .verseDiv img{
+                width: 10%;
+            }
             .ministrySelection {
                 width: 100%;
                 height: auto;
@@ -784,6 +956,16 @@
             .stepBox p {
                 font-size: 4vw;
             }
+            .randomVerseDiv1{
+                width: 40%;
+                font-size: .6em;
+            }
+            .dynamicDove{
+                width: 40%;
+            }
+            .verseDiv{
+                font-size: 1em;
+            }
             .ministrySelection {
                 width: 95%;
                 height: auto;
@@ -845,6 +1027,52 @@
         @media (max-width: 1024px) and (orientation: landscape) {
             .title p {
                 font-size: 2vw;
+            }
+            @keyframes move {
+                0% {
+                    transform: scale(1);
+                    margin-top: 1vw;
+                }
+                25% {
+                    transform: scale(1.2);
+                    margin-top: 3vw;
+                }
+                50% {
+                    transform: scale(1.3);
+                    margin-top: 5vw;
+                }
+                75% {
+                    transform: scale(1.4);
+                    margin-top: 7vw;
+                }
+                100% {
+                    transform: scale(1.5);
+                    margin-top: 9vw;
+                }
+            }
+        }
+        @media (max-width: 480px) and (orientation: landscape) {
+            @keyframes move {
+                0% {
+                    transform: scale(1);
+                    margin-top: 1vw;
+                }
+                25% {
+                    transform: scale(1.2);
+                    margin-top: 2vw;
+                }
+                50% {
+                    transform: scale(1.3);
+                    margin-top: 4vw;
+                }
+                75% {
+                    transform: scale(1.4);
+                    margin-top: 6vw;
+                }
+                100% {
+                    transform: scale(1.5);
+                    margin-top: 10vw;
+                }
             }
         }
     </style>
@@ -1106,6 +1334,23 @@
         <p><span id="page">1</span>/7</p>
         <button class="seeMoreBtn" onclick="window.location.href='ministry.html'">See More</button>
     </div>
+<!-- random verse -->
+    <div class="doveOverlay" id="doveOverlay">
+        <img src="img/doveDynamic.gif" class="dynamicDove" id="dynamicDove">
+        <div class="verseDiv" id="verseDiv">
+            <img src="img/icn-logo.png">
+            <h3 id="verseTitle">title 1:1</h3>
+            <p id="verse">verse message</p> 
+            <button onclick="verseDone()">Back</button>
+        </div>
+    </div>
+
+    <div class="randomVerseDiv1" id="randomVerseDiv1">
+        <button class="randomVerse" onclick="generateRandomVerse()" id="randomVerse">
+            <img src="img/doveStatic.png">
+        </button>
+        <p id="randomVerseP">Tap the dove to reveal God’s message for you</p>
+    </div>
 <!--take assesment-->
     <div class="takeAssessment">
         <div class="bg"></div>
@@ -1135,6 +1380,66 @@
         </div>
     </div>
     <script>
+    // generate random verse
+        const verses = [
+            { title: "1 Corinthians 12:4-5", text: "There are different kinds of gifts, but the same Spirit distributes them. There are different kinds of service, but the same Lord."},
+            { title: "Romans 12:6", text: "We have different gifts, according to the grace given to each of us. If your gift is prophesying, then prophesy in accordance with your faith."},
+            { title: "Ephesians 2:10", text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do." },
+            { title: "1 Peter 4:10", text: "Each of you should use whatever gift you have received to serve others, as faithful stewards of God’s grace in its various forms." },
+            { title: "Jeremiah 1:5", text: "Before I formed you in the womb I knew you, before you were born I set you apart; I appointed you as a prophet to the nations." },
+            { title: "Colossians 3:23", text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters." },
+            { title: "Proverbs 16:9", text: "In their hearts humans plan their course, but the Lord establishes their steps." },
+            { title: "Isaiah 6:8", text: "Then I heard the voice of the Lord saying, 'Whom shall I send? And who will go for us?' And I said, 'Here am I. Send me!'" },
+            { title: "Matthew 5:16", text: "Let your light shine before others, that they may see your good deeds and glorify your Father in heaven." },
+            { title: "Romans 12:4-5", text: "For just as each of us has one body with many members, and these members do not all have the same function, so in Christ we, though many, form one body, and each member belongs to all the others." },
+            { title: "2 Timothy 1:6", text: "Fan into flame the gift of God, which is in you through the laying on of my hands." },
+            { title: "Philippians 2:13", text: "For it is God who works in you to will and to act in order to fulfill his good purpose." },
+            { title: "1 Corinthians 12:27", text: "Now you are the body of Christ, and each one of you is a part of it." },
+            { title: "Mark 10:45", text: "For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many." },
+            { title: "Galatians 6:9", text: "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up." },
+            { title: "John 15:16", text: "You did not choose me, but I chose you and appointed you so that you might go and bear fruit—fruit that will last." },
+            { title: "Acts 20:24", text: "However, I consider my life worth nothing to me; my only aim is to finish the race and complete the task the Lord Jesus has given me—the task of testifying to the good news of God’s grace." },
+            { title: "Hebrews 13:20-21", text: "Now may the God of peace... equip you with everything good for doing his will, and may he work in us what is pleasing to him, through Jesus Christ." },
+            { title: "Colossians 1:10", text: "So that you may live a life worthy of the Lord and please him in every way: bearing fruit in every good work, growing in the knowledge of God." },
+            { title: "1 Thessalonians 5:24", text: "The one who calls you is faithful, and he will do it." },
+            { title: "Matthew 9:37-38", text: "The harvest is plentiful but the workers are few. Ask the Lord of the harvest, therefore, to send out workers into his harvest field." },
+            { title: "2 Corinthians 9:8", text: "And God is able to bless you abundantly, so that in all things at all times, having all that you need, you will abound in every good work." },
+            { title: "Ephesians 4:11-12", text: "So Christ himself gave the apostles, the prophets, the evangelists, the pastors and teachers, to equip his people for works of service, so that the body of Christ may be built up." },
+            { title: "Micah 6:8", text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God." },
+            { title: "1 Corinthians 15:58", text: "Therefore, my dear brothers and sisters, stand firm. Let nothing move you. Always give yourselves fully to the work of the Lord, because you know that your labor in the Lord is not in vain." },
+            { title: "2 Timothy 2:21", text: "Those who cleanse themselves... will be instruments for special purposes, made holy, useful to the Master and prepared to do any good work." },
+            { title: "John 9:4", text: "As long as it is day, we must do the works of him who sent me. Night is coming, when no one can work." },
+            { title: "Joshua 1:9", text: "Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go." }
+        ];
+
+        function generateRandomVerse(){
+            document.getElementById('randomVerse').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(function() {
+                document.getElementById('doveOverlay').style.display='flex';
+                setTimeout(function() {
+                    document.getElementById('randomVerseP').style.display='none';
+                    document.getElementById('randomVerseDiv1').style.display='none';
+                    document.getElementById('dynamicDove').style.display='block';
+                    setTimeout(function() {
+                        document.getElementById('verseDiv').style.opacity="1";
+                    }, 4000);
+                }, 500);
+            }, 500);
+            // Pick random verse object
+            const verseIndex = Math.floor(Math.random() * verses.length);
+            const verseObj = verses[verseIndex];
+            // Update overlay content
+            document.getElementById("verseTitle").textContent = verseObj.title;
+            document.getElementById("verse").textContent = verseObj.text;
+        }
+
+        function verseDone(){
+            document.getElementById('doveOverlay').style.display='none';
+            document.getElementById('randomVerseP').style.display='block';
+            document.getElementById('randomVerseDiv1').style.display='block';
+            document.getElementById('dynamicDove').style.display='none';
+            document.getElementById('verseDiv').style.opacity="0";
+        }
     // privacy policy
         function setLang(selLang){
             const privacyPolicy = document.getElementById("privacyPolicy");
