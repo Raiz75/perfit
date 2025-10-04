@@ -1497,7 +1497,7 @@
             console.log(">> Ministry Interest(raw)");
             console.log(ministryInterest.join(", "));
             let before = [...ministryInterest];
-            
+
             // ===============================
             // APPLY FILTER RESTRICTIONS
             console.log(">> Applying Filter");
@@ -2144,7 +2144,7 @@
             document.getElementById('review').style.display = "none";
             document.getElementById('btnDiv').classList.add("btnDivStuck");
         }
-        async function verifyPhase4(){
+        function verifyPhase4(){
             document.getElementById('step4').classList.add("disable");
             document.getElementById('review').classList.add("disable");
             let phase4 = JSON.stringify(behavioralProfilingScore);
