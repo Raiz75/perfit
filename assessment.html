@@ -1497,20 +1497,29 @@
             console.log(">> Ministry Interest(raw)");
             console.log(ministryInterest.join(", "));
             let before = [...ministryInterest];
-            //apply restriction
+            
+            // ===============================
+            // APPLY FILTER RESTRICTIONS
             console.log(">> Applying Filter");
-            //gender filter
-            let gender = JSON.parse(localStorage.getItem("phase1")).gender;
+            // ===============================
+            // GENDER FILTER
+            // Fetch gender from localStorage (phase1 data)
+            let gender = JSON.parse(localStorage.getItem("phase1")).gender;// Gender values: 1 = Male, 2 = Female
+            // Restrictions based on gender
             let maleRestriction = ["Women's"];
             let femaleRestriction = ["Men's"];
-            if (gender == "1") { // male
+            // Apply gender-specific restrictions
+            if (gender == "1") {
                 ministryInterest = ministryInterest.filter(item => !maleRestriction.includes(item));
-            } else if (gender == "2") { // female
+            } else if (gender == "2") {
                 ministryInterest = ministryInterest.filter(item => !femaleRestriction.includes(item));
             }
             logFilterResult(before, ministryInterest, "Gender filter");
-            //age filter
+            // ===============================
+            // AGE FILTER
+            // Fetch age from localStorage
             let age = JSON.parse(localStorage.getItem("phase1")).age;
+            // Define restrictions per age group
             let age12Restriction = ["Prayer","Preaching","Young Adults","Men's","Women's","Family Or Couples","Administrative","Finance","Marshal","Facilities Maintenance","Missions","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
             let age15Restriction = ["Preaching","Young Adults","Men's","Women's","Family Or Couples","Administrative","Finance","Marshal","Facilities Maintenance","Missions","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
             let age20Restriction = ["Men's","Women's","Family Or Couples","Administrative","Finance","Marshal","Facilities Maintenance","Missions","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
@@ -1520,49 +1529,60 @@
             let age26Restriction = ["Youth","Seniors"];
             let age30Restriction = ["Young Adults","Youth","Seniors"];
             let age50Restriction = ["Young Adults","Youth"];
-            if(age>=50){
+            // Apply restriction depending on age bracket
+            if (age >= 50) { 
                 ministryInterest = ministryInterest.filter(item => !age50Restriction.includes(item));
-            }else if(age>=30){
+            } else if (age >= 30) {
                 ministryInterest = ministryInterest.filter(item => !age30Restriction.includes(item));
-            }else if(age>=26){
+            } else if (age >= 26) {
                 ministryInterest = ministryInterest.filter(item => !age26Restriction.includes(item));
-            }else if(age>=25){
+            } else if (age >= 25) {
                 ministryInterest = ministryInterest.filter(item => !age25Restriction.includes(item));
-            }else if(age>=22){
+            } else if (age >= 22) {
                 ministryInterest = ministryInterest.filter(item => !age22Restriction.includes(item));
-            }else if(age>=21){
+            } else if (age >= 21) {
                 ministryInterest = ministryInterest.filter(item => !age21Restriction.includes(item));
-            }else if(age>=20){
+            } else if (age >= 20) {
                 ministryInterest = ministryInterest.filter(item => !age20Restriction.includes(item));
-            }else if(age>=15){
+            } else if (age >= 15) {
                 ministryInterest = ministryInterest.filter(item => !age15Restriction.includes(item));
-            }else if(age>=12){
+            } else if (age >= 12) {
                 ministryInterest = ministryInterest.filter(item => !age12Restriction.includes(item));
             }
             logFilterResult(before, ministryInterest, "Age filter");
             console.log(">> Baptized filter Applied");
-            //status filter
-            let status = JSON.parse(localStorage.getItem("phase1")).status;
+            // ===============================
+            // MARITAL STATUS FILTER
+            // Fetch marital status from localStorage
+            let status = JSON.parse(localStorage.getItem("phase1")).status;// Status values: 1 = Single, 2 = Married
+            // Restrictions base in Marital status
             let singleRestriction = ["Family Or Couples"];
             let marriedRestriction = ["Single Adults"];
-            if (status == "1") { // bawal sa single
+            if (status == "1") {
                 ministryInterest = ministryInterest.filter(item => !singleRestriction.includes(item));
-            }else if(status == "2"){//bawala sa married
+            } else if (status == "2") {
                 ministryInterest = ministryInterest.filter(item => !marriedRestriction.includes(item));
             }
             logFilterResult(before, ministryInterest, "Status filter");
-            //time in faith filter
-            let timeInFaith = JSON.parse(localStorage.getItem("phase1")).timeInFaith;
+            // ===============================
+            // TIME IN FAITH FILTER
+            // Fetch time in faith from localStorage (phase1)
+            let timeInFaith = JSON.parse(localStorage.getItem("phase1")).timeInFaith;// Values: 1 = 1+ week, 2 = 6+ months, 3 = 1+ year
+            // Restrictions base on Time in faith
             let week1 = ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)","Preaching","Discipleship","Youth","Young Adults","Men's","Women's","Family Or Couples","Ushering","Administrative","Finance","Marshal","Facilities Maintenance","Evangelism","Missions","Community Service","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Grievance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
             let month6 = ["Preaching","Discipleship","Youth","Young Adults","Men's","Women's","Family Or Couples","Ushering","Administrative","Finance","Marshal","Facilities Maintenance","Evangelism","Missions","Community Service","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Grievance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
-            if (timeInFaith == "1") { // bawal sa 1 week palang
+            // Apply time-in-faith restrictions
+            if (timeInFaith == "1") { // Only 1 week
                 ministryInterest = ministryInterest.filter(item => !week1.includes(item));
-            }else if(timeInFaith == "2"){//bawal sa 6 month palang
+            } else if (timeInFaith == "2") { // Only 6 months
                 ministryInterest = ministryInterest.filter(item => !month6.includes(item));
             }
             logFilterResult(before, ministryInterest, "Time in faith filter");
-            //skill filter
+            // ===============================
+            // SKILL FILTER
+            // Fetch skills from localStorage (phase2)
             let skill = JSON.parse(localStorage.getItem("phase2"));
+            // Define skillset requirements (if lacking, remove related ministries)
             let skillset128 = ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)"];
             let skillset3578 = ["Prayer","Preaching","Discipleship","Evangelism","Missions","Community Service","Visitation"];
             let skillset23578 = ["Creative & Social Media"];
@@ -1573,41 +1593,46 @@
             let skillset78 = ["Men's","Women's","Family Or Couples","Counseling"];
             let skillset48 = ["Marshal","Facilities Maintenance"];
             let skillset8 = ["Youth","Young Adults","Ushering","Healing & Deliverance","Special Needs","Seniors","Single Adults"];
-            if(!skill.includes(1) && !skill.includes(2) && !skill.includes(8)){
+            // Apply skill-based restrictions (if skills missing, remove ministries requiring them)
+            if (!skill.includes(1) && !skill.includes(2) && !skill.includes(8)) {
                 ministryInterest = ministryInterest.filter(item => !skillset128.includes(item));
             }
-            if(!skill.includes(3) && !skill.includes(5) && !skill.includes(7) && !skill.includes(8)){
+            if (!skill.includes(3) && !skill.includes(5) && !skill.includes(7) && !skill.includes(8)) {
                 ministryInterest = ministryInterest.filter(item => !skillset3578.includes(item));
             }
-            if(!skill.includes(2) && !skill.includes(3) && !skill.includes(5) && !skill.includes(7) && !skill.includes(8)){
+            if (!skill.includes(2) && !skill.includes(3) && !skill.includes(5) && !skill.includes(7) && !skill.includes(8)) {
                 ministryInterest = ministryInterest.filter(item => !skillset23578.includes(item));
             }
-            if(!skill.includes(3) && !skill.includes(6) && !skill.includes(8)){
+            if (!skill.includes(3) && !skill.includes(6) && !skill.includes(8)) {
                 ministryInterest = ministryInterest.filter(item => !skillset368.includes(item));
             }
-            if(!skill.includes(2) && !skill.includes(3) && !skill.includes(8)){
+            if (!skill.includes(2) && !skill.includes(3) && !skill.includes(8)) {
                 ministryInterest = ministryInterest.filter(item => !skillset238.includes(item));
             }
-            if(!skill.includes(1) && !skill.includes(5) && !skill.includes(8)){
+            if (!skill.includes(1) && !skill.includes(5) && !skill.includes(8)) {
                 ministryInterest = ministryInterest.filter(item => !skillset158.includes(item));
             }
-            if(!skill.includes(5) && !skill.includes(7) && !skill.includes(8)){
+            if (!skill.includes(5) && !skill.includes(7) && !skill.includes(8)) {
                 ministryInterest = ministryInterest.filter(item => !skillset578.includes(item));
             }
-            if(!skill.includes(7) && !skill.includes(8)){
+            if (!skill.includes(7) && !skill.includes(8)) {
                 ministryInterest = ministryInterest.filter(item => !skillset78.includes(item));
             }
-            if(!skill.includes(4) && !skill.includes(8)){
+            if (!skill.includes(4) && !skill.includes(8)) {
                 ministryInterest = ministryInterest.filter(item => !skillset48.includes(item));
             }
-            if(!skill.includes(8)){
+            if (!skill.includes(8)) {
                 ministryInterest = ministryInterest.filter(item => !skillset8.includes(item));
             }
             logFilterResult(before, ministryInterest, "Skill filter");
+            // ===============================
+            // FINAL RESULT
             console.log(">> Ministry Interest(filtered)");
             console.log(ministryInterest.join(", "));
+            // Save final filtered ministries into phase3
             let phase3 = JSON.stringify(ministryInterest);
             localStorage.setItem("phase3", phase3);
+
             console.log(
                     "%c>> Phase 3 Data%c %o",
                     "color: white; background: green; font-weight: bold; padding: 2px 6px; border-radius: 3px;",
