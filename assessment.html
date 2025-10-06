@@ -783,7 +783,7 @@
     <button class="move-up nextBtn" id="step1" onclick="verifyPhase1()" translate="b1">NEXT PHASE</button>
     <div class="exportBtnDiv" id="exportBtnDiv">
         <button class="exportBtn" id="exportBtn" onclick="exportResult()" translate="b44">EXPORT</button>
-        <button class="move-up nextBtn" id="step5" onclick="gotoHome()" translate="b4">DONE</button>
+        <button class="move-up nextBtn" id="step5" onclick="gotoHome(), localStorage.clear()" translate="b4">DONE</button>
     </div>
     <div class="btnDiv" id="btnDiv">
         <button class="move-up nextBtn" id="review" style="display: none;" onclick="reviewAns()" translate="b2">REVIEW ANSWER</button>
@@ -816,7 +816,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
     //language
-        let selectedLanguage = localStorage.getItem("selectedLanguage") || "en";session
+        let selectedLanguage = sessionStorage.getItem("selectedLanguage") || "en";
         window.addEventListener("DOMContentLoaded", () => {
             // Update UI text
             document.querySelectorAll("[translate]").forEach(el => {
@@ -2149,7 +2149,6 @@
             document.getElementById('review').classList.add("disable");
             let phase4 = JSON.stringify(behavioralProfilingScore);
             localStorage.setItem("phase4", phase4);
-
             console.log(
                 "%c>> Phase 4 Data%c %o",
                 "color: white; background: green; font-weight: bold; padding: 2px 6px; border-radius: 3px;",
@@ -2696,7 +2695,7 @@
             document.getElementById('overlayLoad').style.display = "block";
             setTimeout(function() {
                 document.getElementById('overlayLoad').style.display = "none";
-                localStorage.clear(); 
+                sessionStorage.clear(); 
                 window.location.href = 'index.html';
             }, 2000);
         }
@@ -2744,7 +2743,7 @@
     //error handling
     // Catch errors in synchronous code
         window.onerror = function(message, source, lineno, colno, error) {
-            localStorage.clear();
+            sessionStorage.clear();
             document.getElementById("overlay").style.display = "block";
             if(selectedLanguage=="en"){
                 document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";
@@ -2759,7 +2758,7 @@
         // Catch errors in promises/async
         window.onunhandledrejection = function(event) {
             console.error("Unhandled promise error:", event.reason);
-            localStorage.clear();
+            sessionStorage.clear();
             document.getElementById("overlay").style.display = "block";
             if(selectedLanguage=="en"){
                 document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";

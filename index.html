@@ -1449,7 +1449,7 @@
                 document.getElementById('overlayLoad').style.display = "block";
                 setTimeout(function() {
                     document.getElementById('overlayLoad').style.display = "none";
-                    localStorage.setItem("selectedLanguage", selLang);
+                    sessionStorage.setItem('selectedLanguage', selLang);
                     window.location.href = 'assessment.html';
                     
                 }, 2000);
