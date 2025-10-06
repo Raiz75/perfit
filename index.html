@@ -1369,7 +1369,7 @@
             <button class="l" onclick="setLang('en')">English</button>
             <button class="l" onclick="setLang('tl')">Tagalog</button>
             <button class="close" onclick="document.getElementById('overlay').style.display = 'none'">x</button>
-            <label class="privacyPolicy" id="privacyPolicyLabel"><input type="checkbox"  id="privacyPolicy"> I have read and accept the <a id="privacyPolicyLink" onclick="window.location.href = 'privacyPolicy.html';" >Privacy policy</a>.</label>
+            <label class="privacyPolicy" id="privacyPolicyLabel"><input type="checkbox"  id="privacyPolicy"> I have read and accept the <a id="privacyPolicyLink" onclick="window.location.href = 'privacyPolicy.html';" >Privacy Policy</a>.</label>
         </div>
     </div>
 <!-- loading -->
@@ -1449,7 +1449,7 @@
                 document.getElementById('overlayLoad').style.display = "block";
                 setTimeout(function() {
                     document.getElementById('overlayLoad').style.display = "none";
-                    sessionStorage.setItem('selectedLanguage', selLang);
+                    localStorage.setItem("selectedLanguage", selLang);
                     window.location.href = 'assessment.html';
                     
                 }, 2000);
