@@ -2281,7 +2281,7 @@
                 }
             }
             for (let i = 0; i < ministryInterest.length; i++) {
-                topList += `top ${i + 1} [${ministryInterest[i]}]`;
+                topList += `top ${i + 1} ${ministryInterest[i]}`;
                 if (i !== ministryInterest.length - 1) {
                     topList += ", ";
                 }
@@ -2289,6 +2289,9 @@
                     least = `${ministryInterest[i]}`;
                 }
             }
+            // Save top Ministry List
+            let topMinistryList = JSON.stringify(topList);
+            localStorage.setItem("topMinistryList", topMinistryList);
             console.log(topList);
             console.log("Lowest: "+least);
             message += `
@@ -2579,7 +2582,8 @@
             let baptized = JSON.parse(localStorage.getItem("phase1")).baptized;
             let timeInFaith = JSON.parse(localStorage.getItem("phase1")).timeInFaith;
             let skill = JSON.parse(localStorage.getItem("phase2"));
-            let ministryInterest = JSON.parse(localStorage.getItem("phase3"));
+            //let ministryInterest = JSON.parse(localStorage.getItem("phase3"));
+            let ministryRankings = JSON.parse(localStorage.getItem("topMinistryList"));
 
             let genderData = (gender == 1) ? "Male" : (gender == 2) ? "Female" : "None";
             let statusData = (status == 1) ? "Single" : (status == 2) ? "Married" : "None";
@@ -2596,7 +2600,7 @@
                 8: "Knowledge in Scriptures"
             };
             let skillsData = (skill.length > 0) ? (skill.map(num => skillMap[num] || "None")) : ["None"];
-            let eligibleMinistriesData = ministryInterest.length > 0 ? ministryInterest.map(item => item + " Ministry") : ["None"];
+            let eligibleMinistriesData = ministryRankings? ministryRankings.split(",").map(item => item.trim() + " Ministry") : ["None"];
             let y = 20;// cursor
             // ===== Title =====
             doc.setFont("helvetica", "bold");
