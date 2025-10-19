@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/icn-logo.png">
+    <title>PERFIT</title>
+    <style>
+        :root{
+            --a: rgb(128, 65, 128);
+            --b: rgb(255, 223, 255);
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-size: 1vw;
+            background: whitesmoke;
+        }
+
+        .top {
+            position: relative;
+            border-radius: 12px;
+            width: 90%;
+            color: var(--a);
+            height: auto;
+            margin: 50px auto 25px auto;
+            /* display: flex; */
+            padding: 10px;
+            background:
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)),
+                url("img/icn-logo.png");
+            background-repeat: no-repeat;
+            background-color: white;
+            background-size: 30%;
+            background-position: right top;
+            box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
+        }
+        button{
+            width: fit-content;
+            border: 0.3vw solid var(--a);
+            border-radius: 12px;
+            font-size: 1rem;
+            background-color: var(--a);
+            color: white;
+            margin: 10px auto;
+            cursor: pointer;
+            padding: 10px;
+            transition: 0.3s ease-in-out;
+        }
+        /* top B */
+        .top input{
+            width: 90%;
+            height: 20%;
+            background: transparent ;
+            border: transparent;
+            border-bottom: 2px solid #ccc;
+            font-size: 2.5rem;
+            color: var(--a);
+            transition: 0.3s ease-in-out;
+        }
+        .top input:focus {
+            outline: none;
+            border: transparent;
+            border-bottom: 2px solid var(--a);
+        }
+        input::placeholder {
+            color: grey;
+            opacity: 1;
+        }
+        .btnDiv{
+            text-align: right;
+        }
+        .scrollMessage{
+            display: none;
+        }
+        /* table */
+        .tableDiv{
+            width: 90%;
+            margin: 25px auto 50px auto;
+            display: flex;
+            background-color: white;
+            color: var(--a);
+            box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
+            border-top-right-radius: 12px;
+            border-top-left-radius: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            text-align: center;
+            border-top-right-radius: 12px;
+            border-top-left-radius: 12px;
+        }
+        table input[type='number']{
+            color:var(--a);
+            border: 1px solid var(--a);
+            width: 50%;
+            height: 20px;
+            text-align: center;
+        }
+        table p{
+            margin: 0px;
+        }
+        th, td {
+            padding: 8px;
+            height: 80px;
+            width: 16.6%;
+            vertical-align: middle;
+            word-wrap: break-word;
+        }
+        th{
+            border-bottom: 3px solid var(--a);
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        td {
+            border-bottom: 1px solid var(--a);
+        }
+        label {
+            display: block;
+            margin-bottom: 4px;
+        }
+    /* alert */
+        .message {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 300px;
+            height: 60px;
+            border: 3px solid transparent;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            opacity: 1;
+            color: transparent;
+            transition: 0.5s ease-in-out;
+            z-index: 5;
+        }
+        
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 3px solid #155724;
+        }
+        
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 3px solid #721c24;;
+        }
+    /* logout box */
+        .logoutPopup {
+            display:none;
+            position:fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background:rgba(0,0,0,0.6);
+            backdrop-filter: blur(6px);
+            z-index:2;
+            justify-content:center;
+            align-items:center;
+        }
+        .logoutBox{
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            text-align:center;
+            max-width:400px;
+            min-width:450px;
+            margin:auto 10px;
+            font-size: 1rem;
+            box-shadow:0 10px 40px rgba(0,0,0,0.3);
+            color:var(--a);
+        }
+    /* reset box */
+        .resetPopup {
+            display:none;
+            position:fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background:rgba(0,0,0,0.6);
+            backdrop-filter: blur(6px);
+            z-index:2;
+            justify-content:center;
+            align-items:center;
+        }
+        .resetBox{
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            text-align:center;
+            max-width:400px;
+            min-width:450px;
+            margin:auto 10px;
+            font-size: 1rem;
+            box-shadow:0 10px 40px rgba(0,0,0,0.3);
+            color:var(--a);
+        }
+    /* change password box */
+        .changePassPopup {
+            display:none;
+            position:fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background:rgba(0,0,0,0.6);
+            backdrop-filter: blur(6px);
+            z-index:2;
+            justify-content:center;
+            align-items:center;
+        }
+        .changePassBox{
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            text-align:center;
+            max-width:400px;
+            min-width:450px;
+            margin:auto 10px;
+            font-size: 1rem;
+            box-shadow:0 10px 40px rgba(0,0,0,0.3);
+            color:var(--a);
+        }
+        .changePassBox input{
+            text-align:center;
+            font-size:18px;
+            border:2px solid var(--a);
+            border-radius:8px;
+            padding:10px;
+            width:80%;
+        }
+        .btnBox{
+            display: flex; 
+            justify-content: center; 
+            gap: 10px;
+        }
+        .btnBox button{
+            width: 40%;
+        }
+    /* loading */
+        .overlayLoad {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            z-index: 2;
+        }
+        .loaderContainer{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: auto; 
+            text-align: center; 
+        }
+        .loader {
+            border: 30px solid var(--b);
+            border-top: 30px solid var(--a);
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin: auto;
+            animation: spin 1s linear infinite;
+        }
+        .overlayLoad p{
+            color: var(--b);
+            width: 100%;
+            font-size: 1.5em;
+        }
+        @keyframes spin {
+            0%   { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media(hover:hover){
+            .custom-file-upload:hover {
+                color: var(--a);
+                background-color: white;
+            }
+            button:hover{
+                color: var(--a);
+                background-color: white;
+            }
+        }
+        @media (max-width: 1024px) {
+            .top{
+                font-size: 1rem;
+            }
+            .tableDiv{
+                font-size: 1rem;
+            }
+            table input[type='number']{
+                width: 70%;
+                height: 30px;
+            }
+            .logoutBox, .resetBox, .changePassBox{
+                min-width: 50%;
+            }
+            .btnBox button{
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .top{
+                width: 90%;
+                font-size: .7rem;
+            }
+            button{
+                font-size: .7rem;
+                margin: 5px;
+            }
+            .btnDiv{
+                display: flex;
+            }
+            .scrollMessage{
+                display: block;
+                font-size: .8rem;
+                color: var(--a);
+                text-align: center;
+            }
+            .tableDiv {
+                width: 90%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .tableDiv table {
+                min-width: 800px;
+                border-collapse: collapse;
+                border-left: 3px solid var(--a);
+                border-right: 3px solid var(--a);
+            }
+            .logoutBox, .resetBox, .changePassBox{
+                min-width: 90%;
+            }
+            .overlayLoad p{
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <p>church name:</p>
+        <input type="text" placeholder="Enter church name here" id="churchName" required>
+        <div class="btnDiv">
+            <button onclick="document.getElementById('resetPopup').style.display='flex'">Reset restrictions</button>
+            <button onclick="saveRestriction()">Save all changes</button>
+            <button onclick="document.getElementById('changePassPopup').style.display='flex'">Change password</button>
+            <button onclick="document.getElementById('logoutPopup').style.display='flex'">Logout</button>
+        </div>
+    </div>
+    <p class="scrollMessage"><< scroll the table to view all >></p>
+    <div class="tableDiv">
+        <table id="ministryTable">
+        <thead>
+            <tr>
+            <th>Ministry Name</th>
+            <th>Gender Restriction</th>
+            <th>Age Restriction</th>
+            <th>Marital Status Restriction</th>
+            <th>Baptist Status Restriction</th>
+            <th>Time in Faith Restriction</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        </table>
+    </div>
+    <!-- alert message -->
+    <div class="message" id="message"></div>
+    <!-- loading -->
+    <div id="overlayLoad" class="overlayLoad">
+        <div class="loaderContainer">
+            <div class="loader"></div>
+            <p>Loading, Please wait.</p>
+        </div>
+    </div>
+    <!-- change Password Popup -->
+    <div class="changePassPopup" id="changePassPopup">
+        <div class="changePassBox">
+            <h3>Change Password</h3>
+            <p>Enter your new password.</p>
+            <input type="text" id="changePass" placeholder="Enter password" required>
+            <br>
+            <div class="btnBox">
+                <button onclick="document.getElementById('changePassPopup').style.display='none'">Back</button>
+                <button onclick="changePass()">Change</button>
+            </div>
+        </div>
+    </div>
+    <!-- logout Popup -->
+    <div class="logoutPopup" id="logoutPopup">
+        <div class="logoutBox">
+            <h3>logout account</h3>
+            <p>Are you sure you want to log out?</p>
+            <br>
+            <div class="btnBox">
+                <button onclick="document.getElementById('logoutPopup').style.display='none'">No</button>
+                <button onclick="logout()">Yes</button>
+            </div>
+        </div>
+    </div>
+    <!-- reset Popup -->
+    <div class="resetPopup" id="resetPopup">
+        <div class="resetBox">
+            <h3>Reset all restrictions</h3>
+            <p>Are you sure you want to reset all the restrictions?</p>
+            <br>
+            <div class="btnBox">
+                <button onclick="document.getElementById('resetPopup').style.display='none'">No</button>
+                <button onclick="resetRestrictions()">Yes</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const message = document.getElementById("message");
+    //no acc no panel
+        fetch("php-sessionTest.php")
+        .then(response => {
+            if (response.redirected) {
+            window.location.href = response.url;
+            }
+        });
+    //change password
+        function changePass() {
+            const newPassword = document.getElementById("changePass").value.trim();
+
+            if (newPassword === "") {
+                message.textContent = "Please enter a new password.";
+                message.className = "message error";
+                message.style.opacity = 1;
+                setTimeout(() => (message.style.opacity = 0), 3000);
+                return;
+            }
+            fetch("php-updatePass.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ newPassword: newPassword })
+            })
+            .then(response => response.json())
+            .then(data => {
+                message.textContent = data.message;
+                message.className = data.status === "success" ? "message success" : "message error";
+                message.style.opacity = 1;
+
+                setTimeout(() => (message.style.opacity = 0), 3000);
+
+                if (data.status === "success") {
+                    document.getElementById('changePassPopup').style.display = 'none';
+                    document.getElementById("changePass").value = "";
+                }
+            })
+            .catch(err => {
+                message.textContent = "Something went wrong. Please try again.";
+                message.className = "message error";
+                message.style.opacity = 1;
+                setTimeout(() => (message.style.opacity = 0), 3000);
+            });
+        }
+    //logout
+        function logout() {
+            fetch("php-logout.php", {
+                method: "POST"
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    message.textContent = "Logging out...";
+                    message.className = "message success";
+                    message.style.opacity = 1;
+                    document.getElementById('overlayLoad').style.display = "block";
+                    setTimeout(function() {
+                        document.getElementById('overlayLoad').style.display = "none";
+                        window.location.href = 'admin.html';
+                    }, 2000);
+                } else {
+                    message.textContent = "Logout failed. Please try again.";
+                    message.className = "message error";
+                    message.style.opacity = 1;
+                    setTimeout(() => (message.style.opacity = 0), 3000);
+                }
+            })
+            .catch(() => {
+                message.textContent = "Error connecting to server.";
+                message.className = "message error";
+                message.style.opacity = 1;
+                setTimeout(() => (message.style.opacity = 0), 3000);
+            });
+        }
+    //save restrictions
+        function saveRestriction() {
+            const churchNameInput = document.getElementById("churchName");
+            const churchName = churchNameInput.value.trim();
+
+            // ✅ Require church name before saving
+            if (churchName === "") {
+                message.className = "message error";
+                message.textContent = "Please enter a church name before saving.";
+                message.style.opacity = 1;
+                setTimeout(() => (message.style.opacity = 0), 3000);
+                churchNameInput.focus();
+                return;
+            }
+
+            // ✅ Check if church name already exists before proceeding
+            fetch("php-checkChurchName.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ churchName: churchName })
+            })
+            .then(res => res.json())
+            .then(result => {
+                if (result.exists) {
+                    message.className = "message error";
+                    message.textContent = "This church name is already registered by another admin.";
+                    message.style.opacity = 1;
+                    setTimeout(() => (message.style.opacity = 0), 3000);
+                    return;
+                }
+
+                // ✅ If not existing, continue saving
+                const rows = document.querySelectorAll("#ministryTable tbody tr");
+                const data = [];
+
+                rows.forEach((row, index) => {
+                    const i = index + 1;
+                    data.push({
+                        ministryID: i,
+                        gender: document.querySelector(`input[name="gender${i}"]:checked`)?.value || 0,
+                        age1: document.querySelector(`input[name="age1${i}"]`)?.value || 1,
+                        age2: document.querySelector(`input[name="age2${i}"]`)?.value || 99,
+                        marital: document.querySelector(`input[name="marital${i}"]:checked`)?.value || 0,
+                        baptist: document.querySelector(`input[name="baptist${i}"]:checked`)?.value || 0,
+                        timeInFaith: document.querySelector(`input[name="faith${i}"]:checked`)?.value || 0
+                    });
+                });
+
+                const payload = {
+                    churchName: churchName,
+                    restrictions: data
+                };
+
+                fetch("php-saveRestriction.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                })
+                .then(res => res.json())
+                .then(response => {
+                    message.className = response.status === "success" ? "message success" : "message error";
+                    message.textContent = response.message;
+                    message.style.opacity = 1;
+                    setTimeout(() => (message.style.opacity = 0), 3000);
+                })
+                .catch(err => console.error("Error saving restrictions:", err));
+            })
+            .catch(err => console.error("Error checking church name:", err));
+        }
+
+
+    //reset restriction
+        function resetRestrictions() {
+            fetch("php-resetRestriction.php", {
+                method: "POST"
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                        message.className = data.status === "success" ? "message success" : "message error";
+                        message.textContent = "Restrictions restored to default settings.";
+                        message.style.opacity = 1;
+                        setTimeout(() => {
+                            message.style.opacity = 0;
+                            location.reload();
+                        }, 3000);
+                }
+            })
+            .catch(() => {}); // quietly ignore errors
+        }
+
+
+
+    //display data
+        fetch("php-loadMinistryRestriction.php")
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error(data.error);
+                return;
+            }
+            // ✅ Display church name only
+            document.getElementById("churchName").value = data.churchName || "";
+            // ✅ Display ministries and restrictions
+            const tbody = document.querySelector("#ministryTable tbody");
+            tbody.innerHTML = "";
+            data.ministries.forEach((m, index) => {
+                const i = index + 1;
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${m.ministryName}</td>
+
+                    <td class="vertical-labels">
+                        <label><input type="radio" name="gender${i}" value="1" ${m.gender == 1 ? "checked" : ""}> Male Only</label>
+                        <label><input type="radio" name="gender${i}" value="2" ${m.gender == 2 ? "checked" : ""}> Female Only</label>
+                        <label><input type="radio" name="gender${i}" value="0" ${m.gender == 0 ? "checked" : ""}> No Restriction</label>
+                    </td>
+
+                    <td>
+                        <input type="number" name="age1${i}" min="1" max="99" value="${m.age1 || ''}" placeholder="Age">
+                        <p>-to-</p>
+                        <input type="number" name="age2${i}" min="1" max="99" value="${m.age2 || ''}" placeholder="Age">
+                    </td>
+
+                    <td class="vertical-labels">
+                        <label><input type="radio" name="marital${i}" value="1" ${m.marital == 1 ? "checked" : ""}> Single Only</label>
+                        <label><input type="radio" name="marital${i}" value="2" ${m.marital == 2 ? "checked" : ""}> Married Only</label>
+                        <label><input type="radio" name="marital${i}" value="0" ${m.marital == 0 ? "checked" : ""}> No Restriction</label>
+                    </td>
+
+                    <td class="vertical-labels">
+                        <label><input type="radio" name="baptist${i}" value="1" ${m.baptist == 1 ? "checked" : ""}> Baptized Only</label>
+                        <label><input type="radio" name="baptist${i}" value="2" ${m.baptist == 2 ? "checked" : ""}> No Restriction</label>
+                    </td>
+
+                    <td class="vertical-labels">
+                        <label><input type="radio" name="faith${i}" value="1" ${m.timeInFaith == 1 ? "checked" : ""}> 1 Week</label>
+                        <label><input type="radio" name="faith${i}" value="2" ${m.timeInFaith == 2 ? "checked" : ""}> 6 Months</label>
+                        <label><input type="radio" name="faith${i}" value="3" ${m.timeInFaith == 3 ? "checked" : ""}> 1 Year</label>
+                        <label><input type="radio" name="faith${i}" value="4" ${m.timeInFaith == 4 ? "checked" : ""}> 2 Years</label>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        })
+        .catch(error => console.error("Error loading data:", error));
+    </script>
+</body>
+</html>

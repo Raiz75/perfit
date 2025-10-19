@@ -7,7 +7,7 @@
     <title>PERFIT</title>
     <style>
         :root{
-            --a:rgb(128, 65, 128);
+            --a: rgb(128, 65, 128);
             --b: rgb(255, 223, 255);
         }
         * {
@@ -488,7 +488,7 @@
             opacity: 1;
             transform: translate(0);
         }
-        /*alert*/
+    /*alert*/
         .overlay {
             display: none;
             position: fixed;
@@ -500,6 +500,41 @@
             backdrop-filter: blur(5px);
             z-index: 100;
         }
+        .overlayUser{
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+        }
+        .overlayChurch{
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            color: var(--a);
+            z-index: 100;
+        }
+        select {
+            width: 90%;
+            padding: 8px 12px;
+            border: 1px solid var(--a);
+            border-radius: 8px;
+            margin: 10px auto;
+            background-color: white;
+            color: var(--a);
+            cursor: pointer;
+        }
+        
+        
         /* Centered alert */
         .showSelectLanguage {
             position: absolute;
@@ -530,6 +565,12 @@
             color: white;
             margin: 10px auto;
             font-size: 1.2rem;
+        }
+        .disabledBtn{
+            border: 3px solid grey;
+            background-color: var(--b);
+            color: grey;
+            pointer-events: none;
         }
         /* privacy */
         .privacyPolicy{
@@ -604,6 +645,12 @@
             .l:hover{
                 background-color: var(--b);
                 color: var(--a);
+            }
+            select:focus {
+                border: 1px solid var(--a);
+            }
+            .disabledBtn:hover{
+                color: grey;
             }
             .privacyPolicy a:hover{
                 color: var(--a);
@@ -1099,7 +1146,7 @@
             <a class="navBtn" onclick="navigateTo('banner')">Home</a>
             <a class="navBtn" onclick="navigateTo('howItWorks')">How It Works</a>
             <a class="navBtn" onclick="navigateTo('ministrySelection')">Ministries</a>
-            <button class="takeAssessmentTop" onclick="document.getElementById('overlay').style.display = 'block';">Take Assessment</button>
+            <button class="takeAssessmentTop" onclick="document.getElementById('overlayUser').style.display = 'block';">Take Assessment</button>
         </div>
     </nav>
 <!--banner-->
@@ -1357,13 +1404,34 @@
         <div class="bg"></div>
         <h1>Would you like to </h1>
         <h1>find your role?</h1>
-        <button onclick="document.getElementById('overlay').style.display = 'block';">Take Assessment</button>
+        <button onclick="document.getElementById('overlayUser').style.display = 'block';">Take Assessment</button>
     <!--footer puzzle-->
         <div class="footer">
            <div class="puzzle" id="puzzle"></div>
         </div>
     </div>
-<!--selecte language-->
+<!-- select user type -->
+    <div id="overlayUser" class="overlayUser">
+        <div class="showSelectLanguage">
+            <p>Choose user type:</p>
+            <button class="l" onclick="setUser('leader')">Leader</button>
+            <button class="l" onclick="setUser('volunteer')">Volunteer</button>
+            <button class="close" onclick="document.getElementById('overlayUser').style.display = 'none'">x</button>
+        </div>
+    </div>
+<!-- select church Restrictions -->
+    <div id="overlayChurch" class="overlayChurch">
+        <div class="showSelectLanguage">
+            <label for="churchName">Choose your church:</label>
+            <select id="churchName" name="churchName">
+                <option value="" disabled selected>Loading churches...</option>
+            </select>
+            <button class="l disabledBtn" id="selLangBtn" style="width: 70%;" onclick="selectLang()">Select language</button>
+
+            <button class="close" onclick="document.getElementById('overlayChurch').style.display = 'none'">x</button>
+        </div>
+    </div>
+<!--select language-->
    <div id="overlay" class="overlay">
         <div class="showSelectLanguage">
             <p>Choose your preferred language:</p>
@@ -1373,6 +1441,7 @@
             <label class="privacyPolicy" id="privacyPolicyLabel"><input type="checkbox"  id="privacyPolicy"> I have read and accept the <a id="privacyPolicyLink" onclick="window.location.href = 'privacyPolicy.html';" >Privacy Policy</a>.</label>
         </div>
     </div>
+
 <!-- loading -->
     <div id="overlayLoad" class="overlayLoad">
         <div class="loaderContainer">
@@ -1441,6 +1510,50 @@
             document.getElementById('dynamicDove').style.display='none';
             document.getElementById('verseDiv').style.opacity="0";
         }
+    // user type
+        function setUser(user){
+            document.getElementById('overlayUser').style.display = 'block';
+            if(user=="leader"){
+                document.getElementById('overlayLoad').style.display = "block";
+                setTimeout(function() {
+                    document.getElementById('overlayLoad').style.display = "none";
+                    window.location.href = "admin.html";
+                }, 2000);
+            }else if(user=="volunteer"){
+                document.getElementById('overlayUser').style.display = 'none';
+                document.getElementById('overlayChurch').style.display = 'block';
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            const select = document.getElementById("churchName");
+
+            fetch("php-getChurchName.php")
+            .then(response => response.json())
+            .then(data => {
+                select.innerHTML = '<option value="" disabled selected>Select a church</option>';
+                data.forEach(name => {
+                    const option = document.createElement("option");
+                    option.value = name;
+                    option.textContent = name;
+                    select.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching church names:", error);
+                select.innerHTML = '<option value="" disabled>Error loading churches</option>';
+            });
+            //  detect valid selection
+            select.addEventListener("change", function() {
+                if (this.value !== "") {
+                    document.getElementById("selLangBtn").classList.remove("disabledBtn");
+                }
+            });
+        });
+        function selectLang(){
+            document.getElementById('overlayChurch').style.display = "none";
+            document.getElementById('overlay').style.display = "block";
+            localStorage.setItem('selectedChurch', document.getElementById('churchName').value);
+        }
     // privacy policy
         function setLang(selLang){
             const privacyPolicy = document.getElementById("privacyPolicy");
@@ -1450,9 +1563,8 @@
                 document.getElementById('overlayLoad').style.display = "block";
                 setTimeout(function() {
                     document.getElementById('overlayLoad').style.display = "none";
-                    sessionStorage.setItem('selectedLanguage', selLang);
+                    localStorage.setItem('selectedLanguage', selLang);
                     window.location.href = 'assessment.html';
-                    
                 }, 2000);
             }else{
                 let blink = 0;
@@ -1542,6 +1654,8 @@
         const referrerFile = referrer.split("/").pop();
         if (referrerFile == "privacyPolicy.html") {
             document.getElementById('overlay').style.display = "block";
+        }else if(referrerFile == "admin.html"){
+            document.getElementById('overlayUser').style.display = "block";
         }
     </script>
 </body>

@@ -310,7 +310,7 @@
             backdrop-filter: blur(5px);
             z-index: 999;
         }
-        /* Centered alert */
+    /* Centered alert */
         .showAlert {
             position: absolute;
             top: 50%;
@@ -339,7 +339,7 @@
             margin:auto;
             font-size: 1.2rem;
         }
-        /*puzzle*/
+    /*puzzle*/
         .puzzle{
             width: 25vw;
             height: 25vw;
@@ -397,7 +397,35 @@
         .highlightPiece{
             filter: drop-shadow(0vw 0vw 3vw rgb(128, 65, 128));
         }
-        /* loading */
+    /* alert */
+        .messageAlert {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 300px;
+            height: 60px;
+            border: 3px solid transparent;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            opacity: 1;
+            color: transparent;
+            transition: 0.5s ease-in-out;
+            z-index: 5;
+        }
+        
+        .messageAlert.success {
+            background: #d4edda;
+            color: #155724;
+            border: 3px solid #155724;
+        }
+        
+        .messageAlert.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 3px solid #721c24;;
+        }
+    /* loading */
         .overlayLoad {
             display: none;
             position: fixed;
@@ -698,14 +726,15 @@
         </div>
         <div class="box move-up" id="baptizedBox">
             <span id="baptizedBoxttl" translate="ph1i">Baptized</span><br>
-            <label><input type="radio" name="baptizedBox" value="1" translate="ph1j"> No</label>
-            <label><input type="radio" name="baptizedBox" value="2" translate="ph1k"> Yes</label>
+            <label><input type="radio" name="baptizedBox" value="1" translate="ph1k"> Yes</label>
+            <label><input type="radio" name="baptizedBox" value="2" translate="ph1j"> No</label>
         </div>
         <div class="box move-up" id="timeInFaithBox">
             <span id="timeInFaithBoxttl" translate="ph1l">Time In Faith</span><br>
             <label><input type="radio" name="timeInFaithBox" value="1" translate="ph1m"> 1+ week</label>
             <label><input type="radio" name="timeInFaithBox" value="2" translate="ph1n"> 6+ months</label>
             <label><input type="radio" name="timeInFaithBox" value="3" translate="ph1o"> 1+ year</label>
+            <label><input type="radio" name="timeInFaithBox" value="4" translate="ph1p"> 2+ years</label>
         </div>
     </div>
     <div class="instruction" style="display: none;" id="inst2">
@@ -783,7 +812,7 @@
     <button class="move-up nextBtn" id="step1" onclick="verifyPhase1()" translate="b1">NEXT PHASE</button>
     <div class="exportBtnDiv" id="exportBtnDiv">
         <button class="exportBtn" id="exportBtn" onclick="exportResult()" translate="b44">EXPORT</button>
-        <button class="move-up nextBtn" id="step5" onclick="gotoHome(), localStorage.clear()" translate="b4">DONE</button>
+        <button class="move-up nextBtn" id="step5" onclick="gotoHome()" translate="b4">DONE</button>
     </div>
     <div class="btnDiv" id="btnDiv">
         <button class="move-up nextBtn" id="review" style="display: none;" onclick="reviewAns()" translate="b2">REVIEW ANSWER</button>
@@ -807,6 +836,7 @@
             <p>Loading, Please wait.</p>
         </div>
     </div>
+    <div class="messageAlert" id="messageAlert"></div>
 <!--script-->
     <!-- api -->
     <script src="callApi.js"></script>
@@ -816,7 +846,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
     //language
-        let selectedLanguage = sessionStorage.getItem("selectedLanguage") || "en";
+        let selectedLanguage = localStorage.getItem("selectedLanguage") || "en";
+        let selectedChurch = localStorage.getItem("selectedChurch") || "General";
+    //ministry restrictions
+        let ministryRestrictions = [];
+        fetch("php-getRestrictions.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ selectedChurch })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (!data.success) {
+                console.error("⚠️ Error:", data.message);
+                return;
+            }
+            // ✅ Store all restrictions in the array
+            ministryRestrictions = data.data || [];
+            console.log("Restrictions:", ministryRestrictions);
+        })
+        .catch(err => {
+            console.error("Fetch or parse error:", err);
+        });
+    //assessment local storage reset
+        function clearAssessmentLocalStorage(){
+            localStorage.removeItem("phase1");
+            localStorage.removeItem("phase2");
+            localStorage.removeItem("phase3");
+            localStorage.removeItem("phase4");
+        }
+    //translate ui text
         window.addEventListener("DOMContentLoaded", () => {
             // Update UI text
             document.querySelectorAll("[translate]").forEach(el => {
@@ -845,8 +904,8 @@
                 }
             });
             console.warn("selected language: " + selectedLanguage);
+            console.warn("selected church restrictions: " + selectedChurch);
             //get recorded
-
             if(localStorage.getItem("phase1")){
                 document.getElementById("a1").style.display = "none";
                 document.getElementById("alertBtn").style.display = "flex";
@@ -864,10 +923,30 @@
                 
                 console.warn("Previous session found. Returning user");
                 console.warn(">> Recorded data");
-                console.log("Phase 1:", JSON.parse(localStorage.getItem("phase1")));
-                console.log("Phase 2:", JSON.parse(localStorage.getItem("phase2")));
-                console.log("Phase 3:", JSON.parse(localStorage.getItem("phase3")));
-                console.log("Phase 4:", JSON.parse(localStorage.getItem("phase4")));
+                console.log(
+                    "%c>> Phase 1 Data%c %o",
+                    "color: white; background: green; font-weight: bold; padding: 2px 6px; border-radius: 3px;",
+                    "color: gray; font-style: italic;",
+                    JSON.parse(localStorage.getItem('phase1'))
+                );
+                console.log(
+                    "%c>> Phase 2 Data%c %o",
+                    "color: white; background: green; font-weight: bold; padding: 2px 6px; border-radius: 3px;",
+                    "color: gray; font-style: italic;", 
+                    JSON.parse(localStorage.getItem("phase2"))
+                );
+                console.log(
+                    "%c>> Phase 3 Data%c %o",
+                    "color: white; background: green; font-weight: bold; padding: 2px 6px; border-radius: 3px;",
+                    "color: gray; font-style: italic;", 
+                    JSON.parse(localStorage.getItem("phase3"))
+                );
+                console.log(
+                    "%c>> Phase 1 Data%c %o",
+                    "color: white; background: green; font-weight: bold; padding: 2px 6px; border-radius: 3px;",
+                    "color: gray; font-style: italic;",
+                     JSON.parse(localStorage.getItem("phase4"))
+                );
 
                 if (localStorage.getItem("phase4")) {//phase 4 to 5
                     document.getElementById("yesBtn").onclick = function() {
@@ -881,7 +960,7 @@
                         document.getElementById("alertBtn").style.display = "none",
                         document.getElementById("a1").style.display = "block",
                         document.getElementById('overlay').style.display = 'none',
-                        localStorage.clear(),
+                        clearAssessmentLocalStorage(),
                         console.log('Session reset successfully');
                     };
                 } else if (localStorage.getItem("phase3")) {//phase 3 to 4
@@ -896,7 +975,7 @@
                         document.getElementById("alertBtn").style.display = "none",
                         document.getElementById("a1").style.display = "block",
                         document.getElementById('overlay').style.display = 'none',
-                        localStorage.clear(),
+                        clearAssessmentLocalStorage(),
                         console.log('Session reset successfully');
                     };
                 } else if (localStorage.getItem("phase2")) {//phase 2 to 3
@@ -911,7 +990,7 @@
                         document.getElementById("alertBtn").style.display = "none",
                         document.getElementById("a1").style.display = "block",
                         document.getElementById('overlay').style.display = 'none',
-                        localStorage.clear(),
+                        clearAssessmentLocalStorage(),
                         console.log('Session reset successfully');
                     };
                 } else if (localStorage.getItem("phase1")) {//phase 1 to 2
@@ -926,12 +1005,12 @@
                         document.getElementById("alertBtn").style.display = "none",
                         document.getElementById("a1").style.display = "block",
                         document.getElementById('overlay').style.display = 'none',
-                        localStorage.clear(),
+                        clearAssessmentLocalStorage(),
                         console.log('Session reset successfully');
                     };
                 }
             } else{
-                console.warn('No previous session found. New user');
+                console.warn('No previous assessment session found.');
             }
         });
     //assessemnt language uiTranslation
@@ -960,6 +1039,7 @@
                 ph1m: "1+ week",
                 ph1n: "6+ months",
                 ph1o: "1+ year",
+                ph1p: "2+ years",
                 i2: "INSTRUCTION: Please read each statement carefully and answer honestly. Use the scale to show how strongly you agree or disagree — there are no right or wrong answers, just your true opinion.",
                 ii1: "Strongly Agree = 6",
                 ii2: "Agree = 5",
@@ -1006,9 +1086,10 @@
                 ph1j: "Hindi",
                 ph1k: "Oo",
                 ph1l: "Panahon sa Pananampalataya",
-                ph1m: "1 linggo",
-                ph1n: "6 na buwan",
-                ph1o: "1 taon",
+                ph1m: "1+ linggo",
+                ph1n: "6+ na buwan",
+                ph1o: "1+ taon",
+                ph1p: "2+ taon",
                 i2: "TAGUBILIN: Mangyaring basahin nang mabuti ang bawat pahayag at sagutin nang tapat. Sagutan kung gaano ka sumasang-ayon o hindi sumasang-ayon — walang tama o maling sagot, tanging ang iyong tunay na opinyon lamang.",
                 ii1: "Lubos na Sumasang-ayon = 6",
                 ii2: "Sumasang-ayon = 5",
@@ -1259,16 +1340,81 @@
         let skillProfilingScore = [0,0,0,0,0,0,0,0];
         let skill=[];
         function skillSubmit(){
-            //show question
-            if(JSON.parse(localStorage.getItem("phase1")).baptized=="1" && selectedLanguage=="en"){
-                document.getElementById("overlay").style.display = "block";
-                document.getElementById("alertMessage").innerText = "it appears that you are not water baptized yet. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.";
-                console.log("The user is not baptized yet");
+        //show question
+            // if(JSON.parse(localStorage.getItem("phase1")).baptized=="1" && selectedLanguage=="en"){
+            //     document.getElementById("overlay").style.display = "block";
+            //     document.getElementById("alertMessage").innerText = "it appears that you are not water baptized yet. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.";
+            //     console.log("The user is not baptized yet");
+            // }
+            // if (JSON.parse(localStorage.getItem("phase1")).baptized=="1" && selectedLanguage=="tl"){
+            //     document.getElementById("overlay").style.display = "block";
+            //     document.getElementById("alertMessage").innerText = "Mukhang hindi ka pa water baptized. Hinihikayat ka naming patuloy na lumago sa iyong pananampalataya at paglalakbay espirituwal. Kapag dumating ang tamang panahon, ikalulugod naming makita kang makibahagi. Pagpalain ka ng Diyos sa iyong landas ng paglago at paghahanda.";
+            //     console.log("The user is not baptized yet");
+            // }
+            const userData = JSON.parse(localStorage.getItem("phase1"));
+            const userAge = Number(userData.age);
+            const userBaptized = userData.baptized;
+            const userTimeInFaith = Number(userData.timeInFaith);
+            const overlay = document.getElementById("overlay");
+            const alertMessage = document.getElementById("alertMessage");
+
+            // --- Check if all ministries require baptism ---
+            const allRequireBaptism = ministryRestrictions.length > 0 &&
+                ministryRestrictions.every(r => Number(r.baptist) === 1);
+
+            // --- Determine minimum and maximum allowed age from all restrictions ---
+            const minAgeAllowed = Math.min(...ministryRestrictions.map(r => Number(r.age1) || 0));
+            const maxAgeAllowed = Math.max(...ministryRestrictions.map(r => Number(r.age2) || 100));
+
+            // --- Determine minimum required faith time ---
+            const minFaithRequired = Math.min(...ministryRestrictions.map(r => Number(r.timeInFaith) || 0));
+
+            // --- Helper function for showing alerts ---
+            function showAlert(messageEN, messageTL) {
+                overlay.style.display = "block";
+                alertMessage.innerText = (selectedLanguage === "tl") ? messageTL : messageEN;
             }
-            if (JSON.parse(localStorage.getItem("phase1")).baptized=="1" && selectedLanguage=="tl"){
-                document.getElementById("overlay").style.display = "block";
-                document.getElementById("alertMessage").innerText = "Mukhang hindi ka pa water baptized. Hinihikayat ka naming patuloy na lumago sa iyong pananampalataya at paglalakbay espirituwal. Kapag dumating ang tamang panahon, ikalulugod naming makita kang makibahagi. Pagpalain ka ng Diyos sa iyong landas ng paglago at paghahanda.";
-                console.log("The user is not baptized yet");
+
+            // --- Check 1: Baptism restriction ---
+            if (userBaptized === "2" && allRequireBaptism) {
+                showAlert(
+                    "It appears that you are not water baptized yet. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.",
+                    "Mukhang hindi ka pa water baptized. Hinihikayat ka naming patuloy na lumago sa iyong pananampalataya at paglalakbay espirituwal. Kapag dumating ang tamang panahon, ikalulugod naming makita kang makibahagi. Pagpalain ka ng Diyos sa iyong landas ng paglago at paghahanda."
+                );
+                console.log("User is not baptized and all ministries require baptism.");
+            }
+
+            // --- Check 2: Age restriction ---
+            else if (userAge < minAgeAllowed || userAge > maxAgeAllowed) {
+                showAlert(
+                    `You must be between ${minAgeAllowed} and ${maxAgeAllowed} years old to qualify for any ministry.`,
+                    `Dapat ay nasa edad ${minAgeAllowed} hanggang ${maxAgeAllowed} taong gulang upang makasali sa alinmang ministry.`
+                );
+                console.log(`Age restriction: user age ${userAge} not in range ${minAgeAllowed}-${maxAgeAllowed}`);
+            }
+
+            // --- Check 3: Time in Faith restriction ---
+            else if (userTimeInFaith < minFaithRequired) {
+                // Convert numeric time requirement to readable text
+                const faithMap = {
+                    1: "at least 1 week",
+                    2: "at least 6 months",
+                    3: "at least 1 year",
+                    4: "at least 2 years"
+                };
+                const reqFaithTextEN = faithMap[minFaithRequired] || "a required period of faith growth";
+                const reqFaithTextTL = {
+                    1: "ng hindi bababa sa 1 linggo",
+                    2: "ng hindi bababa sa 6 na buwan",
+                    3: "ng hindi bababa sa 1 taon",
+                    4: "ng hindi bababa sa 2 taon"
+                }[minFaithRequired] || "ng kinakailangang panahon ng paglago sa pananampalataya";
+
+                showAlert(
+                    `You need to have been in the faith for ${reqFaithTextEN} before joining a ministry.`,
+                    `Kailangan mong nasa pananampalataya ${reqFaithTextTL} bago makasali sa isang ministry.`
+                );
+                console.log(`Time in faith restriction: user=${userTimeInFaith}, required≥${minFaithRequired}`);
             }
             console.warn(">> Skill Profiling");
             showQuestions('skillQuestion', skillProfilingQuestions, selectedLanguage, skillProfilingScore, 'step2');
@@ -1496,88 +1642,155 @@
         //test
             console.log(">> Ministry Interest(raw)");
             console.log(ministryInterest.join(", "));
-            let before = [...ministryInterest];
+            //let before = [...ministryInterest];
 
             // ===============================
             // APPLY FILTER RESTRICTIONS
             console.log(">> Applying Filter");
             // ===============================
-            // GENDER FILTER
-            // Fetch gender from localStorage (phase1 data)
-            let gender = JSON.parse(localStorage.getItem("phase1")).gender;// Gender values: 1 = Male, 2 = Female
-            // Restrictions based on gender
-            let maleRestriction = ["Women's"];
-            let femaleRestriction = ["Men's"];
-            // Apply gender-specific restrictions
-            if (gender == "1") {
-                ministryInterest = ministryInterest.filter(item => !maleRestriction.includes(item));
-            } else if (gender == "2") {
-                ministryInterest = ministryInterest.filter(item => !femaleRestriction.includes(item));
-            }
-            logFilterResult(before, ministryInterest, "Gender filter");
-            // ===============================
-            // AGE FILTER
-            // Fetch age from localStorage
-            let age = JSON.parse(localStorage.getItem("phase1")).age;
-            // Define restrictions per age group
-            let age12Restriction = ["Prayer","Preaching","Young Adults","Men's","Women's","Family Or Couples","Administrative","Finance","Marshal","Facilities Maintenance","Missions","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
-            let age15Restriction = ["Preaching","Young Adults","Men's","Women's","Family Or Couples","Administrative","Finance","Marshal","Facilities Maintenance","Missions","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
-            let age20Restriction = ["Men's","Women's","Family Or Couples","Administrative","Finance","Marshal","Facilities Maintenance","Missions","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
-            let age21Restriction = ["Administrative","Finance","Marshal","Facilities Maintenance","Missions","Production Tech","Creative & Social Media","Seniors"];
-            let age22Restriction = ["Administrative","Finance","Marshal","Facilities Maintenance","Missions","Seniors"];
-            let age25Restriction = ["Seniors"];
-            let age26Restriction = ["Youth","Seniors"];
-            let age30Restriction = ["Young Adults","Youth","Seniors"];
-            let age50Restriction = ["Young Adults","Youth"];
-            // Apply restriction depending on age bracket
-            if (age >= 50) { 
-                ministryInterest = ministryInterest.filter(item => !age50Restriction.includes(item));
-            } else if (age >= 30) {
-                ministryInterest = ministryInterest.filter(item => !age30Restriction.includes(item));
-            } else if (age >= 26) {
-                ministryInterest = ministryInterest.filter(item => !age26Restriction.includes(item));
-            } else if (age >= 25) {
-                ministryInterest = ministryInterest.filter(item => !age25Restriction.includes(item));
-            } else if (age >= 22) {
-                ministryInterest = ministryInterest.filter(item => !age22Restriction.includes(item));
-            } else if (age >= 21) {
-                ministryInterest = ministryInterest.filter(item => !age21Restriction.includes(item));
-            } else if (age >= 20) {
-                ministryInterest = ministryInterest.filter(item => !age20Restriction.includes(item));
-            } else if (age >= 15) {
-                ministryInterest = ministryInterest.filter(item => !age15Restriction.includes(item));
-            } else if (age >= 12) {
-                ministryInterest = ministryInterest.filter(item => !age12Restriction.includes(item));
-            }
-            logFilterResult(before, ministryInterest, "Age filter");
-            console.log(">> Baptized filter Applied");
-            // ===============================
-            // MARITAL STATUS FILTER
-            // Fetch marital status from localStorage
-            let status = JSON.parse(localStorage.getItem("phase1")).status;// Status values: 1 = Single, 2 = Married
-            // Restrictions base in Marital status
-            let singleRestriction = ["Family Or Couples"];
-            let marriedRestriction = ["Single Adults"];
-            if (status == "1") {
-                ministryInterest = ministryInterest.filter(item => !singleRestriction.includes(item));
-            } else if (status == "2") {
-                ministryInterest = ministryInterest.filter(item => !marriedRestriction.includes(item));
-            }
-            logFilterResult(before, ministryInterest, "Status filter");
-            // ===============================
-            // TIME IN FAITH FILTER
-            // Fetch time in faith from localStorage (phase1)
-            let timeInFaith = JSON.parse(localStorage.getItem("phase1")).timeInFaith;// Values: 1 = 1+ week, 2 = 6+ months, 3 = 1+ year
-            // Restrictions base on Time in faith
-            let week1 = ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)","Preaching","Discipleship","Youth","Young Adults","Men's","Women's","Family Or Couples","Ushering","Administrative","Finance","Marshal","Facilities Maintenance","Evangelism","Missions","Community Service","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Grievance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
-            let month6 = ["Preaching","Discipleship","Youth","Young Adults","Men's","Women's","Family Or Couples","Ushering","Administrative","Finance","Marshal","Facilities Maintenance","Evangelism","Missions","Community Service","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Grievance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
-            // Apply time-in-faith restrictions
-            if (timeInFaith == "1") { // Only 1 week
-                ministryInterest = ministryInterest.filter(item => !week1.includes(item));
-            } else if (timeInFaith == "2") { // Only 6 months
-                ministryInterest = ministryInterest.filter(item => !month6.includes(item));
-            }
-            logFilterResult(before, ministryInterest, "Time in faith filter");
+            // // GENDER FILTER
+            // // Fetch gender from localStorage (phase1 data)
+            // let gender = JSON.parse(localStorage.getItem("phase1")).gender;// Gender values: 1 = Male, 2 = Female
+            // // Restrictions based on gender
+            // let maleRestriction = ["Women's"];
+            // let femaleRestriction = ["Men's"];
+            // // Apply gender-specific restrictions
+            // if (gender == "1") {
+            //     ministryInterest = ministryInterest.filter(item => !maleRestriction.includes(item));
+            // } else if (gender == "2") {
+            //     ministryInterest = ministryInterest.filter(item => !femaleRestriction.includes(item));
+            // }
+            // logFilterResult(before, ministryInterest, "Gender filter");
+            // // ===============================
+            // // AGE FILTER
+            // // Fetch age from localStorage
+            // let age = JSON.parse(localStorage.getItem("phase1")).age;
+            // // Define restrictions per age group
+            // let age12Restriction = ["Prayer","Preaching","Young Adults","Men's","Women's","Family Or Couples","Administrative","Finance","Marshal","Facilities Maintenance","Missions","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
+            // let age15Restriction = ["Preaching","Young Adults","Men's","Women's","Family Or Couples","Administrative","Finance","Marshal","Facilities Maintenance","Missions","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
+            // let age20Restriction = ["Men's","Women's","Family Or Couples","Administrative","Finance","Marshal","Facilities Maintenance","Missions","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
+            // let age21Restriction = ["Administrative","Finance","Marshal","Facilities Maintenance","Missions","Production Tech","Creative & Social Media","Seniors"];
+            // let age22Restriction = ["Administrative","Finance","Marshal","Facilities Maintenance","Missions","Seniors"];
+            // let age25Restriction = ["Seniors"];
+            // let age26Restriction = ["Youth","Seniors"];
+            // let age30Restriction = ["Young Adults","Youth","Seniors"];
+            // let age50Restriction = ["Young Adults","Youth"];
+            // // Apply restriction depending on age bracket
+            // if (age >= 50) { 
+            //     ministryInterest = ministryInterest.filter(item => !age50Restriction.includes(item));
+            // } else if (age >= 30) {
+            //     ministryInterest = ministryInterest.filter(item => !age30Restriction.includes(item));
+            // } else if (age >= 26) {
+            //     ministryInterest = ministryInterest.filter(item => !age26Restriction.includes(item));
+            // } else if (age >= 25) {
+            //     ministryInterest = ministryInterest.filter(item => !age25Restriction.includes(item));
+            // } else if (age >= 22) {
+            //     ministryInterest = ministryInterest.filter(item => !age22Restriction.includes(item));
+            // } else if (age >= 21) {
+            //     ministryInterest = ministryInterest.filter(item => !age21Restriction.includes(item));
+            // } else if (age >= 20) {
+            //     ministryInterest = ministryInterest.filter(item => !age20Restriction.includes(item));
+            // } else if (age >= 15) {
+            //     ministryInterest = ministryInterest.filter(item => !age15Restriction.includes(item));
+            // } else if (age >= 12) {
+            //     ministryInterest = ministryInterest.filter(item => !age12Restriction.includes(item));
+            // }
+            // logFilterResult(before, ministryInterest, "Age filter");
+            // console.log(">> Baptized filter Applied");
+            // // ===============================
+            // // MARITAL STATUS FILTER
+            // // Fetch marital status from localStorage
+            // let status = JSON.parse(localStorage.getItem("phase1")).status;// Status values: 1 = Single, 2 = Married
+            // // Restrictions base in Marital status
+            // let singleRestriction = ["Family Or Couples"];
+            // let marriedRestriction = ["Single Adults"];
+            // if (status == "1") {
+            //     ministryInterest = ministryInterest.filter(item => !singleRestriction.includes(item));
+            // } else if (status == "2") {
+            //     ministryInterest = ministryInterest.filter(item => !marriedRestriction.includes(item));
+            // }
+            // logFilterResult(before, ministryInterest, "Status filter");
+            // // ===============================
+            // // TIME IN FAITH FILTER
+            // // Fetch time in faith from localStorage (phase1)
+            // let timeInFaith = JSON.parse(localStorage.getItem("phase1")).timeInFaith;// Values: 1 = 1+ week, 2 = 6+ months, 3 = 1+ year
+            // // Restrictions base on Time in faith
+            // let week1 = ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)","Preaching","Discipleship","Youth","Young Adults","Men's","Women's","Family Or Couples","Ushering","Administrative","Finance","Marshal","Facilities Maintenance","Evangelism","Missions","Community Service","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Grievance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
+            // let month6 = ["Preaching","Discipleship","Youth","Young Adults","Men's","Women's","Family Or Couples","Ushering","Administrative","Finance","Marshal","Facilities Maintenance","Evangelism","Missions","Community Service","Visitation","Production Tech","Creative & Social Media","Counseling","Healing & Deliverance","Grievance","Addiction Recovery","Special Needs","Seniors","Single Adults"];
+            // // Apply time-in-faith restrictions
+            // if (timeInFaith == "1") { // Only 1 week
+            //     ministryInterest = ministryInterest.filter(item => !week1.includes(item));
+            // } else if (timeInFaith == "2") { // Only 6 months
+            //     ministryInterest = ministryInterest.filter(item => !month6.includes(item));
+            // }
+            // logFilterResult(before, ministryInterest, "Time in faith filter");
+
+
+            // =====================================
+            // DYNAMIC FILTER BASED ON DB RESTRICTIONS
+            // =====================================
+
+            // Example: ministryInterest = ["Worship (Singing)", "Ushering", "Youth", "Finance"];
+            console.log(">> Applying dynamic filter based on restrictions");
+
+            // ✅ Fetch user data
+            const phase1 = JSON.parse(localStorage.getItem("phase1"));
+            const userGender = Number(phase1.gender);        // 1 = Male, 2 = Female
+            const userAge = Number(phase1.age);
+            const userStatus = Number(phase1.status);        // 1 = Single, 2 = Married
+            const userBaptized = Number(phase1.baptized);    // 1 = Yes, 2 = No
+            const userFaith = Number(phase1.timeInFaith);    // 1 = 1+ week, 2 = 6+ months, 3 = 1+ year, 4 = 2+ years
+
+            // ✅ Filter dynamically using restrictions
+            let before = [...ministryInterest];
+
+            ministryInterest = ministryInterest.filter(ministryName => {
+                const restriction = ministryRestrictions.find(r => r.ministryName === ministryName);
+                if (!restriction) return true; // if no restriction, keep it
+
+                // Gender filter: if restricted to specific gender
+                if (restriction.gender !== 0 && restriction.gender !== userGender) {
+                    console.log(`🚫 ${ministryName} removed — gender restriction`);
+                    return false;
+                }
+
+                // Age filter
+                if (userAge < restriction.age1 || userAge > restriction.age2) {
+                    console.log(`🚫 ${ministryName} removed — age restriction`);
+                    return false;
+                }
+
+                // Marital status filter (if 1 = single only, 2 = married only)
+                if (restriction.marital !== 0 && restriction.marital !== userStatus) {
+                    console.log(`🚫 ${ministryName} removed — marital restriction`);
+                    return false;
+                }
+
+                // Baptism filter (if 1 = requires baptism)
+                if (restriction.baptist === 1 && userBaptized !== 1) {
+                    console.log(`🚫 ${ministryName} removed — baptism required`);
+                    return false;
+                }
+
+                // Time in faith filter (user must have >= required faith duration)
+                if (userFaith < restriction.timeInFaith) {
+                    console.log(`🚫 ${ministryName} removed — insufficient time in faith`);
+                    return false;
+                }
+
+                return true; // ✅ keep ministry
+            });
+
+// // ✅ Show result
+// logFilterResult(before, ministryInterest, "Dynamic restrictions filter");
+// console.log("✅ Dynamic restrictions applied successfully");
+
+
+
+
+
+
+
             // ===============================
             // SKILL FILTER
             // Fetch skills from localStorage (phase2)
@@ -1624,7 +1837,7 @@
             if (!skill.includes(8)) {
                 ministryInterest = ministryInterest.filter(item => !skillset8.includes(item));
             }
-            logFilterResult(before, ministryInterest, "Skill filter");
+            logFilterResult(before, ministryInterest, "Rule-base Restrictions filter");
             // ===============================
             // FINAL RESULT
             console.log(">> Ministry Interest(filtered)");
@@ -1944,7 +2157,6 @@
         let behavioralProfilingScore = [];
         let filteredQuestion = {en: {}, tl: {}};
         function gotoPhase4(mode){
-            //let ministryInterest = JSON.parse(localStorage.getItem("phase3"));
             if(JSON.parse(localStorage.getItem("phase3")).length==0 && selectedLanguage=="en"){
                 document.getElementById("overlay").style.display = "block";
                 document.getElementById("alertMessage").innerText = "It appears that your interest or personal profile doesn't match with the ministries` requirments yet. We encourage you to continue growing in your faith and spiritual journey. When the time is right, we would love to see you involved. God bless you on your path of growth and readiness.";
@@ -2272,7 +2484,6 @@
                         const temp = behavioralProfilingScore[i];
                         behavioralProfilingScore[i] = behavioralProfilingScore[j];
                         behavioralProfilingScore[j] = temp;
-
                         // Swap matching ministries
                         const temp2 = ministryInterest[i];
                         ministryInterest[i] = ministryInterest[j];
@@ -2582,7 +2793,6 @@
             let baptized = JSON.parse(localStorage.getItem("phase1")).baptized;
             let timeInFaith = JSON.parse(localStorage.getItem("phase1")).timeInFaith;
             let skill = JSON.parse(localStorage.getItem("phase2"));
-            //let ministryInterest = JSON.parse(localStorage.getItem("phase3"));
             let ministryRankings = JSON.parse(localStorage.getItem("topMinistryList"));
 
             let genderData = (gender == 1) ? "Male" : (gender == 2) ? "Female" : "None";
@@ -2699,7 +2909,7 @@
             document.getElementById('overlayLoad').style.display = "block";
             setTimeout(function() {
                 document.getElementById('overlayLoad').style.display = "none";
-                sessionStorage.clear(); 
+                localStorage.clear(); 
                 window.location.href = 'index.html';
             }, 2000);
         }
@@ -2747,7 +2957,7 @@
     //error handling
     // Catch errors in synchronous code
         window.onerror = function(message, source, lineno, colno, error) {
-            sessionStorage.clear();
+            localStorage.clear();
             document.getElementById("overlay").style.display = "block";
             if(selectedLanguage=="en"){
                 document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";
@@ -2762,7 +2972,7 @@
         // Catch errors in promises/async
         window.onunhandledrejection = function(event) {
             console.error("Unhandled promise error:", event.reason);
-            sessionStorage.clear();
+            localStorage.clear();
             document.getElementById("overlay").style.display = "block";
             if(selectedLanguage=="en"){
                 document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";
