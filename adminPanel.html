@@ -398,6 +398,12 @@
             window.location.href = response.url;
             }
         });
+        window.addEventListener('pageshow', function(event) {
+        // If page is loaded from cache (user pressed Back)
+        if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
+            window.location.reload();
+        }
+        });
     //change password
         function changePass() {
             const newPassword = document.getElementById("changePass").value.trim();
