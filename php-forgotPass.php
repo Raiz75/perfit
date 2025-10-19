@@ -40,7 +40,7 @@
         $mail->Password = SMTP_PASS;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
-        $mail->setFrom('raizeningalla@gmail.com', 'PERFIT Support');
+        $mail->setFrom(SMTP_USER, 'PERFIT Support');
         $mail->addAddress($email);
         $mail->isHTML(true);
         $mail->Subject = "PERFIT Account Temporary Password";
