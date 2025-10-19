@@ -2292,6 +2292,28 @@
                 behavioralProfilingScoreUnranked[i]=behavioralProfilingScore[i];
                 ministryInterestUnranked[i]=ministryInterest[i];
             }
+
+            // --- NEW FEATURE: check for identical scores ---
+            const allSame = behavioralProfilingScore.every(score => score === behavioralProfilingScore[0]);
+            // let tiedMinistries = []; // for partial ties
+
+            // if(!allSame) {
+            //     // Detect partial ties (e.g., two ministries have the same score)
+            //     let scoreMap = {};
+            //     for(let i=0; i<behavioralProfilingScore.length; i++){
+            //         const score = behavioralProfilingScore[i];
+            //         if(!scoreMap[score]) scoreMap[score] = [];
+            //         scoreMap[score].push(ministryInterest[i]);
+            //     }
+            //     // Collect only the tied scores with more than 1 ministry
+            //     for(let score in scoreMap){
+            //         if(scoreMap[score].length > 1) {
+            //             tiedMinistries.push(scoreMap[score]);
+            //         }
+            //     }
+            // }
+            // --- END NEW FEATURE ---
+
             // build ranking list
             let topList = "";
             let least = "";
@@ -2323,6 +2345,15 @@
             localStorage.setItem("topMinistryList", topMinistryList);
             console.log(topList);
             console.log("Lowest: "+least);
+
+            // --- NEW FEATURE: adjust message for all same or partial ties ---
+            if(allSame){
+                message += `
+                    \nAll ministries are equally matched for the user.
+                    Encourage the user to explore based on personal interest or passion, as each ministry aligns with their divine calling.
+                `;
+            }
+    // --- END NEW FEATURE ---
             message += `
                 \nlist: ${topList}\n
                 \nleast ministry:${least}\n
@@ -2332,48 +2363,60 @@
             `;
             if(selectedLanguage=="en"){
                 message +=`\n\n
-                    <h1 style="color:rgb(128, 65, 128);text-align: center;">CALLING AND SERVICE PROFILE</h1>
-                    \n\n
-                    <h2 style="color:rgb(128, 65, 128);">Best Fit: [top1 ministry] Ministry</h2>
-                    <p style="text-align: justify;">(make this response atleast 100 words)
-                        Provide a brief explanation of why this ministry is the user's top fit.
-                        Highlight how this ministry aligns with the user's natural gifts, strengths, and passion.
-                        Explain that this fit is part of their divine calling, as though this ministry was made for them.
-                        Emphasize the alignment between their purpose and this ministry's mission.
-                    </p>
-                `;
-                if(ministryInterest.length>=2){
-                    message +=`\n\n
-                        <h2 style="color:rgb(128, 65, 128);">Top 2 Identified Fit: [top2 ministry] Ministry</h2>
-                        <p style="text-align: justify;">(make this response atleast 100 words)
-                            Provide a brief explanation of why this ministry is the user's second-best fit.
-                            Focus on how it complements the bestfit, mention its connection.
-                            Again, explain that this ministry feels like a divine part of their journey,
-                            something that aligns with their unique gifts and purpose in life.
+                <h1 style="color:rgb(128, 65, 128);text-align: center;">CALLING AND SERVICE PROFILE</h1>
+                \n\n`;
+                if(allSame){
+                    message += `
+                        <h2 style="color:rgb(128, 65, 128);">All Ministries Equally Aligned</h2>
+                        <p style="text-align: justify;">(make this response at least 200 words)
+                            All ministries are equally matched for the user. Each ministry aligns with the user's unique gifts, strengths, and spiritual calling.
+                            This means that the user has a wide array of opportunities to serve and grow in faith, allowing them to explore their passions freely.
+                            Encourage the user to engage with ministries based on personal interest or curiosity, and highlight that each ministry offers a chance
+                            to contribute meaningfully to the body of Christ. The diversity of possible paths demonstrates that their divine calling is not limited to one role.
                         </p>
                     `;
-                }
-                if(ministryInterest.length>=3){
-                    message +=`\n\n
-                        <h2 style="color:rgb(128, 65, 128);">Top 3 Identified Fit: [top3 ministry] Ministry</h2>
+                }else{
+                    message += `<h2 style="color:rgb(128, 65, 128);">Best Fit: [top1 ministry] Ministry</h2>
                         <p style="text-align: justify;">(make this response atleast 100 words)
-                            Provide a brief explanation of why this ministry is the user's third-best fit.
-                            Focus on how it complements their spiritual hobby and quirks.
-                            Again, explain that this ministry feels like a divine part of their journey,
-                            something that aligns with their unique gifts and purpose in life.
+                            Provide a brief explanation of why this ministry is the user's top fit.
+                            Highlight how this ministry aligns with the user's natural gifts, strengths, and passion.
+                            Explain that this fit is part of their divine calling, as though this ministry was made for them.
+                            Emphasize the alignment between their purpose and this ministry's mission.
                         </p>
                     `;
-                }
-                if(ministryInterest.length>=4){
-                    message +=`\n\n
-                        <h2 style="color:rgb(128, 65, 128);">Least Aligned Ministry: [Ministry] Ministry</h2>
-                        <p style="text-align: justify;">(make this response atleast 100 words)
-                            Provide a thoughtful and compassionate reflection on why this ministry may have ranked lowest for the user.
-                            Emphasize that every ministry plays a vital role in the body of Christ, and a low score does not mean disqualification—it simply highlights a lesser alignment *at this moment*.
-                            Encourage the user not to see this as a weakness but as a potential area of spiritual growth.
-                            End with a note of affirmation: they are uniquely made, and every ministry—strong or weak—can be a stepping stone in their divine path.
-                        </p>
-                    `;
+                    if(ministryInterest.length>=2){
+                        message +=`\n\n
+                            <h2 style="color:rgb(128, 65, 128);">Top 2 Identified Fit: [top2 ministry] Ministry</h2>
+                            <p style="text-align: justify;">(make this response atleast 100 words)
+                                Provide a brief explanation of why this ministry is the user's second-best fit.
+                                Focus on how it complements the bestfit, mention its connection.
+                                Again, explain that this ministry feels like a divine part of their journey,
+                                something that aligns with their unique gifts and purpose in life.
+                            </p>
+                        `;
+                    }
+                    if(ministryInterest.length>=3){
+                        message +=`\n\n
+                            <h2 style="color:rgb(128, 65, 128);">Top 3 Identified Fit: [top3 ministry] Ministry</h2>
+                            <p style="text-align: justify;">(make this response atleast 100 words)
+                                Provide a brief explanation of why this ministry is the user's third-best fit.
+                                Focus on how it complements their spiritual hobby and quirks.
+                                Again, explain that this ministry feels like a divine part of their journey,
+                                something that aligns with their unique gifts and purpose in life.
+                            </p>
+                        `;
+                    }
+                    if(ministryInterest.length>=4){
+                        message +=`\n\n
+                            <h2 style="color:rgb(128, 65, 128);">Least Aligned Ministry: [Ministry] Ministry</h2>
+                            <p style="text-align: justify;">(make this response atleast 100 words)
+                                Provide a thoughtful and compassionate reflection on why this ministry may have ranked lowest for the user.
+                                Emphasize that every ministry plays a vital role in the body of Christ, and a low score does not mean disqualification—it simply highlights a lesser alignment *at this moment*.
+                                Encourage the user not to see this as a weakness but as a potential area of spiritual growth.
+                                End with a note of affirmation: they are uniquely made, and every ministry—strong or weak—can be a stepping stone in their divine path.
+                            </p>
+                        `;
+                    }
                 }
                 message +=`\n<p>cutHere</p>`;
                 if(ministryInterest.length>=2){
@@ -2409,48 +2452,61 @@
             }
             if(selectedLanguage=="tl"){
                 message +=`\n\n
-                    <h1 style="color:rgb(128, 65, 128);text-align: center;">BUOD NG RESULTA</h1>
-                    \n\n
-                    <h2 style="color:rgb(128, 65, 128);">Pinakatugmang Ministeryo: [top1 ministry] Ministry</h2>
-                    <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
-                        Magbigay ng maikling paliwanag kung bakit ito ang pinakamahusay na ministeryo para sa gumagamit.
-                        Ipakita kung paano ito tumutugma sa kanilang likas na kakayahan, kalakasan, at passion.
-                        Ipaliwanag na ang pagkakatugmang ito ay bahagi ng kanilang banal na tawag, na tila ginawa talaga para sa kanila ang ministeryong ito.
-                        Bigyang-diin ang pagkakatugma ng kanilang layunin at misyon ng ministeryong ito.
-                    </p>
-                `;
-                if(ministryInterest.length>=2){
-                    message +=`\n\n
-                        <h2 style="color:rgb(128, 65, 128);">Top 2 Tugmang Ministeryo: [top2 ministry] Ministry</h2>
-                        <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
-                            Magbigay ng maikling paliwanag kung bakit ito ang pangalawang pinakamahusay na ministeryo para sa gumagamit.
-                            Ituon sa kung paano nito pinupunan ang pangunahing ministeryo, at banggitin ang koneksyon nito.
-                            Muli, ipaliwanag na ang ministeryong ito ay tila bahagi rin ng kanilang banal na paglalakbay,
-                            isang bagay na kaayon ng kanilang natatanging kaloob at layunin sa buhay.
+                <h1 style="color:rgb(128, 65, 128);text-align: center;">BUOD NG RESULTA</h1>
+                \n\n`;
+                if(allSame){
+                    message += `
+                        <h2 style="color:rgb(128, 65, 128);">Lahat ng Ministeryo ay Pantay na Akma</h2>
+                        <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 200 salita)
+                            Lahat ng ministeryo ay pantay na akma para sa gumagamit. Bawat ministeryo ay tumutugma sa natatanging kaloob, lakas, at espirituwal na tawag ng gumagamit.
+                            Ipinapakita nito na may malawak na pagkakataon ang gumagamit upang maglingkod at lumago sa pananampalataya, na nagbibigay-daan upang malayang tuklasin ang kanilang mga hilig.
+                            Hikayatin ang gumagamit na makilahok sa ministeryo batay sa personal na interes o kuryusidad, at ipakita na bawat ministeryo ay nagbibigay ng pagkakataon
+                            upang makapag-ambag nang makabuluhan sa katawan ni Cristo. Ang pagkakaiba-iba ng mga posibleng landas ay nagpapakita na ang kanilang banal na tawag
+                            ay hindi limitado sa iisang tungkulin lamang.
                         </p>
                     `;
-                }
-                if(ministryInterest.length>=3){
-                    message +=`\n\n
-                        <h2 style="color:rgb(128, 65, 128);">Top 3 Tugmang Ministeryo: [top3 ministry] Ministry</h2>
+                }else{
+                    message += `<h2 style="color:rgb(128, 65, 128);">Pinakatugmang Ministeryo: [top1 ministry] Ministry</h2>
                         <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
-                            Magbigay ng maikling paliwanag kung bakit ito ang pangatlong pinakamahusay na ministeryo para sa gumagamit.
-                            Ituon sa kung paano ito umaakma sa kanilang espirituwal na hilig at mga kakaibang ugali.
-                            Muli, ipaliwanag na ang ministeryong ito ay tila bahagi rin ng kanilang banal na paglalakbay,
-                            isang bagay na kaayon ng kanilang natatanging kaloob at layunin sa buhay.
+                            Magbigay ng maikling paliwanag kung bakit ito ang pinakamahusay na ministeryo para sa gumagamit.
+                            Ipakita kung paano ito tumutugma sa kanilang likas na kakayahan, kalakasan, at passion.
+                            Ipaliwanag na ang pagkakatugmang ito ay bahagi ng kanilang banal na tawag, na tila ginawa talaga para sa kanila ang ministeryong ito.
+                            Bigyang-diin ang pagkakatugma ng kanilang layunin at misyon ng ministeryong ito.
                         </p>
                     `;
-                }
-                if(ministryInterest.length>=4){
-                    message +=`\n\n
-                        <h2 style="color:rgb(128, 65, 128);">Pinakamababang Pagkakatugmang Ministeryo: [Ministry] Ministry</h2>
-                        <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
-                            Magbigay ng maingat at may malasakit na paliwanag kung bakit maaaring ito ang pinakamababang ranggo para sa gumagamit.
-                            Bigyang-diin na bawat ministeryo ay mahalagang bahagi ng katawan ni Cristo, at ang mababang marka ay hindi nangangahulugang hindi sila karapat-dapat—ito lamang ay nagpapakita ng mas mababang pagkakatugma *sa kasalukuyan*.
-                            Hikayatin ang gumagamit na huwag itong ituring na kahinaan kundi bilang isang posibleng lugar para sa espirituwal na paglago.
-                            Tapusin sa isang pahayag ng pagpapatibay: sila ay natatanging nilikha, at bawat ministeryo—malakas man o mahina—ay maaaring maging hakbang patungo sa kanilang banal na landas.
-                        </p>
-                    `;
+                    if(ministryInterest.length>=2){
+                        message +=`\n\n
+                            <h2 style="color:rgb(128, 65, 128);">Top 2 Tugmang Ministeryo: [top2 ministry] Ministry</h2>
+                            <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
+                                Magbigay ng maikling paliwanag kung bakit ito ang pangalawang pinakamahusay na ministeryo para sa gumagamit.
+                                Ituon sa kung paano nito pinupunan ang pangunahing ministeryo, at banggitin ang koneksyon nito.
+                                Muli, ipaliwanag na ang ministeryong ito ay tila bahagi rin ng kanilang banal na paglalakbay,
+                                isang bagay na kaayon ng kanilang natatanging kaloob at layunin sa buhay.
+                            </p>
+                        `;
+                    }
+                    if(ministryInterest.length>=3){
+                        message +=`\n\n
+                            <h2 style="color:rgb(128, 65, 128);">Top 3 Tugmang Ministeryo: [top3 ministry] Ministry</h2>
+                            <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
+                                Magbigay ng maikling paliwanag kung bakit ito ang pangatlong pinakamahusay na ministeryo para sa gumagamit.
+                                Ituon sa kung paano ito umaakma sa kanilang espirituwal na hilig at mga kakaibang ugali.
+                                Muli, ipaliwanag na ang ministeryong ito ay tila bahagi rin ng kanilang banal na paglalakbay,
+                                isang bagay na kaayon ng kanilang natatanging kaloob at layunin sa buhay.
+                            </p>
+                        `;
+                    }
+                    if(ministryInterest.length>=4){
+                        message +=`\n\n
+                            <h2 style="color:rgb(128, 65, 128);">Pinakamababang Pagkakatugmang Ministeryo: [Ministry] Ministry</h2>
+                            <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
+                                Magbigay ng maingat at may malasakit na paliwanag kung bakit maaaring ito ang pinakamababang ranggo para sa gumagamit.
+                                Bigyang-diin na bawat ministeryo ay mahalagang bahagi ng katawan ni Cristo, at ang mababang marka ay hindi nangangahulugang hindi sila karapat-dapat—ito lamang ay nagpapakita ng mas mababang pagkakatugma *sa kasalukuyan*.
+                                Hikayatin ang gumagamit na huwag itong ituring na kahinaan kundi bilang isang posibleng lugar para sa espirituwal na paglago.
+                                Tapusin sa isang pahayag ng pagpapatibay: sila ay natatanging nilikha, at bawat ministeryo—malakas man o mahina—ay maaaring maging hakbang patungo sa kanilang banal na landas.
+                            </p>
+                        `;
+                    }
                 }
                 message +=`\n<p>cutHere</p>`;
                 if(ministryInterest.length>=2){
@@ -2576,7 +2632,7 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Top Ministry Interest Breakdown',
+                            text: 'Ministry Interest Breakdown',
                             font: {
                                 size: fontSize + 4,
                                 weight: 'bold'
@@ -2698,11 +2754,11 @@
             doc.setFontSize(11);
             doc.setTextColor(0, 0, 0);
             const itemsPerColumn = 10;
-            const columnWidth = 60;
+            const columnWidth = 63;
             let col = 0;
             let row = 0;
             eligibleMinistriesData.forEach((ministry, index) => {
-                let x = 20 + (col * columnWidth);
+                let x = 15 + (col * columnWidth);
                 let yPos = y + (row * 8);
                 doc.text("• " + ministry, x, yPos);
                 row++;
