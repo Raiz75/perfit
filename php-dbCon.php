@@ -1,8 +1,9 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "perfit"; // ✅ your database name
+include 'php-config.php';
+$host = DB_HOST;
+$user = DB_USER;
+$pass = DB_PASS;
+$dbname = DB_NAME;
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 

@@ -6,6 +6,7 @@
     require 'phpmailer/src/PHPMailer.php';
     require 'phpmailer/src/SMTP.php';
     include 'php-dbCon.php';
+    include 'php-config.php';
 
     header('Content-Type: application/json');
 
@@ -44,8 +45,8 @@
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'raizeningalla@gmail.com'; // your Gmail
-        $mail->Password = 'rdxf bmln oirv jshw';     // Gmail App Password
+        $mail->Username = SMTP_USER;
+        $mail->Password = SMTP_PASS;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 

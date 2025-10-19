@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'php-dbCon.php'; // your database connection file
+include 'php-dbCon.php';
 
 // Make sure user is logged in
 if (!isset($_SESSION['admin_email'])) {
@@ -17,7 +17,7 @@ if (empty($newPassword)) {
     exit;
 }
 
-$email = $_SESSION['admin_email']; // or use $_SESSION['admin_id'] if available
+$email = $_SESSION['admin_email'];
 $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
 // Update the password in DB

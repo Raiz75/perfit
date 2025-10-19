@@ -5,6 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
+include 'php-config.php';
 
 header('Content-Type: application/json');
 
@@ -24,8 +25,8 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'raizeningalla@gmail.com';
-    $mail->Password = 'rdxf bmln oirv jshw';
+    $mail->Username = SMTP_USER;
+    $mail->Password = SMTP_PASS;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = 465;
 
