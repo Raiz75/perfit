@@ -6,9 +6,7 @@
     <link rel="icon" type="image/png" href="img/icn-logo.png">
     <title>PERFIT</title>
     <style>
-        *{
-            box-sizing: border-box;
-        }
+        *{box-sizing: border-box;}
         body{
             padding: 0;
             margin: 0;
@@ -28,9 +26,7 @@
             scroll-snap-align: start;
             border: .1px solid transparent;
         }
-        .bg2{
-            background-color: rgb(255, 223, 255);
-        }
+        .bg2{background-color: rgb(255, 223, 255);}
         h1{
             width: 50%;
             margin: 30px auto;
@@ -108,12 +104,8 @@
             padding: 5px 10px;
             border-radius: 50%;
         }
-        .prev { 
-            left: 10px; 
-        }
-        .next { 
-            right: 10px; 
-        }
+        .prev {left: 10px; }
+        .next {right: 10px; }
         .prev, .next{
             border: 0.2vw solid rgb(128, 65, 128);
             background-color: rgb(128, 65, 128);
@@ -140,9 +132,7 @@
             cursor: pointer;
             transition: 0.3s ease-in-out;
         }
-        .dot.active {
-            background: rgb(128, 65, 128);
-        }
+        .dot.active {background: rgb(128, 65, 128);}
         .gotoHome{
             position: fixed;
             top:10px;
@@ -193,27 +183,19 @@
                 text-align: center;
                 margin-top: 10px;
             }
-            .specificMinistry p{
-                font-size: 1.8em;
-            }
-            table, th, td {
-                padding: 1px;
-            }
+            .specificMinistry p{font-size: 1.8em;}
+            table, th, td {padding: 1px;}
             table{
                 width: 90%;
                 font-size: 1.4em;
             }
-            caption{
-                font-size: 1.5em;
-            }
+            caption{font-size: 1.5em;}
             .prev, .next{
                 width: 60px;
                 height: 60px;
                 font-size: 1.8em;
             }
-            .indicators{
-                bottom: 10%;
-            }
+            .indicators{bottom: 10%;}
             .gotoHome{
                 width: 15%;
                 height: 5%;
@@ -225,19 +207,13 @@
                 font-size: 5em;
                 width: 70%;
             }
-            .specificMinistry {
-                background-size: auto 50%;
-            }
+            .specificMinistry {background-size: auto 50%;}
             .specificMinistry h2{
                 font-size: 3em;
                 text-align: center;
             }
-            .specificMinistry p{
-                font-size: 2.2em;
-            }
-            table, th, td {
-                padding: 1px;
-            }
+            .specificMinistry p{font-size: 2.2em;}
+            table, th, td {padding: 1px;}
             table{
                 margin: 10px auto;
                 width: 95%;
@@ -253,9 +229,7 @@
                 width: 8px;
                 height: 8px;
             }
-            .gotoHome{
-                font-size: 2.3em;
-            }
+            .gotoHome{font-size: 2.3em;}
         }
         @media (max-width: 1024px) and (orientation: landscape) {
             h1{
@@ -266,17 +240,13 @@
                 font-size: 1.7em;
                 text-align: center;
             }
-            .specificMinistry p{
-                font-size: 1em;
-            }
+            .specificMinistry p{font-size: 1em;}
             table{
                 margin: 10px auto;
                 font-size: 1em;
                 padding: 1px;
             }
-            caption{
-                font-size: 1.1em;
-            }
+            caption{font-size: 1.1em;}
             .prev, .next{
                 width: 40px;
                 height: 40px;
@@ -287,9 +257,7 @@
                 height: 7%;
                 font-size: 2.3em;
             }
-            .indicators {
-                bottom: 10px;
-            }
+            .indicators {bottom: 10px;}
             .dot {
                 width: 8px;
                 height: 8px;
@@ -614,8 +582,6 @@
             <button class="btn next">&#10095;</button>
         </div>
     </section>
-
-    
     <script>
         document.querySelectorAll(".carouselContainer").forEach(container => {
             const track = container.querySelector(".carouselTrack");

@@ -1,26 +1,19 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
 require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 include 'php-config.php';
-
 header('Content-Type: application/json');
-
 $data = json_decode(file_get_contents("php://input"), true);
 $email = $data['email'] ?? null;
-
 if (!$email) {
     echo json_encode(['success' => false, 'message' => 'Email not provided.']);
     exit;
 }
-
 $verificationCode = rand(100000, 999999);
-
 $mail = new PHPMailer(true);
-
 try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
@@ -29,7 +22,6 @@ try {
     $mail->Password = SMTP_PASS;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = 465;
-
     $mail->setFrom('raizeningalla@gmail.com', 'PERFIT Support');
     $mail->addAddress($email);
     $mail->isHTML(true);
@@ -60,12 +52,9 @@ try {
         </div>
     </div>
     ";
-
     $mail->send();
-
     // Return the code so JS can check it
     echo json_encode(['success' => true, 'code' => $verificationCode, 'message' => 'Verification code sent.']);
-
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'message' => "Failed to send email: {$mail->ErrorInfo}"]);
 }

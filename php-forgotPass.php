@@ -1,44 +1,35 @@
 <?php
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
-
     require 'phpmailer/src/Exception.php';
     require 'phpmailer/src/PHPMailer.php';
     require 'phpmailer/src/SMTP.php';
     include 'php-dbCon.php';
     include 'php-config.php';
-
     header('Content-Type: application/json');
-
     // Get email from JSON input
     $data = json_decode(file_get_contents("php://input"), true);
     $email = $data['email'] ?? null;
-
     if (!$email) {
         echo json_encode(['success' => false, 'message' => 'Email not provided.']);
         exit;
     }
-
     // Check if email exists in DB
     $stmt = $conn->prepare("SELECT * FROM admin WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
-
     if ($result->num_rows === 0) {
         echo json_encode(['success' => false, 'message' => 'Email not found.']);
         exit;
     }
-
     // Generate temporary password
     $tempPass = rand(100000, 999999);
     $hashedTemp = password_hash($tempPass, PASSWORD_DEFAULT);
-
     // Update password in DB
     $update = $conn->prepare("UPDATE admin SET password = ? WHERE email = ?");
     $update->bind_param("ss", $hashedTemp, $email);
     $update->execute();
-
     // Send temporary password via email
     $mail = new PHPMailer(true);
     try {
@@ -49,7 +40,6 @@
         $mail->Password = SMTP_PASS;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
-
         $mail->setFrom('raizeningalla@gmail.com', 'PERFIT Support');
         $mail->addAddress($email);
         $mail->isHTML(true);
@@ -80,14 +70,10 @@
                 </div>
             </div>
         ";
-
         $mail->send();
-
         echo json_encode(['success' => true, 'message' => 'Temporary password sent to your email.']);
-
     } catch (Exception $e) {
         echo json_encode(['success' => false, 'message' => "Failed to send email: {$mail->ErrorInfo}"]);
     }
-
     $conn->close();
 ?>

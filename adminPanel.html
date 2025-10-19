@@ -10,9 +10,7 @@
             --a: rgb(128, 65, 128);
             --b: rgb(255, 223, 255);
         }
-        * {
-            box-sizing: border-box;
-        }
+        * {box-sizing: border-box;}
         body {
             padding: 0;
             margin: 0;
@@ -20,7 +18,6 @@
             font-size: 1vw;
             background: whitesmoke;
         }
-
         .top {
             position: relative;
             border-radius: 12px;
@@ -28,7 +25,6 @@
             color: var(--a);
             height: auto;
             margin: 50px auto 25px auto;
-            /* display: flex; */
             padding: 10px;
             background:
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)),
@@ -71,12 +67,8 @@
             color: grey;
             opacity: 1;
         }
-        .btnDiv{
-            text-align: right;
-        }
-        .scrollMessage{
-            display: none;
-        }
+        .btnDiv{text-align: right;}
+        .scrollMessage{display: none;}
         /* table */
         .tableDiv{
             width: 90%;
@@ -103,9 +95,7 @@
             height: 20px;
             text-align: center;
         }
-        table p{
-            margin: 0px;
-        }
+        table p{margin: 0px;}
         th, td {
             padding: 8px;
             height: 80px;
@@ -118,9 +108,7 @@
             font-size: 1rem;
             font-weight: bold;
         }
-        td {
-            border-bottom: 1px solid var(--a);
-        }
+        td {border-bottom: 1px solid var(--a);}
         label {
             display: block;
             margin-bottom: 4px;
@@ -141,13 +129,11 @@
             transition: 0.5s ease-in-out;
             z-index: 5;
         }
-        
         .message.success {
             background: #d4edda;
             color: #155724;
             border: 3px solid #155724;
         }
-        
         .message.error {
             background: #f8d7da;
             color: #721c24;
@@ -238,9 +224,7 @@
             justify-content: center; 
             gap: 10px;
         }
-        .btnBox button{
-            width: 40%;
-        }
+        .btnBox button{width: 40%;}
     /* loading */
         .overlayLoad {
             display: none;
@@ -291,22 +275,14 @@
             }
         }
         @media (max-width: 1024px) {
-            .top{
-                font-size: 1rem;
-            }
-            .tableDiv{
-                font-size: 1rem;
-            }
+            .top{font-size: 1rem;}
+            .tableDiv{font-size: 1rem;}
             table input[type='number']{
                 width: 70%;
                 height: 30px;
             }
-            .logoutBox, .resetBox, .changePassBox{
-                min-width: 50%;
-            }
-            .btnBox button{
-                font-size: 1rem;
-            }
+            .logoutBox, .resetBox, .changePassBox{min-width: 50%;}
+            .btnBox button{font-size: 1rem;}
         }
         @media (max-width: 480px) {
             .top{
@@ -317,9 +293,7 @@
                 font-size: .7rem;
                 margin: 5px;
             }
-            .btnDiv{
-                display: flex;
-            }
+            .btnDiv{display: flex;}
             .scrollMessage{
                 display: block;
                 font-size: .8rem;
@@ -337,12 +311,8 @@
                 border-left: 3px solid var(--a);
                 border-right: 3px solid var(--a);
             }
-            .logoutBox, .resetBox, .changePassBox{
-                min-width: 90%;
-            }
-            .overlayLoad p{
-                font-size: 1rem;
-            }
+            .logoutBox, .resetBox, .changePassBox{min-width: 90%;}
+            .overlayLoad p{font-size: 1rem;}
         }
     </style>
 </head>
@@ -431,7 +401,6 @@
     //change password
         function changePass() {
             const newPassword = document.getElementById("changePass").value.trim();
-
             if (newPassword === "") {
                 message.textContent = "Please enter a new password.";
                 message.className = "message error";
@@ -498,7 +467,6 @@
         function saveRestriction() {
             const churchNameInput = document.getElementById("churchName");
             const churchName = churchNameInput.value.trim();
-
             // ✅ Require church name before saving
             if (churchName === "") {
                 message.className = "message error";
@@ -508,7 +476,6 @@
                 churchNameInput.focus();
                 return;
             }
-
             // ✅ Check if church name already exists before proceeding
             fetch("php-checkChurchName.php", {
                 method: "POST",
@@ -524,7 +491,6 @@
                     setTimeout(() => (message.style.opacity = 0), 3000);
                     return;
                 }
-
                 // ✅ If not existing, continue saving
                 const rows = document.querySelectorAll("#ministryTable tbody tr");
                 const data = [];
@@ -541,12 +507,10 @@
                         timeInFaith: document.querySelector(`input[name="faith${i}"]:checked`)?.value || 0
                     });
                 });
-
                 const payload = {
                     churchName: churchName,
                     restrictions: data
                 };
-
                 fetch("php-saveRestriction.php", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -563,8 +527,6 @@
             })
             .catch(err => console.error("Error checking church name:", err));
         }
-
-
     //reset restriction
         function resetRestrictions() {
             fetch("php-resetRestriction.php", {
@@ -573,20 +535,17 @@
             .then(response => response.json())
             .then(data => {
                 if (data.status === "success") {
-                        message.className = data.status === "success" ? "message success" : "message error";
-                        message.textContent = "Restrictions restored to default settings.";
-                        message.style.opacity = 1;
-                        setTimeout(() => {
-                            message.style.opacity = 0;
-                            location.reload();
-                        }, 3000);
+                    message.className = data.status === "success" ? "message success" : "message error";
+                    message.textContent = "Restrictions restored to default settings.";
+                    message.style.opacity = 1;
+                    setTimeout(() => {
+                        message.style.opacity = 0;
+                        location.reload();
+                    }, 3000);
                 }
             })
             .catch(() => {}); // quietly ignore errors
         }
-
-
-
     //display data
         fetch("php-loadMinistryRestriction.php")
         .then(response => response.json())
@@ -605,30 +564,25 @@
                 const row = document.createElement("tr");
                 row.innerHTML = `
                     <td>${m.ministryName}</td>
-
                     <td class="vertical-labels">
                         <label><input type="radio" name="gender${i}" value="1" ${m.gender == 1 ? "checked" : ""}> Male Only</label>
                         <label><input type="radio" name="gender${i}" value="2" ${m.gender == 2 ? "checked" : ""}> Female Only</label>
                         <label><input type="radio" name="gender${i}" value="0" ${m.gender == 0 ? "checked" : ""}> No Restriction</label>
                     </td>
-
                     <td>
                         <input type="number" name="age1${i}" min="1" max="99" value="${m.age1 || ''}" placeholder="Age">
                         <p>-to-</p>
                         <input type="number" name="age2${i}" min="1" max="99" value="${m.age2 || ''}" placeholder="Age">
                     </td>
-
                     <td class="vertical-labels">
                         <label><input type="radio" name="marital${i}" value="1" ${m.marital == 1 ? "checked" : ""}> Single Only</label>
                         <label><input type="radio" name="marital${i}" value="2" ${m.marital == 2 ? "checked" : ""}> Married Only</label>
                         <label><input type="radio" name="marital${i}" value="0" ${m.marital == 0 ? "checked" : ""}> No Restriction</label>
                     </td>
-
                     <td class="vertical-labels">
                         <label><input type="radio" name="baptist${i}" value="1" ${m.baptist == 1 ? "checked" : ""}> Baptized Only</label>
                         <label><input type="radio" name="baptist${i}" value="2" ${m.baptist == 2 ? "checked" : ""}> No Restriction</label>
                     </td>
-
                     <td class="vertical-labels">
                         <label><input type="radio" name="faith${i}" value="1" ${m.timeInFaith == 1 ? "checked" : ""}> 1 Week</label>
                         <label><input type="radio" name="faith${i}" value="2" ${m.timeInFaith == 2 ? "checked" : ""}> 6 Months</label>

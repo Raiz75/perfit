@@ -10,9 +10,7 @@
             --a: rgb(128, 65, 128);
             --b: rgb(255, 223, 255);
         }
-        * {
-            box-sizing: border-box;
-        }
+        * {box-sizing: border-box;}
         body {
             padding: 0;
             margin: 0;
@@ -246,9 +244,7 @@
             align-items: center;
             justify-content: center;
         }
-        .card p {
-            font-size: 1em;
-        }
+        .card p {font-size: 1em;}
         .mTtl {
             font-weight: bolder;
             font-size: 1.2em!important;
@@ -398,7 +394,6 @@
             margin: 10px auto;
             transition: 0.3s ease-in-out;
         }
-
         /*takeAssessment*/
         .takeAssessment {
             border: .1px solid transparent;
@@ -498,6 +493,7 @@
             height: 100%;
             background-color: rgba(0,0,0,0.4);
             backdrop-filter: blur(5px);
+            color: var(--a);
             z-index: 100;
         }
         .overlayUser{
@@ -509,6 +505,7 @@
             height: 100%;
             background-color: rgba(0,0,0,0.4);
             backdrop-filter: blur(5px);
+            color: var(--a);
             z-index: 100;
         }
         .overlayChurch{
@@ -533,8 +530,6 @@
             color: var(--a);
             cursor: pointer;
         }
-        
-        
         /* Centered alert */
         .showSelectLanguage {
             position: absolute;
@@ -639,22 +634,14 @@
         }
         /* DESKTOP-FIRST RESPONSIVE MEDIA QUERIES */
         @media(hover:hover){
-            .close:hover{
-                color: grey;
-            }
+            .close:hover{color: grey;}
             .l:hover{
                 background-color: var(--b);
                 color: var(--a);
             }
-            select:focus {
-                border: 1px solid var(--a);
-            }
-            .disabledBtn:hover{
-                color: grey;
-            }
-            .privacyPolicy a:hover{
-                color: var(--a);
-            }
+            select:focus {border: 1px solid var(--a);}
+            .disabledBtn:hover{color: grey;}
+            .privacyPolicy a:hover{color: var(--a);}
             .takeAssessment button:hover {
                 background-color: var(--b);
                 color: var(--a);
@@ -676,16 +663,12 @@
                 box-shadow: 0px 1.2vw 1.2vw rgb(51, 26, 51);
                 transform: translateY(-5px);
             }
-            .stepBox:hover hr {
-                border: 0.1vw solid var(--a);
-            }
+            .stepBox:hover hr {border: 0.1vw solid var(--a);}
             .stepBox:hover h3 {
                 color: var(--a);
                 transform: scale(1.2);
             }
-            .stepBox:hover p {
-                color: var(--a);
-            }
+            .stepBox:hover p {color: var(--a);}
             .stepBox:hover {
                 border-top-left-radius: 4vw;
                 border-top-right-radius: 0vw;
@@ -697,9 +680,7 @@
                 box-shadow: 0px 1.2vw 1.2vw rgb(51, 26, 51);
                 transform: translateY(-5px);
             }
-            .n:hover img {
-                transform: scale(1.2);
-            }
+            .n:hover img {transform: scale(1.2);}
             .takeAssessmentTop:hover {
                 background-color: rgb(255, 223, 255);
                 color: var(--a);
@@ -712,12 +693,8 @@
         }
         /* Tablet styles */
         @media (max-width: 1024px) {
-            body {
-                font-size: 16px;
-            }
-            .banner {
-                height: 60vw;
-            }
+            body {font-size: 16px;}
+            .banner {height: 60vw;}
             .logo{
                 max-width: 60px;
                 height: 60px;
@@ -732,9 +709,7 @@
                 position: sticky;
                 top:0px;
             }
-            .hamburger {
-                display: flex;
-            }
+            .hamburger {display: flex;}
             .navFunc {
                 display: none;
                 flex-direction: column;
@@ -750,16 +725,10 @@
                 z-index: 1000;
                 border-bottom: 3px solid rgb(128,65,128);
             }
-            .selectedNav{
-                border: none;
-            }
+            .selectedNav{border: none;}
             /* Show menu when open */
-            .navFunc.open {
-                display: flex;
-            }
-            .navBtn, .takeAssessmentTop {
-                text-align: center;
-            }
+            .navFunc.open {display: flex;}
+            .navBtn, .takeAssessmentTop {text-align: center;}
             .navBtn{
                 width: 100%;
                 height: 30px;
@@ -780,12 +749,8 @@
                 position: relative;
                 margin:auto;
             }
-            .title h1 {
-                font-size: 5em;
-            }
-            .title p {
-                font-size: 1.1em;
-            }
+            .title h1 {font-size: 5em;}
+            .title p {font-size: 1.1em;}
             .note {
                 flex-direction: column;
                 width: 80%;
@@ -796,9 +761,7 @@
                 padding: 2vw;
                 margin: 2vw 0;
             }
-            .n img {
-                width: 15vw;
-            }
+            .n img {width: 15vw;}
             .howItWorks {
                 flex-direction: column;
                 padding: 5vw;
@@ -808,12 +771,8 @@
                 width: 80%;
                 margin-bottom: 3vw;
             }
-            .step {
-                width: 100%;
-            }
-            .step h1 {
-                font-size: 4em;
-            }
+            .step {width: 100%;}
+            .step h1 {font-size: 4em;}
             .stepContiner {
                 flex-direction: column;
                 height: auto;
@@ -824,12 +783,8 @@
                 padding: 3vw;
                 margin: 2vw auto;
             }
-            .stepBox h3{
-                font-size: 1.5em;
-            }
-            .stepBox p {
-                font-size: 1.3em;
-            }
+            .stepBox h3{font-size: 1.5em;}
+            .stepBox p {font-size: 1.3em;}
             .randomVerseDiv1{
                 width: 30%;
                 font-size: 1em;
@@ -868,9 +823,7 @@
                 width: 80%;
                 font-size: 1.5em;
             }
-            .verseDiv img{
-                width: 10%;
-            }
+            .verseDiv img{width: 10%;}
             .ministrySelection {
                 width: 100%;
                 height: auto;
@@ -880,9 +833,7 @@
                 font-size: 4em;
                 margin:0px;
             }
-            .slide {
-                flex-direction: column;
-            }
+            .slide {flex-direction: column;}
             .card {
                 width: 88%;
                 height: auto;
@@ -894,9 +845,7 @@
                 height: auto;
                 font-size: 20em;
             }
-            .card p {
-                font-size: 1.3em;
-            }
+            .card p {font-size: 1.3em;}
             .lBtn,
             .rBtn {
                 width: 10vw;
@@ -909,26 +858,18 @@
                 height: 80vw;
                 padding: 15vw 0;
             }
-            .takeAssessment h1 {
-                font-size: 4em;
-            }
+            .takeAssessment h1 {font-size: 4em;}
             .takeAssessment button {
                 width: 50vw;
                 height: 12vw;
                 font-size: 2.5em;
             }
-            .design {
-                display: none;
-            }
-            .footer {
-                height: 20vw;
-            }
+            .design {display: none;}
+            .footer {height: 20vw;}
         }
         /* Mobile styles - 480px and below */
         @media (max-width: 480px) {
-            .banner {
-                height: 80vw;
-            }
+            .banner {height: 80vw;}
             nav {
                 position: relative;
                 flex-direction: row;
@@ -939,9 +880,7 @@
                 position: sticky;
                 top:0px;
             }
-            .logo{
-                width: 100px;
-            }
+            .logo{width: 100px;}
             .showSelectLanguage {
                 width: 90%;
                 height: auto;
@@ -950,9 +889,7 @@
                 width: 80%;
                 margin: 10px auto;
             }
-            .hamburger {
-                display: flex;
-            }
+            .hamburger {display: flex;}
             .takeAssessmentTop{
                 width: 70%;
                 height: 50px;
@@ -970,49 +907,34 @@
                 font-size: 3.7vw;
                 display: none;
             }
-            .note {
-                width: 90%;
-            }
+            .note {width: 90%;}
             .n {
                 font-size: 1.3rem;
                 padding: 3vw;
                 margin: 3vw 0;
             }
-            .n img {
-                width: 20%;
-            }
+            .n img {width: 20%;}
             .howItWorks {
                 padding: 3vw;
                 height: auto;
             }
-            .howItWorks img {
-                width: 90%;
-            }
+            .howItWorks img {width: 90%;}
             .step h1 {
                 font-size: 8vw;
                 margin-bottom: 50px;
             }
-            .step hr{
-                display: none;
-            }
+            .step hr{display: none;}
             .stepBox {
                 padding: 4vw;
                 margin: 3vw auto;
             }
-            .stepBox h3,
-            .stepBox p {
-                font-size: 4vw;
-            }
+            .stepBox h3,.stepBox p {font-size: 4vw;}
             .randomVerseDiv1{
                 width: 40%;
                 font-size: .6em;
             }
-            .dynamicDove{
-                width: 40%;
-            }
-            .verseDiv{
-                font-size: 1em;
-            }
+            .dynamicDove{width: 40%;}
+            .verseDiv{font-size: 1em;}
             .ministrySelection {
                 width: 95%;
                 height: auto;
@@ -1027,12 +949,8 @@
                 padding: 4vw;
                 margin: 3vw 0;
             }
-            .mTtl {
-                font-size: 5vw;
-            }
-            .card p {
-                font-size: 4vw;
-            }
+            .mTtl {font-size: 5vw;}
+            .card p {font-size: 4vw;}
             .lBtn,
             .rBtn {
                 width: 15vw;
@@ -1040,41 +958,29 @@
                 font-size: 6vw;
                 top:85%;
             }
-            .seeMoreBtn{
-                margin-bottom: 15px;
-            }
+            .seeMoreBtn{margin-bottom: 15px;}
             .takeAssessment {
                 height: 80vw;
                 padding: 10vw 0;
             }
-            .takeAssessment h1 {
-                font-size: 8vw;
-            }
+            .takeAssessment h1 {font-size: 8vw;}
             .takeAssessment button {
                 width: 60vw;
                 height: 15vw;
                 font-size: 5vw;
             }
-            .footer {
-                height: 20vw;
-            }
-            .loaderContainer{
-                width: 300px;
-            }
+            .footer {height: 20vw;}
+            .loaderContainer{width: 300px;}
             .loader {
                 border: 20px solid var(--b);
                 border-top: 20px solid var(--a);
                 width: 100px;
                 height: 100px;
             }
-            .overlayLoad p{
-                font-size: 1.1em;
-            }
+            .overlayLoad p{font-size: 1.1em;}
         }
         @media (max-width: 1024px) and (orientation: landscape) {
-            .title p {
-                font-size: 2vw;
-            }
+            .title p {font-size: 2vw;}
             @keyframes move {
                 0% {
                     transform: scale(1);
@@ -1392,7 +1298,6 @@
             <button onclick="verseDone()">Back</button>
         </div>
     </div>
-
     <div class="randomVerseDiv1" id="randomVerseDiv1">
         <button class="randomVerse" onclick="generateRandomVerse()" id="randomVerse">
             <img src="img/doveStatic.png">
@@ -1422,12 +1327,11 @@
 <!-- select church Restrictions -->
     <div id="overlayChurch" class="overlayChurch">
         <div class="showSelectLanguage">
-            <label for="churchName">Choose your church:</label>
+            <p>Choose your church:</p>
             <select id="churchName" name="churchName">
                 <option value="" disabled selected>Loading churches...</option>
             </select>
             <button class="l disabledBtn" id="selLangBtn" style="width: 70%;" onclick="selectLang()">Select language</button>
-
             <button class="close" onclick="document.getElementById('overlayChurch').style.display = 'none'">x</button>
         </div>
     </div>
@@ -1441,7 +1345,6 @@
             <label class="privacyPolicy" id="privacyPolicyLabel"><input type="checkbox"  id="privacyPolicy"> I have read and accept the <a id="privacyPolicyLink" onclick="window.location.href = 'privacyPolicy.html';" >Privacy Policy</a>.</label>
         </div>
     </div>
-
 <!-- loading -->
     <div id="overlayLoad" class="overlayLoad">
         <div class="loaderContainer">
@@ -1481,7 +1384,6 @@
             { title: "John 9:4", text: "As long as it is day, we must do the works of him who sent me. Night is coming, when no one can work." },
             { title: "Joshua 1:9", text: "Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go." }
         ];
-
         function generateRandomVerse(){
             document.getElementById('randomVerse').scrollIntoView({ behavior: 'smooth', block: 'center' });
             setTimeout(function() {
@@ -1502,7 +1404,6 @@
             document.getElementById("verseTitle").textContent = verseObj.title;
             document.getElementById("verse").textContent = verseObj.text;
         }
-
         function verseDone(){
             document.getElementById('doveOverlay').style.display='none';
             document.getElementById('randomVerseP').style.display='block';
@@ -1526,7 +1427,6 @@
         }
         document.addEventListener("DOMContentLoaded", function() {
             const select = document.getElementById("churchName");
-
             fetch("php-getChurchName.php")
             .then(response => response.json())
             .then(data => {
