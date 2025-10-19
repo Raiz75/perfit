@@ -392,18 +392,34 @@
     <script>
         const message = document.getElementById("message");
     //no acc no panel
-        fetch("php-sessionTest.php")
-        .then(response => {
-            if (response.redirected) {
-            window.location.href = response.url;
-            }
+        document.addEventListener("DOMContentLoaded", function() {
+            // 🔒 Always verify session on every load
+            checkSession();
+
+            // 🌀 Also re-check when user navigates via Back/Forward (browser cache)
+            window.addEventListener("pageshow", function(event) {
+                if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
+                    checkSession();
+                }
+            });
         });
-        window.addEventListener('pageshow', function(event) {
-        // If page is loaded from cache (user pressed Back)
-        if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
-            window.location.reload();
+
+        function checkSession() {
+            fetch("php-sessionTest.php", {
+                method: "GET",
+                cache: "no-store" // Prevent cached response
+            })
+            .then(response => {
+                if (response.redirected) {
+                    // Redirect user if session is invalid
+                    window.location.href = response.url;
+                }
+            })
+            .catch(() => {
+                console.error("Session check failed — possible network or server issue.");
+            });
         }
-        });
+
     //change password
         function changePass() {
             const newPassword = document.getElementById("changePass").value.trim();
