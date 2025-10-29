@@ -69,18 +69,49 @@
         }
         .btnDiv{text-align: right;}
         .scrollMessage{display: none;}
-        /* table */
-        .tableDiv{
+        /* nav */
+        .active-btn {
+            background-color: var(--b);
+            color: var(--a);
+        }
+        /* pannel css */
+        caption{
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .saveDeleteBtnDiv{
+            text-align: right;
+            width: 95%;
+            margin: auto;
+        }
+        .section{
+            display: block;
+        }
+        .num {
+            width: 10%;
+        }
+        .q {
+            width: 40%;
+        }
+        .instruction{
+            width: 95%;
+            margin: auto;
+            padding: 5px;
+            border-left: 3px solid var(--a);
+            background: linear-gradient(to right, var(--b), white); /* gradient from left to right */
+            border-radius: 4px;
+        }
+    /* demographics */
+        .demographicsDiv{
             width: 90%;
             margin: 25px auto 50px auto;
-            display: flex;
             background-color: white;
             color: var(--a);
             box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
             border-top-right-radius: 12px;
             border-top-left-radius: 12px;
         }
-        table {
+        .demographicsRestrictions {
             width: 100%;
             border-collapse: collapse;
             table-layout: fixed;
@@ -88,31 +119,142 @@
             border-top-right-radius: 12px;
             border-top-left-radius: 12px;
         }
-        table input[type='number']{
+        .demographicsRestrictions input[type='number']{
             color:var(--a);
             border: 1px solid var(--a);
             width: 50%;
             height: 20px;
             text-align: center;
         }
-        table p{margin: 0px;}
-        th, td {
+        .demographicsRestrictions p{margin: 0px;}
+        .demographicsRestrictions th, .demographicsRestrictions td {
             padding: 8px;
             height: 80px;
-            width: 16.6%;
-            vertical-align: middle;
             word-wrap: break-word;
         }
-        th{
+        .demographicsRestrictions th{
             border-bottom: 3px solid var(--a);
             font-size: 1rem;
             font-weight: bold;
         }
-        td {border-bottom: 1px solid var(--a);}
-        label {
+        .demographicsRestrictions td {border-bottom: 1px solid var(--a);}
+        .demographicsRestrictions label {
             display: block;
             margin-bottom: 4px;
         }
+    /* skills */
+        /* restrcitions */
+        .skillsDiv{
+            width: 90%;
+            margin: 25px auto 50px auto;
+            background-color: white;
+            color: var(--a);
+            box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
+            border-top-right-radius: 12px;
+            border-top-left-radius: 12px;
+            display: none;
+        }
+        .skillsRestrictions {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            text-align: center;
+            border-top-right-radius: 12px;
+            border-top-left-radius: 12px;
+        }
+        .skillsRestrictions th, .skillsRestrictions td {
+            padding: 8px;
+            height: 80px;
+            word-wrap: break-word;
+        }
+        .skillsRestrictions th{
+            border-bottom: 3px solid var(--a);
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .skillsRestrictions td {
+            border-bottom: 1px solid var(--a);
+        }
+        /* questions */
+        .skillsQuestions{
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            border-top-right-radius: 12px;
+            border-top-left-radius: 12px;
+        }
+        .skillsQuestions th, .skillsQuestions td {
+            padding: 8px;
+            height: 80px;
+            vertical-align: middle;
+            word-wrap: break-word;
+        }
+        .skillsQuestions th{
+            border-bottom: 3px solid var(--a);
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .skillsQuestions td {border-bottom: 1px solid var(--a);}
+    /* interest and passion */
+        .interestDiv{
+            width: 90%;
+            margin: 25px auto 50px auto;
+            background-color: white;
+            color: var(--a);
+            box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
+            border-top-right-radius: 12px;
+            border-top-left-radius: 12px;
+            display: none;
+        }
+        .interestQuestions {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            border-top-right-radius: 12px;
+            border-top-left-radius: 12px;
+        }
+        .interestQuestions th, .interestQuestions td {
+            padding: 8px;
+            height: 80px;
+            vertical-align: middle;
+            word-wrap: break-word;
+        }
+        .interestQuestions th{
+            border-bottom: 3px solid var(--a);
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .interestQuestions td {border-bottom: 1px solid var(--a);}
+    /* behavioral */
+        .behavioralDiv{
+            width: 90%;
+            margin: 25px auto 50px auto;
+            background-color: white;
+            color: var(--a);
+            box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
+            border-top-right-radius: 12px;
+            border-top-left-radius: 12px;
+            display: none;
+        }
+        .behavioralQuestions {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            border-top-right-radius: 12px;
+            border-top-left-radius: 12px;
+        }
+        .behavioralQuestions th, .behavioralQuestions td {
+            padding: 8px;
+            height: 80px;
+            vertical-align: middle;
+            word-wrap: break-word;
+        }
+        .behavioralQuestions th{
+            border-bottom: 3px solid var(--a);
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .behavioralQuestions td {border-bottom: 1px solid var(--a);}
     /* alert */
         .message {
             position: fixed;
@@ -271,13 +413,23 @@
             }
             button:hover{
                 color: var(--a);
-                background-color: white;
+                background-color: var(--b);
             }
         }
         @media (max-width: 1024px) {
-            .top{font-size: 1rem;}
-            .tableDiv{font-size: 1rem;}
-            table input[type='number']{
+            .top{
+                font-size: 1rem;
+                display:block;
+            }
+            .demographicsDiv{font-size: 1rem;}
+
+            .skillssDiv{font-size: 1rem;}
+            .skillsRestrictions{font-size: .9rem;}
+            .skillsQuestions{font-size: 1rem;}
+            .interestDiv{font-size: 1rem;}
+            .behavioralDiv{font-size: 1rem;}
+            .instruction{font-size: 1rem;}
+            .demographicsDiv table input[type='number']{
                 width: 70%;
                 height: 30px;
             }
@@ -293,19 +445,19 @@
                 font-size: .7rem;
                 margin: 5px;
             }
-            .btnDiv{display: flex;}
+            .btnDiv div{text-align: center;}
             .scrollMessage{
                 display: block;
                 font-size: .8rem;
                 color: var(--a);
                 text-align: center;
             }
-            .tableDiv {
+            .demographicsDiv, .skillsDiv, .interestDiv, .behavioralDiv {
                 width: 90%;
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
             }
-            .tableDiv table {
+            .demographicsDiv table, .skillsDiv table, .interestDiv table, .behavioralDiv table {
                 min-width: 800px;
                 border-collapse: collapse;
                 border-left: 3px solid var(--a);
@@ -313,6 +465,15 @@
             }
             .logoutBox, .resetBox, .changePassBox{min-width: 90%;}
             .overlayLoad p{font-size: 1rem;}
+            .saveDeleteBtnDiv{
+                min-width: 800px;
+                border-collapse: collapse;
+                text-align: center;
+            }
+            .instruction{
+                min-width: 800px;
+                border-collapse: collapse;
+            }
         }
     </style>
 </head>
@@ -321,26 +482,148 @@
         <p>church name:</p>
         <input type="text" placeholder="Enter church name here" id="churchName" required>
         <div class="btnDiv">
-            <button onclick="document.getElementById('resetPopup').style.display='flex'">Reset restrictions</button>
-            <button onclick="saveRestriction()">Save all changes</button>
             <button onclick="document.getElementById('changePassPopup').style.display='flex'">Change password</button>
             <button onclick="document.getElementById('logoutPopup').style.display='flex'">Logout</button>
+            <hr>
+            <div>
+                <!-- <button class="tab-btn active-btn" data-target="demographicsDiv">general</button> -->
+                <button class="tab-btn active-btn" data-target="demographicsDiv">Demographics</button>
+                <button class="tab-btn" data-target="skillsDiv">Skills profiling</button>
+                <button class="tab-btn" data-target="interestDiv">Interest and Passion profiling questions</button>
+                <button class="tab-btn" data-target="behavioralDiv">Behavioral profiling questions</button>
+            </div>
         </div>
     </div>
     <p class="scrollMessage"><< scroll the table to view all >></p>
-    <div class="tableDiv">
-        <table id="ministryTable">
-        <thead>
-            <tr>
-            <th>Ministry Name</th>
-            <th>Gender Restriction</th>
-            <th>Age Restriction</th>
-            <th>Marital Status Restriction</th>
-            <th>Baptist Status Restriction</th>
-            <th>Time in Faith Restriction</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
+    <!-- Demographics tab -->
+    <div class="demographicsDiv section" id="demographicsDiv">
+        <div class="saveDeleteBtnDiv">
+            <button onclick="showResetPopup('demographicsTab')">Reset all to default</button>
+            <button onclick="saveTab('demographicsTab')">Save all changes</button>
+        </div>
+        <p class="instruction">
+            <b>Instruction</b>: Set restrictions for each ministry based on your <b>church’s requirements</b>. 
+            Select gender, age range, marital status, baptized status, and time in faith. 
+            Select '<b>No Restriction</b>' if the rule does not apply. 
+            After completing, click '<u>Save all changes</u>' to store your settings.</p>
+        <table class="demographicsRestrictions" id="demographicsRestrictions">
+            <caption>Demographics Restrictions</caption>
+            <thead>
+                <tr>
+                    <th>Ministry Name</th>
+                    <th>Gender Restriction</th>
+                    <th>Age Restriction</th>
+                    <th>Marital Status Restriction</th>
+                    <th>Baptist Status Restriction</th>
+                    <th>Time in Faith Restriction</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <!-- Skills profiling -->
+    <div class="skillsDiv section" id="skillsDiv">
+        <div class="saveDeleteBtnDiv">
+            <button onclick="showResetPopup('skillsTab')">Reset all to default</button>
+            <button onclick="saveTab('skillsTab')">Save all changes</button>
+        </div>
+        <p class="instruction">
+            <b>Instruction</b>: Set the skill requirements for each ministry. 
+            For each skill (e.g., music, technology, speaking), select whether it is <b>Required</b> or <b>Not Required</b> for the ministry role. 
+            This helps match volunteers with the right skill set to the ministry's needs.
+            After editing, click '<u>Save all changes</u>' to record the updates.
+        </p>
+        <table class="skillsRestrictions" id="skillsRestrictions">
+            <caption>Skill Restrictions</caption>
+            <thead>
+                <tr>
+                    <th>Ministry Name</th>
+                    <th>Singing/Dancing/Instruments knowledge</th>
+                    <th>Technology knowledge</th>
+                    <th>Writing skills</th>
+                    <th>Technical knowledge</th>
+                    <th>Public speaking skills</th>
+                    <th>Accounting skills</th>
+                    <th>Mentoring skills</th>
+                    <th>Bible Knowledge</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <br><br><br>
+        <p class="instruction">
+            <b>Instruction</b>: Edit the skill profiling questions to assess volunteer <b>abilities</b> in specific areas. 
+            Questions should be <b>clear</b>, <b>specific</b>, and <b>measurable</b>, and designed to be answered on a scale from <b>Strongly Disagree</b> to <b>Strongly Agree</b>, e.g., "I can operate audio and video equipment independently." 
+            Each row shows a question number and English/Tagalog text. 
+            The first column shows the skill name. 
+            Click on a cell to edit the text directly. 
+            After editing, click '<u>Save all changes</u>' to record the updates.
+        </p>
+        <table class="skillsQuestions" id="skillsQuestions">
+            <caption>Skill Questions</caption>
+            <thead>
+                <tr>
+                    <th>Skill</th>
+                    <th>Question Number</th>
+                    <th>English Question</th>
+                    <th>Tagalog Question</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <!-- interest and Passion profiling -->
+    <div class="interestDiv section" id="interestDiv">
+        <div class="saveDeleteBtnDiv">
+            <button onclick="showResetPopup('interestAndPassionTab')">Reset all to default</button>
+            <button onclick="saveTab('interestAndPassionTab')">Save all changes</button>
+        </div>
+        <p class="instruction">
+            <b>Instruction</b>: Edit the interest and passion questions to assess volunteer <b>preferences</b> for each ministry category. 
+            Questions should focus on what the volunteer <b>enjoys</b> or <b>feels called to do</b> and be answerable on a scale from <b>Strongly Disagree</b> to <b>Strongly Agree</b>, e.g., "I enjoy organizing events and helping others." 
+            Each row shows a question number and English/Tagalog text. 
+            The first column shows the ministry category. 
+            Click on a cell to edit the text directly. 
+            After editing, click '<u>Save all changes</u>' to record the updates.
+        </p>
+        <table class="interestQuestions" id="interestQuestions">
+            <caption>Interest and Passion Questions</caption>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Question Number</th>
+                    <th>English Question</th>
+                    <th>Tagalog Question</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <!-- Behavioral profiling -->
+    <div class="behavioralDiv section" id="behavioralDiv">
+        <div class="saveDeleteBtnDiv">
+            <button onclick="showResetPopup('behavioralTab')">Reset all to default</button>
+            <button onclick="saveTab('behavioralTab')">Save all changes</button>
+        </div>
+        <p class="instruction">
+            <b>Instruction</b>: Edit the behavioral questions to assess volunteer <b>traits</b> and <b>ministry fit</b>. 
+            Behavioral questions should reflect <b>observable behaviors</b> or <b>habits</b> and be answerable on a scale from <b>Strongly Disagree</b> to <b>Strongly Agree</b>, e.g., "I am comfortable leading a group discussion." 
+            Each row shows a question number and English/Tagalog text. 
+            The first column shows the ministry name. 
+            Click on a cell to edit the text directly. 
+            After editing, click '<u>Save all changes</u>' to record the updates.
+        </p>
+        <table class="behavioralQuestions" id="behavioralQuestions" >
+            <caption>Behavioral Questions</caption>
+            <thead>
+                <tr>
+                    <th>ministry name</th>
+                    <th>Question Number</th>
+                    <th>English Question</th>
+                    <th>Tagalog Question</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
         </table>
     </div>
     <!-- alert message -->
@@ -377,15 +660,15 @@
             </div>
         </div>
     </div>
-    <!-- reset Popup -->
-    <div class="resetPopup" id="resetPopup">
+    <!-- Reset Popup -->
+    <div class="resetPopup" id="resetPopup" style="display: none;">
         <div class="resetBox">
             <h3>Reset all restrictions</h3>
-            <p>Are you sure you want to reset all the restrictions?</p>
+            <p>Are you sure you want to reset all the restrictions for this section?</p>
             <br>
             <div class="btnBox">
-                <button onclick="document.getElementById('resetPopup').style.display='none'">No</button>
-                <button onclick="resetRestrictions()">Yes</button>
+                <button onclick="document.getElementById('resetPopup').style.display = 'none'">No</button>
+                <button onclick="confirmReset()">Yes</button>
             </div>
         </div>
     </div>
@@ -395,7 +678,6 @@
         document.addEventListener("DOMContentLoaded", function() {
             // 🔒 Always verify session on every load
             checkSession();
-
             // 🌀 Also re-check when user navigates via Back/Forward (browser cache)
             window.addEventListener("pageshow", function(event) {
                 if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
@@ -403,7 +685,6 @@
                 }
             });
         });
-
         function checkSession() {
             fetch("php-sessionTest.php", {
                 method: "GET",
@@ -419,7 +700,22 @@
                 console.error("Session check failed — possible network or server issue.");
             });
         }
-
+    // navigation
+        const buttons = document.querySelectorAll(".tab-btn");
+        const sections = document.querySelectorAll(".section");
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+            // Remove active state from all buttons
+            buttons.forEach(b => b.classList.remove("active-btn"));
+            // Hide all sections
+            sections.forEach(sec => sec.style.display = "none");
+            // Add active class to clicked button
+            btn.classList.add("active-btn");
+            // Show the targeted section
+            const target = document.getElementById(btn.dataset.target);
+            target.style.display = "block";
+            });
+        });
     //change password
         function changePass() {
             const newPassword = document.getElementById("changePass").value.trim();
@@ -486,10 +782,9 @@
             });
         }
     //save restrictions
-        function saveRestriction() {
+        function saveTab(tabName) {
             const churchNameInput = document.getElementById("churchName");
             const churchName = churchNameInput.value.trim();
-            // ✅ Require church name before saving
             if (churchName === "") {
                 message.className = "message error";
                 message.textContent = "Please enter a church name before saving.";
@@ -498,95 +793,137 @@
                 churchNameInput.focus();
                 return;
             }
-            // ✅ Check if church name already exists before proceeding
-            fetch("php-checkChurchName.php", {
+            const data = {};
+            switch(tabName){
+                case "demographicsTab":
+                    const demoRows = document.querySelectorAll("#demographicsRestrictions tbody tr");
+                    data.demographicsTab = Array.from(demoRows).map((row, index) => {
+                        const i = index + 1;
+                        return {
+                            ministryID: i,
+                            gender: document.querySelector(`input[name="gender${i}"]:checked`)?.value || 0,
+                            age1: document.querySelector(`input[name="age1${i}"]`)?.value || 1,
+                            age2: document.querySelector(`input[name="age2${i}"]`)?.value || 99,
+                            marital: document.querySelector(`input[name="marital${i}"]:checked`)?.value || 0,
+                            baptized: document.querySelector(`input[name="baptized${i}"]:checked`)?.value || 0,
+                            timeInFaith: document.querySelector(`input[name="faith${i}"]:checked`)?.value || 0
+                        };
+                    });
+                    break;
+                case "skillsTab":
+                    // === Save Skill Restrictions ===
+                    const skillRows = document.querySelectorAll("#skillsRestrictions tbody tr");
+                    data.skillsTab = Array.from(skillRows).map((row, index) => {
+                        const i = index + 1;
+                        const skills = ['music','technology','writing','technical','speaking','accounting','mentoring','bibleKnowledge'];
+                        const skillData = {};
+                        skills.forEach(skill => {
+                            skillData[skill] = document.querySelector(`input[name="${skill}${i}"]:checked`)?.value || 0;
+                        });
+                        return { ministryID: i, ...skillData };
+                    });
+                    // === Skill Questions ===
+                    const skillQRows = document.querySelectorAll("#skillsQuestions tbody tr");
+                    data.skillQuestionsTab = Array.from(skillQRows).map(row => {
+                        const qNum = row.querySelector("[id^='qEN']")?.id.replace('qEN','');
+                        return {
+                            skillQuestionNum: qNum,
+                            skillQuestionEN: row.querySelector(`#qEN${qNum}`).textContent.trim(),
+                            skillQuestionTL: row.querySelector(`#qTL${qNum}`).textContent.trim()
+                        };
+                    });
+                    break;
+                case "interestAndPassionTab":
+                    // === Interest And Passion Questions ===
+                    const interestRows = document.querySelectorAll("#interestQuestions tbody tr");
+                    data.interestAndPassionTab = Array.from(interestRows).map(row => {
+                        const qNum = row.querySelector("[id^='iEN']")?.id.replace('iEN','');
+                        return {
+                            interestAndPassionQuestionNum: qNum,
+                            interestAndPassionQuestionEN: row.querySelector(`#iEN${qNum}`).textContent.trim(),
+                            interestAndPassionQuestionTL: row.querySelector(`#iTL${qNum}`).textContent.trim()
+                        };
+                    });
+                    break;
+                case "behavioralTab":
+                    // === behavioral Questions ===
+                    const behavioralRows = document.querySelectorAll("#behavioralQuestions tbody tr");
+                    data.behavioralTab = Array.from(behavioralRows).map(row => {
+                        const qNum = row.querySelector("[id^='bEN']")?.id.replace('bEN','');
+                        const ministryID = row.dataset.ministryid; // ✅ get ministryID
+                        return {
+                            ministryID: ministryID,
+                            behavioralQuestionNum: qNum,
+                            behavioralQuestionEN: row.querySelector(`#bEN${qNum}`).textContent.trim(),
+                            behavioralQuestionTL: row.querySelector(`#bTL${qNum}`).textContent.trim()
+                        };
+                    });
+                    break;
+                default:
+                    console.error("Unknown tab:", tabName);
+                    return;
+            }
+            const payload = { churchName, tabsData: data };
+            fetch("php-saveRestriction.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ churchName: churchName })
+                body: JSON.stringify(payload)
             })
             .then(res => res.json())
             .then(result => {
-                if (result.exists) {
-                    message.className = "message error";
-                    message.textContent = "This church name is already registered by another admin.";
-                    message.style.opacity = 1;
-                    setTimeout(() => (message.style.opacity = 0), 3000);
-                    return;
-                }
-                // ✅ If not existing, continue saving
-                const rows = document.querySelectorAll("#ministryTable tbody tr");
-                const data = [];
-
-                rows.forEach((row, index) => {
-                    const i = index + 1;
-                    data.push({
-                        ministryID: i,
-                        gender: document.querySelector(`input[name="gender${i}"]:checked`)?.value || 0,
-                        age1: document.querySelector(`input[name="age1${i}"]`)?.value || 1,
-                        age2: document.querySelector(`input[name="age2${i}"]`)?.value || 99,
-                        marital: document.querySelector(`input[name="marital${i}"]:checked`)?.value || 0,
-                        baptist: document.querySelector(`input[name="baptist${i}"]:checked`)?.value || 0,
-                        timeInFaith: document.querySelector(`input[name="faith${i}"]:checked`)?.value || 0
-                    });
-                });
-                const payload = {
-                    churchName: churchName,
-                    restrictions: data
-                };
-                fetch("php-saveRestriction.php", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
-                })
-                .then(res => res.json())
-                .then(response => {
-                    message.className = response.status === "success" ? "message success" : "message error";
-                    message.textContent = response.message;
-                    message.style.opacity = 1;
-                    setTimeout(() => (message.style.opacity = 0), 3000);
-                })
-                .catch(err => console.error("Error saving restrictions:", err));
+                message.className = result.status === "success" ? "message success" : "message error";
+                message.textContent = result.message;
+                message.style.opacity = 1;
+                setTimeout(() => (message.style.opacity = 0), 3000);
             })
-            .catch(err => console.error("Error checking church name:", err));
+            .catch(err => console.error(err));
         }
-    //reset restriction
-        function resetRestrictions() {
+        let currentTabToReset = ""; 
+        function showResetPopup(tabName) {
+            currentTabToReset = tabName; 
+            document.getElementById("resetPopup").style.display = "flex";
+        }
+        function confirmReset() {
+            document.getElementById("resetPopup").style.display = "none";
+            resetRestrictions(currentTabToReset);
+        }
+        function resetRestrictions(tab) {
             fetch("php-resetRestriction.php", {
-                method: "POST"
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ tab: tab })
             })
             .then(response => response.json())
             .then(data => {
-                if (data.status === "success") {
-                    message.className = data.status === "success" ? "message success" : "message error";
-                    message.textContent = "Restrictions restored to default settings.";
-                    message.style.opacity = 1;
-                    setTimeout(() => {
-                        message.style.opacity = 0;
-                        location.reload();
-                    }, 3000);
-                }
+                const message = document.querySelector(".message") || document.createElement("div");
+                message.className = data.status === "success" ? "message success" : "message error";
+                message.textContent = data.message;
+                document.body.appendChild(message);
+                message.style.opacity = 1;
+                setTimeout(() => {
+                    message.style.opacity = 0;
+                    location.reload();
+                }, 2500);
             })
-            .catch(() => {}); // quietly ignore errors
+            .catch(() => {});
         }
     //display data
-        fetch("php-loadMinistryRestriction.php")
+        fetch("php-loadAdminPanel.php")
         .then(response => response.json())
         .then(data => {
             if (data.error) {
                 console.error(data.error);
                 return;
             }
-            // ✅ Display church name only
             document.getElementById("churchName").value = data.churchName || "";
-            // ✅ Display ministries and restrictions
-            const tbody = document.querySelector("#ministryTable tbody");
+            const tbody = document.querySelector("#demographicsRestrictions tbody");
             tbody.innerHTML = "";
             data.ministries.forEach((m, index) => {
                 const i = index + 1;
                 const row = document.createElement("tr");
                 row.innerHTML = `
                     <td>${m.ministryName}</td>
-                    <td class="vertical-labels">
+                    <td>
                         <label><input type="radio" name="gender${i}" value="1" ${m.gender == 1 ? "checked" : ""}> Male Only</label>
                         <label><input type="radio" name="gender${i}" value="2" ${m.gender == 2 ? "checked" : ""}> Female Only</label>
                         <label><input type="radio" name="gender${i}" value="0" ${m.gender == 0 ? "checked" : ""}> No Restriction</label>
@@ -596,16 +933,16 @@
                         <p>-to-</p>
                         <input type="number" name="age2${i}" min="1" max="99" value="${m.age2 || ''}" placeholder="Age">
                     </td>
-                    <td class="vertical-labels">
+                    <td>
                         <label><input type="radio" name="marital${i}" value="1" ${m.marital == 1 ? "checked" : ""}> Single Only</label>
                         <label><input type="radio" name="marital${i}" value="2" ${m.marital == 2 ? "checked" : ""}> Married Only</label>
                         <label><input type="radio" name="marital${i}" value="0" ${m.marital == 0 ? "checked" : ""}> No Restriction</label>
                     </td>
-                    <td class="vertical-labels">
-                        <label><input type="radio" name="baptist${i}" value="1" ${m.baptist == 1 ? "checked" : ""}> Baptized Only</label>
-                        <label><input type="radio" name="baptist${i}" value="2" ${m.baptist == 2 ? "checked" : ""}> No Restriction</label>
+                    <td>
+                        <label><input type="radio" name="baptized${i}" value="1" ${m.baptized == 1 ? "checked" : ""}> Baptized Only</label>
+                        <label><input type="radio" name="baptized${i}" value="2" ${m.baptized == 2 ? "checked" : ""}> No Restriction</label>
                     </td>
-                    <td class="vertical-labels">
+                    <td>
                         <label><input type="radio" name="faith${i}" value="1" ${m.timeInFaith == 1 ? "checked" : ""}> 1 Week</label>
                         <label><input type="radio" name="faith${i}" value="2" ${m.timeInFaith == 2 ? "checked" : ""}> 6 Months</label>
                         <label><input type="radio" name="faith${i}" value="3" ${m.timeInFaith == 3 ? "checked" : ""}> 1 Year</label>
@@ -613,6 +950,109 @@
                     </td>
                 `;
                 tbody.appendChild(row);
+            });
+            // Display skills restrictions
+            const skillsTbody = document.querySelector("#skillsRestrictions tbody");
+            skillsTbody.innerHTML = "";
+
+            data.skills.forEach((s, index) => {
+                const i = index + 1;
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${s.ministryName}</td>
+                    ${['music','technology','writing','technical','speaking','accounting','mentoring','bibleKnowledge'].map(skill =>
+                        `<td>
+                            <label><input type="radio" name="${skill}${i}" value="1" ${s[skill] == 1 ? "checked" : ""}> Required</label><br>
+                            <label><input type="radio" name="${skill}${i}" value="0" ${s[skill] == 0 ? "checked" : ""}> Not required</label>
+                        </td>`
+                    ).join('')}
+                `;
+                skillsTbody.appendChild(row);
+            });
+            // Display skill profiling questions
+            const skillsQtbody = document.querySelector("#skillsQuestions tbody");
+            skillsQtbody.innerHTML = "";
+            data.questions.forEach((q, index) => {
+                const row = document.createElement("tr");
+                // Only show the ministry name cell on the first row of each group of 5
+                if (index % 5 === 0) {
+                    row.innerHTML = `
+                        <td class="num" rowspan="5">${q.skillName}</td>
+                        <td class="num">${q.skillQuestionNum}</td>
+                        <td class='q' contenteditable="true" id="qEN${q.skillQuestionNum}">${q.skillQuestionEN}</td>
+                        <td class='q' contenteditable="true" id="qTL${q.skillQuestionNum}">${q.skillQuestionTL}</td>
+                    `;
+                } else {
+                    row.innerHTML = `
+                        <td class="num">${q.skillQuestionNum}</td>
+                        <td contenteditable="true" id="qEN${q.skillQuestionNum}">${q.skillQuestionEN}</td>
+                        <td contenteditable="true" id="qTL${q.skillQuestionNum}">${q.skillQuestionTL}</td>
+                    `;
+                }
+                skillsQtbody.appendChild(row);
+            });
+            // Display Interest and Passion questions
+            const interestTbody = document.querySelector("#interestQuestions tbody");
+            interestTbody.innerHTML = "";
+            let currentCategory = "";
+            let countInCategory = 0;
+            let categoryStartIndex = 0;
+            const categoryCounts = {};
+            data.interestQuestions.forEach(q => {
+                if (!categoryCounts[q.categoryName]) categoryCounts[q.categoryName] = 0;
+                categoryCounts[q.categoryName]++;
+            });
+            data.interestQuestions.forEach((q, index) => {
+                const row = document.createElement("tr");
+                if (q.categoryName !== currentCategory) {
+                    // New category starts
+                    currentCategory = q.categoryName;
+                    countInCategory = categoryCounts[currentCategory];
+                    row.innerHTML = `
+                        <td class="num" rowspan="${countInCategory}">${currentCategory}</td>
+                        <td class="num">${q.interestAndPassionQuestionNum}</td>
+                        <td class="q" contenteditable="true" id="iEN${q.interestAndPassionQuestionNum}">${q.interestAndPassionQuestionEN}</td>
+                        <td class="q" contenteditable="true" id="iTL${q.interestAndPassionQuestionNum}">${q.interestAndPassionQuestionTL}</td>
+                    `;
+                } else {
+                    row.innerHTML = `
+                        <td class="num">${q.interestAndPassionQuestionNum}</td>
+                        <td class="q" contenteditable="true" id="iEN${q.interestAndPassionQuestionNum}">${q.interestAndPassionQuestionEN}</td>
+                        <td class="q" contenteditable="true" id="iTL${q.interestAndPassionQuestionNum}">${q.interestAndPassionQuestionTL}</td>
+                    `;
+                }
+                interestTbody.appendChild(row);
+            });
+            // Display Behavioral questions
+            const behavioralTbody = document.querySelector("#behavioralQuestions tbody");
+            behavioralTbody.innerHTML = "";
+            let currentMinistry = "";
+            let countInMinistry = 0;
+            const ministryCounts = {};
+            data.behavioralQuestions.forEach(q => {
+                if (!ministryCounts[q.ministryName]) ministryCounts[q.ministryName] = 0;
+                ministryCounts[q.ministryName]++;
+            });
+            data.behavioralQuestions.forEach((q, index) => {
+                const row = document.createElement("tr");
+                row.dataset.ministryid = q.ministryID; // ✅ store ministryID
+                if (q.ministryName !== currentMinistry) {
+                    currentMinistry = q.ministryName;
+                    countInMinistry = ministryCounts[currentMinistry];
+                    row.innerHTML = `
+                        <td class="num" rowspan="${countInMinistry}">${currentMinistry}</td>
+                        <td class="num">${q.behavioralQuestionNum}</td>
+                        <td class="q" contenteditable="true" id="bEN${q.behavioralQuestionNum}">${q.behavioralQuestionEN}</td>
+                        <td class="q" contenteditable="true" id="bTL${q.behavioralQuestionNum}">${q.behavioralQuestionTL}</td>
+                    `;
+                } else {
+                    row.innerHTML = `
+                        <td class="num">${q.behavioralQuestionNum}</td>
+                        <td class="q" contenteditable="true" id="bEN${q.behavioralQuestionNum}">${q.behavioralQuestionEN}</td>
+                        <td class="q" contenteditable="true" id="bTL${q.behavioralQuestionNum}">${q.behavioralQuestionTL}</td>
+                    `;
+                }
+                behavioralTbody.appendChild(row);
             });
         })
         .catch(error => console.error("Error loading data:", error));
