@@ -34,6 +34,7 @@
             background-size: 30%;
             background-position: right top;
             box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
+            border:3px solid var(--a);
         }
         button{
             width: fit-content;
@@ -98,9 +99,47 @@
             margin: auto;
             padding: 5px;
             border-left: 3px solid var(--a);
-            background: linear-gradient(to right, var(--b), white); /* gradient from left to right */
+            background: linear-gradient(to right, var(--b), white);
             border-radius: 4px;
         }
+        /* admin dashboard */
+        .dashboardDiv{
+            width: 90%;
+            margin: 25px auto 50px auto;
+            background-color: white;
+            color: var(--a);
+            box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+        }
+        .userReportTableDiv{
+            border:3px solid var(--a);
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            max-height: 500px;
+            overflow-x: auto;
+        }
+        .userReportTable {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            text-align: center;
+        }
+        .userReportTable th, .userReportTable td {
+            padding: 8px;
+            height: 80px;
+            word-wrap: break-word;
+        }
+        .userReportTable th{
+            border-bottom: 3px solid var(--a);
+            font-size: 1rem;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            background: var(--b);
+            z-index: 2;
+        }
+        .userReportTable td {border-bottom: 1px solid var(--a);}
     /* demographics */
         .demographicsDiv{
             width: 90%;
@@ -108,16 +147,20 @@
             background-color: white;
             color: var(--a);
             box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
-            border-top-right-radius: 12px;
+            border: 3px solid var(--a);
             border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            display: none;
+            max-height: 500px;
+            overflow-x: auto;
         }
         .demographicsRestrictions {
             width: 100%;
             border-collapse: collapse;
             table-layout: fixed;
             text-align: center;
-            border-top-right-radius: 12px;
             border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
         }
         .demographicsRestrictions input[type='number']{
             color:var(--a);
@@ -136,6 +179,10 @@
             border-bottom: 3px solid var(--a);
             font-size: 1rem;
             font-weight: bold;
+            position: sticky;
+            top: 0;
+            background: var(--b);
+            z-index: 2;
         }
         .demographicsRestrictions td {border-bottom: 1px solid var(--a);}
         .demographicsRestrictions label {
@@ -145,22 +192,26 @@
     /* skills */
         /* restrcitions */
         .skillsDiv{
+            display: none;
+        }
+
+        .skillsDiv1, .skillsDiv2{
             width: 90%;
             margin: 25px auto 50px auto;
             background-color: white;
             color: var(--a);
             box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
-            border-top-right-radius: 12px;
             border-top-left-radius: 12px;
-            display: none;
+            border-bottom-left-radius: 12px;
+            max-height: 500px;
+            overflow-x: auto;
+            border: 3px solid var(--a);
         }
         .skillsRestrictions {
             width: 100%;
             border-collapse: collapse;
             table-layout: fixed;
             text-align: center;
-            border-top-right-radius: 12px;
-            border-top-left-radius: 12px;
         }
         .skillsRestrictions th, .skillsRestrictions td {
             padding: 8px;
@@ -171,6 +222,10 @@
             border-bottom: 3px solid var(--a);
             font-size: 1rem;
             font-weight: bold;
+            position: sticky;
+            top: 0;
+            background: var(--b);
+            z-index: 2;
         }
         .skillsRestrictions td {
             border-bottom: 1px solid var(--a);
@@ -193,6 +248,10 @@
             border-bottom: 3px solid var(--a);
             font-size: 1rem;
             font-weight: bold;
+            position: sticky;
+            top: 0;
+            background: var(--b);
+            z-index: 2;
         }
         .skillsQuestions td {border-bottom: 1px solid var(--a);}
     /* interest and passion */
@@ -202,16 +261,19 @@
             background-color: white;
             color: var(--a);
             box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
-            border-top-right-radius: 12px;
+            border: 3px solid var(--a);
             border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
             display: none;
+            max-height: 500px;
+            overflow-x: auto;
         }
         .interestQuestions {
             width: 100%;
             border-collapse: collapse;
             text-align: center;
-            border-top-right-radius: 12px;
             border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
         }
         .interestQuestions th, .interestQuestions td {
             padding: 8px;
@@ -223,6 +285,10 @@
             border-bottom: 3px solid var(--a);
             font-size: 1rem;
             font-weight: bold;
+            position: sticky;
+            top: 0;
+            background: var(--b);
+            z-index: 2;
         }
         .interestQuestions td {border-bottom: 1px solid var(--a);}
     /* behavioral */
@@ -232,16 +298,19 @@
             background-color: white;
             color: var(--a);
             box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
-            border-top-right-radius: 12px;
+            border: 3px solid var(--a);
             border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            max-height: 500px;
+            overflow-x: auto;
             display: none;
         }
         .behavioralQuestions {
             width: 100%;
             border-collapse: collapse;
             text-align: center;
-            border-top-right-radius: 12px;
             border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
         }
         .behavioralQuestions th, .behavioralQuestions td {
             padding: 8px;
@@ -253,6 +322,10 @@
             border-bottom: 3px solid var(--a);
             font-size: 1rem;
             font-weight: bold;
+            position: sticky;
+            top: 0;
+            background: var(--b);
+            z-index: 2;
         }
         .behavioralQuestions td {border-bottom: 1px solid var(--a);}
     /* alert */
@@ -406,6 +479,13 @@
             0%   { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        /* disable button */
+        .disable{
+            pointer-events: none;
+            border: 3px solid grey;
+            background-color: rgb(196, 171, 196);
+            color: white;
+        }
         @media(hover:hover){
             .custom-file-upload:hover {
                 color: var(--a);
@@ -422,7 +502,6 @@
                 display:block;
             }
             .demographicsDiv{font-size: 1rem;}
-
             .skillssDiv{font-size: 1rem;}
             .skillsRestrictions{font-size: .9rem;}
             .skillsQuestions{font-size: 1rem;}
@@ -452,12 +531,12 @@
                 color: var(--a);
                 text-align: center;
             }
-            .demographicsDiv, .skillsDiv, .interestDiv, .behavioralDiv {
+            .demographicsDiv, .skillsDiv1, .skillsDiv2, .interestDiv, .behavioralDiv {
                 width: 90%;
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
             }
-            .demographicsDiv table, .skillsDiv table, .interestDiv table, .behavioralDiv table {
+            .demographicsDiv table, .skillsDiv1 table, .skillsDiv2 table, .interestDiv table, .behavioralDiv table {
                 min-width: 800px;
                 border-collapse: collapse;
                 border-left: 3px solid var(--a);
@@ -486,8 +565,8 @@
             <button onclick="document.getElementById('logoutPopup').style.display='flex'">Logout</button>
             <hr>
             <div>
-                <!-- <button class="tab-btn active-btn" data-target="demographicsDiv">general</button> -->
-                <button class="tab-btn active-btn" data-target="demographicsDiv">Demographics</button>
+                <button class="tab-btn active-btn" data-target="dashboardDiv">general</button>
+                <button class="tab-btn" data-target="demographicsDiv">Demographics</button>
                 <button class="tab-btn" data-target="skillsDiv">Skills profiling</button>
                 <button class="tab-btn" data-target="interestDiv">Interest and Passion profiling questions</button>
                 <button class="tab-btn" data-target="behavioralDiv">Behavioral profiling questions</button>
@@ -498,7 +577,7 @@
     <!-- Demographics tab -->
     <div class="demographicsDiv section" id="demographicsDiv">
         <div class="saveDeleteBtnDiv">
-            <button onclick="showResetPopup('demographicsTab')">Reset all to default</button>
+            <button class="noToAdmin" onclick="showResetPopup('demographicsTab')">Reset all to default</button>
             <button onclick="saveTab('demographicsTab')">Save all changes</button>
         </div>
         <p class="instruction">
@@ -521,61 +600,93 @@
             <tbody></tbody>
         </table>
     </div>
+    <!-- admin dashboard -->
+    <div class="dashboardDiv section" id="dashboardDiv">
+
+        <div class="userReportTableDiv">
+            <table class="userReportTable" id="userReportTable">
+                <caption>User Report Table</caption>
+                <thead>
+                    <tr>
+                        <th>User Report ID</th>
+                        <th>Church Name</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Skills</th>
+                        <th>Eligible Ministry</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Marirtal Status</th>
+                        <th>Baptized status</th>
+                        <th>Time In Faith</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        
+    </div>
     <!-- Skills profiling -->
     <div class="skillsDiv section" id="skillsDiv">
-        <div class="saveDeleteBtnDiv">
-            <button onclick="showResetPopup('skillsTab')">Reset all to default</button>
-            <button onclick="saveTab('skillsTab')">Save all changes</button>
+        <!-- Skill Restrictions -->
+        <div class="skillsDiv1" id="skillsDiv1">
+            <div class="saveDeleteBtnDiv">
+                <button class="noToAdmin" onclick="showResetPopup('skillsTab1')">Reset all to default</button>
+                <button onclick="saveTab('skillsTab1')">Save all changes</button>
+            </div>
+            <p class="instruction">
+                <b>Instruction</b>: Set the skill requirements for each ministry. 
+                For each skill (e.g., music, technology, speaking), select whether it is <b>Required</b> or <b>Not Required</b> for the ministry role.
+                After editing, click '<u>Save all changes</u>' to record the updates.
+            </p>
+            <table class="skillsRestrictions" id="skillsRestrictions">
+                <caption>Skill Restrictions</caption>
+                <thead>
+                    <tr>
+                        <th>Ministry Name</th>
+                        <th>Singing/Dancing/Instruments knowledge</th>
+                        <th>Technology knowledge</th>
+                        <th>Writing skills</th>
+                        <th>Technical knowledge</th>
+                        <th>Public speaking skills</th>
+                        <th>Accounting skills</th>
+                        <th>Mentoring skills</th>
+                        <th>Bible Knowledge</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
-        <p class="instruction">
-            <b>Instruction</b>: Set the skill requirements for each ministry. 
-            For each skill (e.g., music, technology, speaking), select whether it is <b>Required</b> or <b>Not Required</b> for the ministry role. 
-            This helps match volunteers with the right skill set to the ministry's needs.
-            After editing, click '<u>Save all changes</u>' to record the updates.
-        </p>
-        <table class="skillsRestrictions" id="skillsRestrictions">
-            <caption>Skill Restrictions</caption>
-            <thead>
-                <tr>
-                    <th>Ministry Name</th>
-                    <th>Singing/Dancing/Instruments knowledge</th>
-                    <th>Technology knowledge</th>
-                    <th>Writing skills</th>
-                    <th>Technical knowledge</th>
-                    <th>Public speaking skills</th>
-                    <th>Accounting skills</th>
-                    <th>Mentoring skills</th>
-                    <th>Bible Knowledge</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <br><br><br>
-        <p class="instruction">
-            <b>Instruction</b>: Edit the skill profiling questions to assess volunteer <b>abilities</b> in specific areas. 
-            Questions should be <b>clear</b>, <b>specific</b>, and <b>measurable</b>, and designed to be answered on a scale from <b>Strongly Disagree</b> to <b>Strongly Agree</b>, e.g., "I can operate audio and video equipment independently." 
-            Each row shows a question number and English/Tagalog text. 
-            The first column shows the skill name. 
-            Click on a cell to edit the text directly. 
-            After editing, click '<u>Save all changes</u>' to record the updates.
-        </p>
-        <table class="skillsQuestions" id="skillsQuestions">
-            <caption>Skill Questions</caption>
-            <thead>
-                <tr>
-                    <th>Skill</th>
-                    <th>Question Number</th>
-                    <th>English Question</th>
-                    <th>Tagalog Question</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <!-- Skill Questions -->
+        <div class="skillsDiv2" id="skillsDiv2">
+            <div class="saveDeleteBtnDiv">
+                <button class="noToAdmin" onclick="showResetPopup('skillsTab2')">Reset all to default</button>
+                <button onclick="saveTab('skillsTab2')">Save all changes</button>
+            </div>
+            <p class="instruction">
+                <b>Instruction</b>: Edit the skill profiling questions to assess volunteer <b>abilities</b> in specific areas. 
+                Click on a cell to edit directly, then click '<u>Save all changes</u>' to record updates.
+            </p>
+            <table class="skillsQuestions" id="skillsQuestions">
+                <caption>Skill Questions</caption>
+                <thead>
+                    <tr>
+                        <th>Skill</th>
+                        <th>Question Number</th>
+                        <th>English Question</th>
+                        <th>Tagalog Question</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
+
+    
     <!-- interest and Passion profiling -->
     <div class="interestDiv section" id="interestDiv">
         <div class="saveDeleteBtnDiv">
-            <button onclick="showResetPopup('interestAndPassionTab')">Reset all to default</button>
+            <button class="noToAdmin" onclick="showResetPopup('interestAndPassionTab')">Reset all to default</button>
             <button onclick="saveTab('interestAndPassionTab')">Save all changes</button>
         </div>
         <p class="instruction">
@@ -602,7 +713,7 @@
     <!-- Behavioral profiling -->
     <div class="behavioralDiv section" id="behavioralDiv">
         <div class="saveDeleteBtnDiv">
-            <button onclick="showResetPopup('behavioralTab')">Reset all to default</button>
+            <button class="noToAdmin" onclick="showResetPopup('behavioralTab')">Reset all to default</button>
             <button onclick="saveTab('behavioralTab')">Save all changes</button>
         </div>
         <p class="instruction">
@@ -688,32 +799,40 @@
         function checkSession() {
             fetch("php-sessionTest.php", {
                 method: "GET",
-                cache: "no-store" // Prevent cached response
+                cache: "no-store"
             })
             .then(response => {
                 if (response.redirected) {
                     // Redirect user if session is invalid
                     window.location.href = response.url;
+                    return;
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (!data) return;
+                const adminEmail = data.email;
+                if (adminEmail === "admin@admin") {
+                    document.querySelectorAll(".noToAdmin").forEach(btn => {
+                        btn.classList.add("disable");
+                    });
                 }
             })
             .catch(() => {
                 console.error("Session check failed — possible network or server issue.");
             });
         }
+
     // navigation
         const buttons = document.querySelectorAll(".tab-btn");
         const sections = document.querySelectorAll(".section");
         buttons.forEach(btn => {
             btn.addEventListener("click", () => {
-            // Remove active state from all buttons
-            buttons.forEach(b => b.classList.remove("active-btn"));
-            // Hide all sections
-            sections.forEach(sec => sec.style.display = "none");
-            // Add active class to clicked button
-            btn.classList.add("active-btn");
-            // Show the targeted section
-            const target = document.getElementById(btn.dataset.target);
-            target.style.display = "block";
+                buttons.forEach(b => b.classList.remove("active-btn"));
+                sections.forEach(sec => sec.style.display = "none");
+                btn.classList.add("active-btn");
+                const target = document.getElementById(btn.dataset.target);
+                target.style.display = "block";
             });
         });
     //change password
@@ -1053,6 +1172,28 @@
                     `;
                 }
                 behavioralTbody.appendChild(row);
+            });
+
+            // ✅ Display User Reports
+            const reportTbody = document.querySelector("#userReportTable tbody");
+            reportTbody.innerHTML = "";
+
+            data.userReports.forEach(report => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${report.userReportID}</td>
+                    <td>${report.churchName}</td>
+                    <td>${report.email}</td>
+                    <td>${report.name}</td>
+                    <td>${report.skills || "—"}</td>
+                    <td>${report.eligibleMinistry || "—"}</td>
+                    <td>${report.gender || "—"}</td>
+                    <td>${report.age || "—"}</td>
+                    <td>${report.marital || "—"}</td>
+                    <td>${report.baptized || "—"}</td>
+                    <td>${report.timeInFaith || "—"}</td>
+                `;
+                reportTbody.appendChild(row);
             });
         })
         .catch(error => console.error("Error loading data:", error));

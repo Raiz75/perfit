@@ -403,7 +403,7 @@
             opacity: 1;
             color: transparent;
             transition: 0.5s ease-in-out;
-            z-index: 5;
+            z-index: 102;
         }
         .messageAlert.success {
             background: #d4edda;
@@ -415,6 +415,48 @@
             color: #721c24;
             border: 3px solid #721c24;;
         }
+        /* personal info div */
+        .personalInfoDivOverlay{
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            z-index: 101;
+        }
+        .personalInfoDiv{
+            border: 3px solid var(--a);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: auto; 
+            color: var(--a);
+            background-color: white;
+            border-radius: 12px;
+            font-size: 1rem;
+            text-align: center; 
+        }
+        .personalInfoDiv input{
+            margin: 10px;
+            border: 1px solid var(--a);
+            height: 25px;
+        }
+        .personalInfoDiv button{
+            border: 3px solid var(--a);
+            padding: 10px;
+            width: 50%;
+            background-color: var(--a);
+            border-radius: 12px;
+            color: white;
+            margin: 20px auto;
+            font-size: 1.2rem;
+        }
+
     /* loading */
         .overlayLoad {
             display: none;
@@ -478,6 +520,10 @@
             .showAlert button:hover{
                 background-color: rgb(255, 223, 255);
                 color: rgb(128, 65, 128);
+            }
+            .personalInfoDiv button:hover{
+                background-color: var(--b);
+                color: var(--a);
             }
         }
         @media (max-width: 1024px) {
@@ -788,7 +834,19 @@
             <p>Loading, Please wait.</p>
         </div>
     </div>
+<!-- small alert -->
     <div class="messageAlert" id="messageAlert"></div>
+<!-- personal info -->
+    <div class="personalInfoDivOverlay" id="personalInfoDivOverlay">
+        <div class="personalInfoDiv">
+            <h3>Personal Info</h3>
+            <span>Name:</span>
+            <input type="text" id="userName"><br>
+            <span>Email:</span>
+            <input type="email" id="userEmail"><br>
+            <button id="seeResult" onclick="saveUserReport()">Save Result</button>
+        </div>
+    </div>
 <!--script-->
     <!-- api -->
     <script src="callApi.js"></script>
@@ -1080,6 +1138,7 @@
                 b44: "I-DOWNLOAD"
             }
         };
+        
     //varibales
         let gender=0;
         let age=0;
@@ -1222,7 +1281,6 @@
             // --- Determine minimum required faith duration ---
             const validFaith = demographicRestrictions.map(r => Number(r.timeInFaith)).filter(f => !isNaN(f));
             const minFaithRequired = validFaith.length ? Math.min(...validFaith) : 0;
-           
             // --- Check 1: Baptism restriction ---
             if (userBaptized == 2 && allRequireBaptism) {
                 showAlert(
@@ -1433,7 +1491,6 @@
             // ==========================
             // DYNAMIC SKILL FILTER
             // ==========================
-            //console.log(">> Dynamic Skill Filter (At Least One Match) Applied <<");
             before = [...ministryInterest];
             ministryInterest = ministryInterest.filter(ministryName => {
                 const ministry = ministries.find(m => m.ministryName === ministryName);
@@ -1835,320 +1892,366 @@
             }
         }
     //AI interpretation
-        let behavioralProfilingScoreUnranked = [];
-        let ministryInterestUnranked = [];
-        async function interpret(){   
-            console.log(">> Interpret Data");
-            startThinkingAnimation(); 
-            let message = `
-                You are an AI assistant for the Perfit: An Ai System for matching skills in church ministry.
-                A user has completed a test, and their scores are as follows:
-            `;
-            //record unrank for display
-            let ministryInterest = JSON.parse(localStorage.getItem("phase3"));
-            let behavioralProfilingScore = JSON.parse(localStorage.getItem("phase4"));
-            for(let i = 0; i < behavioralProfilingScore.length; i++){
-                behavioralProfilingScoreUnranked[i]=behavioralProfilingScore[i];
-                ministryInterestUnranked[i]=ministryInterest[i];
-            }
+        // AI Interpretation Function (Modified Display Logic)
+let behavioralProfilingScoreUnranked = [];
+let ministryInterestUnranked = [];
 
-            // --- NEW FEATURE: check for identical scores ---
-            const allSame = behavioralProfilingScore.every(score => score === behavioralProfilingScore[0]);
-            // let tiedMinistries = []; // for partial ties
+async function interpret() {
+    console.log(">> Interpret Data");
+    startThinkingAnimation();
 
-            // if(!allSame) {
-            //     // Detect partial ties (e.g., two ministries have the same score)
-            //     let scoreMap = {};
-            //     for(let i=0; i<behavioralProfilingScore.length; i++){
-            //         const score = behavioralProfilingScore[i];
-            //         if(!scoreMap[score]) scoreMap[score] = [];
-            //         scoreMap[score].push(ministryInterest[i]);
-            //     }
-            //     // Collect only the tied scores with more than 1 ministry
-            //     for(let score in scoreMap){
-            //         if(scoreMap[score].length > 1) {
-            //             tiedMinistries.push(scoreMap[score]);
-            //         }
-            //     }
-            // }
-            // --- END NEW FEATURE ---
+    let message = `
+        You are an AI assistant for the Perfit: An AI System for matching skills in church ministry.
+        A user has completed a test, and their scores are as follows:
+    `;
 
-            // build ranking list
-            let topList = "";
-            let least = "";
-            for (let i = 0; i < behavioralProfilingScore.length - 1; i++) {
-                for (let j = i + 1; j < behavioralProfilingScore.length; j++) {
-                    if (Number(behavioralProfilingScore[i]) < Number(behavioralProfilingScore[j])) {
-                        // Swap scores
-                        const temp = behavioralProfilingScore[i];
-                        behavioralProfilingScore[i] = behavioralProfilingScore[j];
-                        behavioralProfilingScore[j] = temp;
-                        // Swap matching ministries
-                        const temp2 = ministryInterest[i];
-                        ministryInterest[i] = ministryInterest[j];
-                        ministryInterest[j] = temp2;
-                    }
-                }
-            }
-            for (let i = 0; i < ministryInterest.length; i++) {
-                topList += `top ${i + 1} ${ministryInterest[i]}`;
-                if (i !== ministryInterest.length - 1) {
-                    topList += ", ";
-                }
-                if (i === ministryInterest.length - 1) {
-                    least = `${ministryInterest[i]}`;
-                }
-            }
-            // Save top Ministry List
-            let topMinistryList = JSON.stringify(topList);
-            localStorage.setItem("topMinistryList", topMinistryList);
-            console.log(topList);
-            console.log("Lowest: "+least);
+    // Load data
+    let ministryInterest = JSON.parse(localStorage.getItem("phase3")) || [];
+    let behavioralProfilingScore = JSON.parse(localStorage.getItem("phase4")) || [];
 
-            // --- NEW FEATURE: adjust message for all same or partial ties ---
-            if(allSame){
-                message += `
-                    \nAll ministries are equally matched for the user.
-                    Encourage the user to explore based on personal interest or passion, as each ministry aligns with their divine calling.
-                `;
-            }
-    // --- END NEW FEATURE ---
-            message += `
-                \nlist: ${topList}\n
-                \nleast ministry:${least}\n
-                Your task is to give interpretation, focusing on the user's divine calling and how ministries align with the user's strengths and purpose.
-                Include a spiritual connection between the top 3 ministries, emphasizing their complementary roles in the user's faith journey.
-                display the top 1 with this format:
-            `;
-            if(selectedLanguage=="en"){
-                message +=`\n\n
-                <h1 style="color:rgb(128, 65, 128);text-align: center;">CALLING AND SERVICE PROFILE</h1>
-                \n\n`;
-                if(allSame){
-                    message += `
-                        <h2 style="color:rgb(128, 65, 128);">All Ministries Equally Aligned</h2>
-                        <p style="text-align: justify;">(make this response at least 200 words)
-                            All ministries are equally matched for the user. Each ministry aligns with the user's unique gifts, strengths, and spiritual calling.
-                            This means that the user has a wide array of opportunities to serve and grow in faith, allowing them to explore their passions freely.
-                            Encourage the user to engage with ministries based on personal interest or curiosity, and highlight that each ministry offers a chance
-                            to contribute meaningfully to the body of Christ. The diversity of possible paths demonstrates that their divine calling is not limited to one role.
-                        </p>
-                    `;
-                }else{
-                    message += `<h2 style="color:rgb(128, 65, 128);">Best Fit: [top1 ministry] Ministry</h2>
-                        <p style="text-align: justify;">(make this response atleast 100 words)
-                            Provide a brief explanation of why this ministry is the user's top fit.
-                            Highlight how this ministry aligns with the user's natural gifts, strengths, and passion.
-                            Explain that this fit is part of their divine calling, as though this ministry was made for them.
-                            Emphasize the alignment between their purpose and this ministry's mission.
-                        </p>
-                    `;
-                    if(ministryInterest.length>=2){
-                        message +=`\n\n
-                            <h2 style="color:rgb(128, 65, 128);">Top 2 Identified Fit: [top2 ministry] Ministry</h2>
-                            <p style="text-align: justify;">(make this response atleast 100 words)
-                                Provide a brief explanation of why this ministry is the user's second-best fit.
-                                Focus on how it complements the bestfit, mention its connection.
-                                Again, explain that this ministry feels like a divine part of their journey,
-                                something that aligns with their unique gifts and purpose in life.
-                            </p>
-                        `;
-                    }
-                    if(ministryInterest.length>=3){
-                        message +=`\n\n
-                            <h2 style="color:rgb(128, 65, 128);">Top 3 Identified Fit: [top3 ministry] Ministry</h2>
-                            <p style="text-align: justify;">(make this response atleast 100 words)
-                                Provide a brief explanation of why this ministry is the user's third-best fit.
-                                Focus on how it complements their spiritual hobby and quirks.
-                                Again, explain that this ministry feels like a divine part of their journey,
-                                something that aligns with their unique gifts and purpose in life.
-                            </p>
-                        `;
-                    }
-                    if(ministryInterest.length>=4){
-                        message +=`\n\n
-                            <h2 style="color:rgb(128, 65, 128);">Least Aligned Ministry: [Ministry] Ministry</h2>
-                            <p style="text-align: justify;">(make this response atleast 100 words)
-                                Provide a thoughtful and compassionate reflection on why this ministry may have ranked lowest for the user.
-                                Emphasize that every ministry plays a vital role in the body of Christ, and a low score does not mean disqualification—it simply highlights a lesser alignment *at this moment*.
-                                Encourage the user not to see this as a weakness but as a potential area of spiritual growth.
-                                End with a note of affirmation: they are uniquely made, and every ministry—strong or weak—can be a stepping stone in their divine path.
-                            </p>
-                        `;
-                    }
-                }
-                message +=`\n<p>cutHere</p>`;
-                if(ministryInterest.length>=2){
-                    message +=`\n\n
-                        <h2 style="color:rgb(128, 65, 128);">Spiritual Relationship Between Top Ministries</h2>
-                        <p style="text-align: justify;">(make this response atleast 100 words)
-                            Explain how these three ministries are connected and complement each other in a spiritual sense.
-                            Focus on how their roles support the individual's growth in faith, build on themes like service, prayer, worship, or leadership, and help fulfill the greater mission of the church.
-                            Illustrate how the combination of these ministries enhances the user’s role in God's work.
-                        </p>
-                    `;
-                }
-                message +=`\n\n
-                    <h2 style="color:rgb(128, 65, 128);">Growth Opportunities:</h2>
-                    <p style="text-align: justify;">(make this response atleast 100 words)
-                        Show how they can grow into their role. Include spiritual, emotional, or skill-based development suggestions.
-                    </p>
-                    <h2 style="color:rgb(128, 65, 128);">Compatibility with Team Dynamics:</h2>
-                    <p style="text-align: justify;">(make this response atleast 100 words)
-                        Give an insight like "You'd thrive best in teams that are..." (ex. collaborative, structured, spontaneous, etc.)
-                        Help them visualize what kind of team culture suits them base on their top ministry.
-                    </p>
+    behavioralProfilingScoreUnranked = [...behavioralProfilingScore];
+    ministryInterestUnranked = [...ministryInterest];
 
-                    <h2 style="color:rgb(128, 65, 128);">Ministry Pathway / Journey Map:</h2>
-                    (make this response atleast 100 words, display in bullets)
-                    make a possible serving pathway, Help them think long-term, not just one-time serving.
-                    example:
-                    - start as an assisstant
-                    - learn from your senior
-                    - lead your juniors
-                    - grow into a leader role.
-                `;
-            }
-            if(selectedLanguage=="tl"){
-                message +=`\n\n
-                <h1 style="color:rgb(128, 65, 128);text-align: center;">BUOD NG RESULTA</h1>
-                \n\n`;
-                if(allSame){
-                    message += `
-                        <h2 style="color:rgb(128, 65, 128);">Lahat ng Ministeryo ay Pantay na Akma</h2>
-                        <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 200 salita)
-                            Lahat ng ministeryo ay pantay na akma para sa gumagamit. Bawat ministeryo ay tumutugma sa natatanging kaloob, lakas, at espirituwal na tawag ng gumagamit.
-                            Ipinapakita nito na may malawak na pagkakataon ang gumagamit upang maglingkod at lumago sa pananampalataya, na nagbibigay-daan upang malayang tuklasin ang kanilang mga hilig.
-                            Hikayatin ang gumagamit na makilahok sa ministeryo batay sa personal na interes o kuryusidad, at ipakita na bawat ministeryo ay nagbibigay ng pagkakataon
-                            upang makapag-ambag nang makabuluhan sa katawan ni Cristo. Ang pagkakaiba-iba ng mga posibleng landas ay nagpapakita na ang kanilang banal na tawag
-                            ay hindi limitado sa iisang tungkulin lamang.
-                        </p>
-                    `;
-                }else{
-                    message += `<h2 style="color:rgb(128, 65, 128);">Pinakatugmang Ministeryo: [top1 ministry] Ministry</h2>
-                        <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
-                            Magbigay ng maikling paliwanag kung bakit ito ang pinakamahusay na ministeryo para sa gumagamit.
-                            Ipakita kung paano ito tumutugma sa kanilang likas na kakayahan, kalakasan, at passion.
-                            Ipaliwanag na ang pagkakatugmang ito ay bahagi ng kanilang banal na tawag, na tila ginawa talaga para sa kanila ang ministeryong ito.
-                            Bigyang-diin ang pagkakatugma ng kanilang layunin at misyon ng ministeryong ito.
-                        </p>
-                    `;
-                    if(ministryInterest.length>=2){
-                        message +=`\n\n
-                            <h2 style="color:rgb(128, 65, 128);">Top 2 Tugmang Ministeryo: [top2 ministry] Ministry</h2>
-                            <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
-                                Magbigay ng maikling paliwanag kung bakit ito ang pangalawang pinakamahusay na ministeryo para sa gumagamit.
-                                Ituon sa kung paano nito pinupunan ang pangunahing ministeryo, at banggitin ang koneksyon nito.
-                                Muli, ipaliwanag na ang ministeryong ito ay tila bahagi rin ng kanilang banal na paglalakbay,
-                                isang bagay na kaayon ng kanilang natatanging kaloob at layunin sa buhay.
-                            </p>
-                        `;
-                    }
-                    if(ministryInterest.length>=3){
-                        message +=`\n\n
-                            <h2 style="color:rgb(128, 65, 128);">Top 3 Tugmang Ministeryo: [top3 ministry] Ministry</h2>
-                            <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
-                                Magbigay ng maikling paliwanag kung bakit ito ang pangatlong pinakamahusay na ministeryo para sa gumagamit.
-                                Ituon sa kung paano ito umaakma sa kanilang espirituwal na hilig at mga kakaibang ugali.
-                                Muli, ipaliwanag na ang ministeryong ito ay tila bahagi rin ng kanilang banal na paglalakbay,
-                                isang bagay na kaayon ng kanilang natatanging kaloob at layunin sa buhay.
-                            </p>
-                        `;
-                    }
-                    if(ministryInterest.length>=4){
-                        message +=`\n\n
-                            <h2 style="color:rgb(128, 65, 128);">Pinakamababang Pagkakatugmang Ministeryo: [Ministry] Ministry</h2>
-                            <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
-                                Magbigay ng maingat at may malasakit na paliwanag kung bakit maaaring ito ang pinakamababang ranggo para sa gumagamit.
-                                Bigyang-diin na bawat ministeryo ay mahalagang bahagi ng katawan ni Cristo, at ang mababang marka ay hindi nangangahulugang hindi sila karapat-dapat—ito lamang ay nagpapakita ng mas mababang pagkakatugma *sa kasalukuyan*.
-                                Hikayatin ang gumagamit na huwag itong ituring na kahinaan kundi bilang isang posibleng lugar para sa espirituwal na paglago.
-                                Tapusin sa isang pahayag ng pagpapatibay: sila ay natatanging nilikha, at bawat ministeryo—malakas man o mahina—ay maaaring maging hakbang patungo sa kanilang banal na landas.
-                            </p>
-                        `;
-                    }
-                }
-                message +=`\n<p>cutHere</p>`;
-                if(ministryInterest.length>=2){
-                    message +=`\n\n
-                        <h2 style="color:rgb(128, 65, 128);">Espirituwal na Ugnayan ng Nangungunang mga Ministeryo</h2>
-                        <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
-                            Ipaliwanag kung paano magkakaugnay at nagkukumpleto ang tatlong ministeryong ito sa espirituwal na pananaw.
-                            Ituon kung paano ang kanilang mga papel ay sumusuporta sa paglago ng pananampalataya ng gumagamit, binibigyang-diin ang mga tema gaya ng paglilingkod, panalangin, pagsamba, o pamumuno, at kung paano nila natutulungan na maisakatuparan ang mas malawak na misyon ng simbahan.
-                            Ilarawan kung paano pinapahusay ng kombinasyong ito ng mga ministeryo ang papel ng gumagamit sa gawain ng Diyos.
-                        </p>
-                    `;
-                }
-                message +=`\n\n
-                    <h2 style="color:rgb(128, 65, 128);">Mga Pagkakataon para sa Paglago:</h2>
-                    (Gawin itong tugon na may hindi bababa sa 100 salita.)
-                    <p style="text-align: justify;">Ipakita kung paano sila maaaring lumago sa kanilang papel. Isama ang espirituwal, emosyonal, o pag-unlad ng kasanayan.</p>
-                    <h2 style="color:rgb(128, 65, 128);">Pagiging Akma sa Dinamika ng Grupo:</h2>
-                    <p style="text-align: justify;">(Gawin itong tugon na may hindi bababa sa 100 salita.)
-                        Magbigay ng pananaw gaya ng "Mas uunlad ka sa mga grupong ganito..." (hal. kolaboratibo, may istruktura, kusang-loob, atbp.)
-                        Tulungan silang mailarawan kung anong uri ng kultura ng grupo ang babagay sa kanila batay sa kanilang pangunahing ministeryo.
-                    </p>
-                    <h2 style="color:rgb(128, 65, 128);">Landas o Journey Map sa Ministeryo:</h2>
-                    (Gawin itong tugon na may hindi bababa sa 100 salita. ilagay sa bullets)
-                    Gumawa ng posibleng landas ng paglilingkod, tulungan silang mag-isip ng pangmatagalan, hindi lang panandalian.
-                    halimbawa:
-                    - magsimula bilang isang katulong
-                    - matuto mula sa nakatatanda
-                    - manguna sa mga nakababatang kasamahan
-                    - lumago tungo sa isang posisyon ng pamumuno.
-                `;
-            }
-            try {
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
-                    },
-                    body: JSON.stringify({
-                        model: 'gpt-4o-mini',
-                        messages: [
-                            { role: 'system', content: 'You are a helpful church ministry assistant.' },
-                            { role: 'user', content: message }
-                        ],
-                        temperature: 0.7
-                    })
-                });
-                if (!response.ok) {
-                    const error = await response.text();
-                    throw new Error(`OpenAI API error: ${error}`);
-                }
-                const data = await response.json();
-                stopThinkingAnimation();
-                //Show response
-                let raw = data.choices[0].message.content;
-                // Remove starting ```html (or ```anything)
-                raw = raw.replace(/```[a-z]*\n?/gi, '');
-                // Remove ending ```
-                raw = raw.replace(/```/g, '');
-                // Replace line breaks with <br> for HTML display
-                raw = raw.replace(/\n/g, '<br>');
-                // cut the string
-                let keyword = "<p>cutHere</p>";
-                let index = raw.indexOf(keyword);
-                let part1 = ""; // top side
-                let part2 = ""; // bottom side
-                if (index !== -1) {
-                    part1 = raw.substring(0, index).trim();
-                    part2 = raw.substring(index + keyword.length).trim();
-                }
-                document.getElementById("part1").innerHTML = part1;
-                document.getElementById("part2").innerHTML = part2;
-            } catch (error) {
-                document.getElementById("step5").classList.remove("disable");
-                stopThinkingAnimation();
-                console.error("Error server side:", error);
-                let msg = error.message.includes("rate_limit_exceeded")
-                    ? "Please try again later."
-                    : error.message;
-                document.getElementById("responseDiv").innerHTML =
-                    `<span style="color:red;">Error: ${msg}</span>`;
+    // --- Check if all scores are identical ---
+    const allSame = behavioralProfilingScore.every(score => score === behavioralProfilingScore[0]);
+
+    // --- Sort ministries by score (descending) ---
+    for (let i = 0; i < behavioralProfilingScore.length - 1; i++) {
+        for (let j = i + 1; j < behavioralProfilingScore.length; j++) {
+            if (Number(behavioralProfilingScore[i]) < Number(behavioralProfilingScore[j])) {
+                [behavioralProfilingScore[i], behavioralProfilingScore[j]] = [behavioralProfilingScore[j], behavioralProfilingScore[i]];
+                [ministryInterest[i], ministryInterest[j]] = [ministryInterest[j], ministryInterest[i]];
             }
         }
+    }
+
+    // --- Assign ranks (handle ties) ---
+let ranked = [];
+let rank = 1;
+
+for (let i = 0; i < behavioralProfilingScore.length; i++) {
+    if (i > 0 && behavioralProfilingScore[i] === behavioralProfilingScore[i - 1]) {
+        ranked.push({
+            ministry: ministryInterest[i],
+            score: behavioralProfilingScore[i],
+            rank: ranked[i - 1].rank
+        });
+    } else {
+        ranked.push({
+            ministry: ministryInterest[i],
+            score: behavioralProfilingScore[i],
+            rank: rank
+        });
+    }
+    rank++;
+}
+
+// --- Find least-aligned ministries (handles ties) ---
+const minScore = ranked[ranked.length - 1]?.score ?? null;
+const leastMinistries = ranked
+    .filter(r => r.score === minScore)
+    .map(r => ({ ministry: r.ministry, rank: r.rank }));
+
+// --- Build top list excluding least-aligned ---
+const topMinistries = ranked
+    .filter(r => r.score !== minScore)
+    .map(r => ({ ministry: r.ministry, rank: r.rank }));
+
+// --- Build display strings ---
+const topList = topMinistries.map(m => `top ${m.rank} ${m.ministry}`).join(", ");
+const leastList = leastMinistries.map(m => `top ${m.rank} ${m.ministry}`).join(", ");
+
+// --- Save both top and least ministries with rank in localStorage ---
+localStorage.setItem("topMinistryList", JSON.stringify({
+    top: topMinistries.map(m => `top ${m.rank} ${m.ministry}`),
+    least: leastMinistries.map(m => `top ${m.rank} ${m.ministry}`)
+}));
+
+console.log("Top List:", topList);
+console.log("Least Aligned Ministries:", leastList);
+
+
+    // --- Build Message ---
+    if (allSame) {
+        message += `
+            \nAll ministries are equally matched for the user.
+            Encourage the user to explore based on personal interest or passion, as each ministry aligns with their divine calling.
+        `;
+    }
+
+    message += `
+        \nlist: ${topList}\n
+        \nleast ministry: ${leastMinistries.join(", ")}\n
+        Your task is to interpret the results focusing on the user's divine calling, alignment with strengths and purpose.
+        Include a spiritual connection between the top 3 ministries, emphasizing their complementary roles.
+    `;
+
+    // --- ENGLISH OUTPUT ---
+    if (selectedLanguage === "en") {
+        message += `<h1 style="color:rgb(128,65,128);text-align:center;">CALLING AND SERVICE PROFILE</h1>`;
+
+        if (allSame) {
+            message += `
+                <h2 style="color:rgb(128,65,128);">All Ministries Equally Aligned</h2>
+                <p style="text-align:justify;">(at least 200 words)
+                    All ministries are equally matched for the user. Each ministry aligns with the user's unique gifts, strengths, and spiritual calling.
+                    This suggests they have the freedom to explore any ministry where they feel called to serve.
+                </p>
+            `;
+        } else {
+            // Group ministries by rank
+            const groupedRanks = {};
+            ranked.forEach(item => {
+                if (!groupedRanks[item.rank]) groupedRanks[item.rank] = [];
+                groupedRanks[item.rank].push(item.ministry);
+            });
+
+            // Top 1–3 with explanations
+            for (let r = 1; r <= 3; r++) {
+                if (groupedRanks[r]) {
+                    const ministries = groupedRanks[r].join(", ");
+                    const plural = groupedRanks[r].length > 1 ? "Ministries" : "Ministry";
+
+                    if (r === 1) {
+                        message += `
+                            <h2 style="color:rgb(128,65,128);">Best Fit: ${ministries} ${plural}</h2>
+                            <p style="text-align:justify;">(at least 100 words)
+                                Explain why ${ministries} ${groupedRanks[r].length > 1 ? "are" : "is"} the user's top fit. Highlight alignment with strengths, calling, and purpose.
+                            </p>
+                        `;
+                    } else if (r === 2) {
+                        message += `
+                            <h2 style="color:rgb(128,65,128);">Top 2: ${ministries} ${plural}</h2>
+                            <p style="text-align:justify;">(at least 100 words)
+                                Explain why ${ministries} ${groupedRanks[r].length > 1 ? "are" : "is"} the second-best fit and how ${groupedRanks[r].length > 1 ? "they complement" : "it complements"} the top ministry.
+                            </p>
+                        `;
+                    } else if (r === 3) {
+                        message += `
+                            <h2 style="color:rgb(128,65,128);">Top 3: ${ministries} ${plural}</h2>
+                            <p style="text-align:justify;">(at least 100 words)
+                                Explain how ${ministries} ${groupedRanks[r].length > 1 ? "align with" : "fits"} the user's spiritual character and support${groupedRanks[r].length > 1 ? "" : "s"} their faith journey.
+                            </p>
+                        `;
+                    }
+                }
+            }
+
+            // Top 4–last (excluding least)
+            const otherMinistries = ranked.slice(3).filter(r => r.score !== minScore);
+            if (otherMinistries.length > 0) {
+                message += `
+                    <h2 style="color:rgb(128,65,128);">Other Ministries (Ranked)</h2>
+                    <ul>
+                        ${otherMinistries.map(r => `<li>Top ${r.rank}: ${r.ministry} Ministry</li>`).join("")}
+                    </ul>
+                `;
+            }
+
+            // Least-aligned
+            if (leastMinistries.length > 0) {
+                // Build display string WITHOUT rank
+                const leastDisplay = leastMinistries
+                    .map(m => m.ministry)
+                    .join(', ');
+
+                message += `
+                    <h2 style="color:rgb(128,65,128);">
+                        Least Aligned Ministr${leastMinistries.length > 1 ? 'ies' : 'y'}: ${leastDisplay}
+                    </h2>
+                    <p style="text-align:justify;">(at least 100 words)
+                        Reflect on why these ministr${leastMinistries.length > 1 ? 'ies' : 'y'} may rank lowest. Emphasize growth and encouragement.
+                    </p>
+                `;
+            }
+        }
+
+        // Always show chart
+        message += `<p style="text-align:center;">[Insert Chart Here]</p><p>cutHere</p>`;
+
+        if (ministryInterest.length > 1) {
+            message += `
+                <h2 style="color:rgb(128,65,128);">Spiritual Relationship Between Top Ministries</h2>
+                <p style="text-align:justify;">(at least 100 words)
+                    Explain how these ministries connect and complement each other in spiritual growth and purpose.
+                </p>
+            `;
+        }
+
+        // Growth and journey
+        message += `
+            <h2 style="color:rgb(128,65,128);">Growth Opportunities:</h2>
+            <p style="text-align:justify;">(at least 100 words)
+                Suggest how they can grow in this ministry spiritually, emotionally, and skill-wise.
+            </p>
+            <h2 style="color:rgb(128,65,128);">Ministry Pathway / Journey Map:</h2>
+            <p style="text-align:justify;">(at least 100 words)</p>
+            <ul>
+                <li>Start as an assistant</li>
+                <li>Learn from mentors</li>
+                <li>Lead small groups or tasks</li>
+                <li>Grow into a leadership role</li>
+            </ul>
+        `;
+    }
+
+    // --- TAGALOG OUTPUT ---
+    else if (selectedLanguage === "tl") {
+        message += `<h1 style="color:rgb(128,65,128);text-align:center;">PROFIL NG PAGTAWAG AT PAGLILINGKOD</h1>`;
+
+        if (allSame) {
+            message += `
+                <h2 style="color:rgb(128,65,128);">Pantay-pantay ang Lahat ng Ministry</h2>
+                <p style="text-align:justify;">(hindi bababa sa 200 salita)
+                    Ang lahat ng ministry ay pantay-pantay para sa gumagamit. Ipinapakita nito na maraming posibleng larangan ng paglilingkod na tugma sa kanilang mga kakayahan at tawag ng Diyos.
+                    Maaari silang pumili ayon sa kung saan nila nararamdaman ang pinaka-malakas na pagtawag ng Espiritu.
+                </p>
+            `;
+        } else {
+            const groupedRanks = {};
+            ranked.forEach(item => {
+                if (!groupedRanks[item.rank]) groupedRanks[item.rank] = [];
+                groupedRanks[item.rank].push(item.ministry);
+            });
+
+            for (let r = 1; r <= 3; r++) {
+                if (groupedRanks[r]) {
+                    const ministries = groupedRanks[r].join(", ");
+                    const plural = groupedRanks[r].length > 1 ? "mga Ministry" : "Ministry";
+
+                    if (r === 1) {
+                        message += `
+                            <h2 style="color:rgb(128,65,128);">Pinakamainam na Tugma: ${ministries} ${plural}</h2>
+                            <p style="text-align:justify;">(hindi bababa sa 100 salita)
+                                Ilarawan kung bakit ang ${ministries} ${groupedRanks[r].length > 1 ? "ang mga ito ay" : "ito ay"} pinaka-tugma sa kakayahan, karakter, at tawag ng Diyos sa buhay ng gumagamit.
+                            </p>
+                        `;
+                    } else if (r === 2) {
+                        message += `
+                            <h2 style="color:rgb(128,65,128);">Pangalawang Tugma: ${ministries} ${plural}</h2>
+                            <p style="text-align:justify;">(hindi bababa sa 100 salita)
+                                Ilarawan kung bakit ang ${ministries} ${groupedRanks[r].length > 1 ? "ay" : "ay"} pangalawang pinakamainam na tugma at kung paano ${groupedRanks[r].length > 1 ? "nakatutulong ang mga ito" : "ito ay nakatutulong"} sa pangunahing ministry.
+                            </p>
+                        `;
+                    } else if (r === 3) {
+                        message += `
+                            <h2 style="color:rgb(128,65,128);">Ikatlong Tugma: ${ministries} ${plural}</h2>
+                            <p style="text-align:justify;">(hindi bababa sa 100 salita)
+                                Ilarawan kung paano ${ministries} ${groupedRanks[r].length > 1 ? "ay" : "ay"} umaayon sa espiritwal na karakter at paglago ng pananampalataya ng gumagamit.
+                            </p>
+                        `;
+                    }
+                }
+            }
+
+            const otherMinistries = ranked.slice(3).filter(r => r.score !== minScore);
+            if (otherMinistries.length > 0) {
+                message += `
+                    <h2 style="color:rgb(128,65,128);">Iba pang mga Ministry (na may ranggo)</h2>
+                    <ul>
+                        ${otherMinistries.map(r => `<li>Top ${r.rank}: ${r.ministry} Ministry</li>`).join("")}
+                    </ul>
+                `;
+            }
+
+            if (leastMinistries.length > 0) {
+                // Build display string WITHOUT rank
+                const leastDisplay = leastMinistries
+                    .map(m => m.ministry)
+                    .join(', ');
+
+                message += `
+                    <h2 style="color:rgb(128,65,128);">
+                        Pinakahuling Tugma: ${leastDisplay}
+                    </h2>
+                    <p style="text-align:justify;">(hindi bababa sa 100 salita)
+                        Ilarawan kung bakit maaaring ito ang pinakahuling tugma at magbigay ng payo para sa paglago at pagsasanay.
+                    </p>
+                `;
+            }
+        }
+
+        message += `<p style="text-align:center;">[Ilagay ang Chart Dito]</p><p>cutHere</p>`;
+
+        if (ministryInterest.length > 1) {
+            message += `
+                <h2 style="color:rgb(128,65,128);">Espiritwal na Ugnayan ng mga Nangungunang Ministry</h2>
+                <p style="text-align:justify;">(hindi bababa sa 100 salita)
+                    Ilarawan kung paano nag-uugnay at nagtutulungan ang mga ministry na ito sa paglago ng pananampalataya at misyon ng gumagamit.
+                </p>
+            `;
+        }
+
+        message += `
+            <h2 style="color:rgb(128,65,128);">Mga Pagkakataon para sa Paglago:</h2>
+            <p style="text-align:justify;">(hindi bababa sa 100 salita)
+                Magmungkahi kung paano sila maaaring lumago sa espiritwal, emosyonal, at sa kanilang mga kakayahan habang naglilingkod.
+            </p>
+            <h2 style="color:rgb(128,65,128);">Landas ng Ministeryo / Mapa ng Paglalakbay:</h2>
+            <p style="text-align:justify;">(hindi bababa sa 100 salita)</p>
+            <ul>
+                <li>Magsimula bilang katulong</li>
+                <li>Matuto mula sa mga tagapagturo</li>
+                <li>Mamuno sa maliliit na grupo o gawain</li>
+                <li>Umangat patungo sa pamumuno</li>
+            </ul>
+        `;
+    }
+
+    // --- SEND TO OPENAI ---
+    try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: 'gpt-4o-mini',
+                messages: [
+                    { role: 'system', content: 'You are a helpful church ministry assistant.' },
+                    { role: 'user', content: message }
+                ],
+                temperature: 0.7
+            })
+        });
+
+        if (!response.ok) {
+            const error = await response.text();
+            throw new Error(`OpenAI API error: ${error}`);
+        }
+
+        const data = await response.json();
+        stopThinkingAnimation();
+
+        let raw = data.choices[0].message.content;
+        raw = raw.replace(/```[a-z]*\n?/gi, '').replace(/```/g, '').replace(/\n/g, '<br>');
+
+        const keyword = "<p>cutHere</p>";
+        const index = raw.indexOf(keyword);
+        const part1 = index !== -1 ? raw.substring(0, index).trim() : raw;
+        const part2 = index !== -1 ? raw.substring(index + keyword.length).trim() : "";
+
+        document.getElementById("part1").innerHTML = part1;
+        document.getElementById("part2").innerHTML = part2;
+
+        setTimeout(function() {
+                document.getElementById("personalInfoDivOverlay").style.display = "block";
+        }, 500);
+
+        
+
+    } catch (error) {
+        document.getElementById("step5").classList.remove("disable");
+        stopThinkingAnimation();
+        console.error("Error server side:", error);
+        let msg = error.message.includes("rate_limit_exceeded") ? "Please try again later." : error.message;
+        document.getElementById("responseDiv").innerHTML = `<span style="color:red;">Error: ${msg}</span>`;
+    }
+}
+
+
+
         //charts
         function displayChart() {
             let fontSize = 16;
@@ -2210,6 +2313,93 @@
                 }
             });
         }
+
+
+
+
+
+
+
+
+        //personal info report
+        function saveUserReport() {
+    const churchName = selectedChurch;
+    const name = document.getElementById('userName').value.trim();
+    const email = document.getElementById('userEmail').value.trim();
+
+    if (!name || !email) {
+        showMessage('Please fill in both Name and Email.', 'error');
+        return;
+    }
+
+    // Demographic data
+    const phase1 = JSON.parse(localStorage.getItem("phase1")) || {};
+    const gender = phase1.gender || "";
+    const age = phase1.age || "";
+    const marital = phase1.status || "";
+    const baptized = phase1.baptized || "";
+    const timeInFaith = phase1.timeInFaith || "";
+
+    // Skill data
+    const skillIndices = JSON.parse(localStorage.getItem("phase2")) || [];
+    const skills = {
+        music: skillIndices.includes(1) ? 1 : 0,
+        technology: skillIndices.includes(2) ? 1 : 0,
+        writing: skillIndices.includes(3) ? 1 : 0,
+        technical: skillIndices.includes(4) ? 1 : 0,
+        speaking: skillIndices.includes(5) ? 1 : 0,
+        accounting: skillIndices.includes(6) ? 1 : 0,
+        mentoring: skillIndices.includes(7) ? 1 : 0,
+        bibleKnowledge: skillIndices.includes(8) ? 1 : 0
+    };
+
+    // Eligible ministries (convert to comma-separated string)
+    const ministryRankings = JSON.parse(localStorage.getItem("topMinistryList")) || { top: [], least: [] };
+    const cleanTop = ministryRankings.top.map(m => m.replace(/^top \d+\s*/, '').trim());
+    const cleanLeast = ministryRankings.least.map(m => m.replace(/^top \d+\s*/, '').trim());
+    const eligibleMinistry = [...cleanTop, ...cleanLeast].join(', '); // now a single string
+console.log(eligibleMinistry);
+    // Prepare data
+    const postData = {
+        churchName,
+        name,
+        email,
+        ...skills,
+        eligibleMinistry, // string now
+        gender,
+        age,
+        marital,
+        baptized,
+        timeInFaith
+    };
+
+    // Send to PHP
+    fetch('php-createUserReport.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(postData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            showMessage('User report saved successfully!', 'success');
+            document.getElementById("personalInfoDivOverlay").style.display = "none";
+        } else {
+            showMessage('Error: ' + (data.error || 'Unknown error'), 'error');
+        }
+    })
+    .catch(err => console.error('Fetch error:', err));
+}
+
+
+
+
+
+
+
+
+
+
         //export result
         function exportResult() {
             const { jsPDF } = window.jspdf;
@@ -2230,7 +2420,7 @@
 
             let genderData = (gender == 1) ? "Male" : (gender == 2) ? "Female" : "None";
             let statusData = (status == 1) ? "Single" : (status == 2) ? "Married" : "None";
-            let baptizedData = (baptized == 1) ? "No" : (baptized == 2) ? "Yes" : "None";
+            let baptizedData = (baptized == 1) ? "Yes" : (baptized == 2) ? "No" : "None";
             let timeInFaithData = (timeInFaith == 1) ? "New" : (timeInFaith == 2) ? "6 months" : (timeInFaith == 3) ? "1+ year" : "None";
             const skillMap = {
                 1: "Musical skills",
@@ -2243,7 +2433,15 @@
                 8: "Knowledge in Scriptures"
             };
             let skillsData = (skill.length > 0) ? (skill.map(num => skillMap[num] || "None")) : ["None"];
-            let eligibleMinistriesData = ministryRankings? ministryRankings.split(",").map(item => item.trim() + " Ministry") : ["None"];
+            let ministryRankingsData = JSON.parse(localStorage.getItem("topMinistryList")) || { top: [], least: [] };
+            // Combine top and least ministries into one array
+            let eligibleMinistriesData = [...ministryRankingsData.top, ...ministryRankingsData.least];
+            // If there’s nothing, default to ["None"]
+            if (eligibleMinistriesData.length === 0) {
+                eligibleMinistriesData = ["None"];
+            } else {
+                eligibleMinistriesData = eligibleMinistriesData.map(item => item + " Ministry");
+            }
             let y = 20;// cursor
             // ===== Title =====
             doc.setFont("helvetica", "bold");
@@ -2361,12 +2559,19 @@
             }, 500);
         }
         function stopThinkingAnimation() {
-            clearInterval(thinkingInterval);
-            document.getElementById("thinking").style.display = "none";
-            document.getElementById("step5").classList.remove("disable");
-            document.getElementById("exportBtn").classList.remove("disable");
-            displayChart();
-        }
+    clearInterval(thinkingInterval);
+
+    const thinkingEl = document.getElementById("thinking");
+    if (thinkingEl) thinkingEl.style.display = "none";
+
+    const step5El = document.getElementById("step5");
+    if (step5El) step5El.classList.remove("disable");
+
+    const exportBtnEl = document.getElementById("exportBtn");
+    if (exportBtnEl) exportBtnEl.classList.remove("disable");
+
+    displayChart();
+}
     //show puzzle
         function showPuzzle(side){
             document.getElementById(side).classList.add("showPiece");
@@ -2388,6 +2593,13 @@
         }, { threshold: 0.1 });
         moveUp.forEach(el => upObserver.observe(el));
     //error handling
+        function showMessage(text, type = 'info') {
+            const message = document.getElementById("messageAlert");
+            message.textContent = text;
+            message.className = `messageAlert ${type}`; // fixed to match your CSS
+            message.style.opacity = 1;
+            setTimeout(() => (message.style.opacity = 0), 3000);
+        }
     // Catch errors in synchronous code
         function errorFound(msg){
             localStorage.clear();
@@ -2417,7 +2629,7 @@
         };
         // Catch errors in promises/async
         window.onunhandledrejection = function(event) {
-            console.error("Unhandled promise error:", event.reason);
+            console.warn("Unhandled promise error:", event.reason);
             localStorage.clear();
             document.getElementById("overlay").style.display = "block";
             if(selectedLanguage=="en"){

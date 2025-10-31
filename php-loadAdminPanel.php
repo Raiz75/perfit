@@ -126,7 +126,6 @@ while ($row = $resultInterest->fetch_assoc()) {
 }
 $stmtInterest->close();
 
-
 // Step 6: Get Behavioral questions with ministry name
 $sqlBehavioral = "
     SELECT 
@@ -153,16 +152,106 @@ while ($row = $resultBehavioral->fetch_assoc()) {
 }
 $stmtBehavioral->close();
 
+// Step 7: Get User Reports
+$sqlReports = "
+    SELECT 
+        ur.userReportID,
+        ur.churchName,
+        ur.email,
+        ur.name,
+        ur.music,
+        ur.technology,
+        ur.writing,
+        ur.technical,
+        ur.speaking,
+        ur.accounting,
+        ur.mentoring,
+        ur.bibleKnowledge,
+        ur.eligibleMinistry,
+        ur.gender,
+        ur.age,
+        ur.marital,
+        ur.baptized,
+        ur.timeInFaith
+    FROM user_report ur
+    WHERE ur.churchName = ?
+    ORDER BY ur.userReportID DESC
+";
+$stmtReports = $conn->prepare($sqlReports);
+$stmtReports->bind_param("s", $churchName);
+$stmtReports->execute();
+$resultReports = $stmtReports->get_result();
+
+$userReports = [];
+while ($row = $resultReports->fetch_assoc()) {
+    // ✅ Combine skills dynamically
+    $skillsList = [];
+
+    $skillLabels = [
+        'music' => 'Music',
+        'technology' => 'Technology',
+        'writing' => 'Writing',
+        'technical' => 'Technical',
+        'speaking' => 'Speaking',
+        'accounting' => 'Accounting',
+        'mentoring' => 'Mentoring',
+        'bibleKnowledge' => 'Bible Knowledge'
+    ];
+
+    foreach ($skillLabels as $key => $label) {
+        if (!empty($row[$key]) && $row[$key] == 1) {
+            $skillsList[] = $label;
+        }
+        unset($row[$key]); // Remove raw numeric skill fields
+    }
+
+    $row['skills'] = implode(', ', $skillsList); // e.g. "Music, Technology, Mentoring"
+
+    // ✅ Convert coded values into readable text
+    $row['gender'] = match ($row['gender']) {
+        1 => 'Male',
+        2 => 'Female',
+        default => '-'
+    };
+
+    $row['baptized'] = match ($row['baptized']) {
+        1 => 'Yes',
+        2 => 'No',
+        default => '-'
+    };
+
+    $row['timeInFaith'] = match ($row['timeInFaith']) {
+        1 => '1+ Week',
+        2 => '6+ Months',
+        3 => '1+ Year',
+        4 => '2+ Years',
+        default => '-'
+    };
+
+    $row['marital'] = match ($row['marital']){
+        1 => 'Single',
+        2 => 'Married',
+        default => '-'
+    };
+
+    $userReports[] = $row;
+}
+
+$stmtReports->close();
 
 
-// ✅ Combine everything
+
+
+
+// Combine everything
 $response = [
     'churchName' => $churchName,
     'ministries' => $ministries,
     'skills' => $skills,
     'questions' => $questions,
     'interestQuestions' => $interestQuestions,
-    'behavioralQuestions' => $behavioralQuestions
+    'behavioralQuestions' => $behavioralQuestions,
+    'userReports' => $userReports
 ];
 
 echo json_encode($response);
