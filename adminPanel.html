@@ -6,9 +6,12 @@
     <link rel="icon" type="image/png" href="img/icn-logo.png">
     <title>PERFIT</title>
     <style>
-        :root{
-            --a: rgb(128, 65, 128);
-            --b: rgb(255, 223, 255);
+        :root {
+            --a: rgb(128, 65, 128);   /* main color - deep plum */
+            --c: rgb(150, 85, 150);   /* rich purple */
+            --d: rgb(170, 105, 170);  /* medium purple */
+            --e: rgb(190, 130, 190);  /* soft purple */
+            --b: rgb(255, 223, 255);  /* secondary - baby pink */
         }
         * {box-sizing: border-box;}
         body {
@@ -54,7 +57,7 @@
             height: 20%;
             background: transparent ;
             border: transparent;
-            border-bottom: 2px solid #ccc;
+            border-bottom: 2px solid transparent;
             font-size: 2.5rem;
             color: var(--a);
             transition: 0.3s ease-in-out;
@@ -103,21 +106,89 @@
             border-radius: 4px;
         }
         /* admin dashboard */
-        .dashboardDiv{
+        .dashboardDiv1{
             width: 90%;
-            margin: 25px auto 50px auto;
+            margin: 10px auto;
+            background-color: white;
+            color: var(--a);
+            box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
+            border-radius: 12px;
+            border: 3px solid var(--a);
+        }
+        .reportBtnDiv{
+            text-align: right;
+        }
+        .reportBtnDiv h1{
+            text-align: center;
+        }
+        .reportBtnDiv button{
+            margin-right: 30px;
+        }
+        .fChartsDiv{
+            display: flex;
+            margin: 10px;
+        }
+        .chartDiv{
+            border: 3px solid var(--b);
+            border-radius: 12px;
+            margin: 10px auto;
+            width: 40%;
+            position: relative;
+            padding: 10px;
+        }
+        .textReport{
+            border-bottom: 3px solid var(--b);
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .textReport div{
+            width: 40%;
+            text-align: center;
+            margin: auto;
+        }
+        .textReport img{
+            width: 20%;
+            margin-right: 3%;
+        }
+        .textReport h3{
+            font-size: 1.5rem;
+        }
+        .textReport span{
+            font-size: 2rem;
+        }
+        /* .genBtnDiv{
+            border: 1px solid red;
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+        }
+        .chartDiv button{
+            width: 45%;
+            margin: auto;
+            
+        } */
+        /* .editPolicy{
+            display: none;
+        } */
+        
+        
+        .dashboardDiv2{
+            width: 90%;
+            margin: 10px auto;
             background-color: white;
             color: var(--a);
             box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
             border-top-left-radius: 12px;
             border-bottom-left-radius: 12px;
-        }
-        .userReportTableDiv{
-            border:3px solid var(--a);
-            border-top-left-radius: 12px;
-            border-bottom-left-radius: 12px;
+            font-size: 1rem;
             max-height: 500px;
             overflow-x: auto;
+            border: 3px solid var(--a);
+        }
+        .userReportTableDiv{
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
         }
         .userReportTable {
             width: 100%;
@@ -479,7 +550,10 @@
             0%   { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        /* disable button */
+        /* disable/remove button */
+        .remove{
+            display: none;
+        }
         .disable{
             pointer-events: none;
             border: 3px solid grey;
@@ -517,6 +591,16 @@
             }
             .logoutBox, .resetBox, .changePassBox{min-width: 50%;}
             .btnBox button{font-size: 1rem;}
+            .reportBtnDiv h1{
+                font-size: 2rem;
+            }
+            .chartDiv{
+                font-size: 1rem;
+            }
+            .userReportTableDiv {
+                min-width: 1200px;
+                border-collapse: collapse;
+            }
         }
         @media (max-width: 480px) {
             .top{
@@ -534,16 +618,38 @@
                 color: var(--a);
                 text-align: center;
             }
-            .demographicsDiv, .skillsDiv1, .skillsDiv2, .interestDiv, .behavioralDiv {
+            .fChartsDiv{
+                display: flex;
+                flex-direction: column;
+            }
+            .chartDiv{
+                width: 90%;
+            }
+            .reportBtnDiv h1{
+                font-size: 2rem;
+            }
+            .reportBtnDiv{
+                text-align: center;
+            }
+            .reportBtnDiv button{
+                margin-right: 0px;
+            }
+            .textReport h3{
+                font-size: .8rem;
+                margin: auto;
+            }
+            .textReport span{
+                font-size: 1rem;
+            }
+            .demographicsDiv, .skillsDiv1, .skillsDiv2, .interestDiv, .behavioralDiv, .dashboardDiv2{
                 width: 90%;
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
+                border-radius: 12px;
             }
             .demographicsDiv table, .skillsDiv1 table, .skillsDiv2 table, .interestDiv table, .behavioralDiv table {
                 min-width: 800px;
                 border-collapse: collapse;
-                border-left: 3px solid var(--a);
-                border-right: 3px solid var(--a);
             }
             .logoutBox, .resetBox, .changePassBox{min-width: 90%;}
             .overlayLoad p{font-size: 1rem;}
@@ -596,7 +702,7 @@
                     <th>Gender Restriction</th>
                     <th>Age Restriction</th>
                     <th>Marital Status Restriction</th>
-                    <th>Baptist Status Restriction</th>
+                    <th>Baptized Status Restriction</th>
                     <th>Time in Faith Restriction</th>
                 </tr>
             </thead>
@@ -605,29 +711,64 @@
     </div>
     <!-- admin dashboard -->
     <div class="dashboardDiv section" id="dashboardDiv">
-
-        <div class="userReportTableDiv">
-            <table class="userReportTable" id="userReportTable">
-                <caption>User Report Table</caption>
-                <thead>
-                    <tr>
-                        <th>User Report ID</th>
-                        <th>Church Name</th>
-                        <th>Email</th>
-                        <th>Name</th>
-                        <th>Skills</th>
-                        <th>Eligible Ministry</th>
-                        <th>Gender</th>
-                        <th>Age</th>
-                        <th>Marirtal Status</th>
-                        <th>Baptized status</th>
-                        <th>Time In Faith</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+        <!-- charts -->
+        <div class="dashboardDiv1" id="dashboardDiv1">
+            <div class="reportBtnDiv">
+                <h1>User Report Charts</h1>
+                <button id="generateReportBtn">Generate Report</button>
+            </div>
+            <div class="textReport">
+                    <div><img src="img/icn-userCount.png"><h3>Total Takers<br><span id="userTakeCount">0</span></h3></div>
+                    <div><img src="img/icn-submissionCount.png"><h3>Submission Today<br><span id="userTodayCount">0</span></h3></div>
+                </div>
+            <div class="fChartsDiv">
+                <div class="chartDiv"><canvas id="genderChart"></canvas></div>
+                <div class="chartDiv"><canvas id="ministryChart"></canvas></div>
+            </div>
+            <div class="fChartsDiv">
+                <div class="chartDiv"><canvas id="skillsChart"></canvas></div>
+                <div class="chartDiv"><canvas id="faithChart"></canvas></div>
+            </div>
+            <div class="fChartsDiv">
+                <div class="chartDiv"><canvas id="ageChart"></canvas></div>
+                <div class="chartDiv"><canvas id="baptizedChart"></canvas></div>
+            </div>
+            <div class="fChartsDiv">
+                <div class="chartDiv"><canvas id="maritalChart"></canvas></div>
+                <!-- <div class="chartDiv">
+                    <div><img src="img/icn-userCount.png"><h3>Total Takers: <span id="userTakeCount">0</span></h3></div>
+                    <div><img src="img/icn-submissionCount.png"><h3>Submission Today: <span id="userTodayCount">0</span></h3></div>
+                    <div class="genBtnDiv">
+                        <button class="editPolicy noToSubAdmin" id="editPolicy">Edit Privacy Policy</button>
+                    </div>
+                </div> -->
+            </div>
         </div>
-        
+        <!-- user reports -->
+        <div class="dashboardDiv2" id="dashboardDiv2">
+            <div class="userReportTableDiv">
+                <table class="userReportTable" id="userReportTable">
+                    <caption>User Report Table</caption>
+                    <thead>
+                        <tr>
+                            <th>User Report ID</th>
+                            <th>Church Name</th>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>Skills</th>
+                            <th>Eligible Ministry</th>
+                            <th>Gender</th>
+                            <th>Age</th>
+                            <th>Marirtal Status</th>
+                            <th>Baptized status</th>
+                            <th>Time In Faith</th>
+                            <th>Date of Submission</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
     </div>
     <!-- Skills profiling -->
     <div class="skillsDiv section" id="skillsDiv">
@@ -684,8 +825,6 @@
             </table>
         </div>
     </div>
-
-    
     <!-- interest and Passion profiling -->
     <div class="interestDiv section" id="interestDiv">
         <div class="saveDeleteBtnDiv">
@@ -786,6 +925,13 @@
             </div>
         </div>
     </div>
+    <!-- chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- report generation -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.1/jspdf.plugin.autotable.min.js"></script>
+
     <script>
         const message = document.getElementById("message");
     //no acc no panel
@@ -817,9 +963,14 @@
                 const adminEmail = data.email;
                 if (adminEmail === "admin@admin") {
                     document.querySelectorAll(".noToAdmin").forEach(btn => {
-                        btn.classList.add("disable");
+                        btn.classList.add("remove");
                     });
                 }
+                // else{
+                //     document.querySelectorAll(".noToSubAdmin").forEach(btn => {
+                //         btn.classList.add("disable");
+                //     });
+                // }
             })
             .catch(() => {
                 console.error("Session check failed — possible network or server issue.");
@@ -932,7 +1083,7 @@
                         };
                     });
                     break;
-                case "skillsTab":
+                case "skillsTab1":
                     // === Save Skill Restrictions ===
                     const skillRows = document.querySelectorAll("#skillsRestrictions tbody tr");
                     data.skillsTab = Array.from(skillRows).map((row, index) => {
@@ -944,6 +1095,9 @@
                         });
                         return { ministryID: i, ...skillData };
                     });
+                    
+                    break;
+                case "skillsTab2":
                     // === Skill Questions ===
                     const skillQRows = document.querySelectorAll("#skillsQuestions tbody tr");
                     data.skillQuestionsTab = Array.from(skillQRows).map(row => {
@@ -1029,7 +1183,7 @@
             })
             .catch(() => {});
         }
-    //display data
+    //display admin datas
         fetch("php-loadAdminPanel.php")
         .then(response => response.json())
         .then(data => {
@@ -1037,169 +1191,501 @@
                 console.error(data.error);
                 return;
             }
-            document.getElementById("churchName").value = data.churchName || "";
-            const tbody = document.querySelector("#demographicsRestrictions tbody");
-            tbody.innerHTML = "";
-            data.ministries.forEach((m, index) => {
-                const i = index + 1;
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${m.ministryName}</td>
-                    <td>
-                        <label><input type="radio" name="gender${i}" value="1" ${m.gender == 1 ? "checked" : ""}> Male Only</label>
-                        <label><input type="radio" name="gender${i}" value="2" ${m.gender == 2 ? "checked" : ""}> Female Only</label>
-                        <label><input type="radio" name="gender${i}" value="0" ${m.gender == 0 ? "checked" : ""}> No Restriction</label>
-                    </td>
-                    <td>
-                        <input type="number" name="age1${i}" min="1" max="99" value="${m.age1 || ''}" placeholder="Age">
-                        <p>-to-</p>
-                        <input type="number" name="age2${i}" min="1" max="99" value="${m.age2 || ''}" placeholder="Age">
-                    </td>
-                    <td>
-                        <label><input type="radio" name="marital${i}" value="1" ${m.marital == 1 ? "checked" : ""}> Single Only</label>
-                        <label><input type="radio" name="marital${i}" value="2" ${m.marital == 2 ? "checked" : ""}> Married Only</label>
-                        <label><input type="radio" name="marital${i}" value="0" ${m.marital == 0 ? "checked" : ""}> No Restriction</label>
-                    </td>
-                    <td>
-                        <label><input type="radio" name="baptized${i}" value="1" ${m.baptized == 1 ? "checked" : ""}> Baptized Only</label>
-                        <label><input type="radio" name="baptized${i}" value="2" ${m.baptized == 2 ? "checked" : ""}> No Restriction</label>
-                    </td>
-                    <td>
-                        <label><input type="radio" name="faith${i}" value="1" ${m.timeInFaith == 1 ? "checked" : ""}> 1 Week</label>
-                        <label><input type="radio" name="faith${i}" value="2" ${m.timeInFaith == 2 ? "checked" : ""}> 6 Months</label>
-                        <label><input type="radio" name="faith${i}" value="3" ${m.timeInFaith == 3 ? "checked" : ""}> 1 Year</label>
-                        <label><input type="radio" name="faith${i}" value="4" ${m.timeInFaith == 4 ? "checked" : ""}> 2 Years</label>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-            // Display skills restrictions
-            const skillsTbody = document.querySelector("#skillsRestrictions tbody");
-            skillsTbody.innerHTML = "";
+            const charts = data.charts || {};
+            const colorA = getComputedStyle(document.documentElement).getPropertyValue('--a').trim();
+            const colorB = getComputedStyle(document.documentElement).getPropertyValue('--c').trim();
+            const colorC = getComputedStyle(document.documentElement).getPropertyValue('--d').trim();
+            const colorD = getComputedStyle(document.documentElement).getPropertyValue('--e').trim();
+            const colorE = getComputedStyle(document.documentElement).getPropertyValue('--b').trim();
 
-            data.skills.forEach((s, index) => {
-                const i = index + 1;
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${s.ministryName}</td>
-                    ${['music','technology','writing','technical','speaking','accounting','mentoring','bibleKnowledge'].map(skill =>
-                        `<td>
-                            <label><input type="radio" name="${skill}${i}" value="1" ${s[skill] == 1 ? "checked" : ""}> Required</label><br>
-                            <label><input type="radio" name="${skill}${i}" value="0" ${s[skill] == 0 ? "checked" : ""}> Not required</label>
-                        </td>`
-                    ).join('')}
-                `;
-                skillsTbody.appendChild(row);
-            });
-            // Display skill profiling questions
-            const skillsQtbody = document.querySelector("#skillsQuestions tbody");
-            skillsQtbody.innerHTML = "";
-            data.questions.forEach((q, index) => {
-                const row = document.createElement("tr");
-                // Only show the ministry name cell on the first row of each group of 5
-                if (index % 5 === 0) {
-                    row.innerHTML = `
-                        <td class="num" rowspan="5">${q.skillName}</td>
-                        <td class="num">${q.skillQuestionNum}</td>
-                        <td class='q' contenteditable="true" id="qEN${q.skillQuestionNum}">${q.skillQuestionEN}</td>
-                        <td class='q' contenteditable="true" id="qTL${q.skillQuestionNum}">${q.skillQuestionTL}</td>
-                    `;
-                } else {
-                    row.innerHTML = `
-                        <td class="num">${q.skillQuestionNum}</td>
-                        <td contenteditable="true" id="qEN${q.skillQuestionNum}">${q.skillQuestionEN}</td>
-                        <td contenteditable="true" id="qTL${q.skillQuestionNum}">${q.skillQuestionTL}</td>
-                    `;
-                }
-                skillsQtbody.appendChild(row);
-            });
-            // Display Interest and Passion questions
-            const interestTbody = document.querySelector("#interestQuestions tbody");
-            interestTbody.innerHTML = "";
-            let currentCategory = "";
-            let countInCategory = 0;
-            let categoryStartIndex = 0;
-            const categoryCounts = {};
-            data.interestQuestions.forEach(q => {
-                if (!categoryCounts[q.categoryName]) categoryCounts[q.categoryName] = 0;
-                categoryCounts[q.categoryName]++;
-            });
-            data.interestQuestions.forEach((q, index) => {
-                const row = document.createElement("tr");
-                if (q.categoryName !== currentCategory) {
-                    // New category starts
-                    currentCategory = q.categoryName;
-                    countInCategory = categoryCounts[currentCategory];
-                    row.innerHTML = `
-                        <td class="num" rowspan="${countInCategory}">${currentCategory}</td>
-                        <td class="num">${q.interestAndPassionQuestionNum}</td>
-                        <td class="q" contenteditable="true" id="iEN${q.interestAndPassionQuestionNum}">${q.interestAndPassionQuestionEN}</td>
-                        <td class="q" contenteditable="true" id="iTL${q.interestAndPassionQuestionNum}">${q.interestAndPassionQuestionTL}</td>
-                    `;
-                } else {
-                    row.innerHTML = `
-                        <td class="num">${q.interestAndPassionQuestionNum}</td>
-                        <td class="q" contenteditable="true" id="iEN${q.interestAndPassionQuestionNum}">${q.interestAndPassionQuestionEN}</td>
-                        <td class="q" contenteditable="true" id="iTL${q.interestAndPassionQuestionNum}">${q.interestAndPassionQuestionTL}</td>
-                    `;
-                }
-                interestTbody.appendChild(row);
-            });
-            // Display Behavioral questions
-            const behavioralTbody = document.querySelector("#behavioralQuestions tbody");
-            behavioralTbody.innerHTML = "";
-            let currentMinistry = "";
-            let countInMinistry = 0;
-            const ministryCounts = {};
-            data.behavioralQuestions.forEach(q => {
-                if (!ministryCounts[q.ministryName]) ministryCounts[q.ministryName] = 0;
-                ministryCounts[q.ministryName]++;
-            });
-            data.behavioralQuestions.forEach((q, index) => {
-                const row = document.createElement("tr");
-                row.dataset.ministryid = q.ministryID; // ✅ store ministryID
-                if (q.ministryName !== currentMinistry) {
-                    currentMinistry = q.ministryName;
-                    countInMinistry = ministryCounts[currentMinistry];
-                    row.innerHTML = `
-                        <td class="num" rowspan="${countInMinistry}">${currentMinistry}</td>
-                        <td class="num">${q.behavioralQuestionNum}</td>
-                        <td class="q" contenteditable="true" id="bEN${q.behavioralQuestionNum}">${q.behavioralQuestionEN}</td>
-                        <td class="q" contenteditable="true" id="bTL${q.behavioralQuestionNum}">${q.behavioralQuestionTL}</td>
-                    `;
-                } else {
-                    row.innerHTML = `
-                        <td class="num">${q.behavioralQuestionNum}</td>
-                        <td class="q" contenteditable="true" id="bEN${q.behavioralQuestionNum}">${q.behavioralQuestionEN}</td>
-                        <td class="q" contenteditable="true" id="bTL${q.behavioralQuestionNum}">${q.behavioralQuestionTL}</td>
-                    `;
-                }
-                behavioralTbody.appendChild(row);
-            });
+            // Helper function to check if data exists
+            const hasData = (obj) => obj && Object.values(obj).some(v => v > 0);
 
-            // ✅ Display User Reports
-            const reportTbody = document.querySelector("#userReportTable tbody");
-            reportTbody.innerHTML = "";
+            // Helper to show "No data" message in chart containers
+            function showNoData(chartId, message = "No data available") {
+                const canvas = document.getElementById(chartId);
+                const parent = canvas.parentElement;
+                parent.innerHTML = `<div style="text-align:center; color:gray; font-style:italic; padding:50px;">${message}</div>`;
+                document.getElementById("generateReportBtn").classList.add("disable");
+            }
 
-            data.userReports.forEach(report => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${report.userReportID}</td>
-                    <td>${report.churchName}</td>
-                    <td>${report.email}</td>
-                    <td>${report.name}</td>
-                    <td>${report.skills || "—"}</td>
-                    <td>${report.eligibleMinistry || "—"}</td>
-                    <td>${report.gender || "—"}</td>
-                    <td>${report.age || "—"}</td>
-                    <td>${report.marital || "—"}</td>
-                    <td>${report.baptized || "—"}</td>
-                    <td>${report.timeInFaith || "—"}</td>
-                `;
-                reportTbody.appendChild(row);
-            });
+            // 🧍‍♂️ USER COUNTS
+            document.getElementById('userTakeCount').innerText = charts.userTakeCount || 0;
+            document.getElementById('userTodayCount').innerText = charts.userTodayCount || 0;
+
+            // 🎯 GENDER CHART
+            if (hasData(charts.gender)) {
+                new Chart(document.getElementById('genderChart'), {
+                    type: 'pie',
+                    data: {
+                        labels: Object.keys(charts.gender),
+                        datasets: [{
+                            data: Object.values(charts.gender),
+                            backgroundColor: [colorB, colorC],
+                            borderColor: '#fff',
+                            borderWidth: 2,
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: { display: true, text: 'Gender Ratio', color: colorA, font: { size: 18, weight: 'bold' } },
+                            legend: { position: 'bottom', labels: { color: colorA } }
+                        }
+                    }
+                });
+            } else showNoData('genderChart');
+
+            // 🙏 TIME IN FAITH
+            if (hasData(charts.timeInFaith)) {
+                new Chart(document.getElementById('faithChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(charts.timeInFaith),
+                        datasets: [{
+                            label: 'Users',
+                            data: Object.values(charts.timeInFaith),
+                            backgroundColor: [colorB, colorC, colorD],
+                            borderRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: { display: true, text: 'Time in Faith Ratio', color: colorA, font: { size: 18, weight: 'bold' } },
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: { ticks: { color: colorA }, grid: { color: 'white' } },
+                            y: { beginAtZero: true, ticks: { color: colorA }, grid: { color: colorE } }
+                        }
+                    }
+                });
+            } else showNoData('faithChart');
+
+            // ⚙️ SKILL RATIO
+            if (hasData(charts.skillStats)) {
+                new Chart(document.getElementById('skillsChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(charts.skillStats),
+                        datasets: [{
+                            label: "Users with Skill",
+                            data: Object.values(charts.skillStats),
+                            backgroundColor: [colorB, colorC, colorD],
+                            borderRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: { display: true, text: "Users' Skill Ratio", color: colorA, font: { size: 18, weight: 'bold' } },
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: { ticks: { color: colorA }, grid: { color: 'white' } },
+                            y: { beginAtZero: true, ticks: { color: colorA }, grid: { color: colorE } }
+                        }
+                    }
+                });
+            } else showNoData('skillsChart');
+
+            // 🙌 ELIGIBLE MINISTRY
+            if (hasData(charts.eligibleMinistry)) {
+                new Chart(document.getElementById('ministryChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(charts.eligibleMinistry),
+                        datasets: [{
+                            data: Object.values(charts.eligibleMinistry),
+                            backgroundColor: [colorB, colorC, colorD],
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: { display: true, text: "Users' Eligible Ministries", color: colorA, font: { size: 18, weight: 'bold' } },
+                            legend: { position: 'bottom', labels: { color: colorA } }
+                        }
+                    }
+                });
+            } else showNoData('ministryChart');
+
+            // ⚙️ AGE RATIO
+            if (hasData(charts.age)) {
+                new Chart(document.getElementById('ageChart'), {
+                    type: 'pie',
+                    data: {
+                        labels: Object.keys(charts.age),
+                        datasets: [{
+                            label: "Age Distribution",
+                            data: Object.values(charts.age),
+                            backgroundColor: [colorB, colorC, colorD, colorE]
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            title: { display: true, text: "Age Ratio", color: colorA, font: { size: 18, weight: 'bold' } },
+                            legend: { position: 'bottom', labels: { color: colorA } }
+                        }
+                    }
+                });
+            } else showNoData('ageChart');
+
+            // ⚙️ MARITAL
+            if (hasData(charts.marital)) {
+                new Chart(document.getElementById('maritalChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(charts.marital),
+                        datasets: [{
+                            label: "Marital Status",
+                            data: Object.values(charts.marital),
+                            backgroundColor: [colorB, colorC]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: { display: true, text: "Marital Ratio", color: colorA, font: { size: 18, weight: 'bold' } },
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: { ticks: { color: colorA } },
+                            y: { beginAtZero: true, ticks: { color: colorA } }
+                        }
+                    }
+                });
+            } else showNoData('maritalChart');
+
+            // ⚙️ BAPTIZED
+            if (hasData(charts.baptized)) {
+                new Chart(document.getElementById('baptizedChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(charts.baptized),
+                        datasets: [{
+                            label: "Baptized Ratio",
+                            data: Object.values(charts.baptized),
+                            backgroundColor: [colorC, colorD]
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            title: { display: true, text: "Baptized Ratio", color: colorA, font: { size: 18, weight: 'bold' } },
+                            legend: { position: 'bottom', labels: { color: colorA } }
+                        }
+                    }
+                });
+            } else showNoData('baptizedChart');
+            
+
+                //display churc Name
+                document.getElementById("churchName").value = data.churchName || "";
+                //display demographics restrictions
+                const tbody = document.querySelector("#demographicsRestrictions tbody");
+                tbody.innerHTML = "";
+                data.ministriesAdmin.forEach((m, index) => {
+                    const i = index + 1;
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${m.ministryName}</td>
+                        <td>
+                            <label><input type="radio" name="gender${i}" value="1" ${m.gender == 1 ? "checked" : ""}> Male Only</label>
+                            <label><input type="radio" name="gender${i}" value="2" ${m.gender == 2 ? "checked" : ""}> Female Only</label>
+                            <label><input type="radio" name="gender${i}" value="0" ${m.gender == 0 ? "checked" : ""}> No Restriction</label>
+                        </td>
+                        <td>
+                            <input type="number" name="age1${i}" min="1" max="99" value="${m.age1 || ''}" placeholder="Age">
+                            <p>-to-</p>
+                            <input type="number" name="age2${i}" min="1" max="99" value="${m.age2 || ''}" placeholder="Age">
+                        </td>
+                        <td>
+                            <label><input type="radio" name="marital${i}" value="1" ${m.marital == 1 ? "checked" : ""}> Single Only</label>
+                            <label><input type="radio" name="marital${i}" value="2" ${m.marital == 2 ? "checked" : ""}> Married Only</label>
+                            <label><input type="radio" name="marital${i}" value="0" ${m.marital == 0 ? "checked" : ""}> No Restriction</label>
+                        </td>
+                        <td>
+                            <label><input type="radio" name="baptized${i}" value="1" ${m.baptized == 1 ? "checked" : ""}> Baptized Only</label>
+                            <label><input type="radio" name="baptized${i}" value="2" ${m.baptized == 2 ? "checked" : ""}> No Restriction</label>
+                        </td>
+                        <td>
+                            <label><input type="radio" name="faith${i}" value="1" ${m.timeInFaith == 1 ? "checked" : ""}> 1 Week</label>
+                            <label><input type="radio" name="faith${i}" value="2" ${m.timeInFaith == 2 ? "checked" : ""}> 6 Months</label>
+                            <label><input type="radio" name="faith${i}" value="3" ${m.timeInFaith == 3 ? "checked" : ""}> 1 Year</label>
+                            <label><input type="radio" name="faith${i}" value="4" ${m.timeInFaith == 4 ? "checked" : ""}> 2 Years</label>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+                // Display skills restrictions
+                const skillsTbody = document.querySelector("#skillsRestrictions tbody");
+                skillsTbody.innerHTML = "";
+                data.skills.forEach((s, index) => {
+                    const i = index + 1;
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${s.ministryName}</td>
+                        ${['music','technology','writing','technical','speaking','accounting','mentoring','bibleKnowledge'].map(skill =>
+                            `<td>
+                                <label><input type="radio" name="${skill}${i}" value="1" ${s[skill] == 1 ? "checked" : ""}> Required</label><br>
+                                <label><input type="radio" name="${skill}${i}" value="0" ${s[skill] == 0 ? "checked" : ""}> Not required</label>
+                            </td>`
+                        ).join('')}
+                    `;
+                    skillsTbody.appendChild(row);
+                });
+                // Display skill profiling questions
+                const skillsQtbody = document.querySelector("#skillsQuestions tbody");
+                skillsQtbody.innerHTML = "";
+                data.questions.forEach((q, index) => {
+                    const row = document.createElement("tr");
+                    // Only show the ministry name cell on the first row of each group of 5
+                    if (index % 5 === 0) {
+                        row.innerHTML = `
+                            <td class="num" rowspan="5">${q.skillName}</td>
+                            <td class="num">${q.skillQuestionNum}</td>
+                            <td class='q' contenteditable="true" id="qEN${q.skillQuestionNum}">${q.skillQuestionEN}</td>
+                            <td class='q' contenteditable="true" id="qTL${q.skillQuestionNum}">${q.skillQuestionTL}</td>
+                        `;
+                    } else {
+                        row.innerHTML = `
+                            <td class="num">${q.skillQuestionNum}</td>
+                            <td contenteditable="true" id="qEN${q.skillQuestionNum}">${q.skillQuestionEN}</td>
+                            <td contenteditable="true" id="qTL${q.skillQuestionNum}">${q.skillQuestionTL}</td>
+                        `;
+                    }
+                    skillsQtbody.appendChild(row);
+                });
+                // Display Interest and Passion questions
+                const interestTbody = document.querySelector("#interestQuestions tbody");
+                interestTbody.innerHTML = "";
+                let currentCategory = "";
+                let countInCategory = 0;
+                let categoryStartIndex = 0;
+                const categoryCounts = {};
+                data.interestQuestions.forEach(q => {
+                    if (!categoryCounts[q.categoryName]) categoryCounts[q.categoryName] = 0;
+                    categoryCounts[q.categoryName]++;
+                });
+                data.interestQuestions.forEach((q, index) => {
+                    const row = document.createElement("tr");
+                    if (q.categoryName !== currentCategory) {
+                        // New category starts
+                        currentCategory = q.categoryName;
+                        countInCategory = categoryCounts[currentCategory];
+                        row.innerHTML = `
+                            <td class="num" rowspan="${countInCategory}">${currentCategory}</td>
+                            <td class="num">${q.interestAndPassionQuestionNum}</td>
+                            <td class="q" contenteditable="true" id="iEN${q.interestAndPassionQuestionNum}">${q.interestAndPassionQuestionEN}</td>
+                            <td class="q" contenteditable="true" id="iTL${q.interestAndPassionQuestionNum}">${q.interestAndPassionQuestionTL}</td>
+                        `;
+                    } else {
+                        row.innerHTML = `
+                            <td class="num">${q.interestAndPassionQuestionNum}</td>
+                            <td class="q" contenteditable="true" id="iEN${q.interestAndPassionQuestionNum}">${q.interestAndPassionQuestionEN}</td>
+                            <td class="q" contenteditable="true" id="iTL${q.interestAndPassionQuestionNum}">${q.interestAndPassionQuestionTL}</td>
+                        `;
+                    }
+                    interestTbody.appendChild(row);
+                });
+                // Display Behavioral questions
+                const behavioralTbody = document.querySelector("#behavioralQuestions tbody");
+                behavioralTbody.innerHTML = "";
+                let currentMinistry = "";
+                let countInMinistry = 0;
+                const ministryCounts = {};
+                data.behavioralQuestions.forEach(q => {
+                    if (!ministryCounts[q.ministryName]) ministryCounts[q.ministryName] = 0;
+                    ministryCounts[q.ministryName]++;
+                });
+                data.behavioralQuestions.forEach((q, index) => {
+                    const row = document.createElement("tr");
+                    row.dataset.ministryid = q.ministryID; // ✅ store ministryID
+                    if (q.ministryName !== currentMinistry) {
+                        currentMinistry = q.ministryName;
+                        countInMinistry = ministryCounts[currentMinistry];
+                        row.innerHTML = `
+                            <td class="num" rowspan="${countInMinistry}">${currentMinistry}</td>
+                            <td class="num">${q.behavioralQuestionNum}</td>
+                            <td class="q" contenteditable="true" id="bEN${q.behavioralQuestionNum}">${q.behavioralQuestionEN}</td>
+                            <td class="q" contenteditable="true" id="bTL${q.behavioralQuestionNum}">${q.behavioralQuestionTL}</td>
+                        `;
+                    } else {
+                        row.innerHTML = `
+                            <td class="num">${q.behavioralQuestionNum}</td>
+                            <td class="q" contenteditable="true" id="bEN${q.behavioralQuestionNum}">${q.behavioralQuestionEN}</td>
+                            <td class="q" contenteditable="true" id="bTL${q.behavioralQuestionNum}">${q.behavioralQuestionTL}</td>
+                        `;
+                    }
+                    behavioralTbody.appendChild(row);
+                });
+
+                // ✅ Display User Reports
+                    const reportTbody = document.querySelector("#userReportTable tbody");
+                    reportTbody.innerHTML = "";
+
+                    if (data.userReports && data.userReports.length > 0) {
+                        data.userReports.forEach(report => {
+                            const skillsList = [
+                                report.music === "Yes" ? "Music" : null,
+                                report.technology === "Yes" ? "Technology" : null,
+                                report.writing === "Yes" ? "Writing" : null,
+                                report.technical === "Yes" ? "Technical" : null,
+                                report.speaking === "Yes" ? "Speaking" : null,
+                                report.accounting === "Yes" ? "Accounting" : null,
+                                report.mentoring === "Yes" ? "Mentoring" : null,
+                                report.bibleKnowledge === "Yes" ? "Bible Knowledge" : null
+                            ].filter(Boolean).join(", ") || "—";
+
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                                <td>${report.userReportID}</td>
+                                <td>${report.churchName}</td>
+                                <td>${report.email}</td>
+                                <td>${report.name}</td>
+                                <td>${skillsList}</td>
+                                <td>${report.eligibleMinistry || "—"}</td>
+                                <td>${report.gender || "—"}</td>
+                                <td>${report.age || "—"}</td>
+                                <td>${report.marital || "—"}</td>
+                                <td>${report.baptized || "—"}</td>
+                                <td>${report.timeInFaith || "—"}</td>
+                                <td>${report.timeOfSubmission || "—"}</td>
+                            `;
+                            reportTbody.appendChild(row);
+                        });
+                    } else {
+                        const emptyRow = document.createElement("tr");
+                        emptyRow.innerHTML = `<td colspan="12" style="text-align:center; color:gray; font-style:italic;">No user reports available</td>`;
+                        reportTbody.appendChild(emptyRow);
+                    }
+
         })
         .catch(error => console.error("Error loading data:", error));
+
+    // 📄 Report Generation
+        document.getElementById("generateReportBtn").addEventListener("click", async () => {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF("p", "mm", "a4");
+
+            const title = "PERFIT Ministry Dashboard Report";
+            const today = new Date().toLocaleDateString();
+
+            // Header
+            pdf.setFontSize(18);
+            pdf.text(title, 105, 15, { align: "center" });
+            pdf.setFontSize(12);
+            pdf.text(`Generated on: ${today}`, 105, 23, { align: "center" });
+
+            let yPos = 35;
+
+            // ✅ PAGE 1: Overview + Gender Chart
+            const totalUsers = document.getElementById("userTakeCount")?.innerText || "0";
+            const todaySubmissions = document.getElementById("userTodayCount")?.innerText || "0";
+            const eligibleMinistry = document.getElementById("eligibleMinistry")?.innerText || "Not Available";
+
+            pdf.setFontSize(14);
+            pdf.text("General Overview", 14, yPos);
+            yPos += 8;
+            pdf.setFontSize(11);
+            pdf.text(`• Total Test Takers: ${totalUsers}`, 20, yPos);
+            yPos += 6;
+            yPos += 6;
+            yPos += 12;
+
+            // Function to add charts without stretching
+            const addChart = (pdf, chartId, yPos) => {
+                const chart = document.getElementById(chartId);
+                if (!chart) return yPos;
+
+                const imgData = chart.toDataURL("image/png");
+                const canvasWidth = chart.width;
+                const canvasHeight = chart.height;
+                const maxWidth = 160; // max chart width
+                const ratio = canvasHeight / canvasWidth;
+                const imgWidth = maxWidth;
+                const imgHeight = maxWidth * ratio;
+                const x = (210 - imgWidth) / 2;
+
+                pdf.addImage(imgData, "PNG", x, yPos, imgWidth, imgHeight);
+                return yPos + imgHeight + 15;
+            };
+
+            // Gender Chart
+            yPos = addChart(pdf, "genderChart", yPos);
+
+            // ✅ PAGE 2: Faith and Ministry Charts
+            pdf.addPage();
+            pdf.setFontSize(14);
+            pdf.text("Faith and Ministry Distribution", 14, 20);
+            yPos = 30;
+
+            yPos = addChart(pdf, "faithChart", yPos);
+            yPos = addChart(pdf, "ministryChart", yPos);
+
+            // ✅ PAGE 3: Skills and Age Charts
+            pdf.addPage();
+            pdf.setFontSize(14);
+            pdf.text("Skills and Age Distribution", 14, 20);
+            yPos = 30;
+
+            yPos = addChart(pdf, "skillsChart", yPos);
+            yPos = addChart(pdf, "ageChart", yPos);
+
+            // ✅ PAGE 4: Marital and Baptized Charts
+            pdf.addPage();
+            pdf.setFontSize(14);
+            pdf.text("Marital and Baptized Distribution", 14, 20);
+            yPos = 30;
+
+            yPos = addChart(pdf, "maritalChart", yPos);
+            yPos = addChart(pdf, "baptizedChart", yPos);
+
+            // ✅ PAGE 5+: User Reports Table (auto-continues if long)
+            pdf.addPage();
+            pdf.setFontSize(14);
+            pdf.text("User Reports Table", 14, 20);
+
+            const table = document.getElementById("userReportTable");
+            if (table) {
+                const head = [];
+                const body = [];
+
+                // Get table headers
+                table.querySelectorAll("thead th").forEach(th => head.push(th.innerText));
+
+                // Get table body
+                table.querySelectorAll("tbody tr").forEach(tr => {
+                    const row = [];
+                    tr.querySelectorAll("td").forEach(td => row.push(td.innerText));
+                    body.push(row);
+                });
+
+                pdf.autoTable({
+                    head: [head],
+                    body: body,
+                    startY: 28,
+                    styles: { fontSize: 8, cellPadding: 1 },
+                    headStyles: { fillColor: [76, 175, 80] },
+                    theme: "striped",
+                    margin: { top: 25 },
+                    didDrawPage: (data) => {
+                        pdf.setFontSize(10);
+                        pdf.text(`Page ${pdf.internal.getNumberOfPages()}`, 200, 290, { align: "right" });
+                    }
+                });
+            } else {
+                pdf.setFontSize(12);
+                pdf.text("No user report data available.", 14, 30);
+            }
+
+            // ✅ Save File
+            pdf.save(`PERFIT_Report_${new Date().toISOString().split('T')[0]}.pdf`);
+        });
     </script>
 </body>
 </html>

@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin_email'])) {
     exit();
 }
 $adminEmail = $_SESSION['admin_email'];
-// Step 1: Get admin details (only churchName)
+// Step 1: Get admin details
 $getAdmin = $conn->prepare("SELECT adminID, churchName FROM admin WHERE email = ?");
 $getAdmin->bind_param("s", $adminEmail);
 $getAdmin->execute();
@@ -21,7 +21,7 @@ $adminRow = $resultAdmin->fetch_assoc();
 $adminID = $adminRow['adminID'];
 $churchName = $adminRow['churchName'];
 $getAdmin->close();
-// Step 2: Get ministries and restrictions for that admin
+// Step 2: Get demographics restrictions
 $sql = "
     SELECT 
         m.ministryID,
@@ -41,12 +41,20 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $adminID);
 $stmt->execute();
 $result = $stmt->get_result();
-$ministries = [];
+$ministriesAdmin = [];
 while ($row = $result->fetch_assoc()) {
-    $ministries[] = $row;
+    $ministriesAdmin[] = [
+        "ministryID" => $row["ministryID"],
+        "ministryName" => $row["ministryName"],
+        "gender" => $row["gender"],
+        "age1" => $row["age1"],
+        "age2" => $row["age2"],
+        "marital" => $row["marital"],
+        "baptized" => $row["baptized"],
+        "timeInFaith" => $row["timeInFaith"]
+    ];
 }
-
-
+$stmt->close();
 // Step 3: Get skills restrictions
 $sqlSkills = "
     SELECT 
@@ -74,10 +82,9 @@ while ($row = $resultSkills->fetch_assoc()) {
     $skills[] = $row;
 }
 $stmtSkills->close();
-
-// Step 4: Get skills questions
+// Step 4: Get skill questions
 $sqlQuestions = "
-        SELECT 
+    SELECT 
         q.questionsSkillID,
         q.skillQuestionNum,
         q.skillQuestionEN,
@@ -89,19 +96,16 @@ $sqlQuestions = "
     WHERE q.adminID = ?
     ORDER BY q.skillID, q.skillQuestionNum
 ";
-
 $stmtQuestions = $conn->prepare($sqlQuestions);
 $stmtQuestions->bind_param("i", $adminID);
 $stmtQuestions->execute();
 $resultQuestions = $stmtQuestions->get_result();
-
 $questions = [];
 while ($row = $resultQuestions->fetch_assoc()) {
     $questions[] = $row;
 }
 $stmtQuestions->close();
-
-// Step 5: Get Interest and Passion questions with category
+// Step 5: Get Interest and Passion questions
 $sqlInterest = "
     SELECT 
         q.questionsInterestAndPassionID,
@@ -119,14 +123,12 @@ $stmtInterest = $conn->prepare($sqlInterest);
 $stmtInterest->bind_param("i", $adminID);
 $stmtInterest->execute();
 $resultInterest = $stmtInterest->get_result();
-
 $interestQuestions = [];
 while ($row = $resultInterest->fetch_assoc()) {
     $interestQuestions[] = $row;
 }
 $stmtInterest->close();
-
-// Step 6: Get Behavioral questions with ministry name
+// Step 6: Get Behavioral questions
 $sqlBehavioral = "
     SELECT 
         q.questionsBehavioralID,
@@ -145,13 +147,11 @@ $stmtBehavioral = $conn->prepare($sqlBehavioral);
 $stmtBehavioral->bind_param("i", $adminID);
 $stmtBehavioral->execute();
 $resultBehavioral = $stmtBehavioral->get_result();
-
 $behavioralQuestions = [];
 while ($row = $resultBehavioral->fetch_assoc()) {
     $behavioralQuestions[] = $row;
 }
 $stmtBehavioral->close();
-
 // Step 7: Get User Reports
 $sqlReports = "
     SELECT 
@@ -172,7 +172,8 @@ $sqlReports = "
         ur.age,
         ur.marital,
         ur.baptized,
-        ur.timeInFaith
+        ur.timeInFaith,
+        ur.timeOfSubmission
     FROM user_report ur
     WHERE ur.churchName = ?
     ORDER BY ur.userReportID DESC
@@ -183,78 +184,146 @@ $stmtReports->execute();
 $resultReports = $stmtReports->get_result();
 
 $userReports = [];
+$userTakeCount = 0;
+$userTodayCount = 0;
+
+$today = date('Y-m-d'); // ✅ today's date for comparison
+
+$genderStats = [];
+$faithStats = [];
+$ageStats = [
+    'Under 18' => 0,
+    '18-25' => 0,
+    '26-35' => 0,
+    '36-50' => 0,
+    '51+' => 0
+];
+$maritalStats = [
+    'Single' => 0,
+    'Married' => 0
+];
+$baptizedStats = [
+    'Yes' => 0,
+    'No' => 0
+];
+
+$skillStats = [
+    'Music' => 0,
+    'Technology' => 0,
+    'Writing' => 0,
+    'Technical' => 0,
+    'Speaking' => 0,
+    'Accounting' => 0,
+    'Mentoring' => 0,
+    'Bible Knowledge' => 0
+];
+$eligibleMinistryStats = [];
+
+$skillColumnMap = [
+    'Music' => 'music',
+    'Technology' => 'technology',
+    'Writing' => 'writing',
+    'Technical' => 'technical',
+    'Speaking' => 'speaking',
+    'Accounting' => 'accounting',
+    'Mentoring' => 'mentoring',
+    'Bible Knowledge' => 'bibleKnowledge'
+];
+
 while ($row = $resultReports->fetch_assoc()) {
-    // ✅ Combine skills dynamically
-    $skillsList = [];
+    $userTakeCount++;
 
-    $skillLabels = [
-        'music' => 'Music',
-        'technology' => 'Technology',
-        'writing' => 'Writing',
-        'technical' => 'Technical',
-        'speaking' => 'Speaking',
-        'accounting' => 'Accounting',
-        'mentoring' => 'Mentoring',
-        'bibleKnowledge' => 'Bible Knowledge'
-    ];
-
-    foreach ($skillLabels as $key => $label) {
-        if (!empty($row[$key]) && $row[$key] == 1) {
-            $skillsList[] = $label;
+    // ✅ Count users submitted today
+    if (!empty($row['timeOfSubmission'])) {
+        $submissionDate = date('Y-m-d', strtotime($row['timeOfSubmission']));
+        if ($submissionDate === $today) {
+            $userTodayCount++;
         }
-        unset($row[$key]); // Remove raw numeric skill fields
     }
 
-    $row['skills'] = implode(', ', $skillsList); // e.g. "Music, Technology, Mentoring"
+    // (keep your existing stats logic below unchanged)
+    if ($row['gender'] == 1) {
+        $genderStats['Male'] = ($genderStats['Male'] ?? 0) + 1;
+    } elseif ($row['gender'] == 2) {
+        $genderStats['Female'] = ($genderStats['Female'] ?? 0) + 1;
+    }
 
-    // ✅ Convert coded values into readable text
-    $row['gender'] = match ($row['gender']) {
-        1 => 'Male',
-        2 => 'Female',
-        default => '-'
-    };
-
-    $row['baptized'] = match ($row['baptized']) {
-        1 => 'Yes',
-        2 => 'No',
-        default => '-'
-    };
-
-    $row['timeInFaith'] = match ($row['timeInFaith']) {
+    $faithMap = [
         1 => '1+ Week',
         2 => '6+ Months',
         3 => '1+ Year',
-        4 => '2+ Years',
-        default => '-'
-    };
+        4 => '2+ Years'
+    ];
+    $faithLabel = $faithMap[$row['timeInFaith']] ?? '-';
+    if ($faithLabel != '-') {
+        $faithStats[$faithLabel] = ($faithStats[$faithLabel] ?? 0) + 1;
+    }
 
-    $row['marital'] = match ($row['marital']){
-        1 => 'Single',
-        2 => 'Married',
-        default => '-'
-    };
+    $age = intval($row['age']);
+    if ($age > 0 && $age < 18) $ageStats['Under 18']++;
+    elseif ($age >= 18 && $age <= 25) $ageStats['18-25']++;
+    elseif ($age >= 26 && $age <= 35) $ageStats['26-35']++;
+    elseif ($age >= 36 && $age <= 50) $ageStats['36-50']++;
+    elseif ($age >= 51) $ageStats['51+']++;
+
+    if ($row['marital'] == 1) $maritalStats['Single']++;
+    elseif ($row['marital'] == 2) $maritalStats['Married']++;
+
+    if ($row['baptized'] == 1) $baptizedStats['Yes']++;
+    elseif ($row['baptized'] == 2) $baptizedStats['No']++;
+
+    foreach ($skillColumnMap as $label => $colName) {
+        if (isset($row[$colName]) && $row[$colName] == 1) {
+            $skillStats[$label]++;
+        }
+    }
+
+    if (!empty($row['eligibleMinistry'])) {
+        $ministriesList = array_map('trim', explode(',', $row['eligibleMinistry']));
+        foreach ($ministriesList as $min) {
+            if ($min !== '') {
+                $eligibleMinistryStats[$min] = ($eligibleMinistryStats[$min] ?? 0) + 1;
+            }
+        }
+    }
+
+    $row['gender'] = $row['gender'] == 1 ? 'Male' : ($row['gender'] == 2 ? 'Female' : '-');
+    $row['marital'] = $row['marital'] == 1 ? 'Single' : ($row['marital'] == 2 ? 'Married' : '-');
+    $row['baptized'] = $row['baptized'] == 1 ? 'Yes' : ($row['baptized'] == 2 ? 'No' : '-');
+    $row['timeInFaith'] = $faithLabel;
+
+    foreach ($skillColumnMap as $label => $colName) {
+        $row[$colName] = isset($row[$colName]) && $row[$colName] == 1 ? 'Yes' : 'No';
+    }
 
     $userReports[] = $row;
 }
-
 $stmtReports->close();
 
-
-
-
-
-// Combine everything
+// ✅ Final JSON Response
 $response = [
     'churchName' => $churchName,
-    'ministries' => $ministries,
+    'ministriesAdmin' => $ministriesAdmin,
     'skills' => $skills,
     'questions' => $questions,
     'interestQuestions' => $interestQuestions,
     'behavioralQuestions' => $behavioralQuestions,
-    'userReports' => $userReports
+    'userReports' => $userReports,
+    'charts' => [
+        'userTakeCount' => $userTakeCount,
+        'userTodayCount' => $userTodayCount,
+        'gender' => $genderStats,
+        'timeInFaith' => $faithStats,
+        'age' => $ageStats,
+        'marital' => $maritalStats,
+        'baptized' => $baptizedStats,
+        'skillStats' => $skillStats,
+        'eligibleMinistry' => $eligibleMinistryStats
+    ]
 ];
 
+
+
 echo json_encode($response);
-$stmt->close();
 $conn->close();
 ?>
