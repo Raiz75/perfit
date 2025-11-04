@@ -7,7 +7,7 @@
     <title>PERFIT</title>
     <style>
         :root{
-            --a:rgb(128, 65, 128);
+            --a: rgb(128, 65, 128);
             --b: rgb(255, 223, 255);
         }
         *{box-sizing: border-box;}
@@ -113,7 +113,7 @@
         /*personalDetail*/
         .personalDetail{
             height: auto;
-            max-width: 500px;
+            width: 70%;
             margin: 2rem auto;
             text-align: center;
             border-radius: 8px;
@@ -122,9 +122,10 @@
             box-shadow: 0 0 8px rgba(128, 128, 128, 0.3);
             border: 1px solid rgba(128, 128, 128, 0.3);
             color:rgb(128, 65, 128);
+            font-size: 2rem;
         }
         .personalDetail span{
-            font-size: 0.9rem;
+            font-size: 1.2rem;
             color: grey;
             transition: .3s ease-in-out;
         }
@@ -133,28 +134,46 @@
             height: auto;
             border-radius: 8px;
             padding: 0.75rem;
-            text-align: left;
+            text-align: center;
             margin: 1rem 0;
-            border: 2px solid rgb(128, 65, 128);
+            border: 2px solid var(--a);
             background-color: white;
         }
+        .ansDiv{
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+        }
         .box input[type="number"]{
-            max-width: 120px;
-            margin-top: 5px;
-            height: 30px;
-            border: 2px solid rgb(128, 65, 128);
+            width: 100%;
+            border: 2px solid var(--a);
             border-radius: 8px;
             background-color: white;
-            padding: 0.5rem;
-            font-size: 1rem;
+            color: white;
+            font-size: 1.5rem;
+            color: var(--a);
+            border: none;
+        }
+        .box input[type="number"]:focus{
+            outline: none;
+        }
+        .box input[type="number"]::placeholder{
+            color: var(--a);
         }
         .box label {
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-size: 14px;
+            gap: 10px;
+            font-size: 1.5rem;
             padding:4px;
             width:fit-content;
+            border: 2px solid var(--a);
+            border-radius: 8px;
+            background-color: white;
+            color: var(--a);
+            width: 25%;
+            height: 40px;
         }
         /*question box*/
         .questionBox{
@@ -401,6 +420,7 @@
             border-radius: 8px;
             font-size: 14px;
             opacity: 1;
+            display: none;
             color: transparent;
             transition: 0.5s ease-in-out;
             z-index: 102;
@@ -433,18 +453,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 300px;
+            width: 30%;
             height: auto; 
             color: var(--a);
             background-color: white;
             border-radius: 12px;
             font-size: 1rem;
             text-align: center; 
-        }
-        .personalInfoDiv input{
-            margin: 10px;
-            border: 1px solid var(--a);
-            height: 25px;
         }
         .personalInfoDiv button{
             border: 3px solid var(--a);
@@ -455,6 +470,61 @@
             color: white;
             margin: 20px auto;
             font-size: 1.2rem;
+        }
+        .pInfoBox{
+            display: flex;
+            height: 30px;
+            margin: 15px auto;
+            width: 75%;
+        }
+        .qwe input{
+            border: 2px solid var(--a);
+            height: 30px;
+            width: 70%;
+            border-radius: 8px;
+        }
+        .qwe input:focus{
+            outline: none;
+            border: 2px solid var(--a);
+            height: 30px;
+            width: 70%;
+            border-radius: 8px;
+        }
+        .pInfoBox p{
+            width: 30%;
+            height: 30px;
+            margin: 0px;
+            padding-top:5px;
+        }
+        .phone-input-wrapper {
+            display: flex;
+            width: 70%;
+            height: 30px;
+            border: 2px solid var(--a);
+            border-radius: 8px;
+            padding: 0xp;
+            box-sizing: border-box;
+        }
+        .phone-input-wrapper p {
+            pointer-events: none;
+            color: var(--a);
+            width: 15%;
+        }
+        .asd input {
+            width: 85%; 
+            border: none;
+            margin: 0px;
+            border-radius: 0px;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            border-left: 2px solid var(--a);
+            box-sizing: border-box;
+            padding-left: 5px;
+        }
+        .phone-input-wrapper input:focus {
+            outline: none;
+            border: none;
+            border-left: 2px solid var(--a);
         }
 
     /* loading */
@@ -558,6 +628,18 @@
                 padding: 1rem;
                 font-size: 1.9em;
             }
+            .personalInfoDiv{
+                width: 50%;
+                font-size: 1rem;
+            }
+            .box label {
+                width: 50%;
+                font-size: 1.2rem;
+            }
+            .box input[type="number"]{
+                width: 50%;
+                font-size: 1.2rem;
+            }
             .questionText {font-size: 1.3rem;}
             .rateBox {gap: 0.3rem;}
             .rateBox button {
@@ -613,6 +695,29 @@
                 font-size:3em;
             }
             .personalDetail {font-size:3em;}
+            .ansDiv{
+                display: flex;
+                flex-direction: column;
+            }
+            .box label {
+                width: 100%;
+                font-size: 1.2rem;
+            }
+            .box input[type="number"]{
+                width: 80%;
+                font-size: .8rem;
+            }
+            .box input[type="radio"]{
+                width: 10px;
+                height: 10px;
+            }
+            .personalInfoDiv{
+                width: 98%;
+                font-size: 1rem;
+            }
+            .pInfoBox p{
+                width: 25%;
+            }
             .questionBox{font-size: 3em;}
             .questionText {width: 100%;}
             .rateBox {
@@ -705,34 +810,45 @@
         </div>
     </div>
 <!--personal details-->
+
     <p class="instruction" id="inst1" translate="i1" style="text-align: justify;">INSTRUCTION: Please provide your personal details accurately. This information helps us understand your profile better and will only be used for assessment purposes.</p>
     <div class="personalDetail move-up" id="personalForm">
         <h2 translate="ph1">DEMOGRAPHICS</h2>
         <div class="box move-up" id="genderBox">
             <span id="genderBoxttl" translate="ph1a">Gender</span><br>
-            <label><input type="radio" name="genderBox" value="1" translate="ph1b"> Male</label>
-            <label><input type="radio" name="genderBox" value="2" translate="ph1c"> Female</label>
+            <div class="ansDiv">
+                <label><input type="radio" name="genderBox" value="1" translate="ph1b"> Male</label>
+                <label><input type="radio" name="genderBox" value="2" translate="ph1c"> Female</label>
+            </div>
         </div>
         <div class="box move-up" id="ageBox">
             <span id="ageBoxttl" translate="ph1d">Age</span><br>
-            <label><input type="number" name="ageBox" id="ageInput" min="1" max="100"> Years</label>
+            <div class="ansDiv">
+                <label><input type="number" name="ageBox" id="ageInput" min="1" max="100" placeholder="Enter Age"> Years</label>
+            </div>
         </div>
         <div class="box move-up" id="statusBox">
             <span id="statusBoxttl" translate="ph1f">Status</span><br>
-            <label><input type="radio" name="statusBox" value="1" translate="ph1g"> Single</label>
-            <label><input type="radio" name="statusBox" value="2" translate="ph1h"> Married</label>
+            <div class="ansDiv">
+                <label><input type="radio" name="statusBox" value="1" translate="ph1g"> Single</label>
+                <label><input type="radio" name="statusBox" value="2" translate="ph1h"> Married</label>
+            </div>
         </div>
         <div class="box move-up" id="baptizedBox">
             <span id="baptizedBoxttl" translate="ph1i">Baptized</span><br>
-            <label><input type="radio" name="baptizedBox" value="1" translate="ph1k"> Yes</label>
-            <label><input type="radio" name="baptizedBox" value="2" translate="ph1j"> No</label>
+            <div class="ansDiv">
+                <label><input type="radio" name="baptizedBox" value="1" translate="ph1k"> Yes</label>
+                <label><input type="radio" name="baptizedBox" value="2" translate="ph1j"> No</label>
+            </div>
         </div>
         <div class="box move-up" id="timeInFaithBox">
             <span id="timeInFaithBoxttl" translate="ph1l">Time In Faith</span><br>
-            <label><input type="radio" name="timeInFaithBox" value="1" translate="ph1m"> 1+ week</label>
-            <label><input type="radio" name="timeInFaithBox" value="2" translate="ph1n"> 6+ months</label>
-            <label><input type="radio" name="timeInFaithBox" value="3" translate="ph1o"> 1+ year</label>
-            <label><input type="radio" name="timeInFaithBox" value="4" translate="ph1p"> 2+ years</label>
+            <div class="ansDiv">
+                <label><input type="radio" name="timeInFaithBox" value="1" translate="ph1m"> 1+ week</label>
+                <label><input type="radio" name="timeInFaithBox" value="2" translate="ph1n"> 6+ months</label>
+                <label><input type="radio" name="timeInFaithBox" value="3" translate="ph1o"> 1+ year</label>
+                <label><input type="radio" name="timeInFaithBox" value="4" translate="ph1p"> 2+ years</label>
+            </div>
         </div>
     </div>
     <div class="instruction" style="display: none;" id="inst2">
@@ -840,10 +956,21 @@
     <div class="personalInfoDivOverlay" id="personalInfoDivOverlay">
         <div class="personalInfoDiv">
             <h3>Personal Info</h3>
-            <span>Name:</span>
-            <input type="text" id="userName"><br>
-            <span>Email:</span>
-            <input type="email" id="userEmail"><br>
+            <div class="pInfoBox qwe">
+                <p>Name:</p>
+                <input type="text" id="userName" placeholder="Enter Full Name">
+            </div>
+            <div class="pInfoBox qwe">
+                <p>Email:</p>
+                <input type="email" id="userEmail" placeholder="Enter Email"><br>
+            </div>
+            <div class="pInfoBox">
+                <p>Contact No:</p>
+                <div class="phone-input-wrapper asd">
+                    <p>+63</p>
+                    <input type="number" id="userContact" placeholder="Enter Contact number" oninput="limitDigits(this, 10)">
+                </div>
+            </div>
             <button id="seeResult" onclick="saveUserReport()">Save Result</button>
         </div>
     </div>
@@ -852,13 +979,15 @@
     <script src="callApi.js"></script>
     <!-- charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <!-- export func -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
     //language
         let selectedLanguage = localStorage.getItem("selectedLanguage") || "en";
-        let selectedChurch = localStorage.getItem("selectedChurch") || "General";
+        let churchCode = localStorage.getItem("churchCode") || "ASDFGHJKL";
     //ministry restrictions
+        let churchName = "";
         let ministries = [];
         let demographicRestrictions = [];
         let skillRestrictions = [];
@@ -871,16 +1000,16 @@
             fetch("php-getDbData.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ churchName: selectedChurch })
+                body: JSON.stringify({ churchCode: churchCode })
             })
             .then(res => res.json())
             .then(data => {
                 if (data.error) {
                     console.error(data.error);
-                    errorFound("Error"+ data.error);
+                    errorFound("Error: " + data.error);
                     return;
                 }
-
+                churchName = data.churchName;
                 ministries = data.ministries || [];
                 demographicRestrictions = data.restrictions_demographic || [];
                 skillRestrictions = data.restrictions_skill || [];
@@ -890,8 +1019,9 @@
 
                 console.log("Database data loaded successfully");
             })
-            .catch(err => errorFound("Error"));
+            .catch(err => errorFound("Error loading database data"));
         });
+
     //assessment local storage reset
         function clearAssessmentLocalStorage(){
             localStorage.removeItem("phase1");
@@ -928,7 +1058,7 @@
                 }
             });
             console.warn("selected language: " + selectedLanguage);
-            console.warn("Church restrictions: " + selectedChurch);
+            console.warn("Church restrictions: " + churchCode);
             //get recorded
             if(localStorage.getItem("phase1")){
                 document.getElementById("a1").style.display = "none";
@@ -1146,6 +1276,24 @@
         let baptized=0;
         let timeInFaith=0;
     //personal details
+        const radioGroups = document.querySelectorAll('input[type="radio"]');
+        radioGroups.forEach(radio => {
+            radio.addEventListener('change', () => {
+                const name = radio.name; // Get the group name (e.g., genderBox)
+
+                // Reset all labels in this group
+                document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+                    r.parentElement.style.backgroundColor = 'white';
+                    r.parentElement.style.color = 'rgb(128, 65, 128)';
+                });
+
+                // Highlight the selected label
+                if (radio.checked) {
+                    radio.parentElement.style.backgroundColor = 'rgb(128, 65, 128)';
+                    radio.parentElement.style.color = 'white';
+                }
+            });
+        });
         function verifyPhase1(){
             const genderAns = document.querySelector("input[name='genderBox']:checked");
             const ageAns = document.querySelector("input[name='ageBox']").value;
@@ -1892,7 +2040,7 @@
         behavioralProfilingScoreUnranked = [...behavioralProfilingScore];
         ministryInterestUnranked = [...ministryInterest];
         // --- Check if all scores are identical ---
-        const allSame = behavioralProfilingScore.every(score => score === behavioralProfilingScore[0]);
+        // const allSame = behavioralProfilingScore.every(score => score === behavioralProfilingScore[0]);
         // --- Sort ministries by score (descending) ---
         for (let i = 0; i < behavioralProfilingScore.length - 1; i++) {
             for (let j = i + 1; j < behavioralProfilingScore.length; j++) {
@@ -1941,12 +2089,6 @@
         console.log("Top List:", topList);
         console.log("Least Aligned Ministries:", leastList);
             // --- Build Message ---
-            if (allSame) {
-                message += `
-                    \nAll ministries are equally matched for the user.
-                    Encourage the user to explore based on personal interest or passion, as each ministry aligns with their divine calling.
-                `;
-            }
             message += `
                 \nlist: ${topList}\n
                 \nleast ministry: ${leastMinistries.join(", ")}\n
@@ -1956,15 +2098,6 @@
             // --- ENGLISH OUTPUT ---
             if (selectedLanguage === "en") {
                 message += `<h1 style="color:rgb(128,65,128);text-align:center;">CALLING AND SERVICE PROFILE</h1>`;
-                if (allSame) {
-                    message += `
-                        <h2 style="color:rgb(128,65,128);">All Ministries Equally Aligned</h2>
-                        <p style="text-align:justify;">(at least 200 words)
-                            All ministries are equally matched for the user. Each ministry aligns with the user's unique gifts, strengths, and spiritual calling.
-                            This suggests they have the freedom to explore any ministry where they feel called to serve.
-                        </p>
-                    `;
-                } else {
                     // Group ministries by rank
                     const groupedRanks = {};
                     ranked.forEach(item => {
@@ -2002,7 +2135,6 @@
                             }
                         }
                     }
-
                     // Top 4–last (excluding least)
                     const otherMinistries = ranked.slice(3).filter(r => r.score !== minScore);
                     if (otherMinistries.length > 0) {
@@ -2013,7 +2145,6 @@
                             </ul>
                         `;
                     }
-
                     // Least-aligned
                     if (leastMinistries.length > 0) {
                         // Build display string WITHOUT rank
@@ -2030,7 +2161,7 @@
                             </p>
                         `;
                     }
-                }
+                // }
 
                 // Always show chart
                 message += `<p>cutHere</p>`;
@@ -2064,16 +2195,6 @@
             // --- TAGALOG OUTPUT ---
             else if (selectedLanguage === "tl") {
                 message += `<h1 style="color:rgb(128,65,128);text-align:center;">PROFIL NG PAGTAWAG AT PAGLILINGKOD</h1>`;
-
-                if (allSame) {
-                    message += `
-                        <h2 style="color:rgb(128,65,128);">Pantay-pantay ang Lahat ng Ministry</h2>
-                        <p style="text-align:justify;">(hindi bababa sa 200 salita)
-                            Ang lahat ng ministry ay pantay-pantay para sa gumagamit. Ipinapakita nito na maraming posibleng larangan ng paglilingkod na tugma sa kanilang mga kakayahan at tawag ng Diyos.
-                            Maaari silang pumili ayon sa kung saan nila nararamdaman ang pinaka-malakas na pagtawag ng Espiritu.
-                        </p>
-                    `;
-                } else {
                     const groupedRanks = {};
                     ranked.forEach(item => {
                         if (!groupedRanks[item.rank]) groupedRanks[item.rank] = [];
@@ -2135,7 +2256,7 @@
                             </p>
                         `;
                     }
-                }
+                // }
 
                 message += `<p>cutHere</p>`;
 
@@ -2213,6 +2334,66 @@
             }
         }
         //charts
+        // function displayChart() {
+        //     let fontSize = 16;
+        //     if (window.matchMedia("(max-width: 480px)").matches) {
+        //         fontSize = 12;
+        //     } else if (window.matchMedia("(max-width: 1024px)").matches) {
+        //         fontSize = 15;
+        //     }
+        //     const ctx = document.getElementById('topMinistryChart').getContext('2d');
+        //     const topMinistryChart = new Chart(ctx, {
+        //         type: 'pie',
+        //         data: {
+        //             labels: ministryInterestUnranked,
+        //             datasets: [{
+        //                 label: 'SCORE',
+        //                 data: behavioralProfilingScoreUnranked,
+        //                 backgroundColor: [
+        //                     'rgba(128, 65, 128, 0.7)',
+        //                     'rgba(75, 192, 192, 0.7)',
+        //                     'rgba(255, 206, 86, 0.7)',
+        //                     'rgba(54, 162, 235, 0.7)',
+        //                     'rgba(255, 99, 132, 0.7)',
+        //                     'rgba(153, 102, 255, 0.7)',
+        //                     'rgba(255, 159, 64, 0.7)'
+        //                 ],
+        //                 borderColor: [
+        //                     'rgb(128, 65, 128)',
+        //                     'rgb(75, 192, 192)',
+        //                     'rgb(255, 206, 86)',
+        //                     'rgb(54, 162, 235)',
+        //                     'rgb(255, 99, 132)',
+        //                     'rgb(153, 102, 255)',
+        //                     'rgb(255, 159, 64)'
+        //                 ],
+        //                 borderWidth: 2
+        //             }]
+        //         },
+        //         options: {
+        //             responsive: true,
+        //             plugins: {
+        //                 title: {
+        //                     display: true,
+        //                     text: 'Ministry Interest Breakdown',
+        //                     font: {
+        //                         size: fontSize + 4,
+        //                         weight: 'bold'
+        //                     },
+        //                     color: 'rgb(128, 65, 128)',
+        //                     padding: { top: 10, bottom: 30 }
+        //                 },
+        //                 legend: { 
+        //                     position: 'bottom', 
+        //                     labels: { 
+        //                     usePointStyle: true, 
+        //                     pointStyle: 'circle', 
+        //                     } 
+        //                 }
+        //             }
+        //         }
+        //     });
+        // }
         function displayChart() {
             let fontSize = 16;
             if (window.matchMedia("(max-width: 480px)").matches) {
@@ -2220,7 +2401,9 @@
             } else if (window.matchMedia("(max-width: 1024px)").matches) {
                 fontSize = 15;
             }
+
             const ctx = document.getElementById('topMinistryChart').getContext('2d');
+
             const topMinistryChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
@@ -2265,101 +2448,126 @@
                         legend: { 
                             position: 'bottom', 
                             labels: { 
-                            usePointStyle: true, 
-                            pointStyle: 'circle', 
+                                usePointStyle: true, 
+                                pointStyle: 'circle', 
                             } 
+                        },
+                        datalabels: {
+                            color: 'white',
+                            font: {
+                                weight: 'bold',
+                                size: fontSize
+                            },
+                            formatter: (value, context) => {
+                                const data = context.chart.data.datasets[0].data;
+                                const total = data.reduce((sum, val) => sum + val, 0);
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return percentage + '%';
+                            }
                         }
                     }
-                }
+                },
+                plugins: [ChartDataLabels] // activate datalabels plugin
             });
         }
 
 
-
-
-
-
-
-
-        //personal info report
-        function saveUserReport() {
-    const churchName = selectedChurch;
-    const name = document.getElementById('userName').value.trim();
-    const email = document.getElementById('userEmail').value.trim();
-
-    if (!name || !email) {
-        showMessage('Please fill in both Name and Email.', 'error');
-        return;
-    }
-
-    // Demographic data
-    const phase1 = JSON.parse(localStorage.getItem("phase1")) || {};
-    const gender = phase1.gender || "";
-    const age = phase1.age || "";
-    const marital = phase1.status || "";
-    const baptized = phase1.baptized || "";
-    const timeInFaith = phase1.timeInFaith || "";
-
-    // Skill data
-    const skillIndices = JSON.parse(localStorage.getItem("phase2")) || [];
-    const skills = {
-        music: skillIndices.includes(1) ? 1 : 0,
-        technology: skillIndices.includes(2) ? 1 : 0,
-        writing: skillIndices.includes(3) ? 1 : 0,
-        technical: skillIndices.includes(4) ? 1 : 0,
-        speaking: skillIndices.includes(5) ? 1 : 0,
-        accounting: skillIndices.includes(6) ? 1 : 0,
-        mentoring: skillIndices.includes(7) ? 1 : 0,
-        bibleKnowledge: skillIndices.includes(8) ? 1 : 0
-    };
-
-    // Eligible ministries (convert to comma-separated string)
-    const ministryRankings = JSON.parse(localStorage.getItem("topMinistryList")) || { top: [], least: [] };
-    const cleanTop = ministryRankings.top.map(m => m.replace(/^top \d+\s*/, '').trim());
-    const cleanLeast = ministryRankings.least.map(m => m.replace(/^top \d+\s*/, '').trim());
-    const eligibleMinistry = [...cleanTop, ...cleanLeast].join(', '); // now a single string
-console.log(eligibleMinistry);
-    // Prepare data
-    const postData = {
-        churchName,
-        name,
-        email,
-        ...skills,
-        eligibleMinistry, // string now
-        gender,
-        age,
-        marital,
-        baptized,
-        timeInFaith
-    };
-
-    // Send to PHP
-    fetch('php-createUserReport.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(postData)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            showMessage('User report saved successfully!', 'success');
-            document.getElementById("personalInfoDivOverlay").style.display = "none";
-        } else {
-            showMessage('Error: ' + (data.error || 'Unknown error'), 'error');
+        // limit phone number
+        function limitDigits(el, maxLength) {
+            if (el.value.length > maxLength) {
+                el.value = el.value.slice(0, maxLength);
+            }
         }
-    })
-    .catch(err => console.error('Fetch error:', err));
-}
+        //record personal info report
+        let fName = "";
+        let fEmail = "";
+        let fContactNo = "";
+        function saveUserReport() {
+            const name = document.getElementById('userName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const rawContactNo = document.getElementById('userContact').value.trim();
+            if (!churchCode) {
+                showMessage('Church code is missing.', 'error');
+                return;
+            }
+            if (!name || !email || !rawContactNo) {
+                showMessage('Please fill in Name, Email, and Contact Number.', 'error');
+                return;
+            }
+            // Validate email contains '@'
+            if (!email.includes('@')) {
+                showMessage('Invalid email format. Must contain "@"', 'error');
+                return;
+            }
+            // Validate contact number is exactly 9 digits
+            if (!/^\d{10}$/.test(rawContactNo)) {
+                showMessage('Invalid contact number format.', 'error');
+                return;
+            }
+            let contactNo = "+63" + rawContactNo;
 
+            fName = name;
+            fEmail = email;
+            fContactNo = contactNo;
+            // Demographic data
+            const phase1 = JSON.parse(localStorage.getItem("phase1")) || {};
+            const gender = phase1.gender || "";
+            const age = phase1.age || "";
+            const marital = phase1.status || "";
+            const baptized = phase1.baptized || "";
+            const timeInFaith = phase1.timeInFaith || "";
 
+            // Skill data
+            const skillIndices = JSON.parse(localStorage.getItem("phase2")) || [];
+            const skills = {
+                music: skillIndices.includes(1) ? 1 : 0,
+                technology: skillIndices.includes(2) ? 1 : 0,
+                writing: skillIndices.includes(3) ? 1 : 0,
+                technical: skillIndices.includes(4) ? 1 : 0,
+                speaking: skillIndices.includes(5) ? 1 : 0,
+                accounting: skillIndices.includes(6) ? 1 : 0,
+                mentoring: skillIndices.includes(7) ? 1 : 0,
+                bibleKnowledge: skillIndices.includes(8) ? 1 : 0
+            };
 
+            // Eligible ministries as comma-separated string
+            const ministryRankings = JSON.parse(localStorage.getItem("topMinistryList")) || { top: [], least: [] };
+            const cleanTop = ministryRankings.top.map(m => m.replace(/^top \d+\s*/, '').trim());
+            const cleanLeast = ministryRankings.least.map(m => m.replace(/^top \d+\s*/, '').trim());
+            const eligibleMinistry = [...cleanTop, ...cleanLeast].join(', ');
 
+            // Prepare data
+            const postData = {
+                churchCode,
+                name,
+                email,
+                contactNo,
+                ...skills,
+                eligibleMinistry,
+                gender,
+                age,
+                marital,
+                baptized,
+                timeInFaith
+            };
 
-
-
-
-
-
+            // Send to PHP
+            fetch('php-createUserReport.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(postData)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    showMessage('User report saved successfully!', 'success');
+                    document.getElementById("personalInfoDivOverlay").style.display = "none";
+                } else {
+                    showMessage('Error: ' + (data.error || 'Unknown error'), 'error');
+                }
+            })
+            .catch(err => console.error('Fetch error:', err));
+        }
         //export result
         function exportResult() {
             const { jsPDF } = window.jspdf;
@@ -2368,20 +2576,17 @@ console.log(eligibleMinistry);
                 unit: "mm",
                 format: [216, 279]
             });
-            // Example user data
-            //let age = 25, gender = 1, status = 1, baptized = 2, timeInFaith = 3, skill = [1,2,3,4,5,6,7,8], ministryInterest = ["Worship(Singing)", "Worship(Dancing)", "Worship(Instrument)","Prayer", "Preaching", "Discipleship", "Youth", "Young Adults", "Men's", "Women's", "Family Or Couples","Ushering", "Administrative", "Finance", "Marshal", "Facilities Maintenance","Evangelism", "Missions", "Community Service", "Visitation","Production Tech", "Creative & Social Media","Counseling", "Healing & Deliverance", "Grievance", "Addiction Recovery", "Special Needs","Seniors", "Single Adults"];//for test
-            let gender = JSON.parse(localStorage.getItem("phase1")).gender;
-            let age = JSON.parse(localStorage.getItem("phase1")).age;
-            let status = JSON.parse(localStorage.getItem("phase1")).status;
-            let baptized = JSON.parse(localStorage.getItem("phase1")).baptized;
-            let timeInFaith = JSON.parse(localStorage.getItem("phase1")).timeInFaith;
-            let skill = JSON.parse(localStorage.getItem("phase2"));
-            let ministryRankings = JSON.parse(localStorage.getItem("topMinistryList"));
+            //church name
+            // Demographic info
+            let phase1 = JSON.parse(localStorage.getItem("phase1")) || {};
+            let genderData = (phase1.gender == 1) ? "Male" : (phase1.gender == 2) ? "Female" : "None";
+            let ageData = phase1.age || "None";
+            let statusData = (phase1.status == 1) ? "Single" : (phase1.status == 2) ? "Married" : "None";
+            let baptizedData = (phase1.baptized == 1) ? "Yes" : (phase1.baptized == 2) ? "No" : "None";
+            let timeInFaithData = (phase1.timeInFaith == 1) ? "New" : (phase1.timeInFaith == 2) ? "6 months" : (phase1.timeInFaith == 3) ? "1+ year" : "None";
 
-            let genderData = (gender == 1) ? "Male" : (gender == 2) ? "Female" : "None";
-            let statusData = (status == 1) ? "Single" : (status == 2) ? "Married" : "None";
-            let baptizedData = (baptized == 1) ? "Yes" : (baptized == 2) ? "No" : "None";
-            let timeInFaithData = (timeInFaith == 1) ? "New" : (timeInFaith == 2) ? "6 months" : (timeInFaith == 3) ? "1+ year" : "None";
+            // Skills
+            let skillIndices = JSON.parse(localStorage.getItem("phase2")) || [];
             const skillMap = {
                 1: "Musical skills",
                 2: "Technological Skills",
@@ -2392,60 +2597,69 @@ console.log(eligibleMinistry);
                 7: "Mentoring Skills",
                 8: "Knowledge in Scriptures"
             };
-            let skillsData = (skill.length > 0) ? (skill.map(num => skillMap[num] || "None")) : ["None"];
-            let ministryRankingsData = JSON.parse(localStorage.getItem("topMinistryList")) || { top: [], least: [] };
-            // Combine top and least ministries into one array
-            let eligibleMinistriesData = [...ministryRankingsData.top, ...ministryRankingsData.least];
-            // If there’s nothing, default to ["None"]
-            if (eligibleMinistriesData.length === 0) {
-                eligibleMinistriesData = ["None"];
-            } else {
-                eligibleMinistriesData = eligibleMinistriesData.map(item => item + " Ministry");
-            }
-            let y = 20;// cursor
+            let skillsData = skillIndices.length > 0 ? skillIndices.map(num => skillMap[num] || "None") : ["None"];
+
+            // Ministries
+            let ministryRankings = JSON.parse(localStorage.getItem("topMinistryList")) || { top: [], least: [] };
+            let eligibleMinistriesData = [...ministryRankings.top, ...ministryRankings.least];
+            if (eligibleMinistriesData.length === 0) eligibleMinistriesData = ["None"];
+            else eligibleMinistriesData = eligibleMinistriesData.map(item => item + " Ministry");
+
+            let y = 15; // cursor
+
             // ===== Title =====
             doc.setFont("helvetica", "bold");
             doc.setFontSize(16);
             doc.setTextColor(128, 65, 128);
             doc.text("CALLING AND SERVICE PROFILE", 108, y, { align: "center" });
+
+            // ===== Church Name =====
+            y += 10; // add some spacing
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(12);
+            doc.setTextColor(128, 65, 128);
+            doc.text("Church Name: " + churchName, 108, y, { align: "center" });
+
             y += 20;
             // ===== Personal Information =====
             doc.setFontSize(14);
             doc.text("Volunteer's Information", 15, y); y += 10;
-            doc.setTextColor(0, 0, 0);
             doc.setFont("helvetica", "normal");
             doc.setFontSize(11);
-            doc.text("Fullname: _______________________________________________________________________", 20, y); y += 8;
-            doc.text("Home Address: __________________________________________________________________", 20, y); y += 8;
-            doc.text("Contact number: __________________________________________________________________", 20, y); y += 8;
-            doc.text("Email address: ___________________________________________________________________", 20, y); y += 10;
-            //divider
+            doc.setTextColor(0, 0, 0);
+            doc.text("Fullname: " + fName, 20, y); y += 8;
+            doc.text("Contact number: " + fContactNo, 20, y); y += 8;
+            doc.text("Email address: " + fEmail, 20, y); y += 10;
+
+            // divider
             doc.setDrawColor(0, 0, 0);
             doc.setLineWidth(0.5);
-            doc.line(15, y, 195, y);  y += 12;
-            // ===== Demographics ===== Skills =====
+            doc.line(15, y, 195, y); y += 12;
+
+            // ===== Demographics & Skills =====
             doc.setFont("helvetica", "bold");
             doc.setFontSize(14);
             doc.setTextColor(128, 65, 128);
             doc.text("Demographics", 25, y);
             doc.text("Skill(s)", 120, y); y += 10;
+
             doc.setFont("helvetica", "normal");
             doc.setFontSize(11);
             doc.setTextColor(0, 0, 0);
             doc.text("Gender: " + genderData, 20, y); y += 8;
-            doc.text("Age: " + age, 20, y); y += 8;
+            doc.text("Age: " + ageData, 20, y); y += 8;
             doc.text("Status: " + statusData, 20, y); y += 8;
             doc.text("Baptized: " + baptizedData, 20, y); y += 8;
             doc.text("Time in faith: " + timeInFaithData, 20, y);
-            //divider
+
+            // Skills column
             y -= 50;
             doc.setDrawColor(0, 0, 0);
             doc.setLineWidth(0.5);
-            doc.line(70, y, 70, y+55);  y += 18;
+            doc.line(70, y, 70, y + 55); y += 18;
             const skillsPerColumn = 4;
             const skillColumnWidth = 60;
-            let skillCol = 0;
-            let skillRow = 0;
+            let skillCol = 0, skillRow = 0;
             skillsData.forEach(skill => {
                 let x = 80 + (skillCol * skillColumnWidth);
                 let yPos = y + (skillRow * 8);
@@ -2456,25 +2670,26 @@ console.log(eligibleMinistry);
                     skillCol++;
                 }
             });
-            y += (skillsPerColumn * 8)+10;
-            //divider
+            y += (skillsPerColumn * 8) + 10;
+
+            // divider
             doc.setDrawColor(0, 0, 0);
             doc.setLineWidth(0.5);
-            doc.line(15, y, 195, y);  y += 12;
+            doc.line(15, y, 195, y); y += 12;
+
             // ===== Eligible Ministries =====
             doc.setFont("helvetica", "bold");
             doc.setFontSize(14);
             doc.setTextColor(128, 65, 128);
-            doc.text("Eligible Ministries", 15, y); 
-            y += 10;
+            doc.text("Eligible Ministries", 15, y); y += 10;
+
             doc.setFont("helvetica", "normal");
             doc.setFontSize(11);
             doc.setTextColor(0, 0, 0);
             const itemsPerColumn = 10;
             const columnWidth = 63;
-            let col = 0;
-            let row = 0;
-            eligibleMinistriesData.forEach((ministry, index) => {
+            let col = 0, row = 0;
+            eligibleMinistriesData.forEach(ministry => {
                 let x = 15 + (col * columnWidth);
                 let yPos = y + (row * 8);
                 doc.text("• " + ministry, x, yPos);
@@ -2484,17 +2699,21 @@ console.log(eligibleMinistry);
                     col++;
                 }
             });
-            //logo water mark
+
+            // logo watermark
             doc.saveGraphicsState();
             doc.setGState(new doc.GState({ opacity: 0.3 }));
             doc.addImage("img/icn-logo.png", "PNG", 100, 150, 150, 150);
             doc.restoreGraphicsState();
+
             // ===== Footer =====
             doc.setFontSize(10);
             doc.text("Generated by PERFIT System", 108, 270, { align: "center" });
-            // Save file
+
+            // Save PDF
             doc.save("volunteer_profile.pdf");
         }
+
         //goto home
         function gotoHome(){
             document.getElementById('overlayLoad').style.display = "block";
@@ -2557,8 +2776,12 @@ console.log(eligibleMinistry);
             const message = document.getElementById("messageAlert");
             message.textContent = text;
             message.className = `messageAlert ${type}`; // fixed to match your CSS
+            message.style.display = "block";
             message.style.opacity = 1;
-            setTimeout(() => (message.style.opacity = 0), 3000);
+            setTimeout(() => (
+                message.style.opacity = 0,
+                message.style.display = "none"
+            ), 3000);
         }
     // Catch errors in synchronous code
         function errorFound(msg){
@@ -2574,34 +2797,34 @@ console.log(eligibleMinistry);
             }
             console.log("An unknown Error");
         }
-        window.onerror = function(message, source, lineno, colno, error) {
-            localStorage.clear();
-            document.getElementById("overlay").style.display = "block";
-            if(selectedLanguage=="en"){
-                document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";
-                document.getElementById("a1").innerText = "RETURN TO HOME PAGE";
-            }
-            if(selectedLanguage=="tl"){
-                document.getElementById("alertMessage").innerText = "May hindi inaasahang error na naganap, mangyaring bumalik sa home page.";
-                document.getElementById("a1").innerText = "BUMALIK SA HOME PAGE";
-            }
-            console.log("An unknown Error");
-        };
-        // Catch errors in promises/async
-        window.onunhandledrejection = function(event) {
-            console.warn("Unhandled promise error:", event.reason);
-            localStorage.clear();
-            document.getElementById("overlay").style.display = "block";
-            if(selectedLanguage=="en"){
-                document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";
-                document.getElementById("a1").innerText = "RETURN TO HOME PAGE";
-            }
-            if(selectedLanguage=="tl"){
-                document.getElementById("alertMessage").innerText = "May hindi inaasahang error na naganap, mangyaring bumalik sa home page.";
-                document.getElementById("a1").innerText = "BUMALIK SA HOME PAGE";
-            }
-            console.log("An unknown Error");
-        };
+        // window.onerror = function(message, source, lineno, colno, error) {
+        //     localStorage.clear();
+        //     document.getElementById("overlay").style.display = "block";
+        //     if(selectedLanguage=="en"){
+        //         document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";
+        //         document.getElementById("a1").innerText = "RETURN TO HOME PAGE";
+        //     }
+        //     if(selectedLanguage=="tl"){
+        //         document.getElementById("alertMessage").innerText = "May hindi inaasahang error na naganap, mangyaring bumalik sa home page.";
+        //         document.getElementById("a1").innerText = "BUMALIK SA HOME PAGE";
+        //     }
+        //     console.log("An unknown Error");
+        // };
+        // // Catch errors in promises/async
+        // window.onunhandledrejection = function(event) {
+        //     console.warn("Unhandled promise error:", event.reason);
+        //     localStorage.clear();
+        //     document.getElementById("overlay").style.display = "block";
+        //     if(selectedLanguage=="en"){
+        //         document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";
+        //         document.getElementById("a1").innerText = "RETURN TO HOME PAGE";
+        //     }
+        //     if(selectedLanguage=="tl"){
+        //         document.getElementById("alertMessage").innerText = "May hindi inaasahang error na naganap, mangyaring bumalik sa home page.";
+        //         document.getElementById("a1").innerText = "BUMALIK SA HOME PAGE";
+        //     }
+        //     console.log("An unknown Error");
+        // };
     </script>
 </body>
 </html>

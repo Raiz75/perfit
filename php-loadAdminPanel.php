@@ -9,7 +9,7 @@ if (!isset($_SESSION['admin_email'])) {
 }
 $adminEmail = $_SESSION['admin_email'];
 // Step 1: Get admin details
-$getAdmin = $conn->prepare("SELECT adminID, churchName FROM admin WHERE email = ?");
+$getAdmin = $conn->prepare("SELECT adminID, churchName, churchCode FROM admin WHERE email = ?");
 $getAdmin->bind_param("s", $adminEmail);
 $getAdmin->execute();
 $resultAdmin = $getAdmin->get_result();
@@ -20,6 +20,7 @@ if ($resultAdmin->num_rows === 0) {
 $adminRow = $resultAdmin->fetch_assoc();
 $adminID = $adminRow['adminID'];
 $churchName = $adminRow['churchName'];
+$churchCode = $adminRow['churchCode'];
 $getAdmin->close();
 // Step 2: Get demographics restrictions
 $sql = "
@@ -156,7 +157,7 @@ $stmtBehavioral->close();
 $sqlReports = "
     SELECT 
         ur.userReportID,
-        ur.churchName,
+        ur.churchCode,
         ur.email,
         ur.name,
         ur.music,
@@ -175,11 +176,11 @@ $sqlReports = "
         ur.timeInFaith,
         ur.timeOfSubmission
     FROM user_report ur
-    WHERE ur.churchName = ?
+    WHERE ur.churchCode = ?
     ORDER BY ur.userReportID DESC
 ";
 $stmtReports = $conn->prepare($sqlReports);
-$stmtReports->bind_param("s", $churchName);
+$stmtReports->bind_param("s", $churchCode);
 $stmtReports->execute();
 $resultReports = $stmtReports->get_result();
 
@@ -300,8 +301,10 @@ while ($row = $resultReports->fetch_assoc()) {
 }
 $stmtReports->close();
 
+
 // ✅ Final JSON Response
 $response = [
+    'churchCode' => $churchCode,
     'churchName' => $churchName,
     'ministriesAdmin' => $ministriesAdmin,
     'skills' => $skills,

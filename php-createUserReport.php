@@ -7,8 +7,8 @@ include 'php-dbCon.php';
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-if (empty($data['name']) || empty($data['email'])) {
-    echo json_encode(['error' => 'Name and Email are required']);
+if (empty($data['name']) || empty($data['email']) || empty($data['contactNo']) || empty($data['churchCode'])) {
+    echo json_encode(['error' => 'Name, Email, Contact Number and Church code are required']);
     exit;
 }
 
@@ -17,19 +17,20 @@ $eligibleMinistryStr = trim($data['eligibleMinistry'] ?? '');
 
 try {
     $stmt = $conn->prepare("INSERT INTO user_report 
-        (churchName, email, name, music, technology, writing, technical, speaking, accounting, mentoring, bibleKnowledge, eligibleMinistry, gender, age, marital, baptized, timeInFaith)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        (churchCode, email, name, contactNo, music, technology, writing, technical, speaking, accounting, mentoring, bibleKnowledge, eligibleMinistry, gender, age, marital, baptized, timeInFaith)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     if (!$stmt) {
         throw new Exception("Prepare failed: " . $conn->error);
     }
 
-    // 4 strings + 13 integers = 17 params
+    // Bind parameters
     $stmt->bind_param(
-        "sssiiiiiiiisiiiii",
-        $data['churchName'],       // s
+        "ssssiiiiiiiisiiiii",
+        $data['churchCode'],       // s
         $data['email'],            // s
         $data['name'],             // s
+        $data['contactNo'],        // s
         $data['music'],            // i
         $data['technology'],       // i
         $data['writing'],          // i

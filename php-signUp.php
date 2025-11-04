@@ -2,6 +2,7 @@
 header('Content-Type: application/json');
 include 'php-dbCon.php';
 
+// Get input
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
 
@@ -29,9 +30,36 @@ $check->close();
 // 🔐 Hash password
 $hashed = password_hash($password, PASSWORD_DEFAULT);
 
-// 🧾 Insert new admin
-$insert = $conn->prepare("INSERT INTO admin (email, password) VALUES (?, ?)");
-$insert->bind_param("ss", $email, $hashed);
+// 🟢 Function to generate unique 9-character alphanumeric church code
+function generateChurchCode($length = 9) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+// Generate unique church code
+$churchCode = generateChurchCode();
+
+// Make sure code is unique
+$checkCode = $conn->prepare("SELECT 1 FROM admin WHERE churchCode = ?");
+$checkCode->bind_param("s", $churchCode);
+$checkCode->execute();
+$resultCode = $checkCode->get_result();
+while ($resultCode->num_rows > 0) {
+    $churchCode = generateChurchCode();
+    $checkCode->bind_param("s", $churchCode);
+    $checkCode->execute();
+    $resultCode = $checkCode->get_result();
+}
+$checkCode->close();
+
+// 🧾 Insert new admin with churchCode
+$insert = $conn->prepare("INSERT INTO admin (email, password, churchCode) VALUES (?, ?, ?)");
+$insert->bind_param("sss", $email, $hashed, $churchCode);
 
 if ($insert->execute()) {
     $newAdminID = $conn->insert_id;
@@ -115,7 +143,8 @@ if ($insert->execute()) {
     // ==================================================
     echo json_encode([
         "success" => true,
-        "message" => "Account created successfully! Default restrictions and questions copied from admin #1. Church name set to '$churchName'."
+        "message" => "Account created successfully! Default restrictions and questions copied from admin #1. Church name set to '$churchName', church code set to '$churchCode'.",
+        "churchCode" => $churchCode
     ]);
 } else {
     echo json_encode(["success" => false, "message" => "Error creating account."]);

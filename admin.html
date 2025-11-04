@@ -80,22 +80,29 @@
             margin-bottom: 20px;
             position: relative;
             display: flex;
+            border: 2px solid var(--a);
+            background-color: white;
+            border-radius: 12px;
         }
         .input-group img{
-            height: 40px;
-            width: 40px;
-            margin: 5px;
+            height: 30px;
+            width: 30px;
+            margin: 10px;
             cursor:pointer;
         }
         input {
             width: 100%;
             padding: 15px 20px;
-            border: 2px solid var(--a);
             border-radius: 12px;
             font-size: 14px;
             font-family: "Poppins", sans-serif;
             transition: all 0.3s ease;
             background: #f8f9fa;
+            border: 2px solid transparent;
+        }
+        input:focus {
+            outline: none;
+            border: 2px solid transparent !important;
         }
         input::placeholder {color: rgb(153, 133, 153);}
         button {

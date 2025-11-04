@@ -4,18 +4,24 @@ header('Content-Type: application/json');
 
 // Read JSON input
 $data = json_decode(file_get_contents("php://input"), true);
-$churchName = isset($data['churchName']) ? $data['churchName'] : '';
+$churchCode = isset($data['churchCode']) ? trim($data['churchCode']) : '';
 $response = [];
 
-// --- Step 1: Get adminID from churchName ---
-$adminQuery = $conn->prepare("SELECT adminID FROM admin WHERE churchName = ?");
-$adminQuery->bind_param("s", $churchName);
+if (empty($churchCode)) {
+    echo json_encode(["error" => "Church code is required."]);
+    exit;
+}
+
+// --- Step 1: Get adminID from churchCode ---
+$adminQuery = $conn->prepare("SELECT adminID, churchName FROM admin WHERE BINARY churchCode = ?");
+$adminQuery->bind_param("s", $churchCode);
 $adminQuery->execute();
 $adminResult = $adminQuery->get_result();
 
 if ($adminResult->num_rows > 0) {
     $adminRow = $adminResult->fetch_assoc();
     $adminID = $adminRow['adminID'];
+    $churchName = $adminRow['churchName'];
 
     // --- Step 2: Ministries ---
     $ministriesQuery = $conn->prepare("SELECT * FROM ministries");
@@ -78,6 +84,7 @@ if ($adminResult->num_rows > 0) {
 
     // --- Combine all results ---
     $response = [
+        "churchName" => $churchName,
         "ministries" => $ministries,
         "restrictions_demographic" => $restrictions_demographic,
         "restrictions_skill" => $restrictions_skill,
@@ -87,7 +94,7 @@ if ($adminResult->num_rows > 0) {
     ];
 
 } else {
-    $response["error"] = "ChurchName not found.";
+    $response["error"] = "Church code not found.";
 }
 
 // --- Output final JSON ---

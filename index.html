@@ -520,15 +520,20 @@
             color: var(--a);
             z-index: 100;
         }
-        select {
+        .overlayChurch input {
             width: 90%;
             padding: 8px 12px;
             border: 1px solid var(--a);
             border-radius: 8px;
             margin: 10px auto;
+            height: 40px;
+            font-weight: bold;
+            font-size: 2rem;
+            text-align: center;
             background-color: white;
             color: var(--a);
             cursor: pointer;
+            letter-spacing:5px;
         }
         /* Centered alert */
         .showSelectLanguage {
@@ -631,6 +636,32 @@
         @keyframes spin {
             0%   { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+    /* alert */
+        .message {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 300px;
+            height: 60px;
+            border: 3px solid transparent;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            opacity: 1;
+            color: transparent;
+            transition: 0.5s ease-in-out;
+            z-index: 205;
+        }
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 3px solid #155724;
+        }
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 3px solid #721c24;;
         }
         /* DESKTOP-FIRST RESPONSIVE MEDIA QUERIES */
         @media(hover:hover){
@@ -1032,6 +1063,8 @@
     </style>
 </head>
 <body>
+<!-- small alert -->
+    <div class="message" id="message"></div>
 <!--design-->
 <div class="design">
     <img class="dsn1 move-up" src="img/pray.webp" loading="lazy">
@@ -1327,11 +1360,9 @@
 <!-- select church Restrictions -->
     <div id="overlayChurch" class="overlayChurch">
         <div class="showSelectLanguage">
-            <p>Choose your church:</p>
-            <select id="churchName" name="churchName">
-                <option value="" disabled selected>Loading churches...</option>
-            </select>
-            <button class="l disabledBtn" id="selLangBtn" style="width: 70%;" onclick="selectLang()">Next</button>
+            <p>Enter your church code:</p>
+            <input type="text" id="inputedChurchCode" placeholder="Enter Code">
+            <button class="l" id="selLangBtn" style="width: 70%;" onclick="selectLang()">Next</button>
             <button class="close" onclick="document.getElementById('overlayChurch').style.display = 'none'">x</button>
         </div>
     </div>
@@ -1353,6 +1384,8 @@
         </div>
     </div>
     <script>
+    // small alert
+        const message = document.getElementById('message');
     // generate random verse
         const verses = [
             { title: "1 Corinthians 12:4-5", text: "There are different kinds of gifts, but the same Spirit distributes them. There are different kinds of service, but the same Lord."},
@@ -1412,47 +1445,59 @@
             document.getElementById('verseDiv').style.opacity="0";
         }
     // user type
-        function setUser(user){
+        function setUser(user) {
             document.getElementById('overlayUser').style.display = 'block';
-            if(user=="leader"){
+            if (user === "leader") {
                 document.getElementById('overlayLoad').style.display = "block";
                 setTimeout(function() {
                     document.getElementById('overlayLoad').style.display = "none";
                     window.location.href = "admin.html";
                 }, 2000);
-            }else if(user=="volunteer"){
+            } else if (user === "volunteer") {
                 document.getElementById('overlayUser').style.display = 'none';
                 document.getElementById('overlayChurch').style.display = 'block';
             }
         }
-        document.addEventListener("DOMContentLoaded", function() {
-            const select = document.getElementById("churchName");
-            fetch("php-getChurchName.php")
+        function selectLang() {
+            const input = document.getElementById('inputedChurchCode');
+            const code = input.value.trim();
+
+            if (!code) {
+                message.textContent = "Please enter a church code.";
+                message.className = "message error";
+                message.style.opacity = 1;
+                setTimeout(() => (message.style.opacity = 0), 3000);
+                return;
+            }
+
+            fetch("php-validateChurchCode.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: "churchCode=" + encodeURIComponent(code)
+            })
             .then(response => response.json())
             .then(data => {
-                select.innerHTML = '<option value="" disabled selected>Select a church</option>';
-                data.forEach(name => {
-                    const option = document.createElement("option");
-                    option.value = name;
-                    option.textContent = name;
-                    select.appendChild(option);
-                });
+                if (data.success) {
+                    // ✅ Valid code: proceed
+                    localStorage.setItem('churchCode', code);
+                    document.getElementById('overlayChurch').style.display = 'none';
+                    document.getElementById('overlay').style.display = 'block';
+                    document.getElementById('inputedChurchCode').value = '';
+                } else {
+                    // ❌ Invalid code: show error
+                    message.textContent = data.message || "Invalid church code.";
+                    message.className = "message error";
+                    message.style.opacity = 1;
+                    setTimeout(() => (message.style.opacity = 0), 3000);
+                }
             })
             .catch(error => {
-                console.error("Error fetching church names:", error);
-                select.innerHTML = '<option value="" disabled>Error loading churches</option>';
+                console.error("Fetch error:", error);
+                message.textContent = "An unexpected error occurred.";
+                message.className = "message error";
+                message.style.opacity = 1;
+                setTimeout(() => (message.style.opacity = 0), 3000);
             });
-            //  detect valid selection
-            select.addEventListener("change", function() {
-                if (this.value !== "") {
-                    document.getElementById("selLangBtn").classList.remove("disabledBtn");
-                }
-            });
-        });
-        function selectLang(){
-            document.getElementById('overlayChurch').style.display = "none";
-            document.getElementById('overlay').style.display = "block";
-            localStorage.setItem('selectedChurch', document.getElementById('churchName').value);
         }
     // privacy policy
         function setLang(selLang){
