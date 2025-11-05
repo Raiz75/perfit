@@ -150,7 +150,7 @@ $stmtReports->close();
 // ✅ Final JSON Response
 $response = [
     'churchCode' => $churchCode,
-    'churchName' => $churchName, // from admin table
+    'churchName' => $churchName,
     'dateRange' => [
         'start' => $startDate,
         'end' => $endDate

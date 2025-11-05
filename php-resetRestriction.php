@@ -47,7 +47,7 @@ switch ($tab) {
         $message = "Demographic restrictions reset to default.";
         break;
 
-    case "skillsTab":
+    case "skillsTab1":
         // ✅ Reset skill restrictions
         $sql = "
             UPDATE restrictions_skill AS r
@@ -67,6 +67,7 @@ switch ($tab) {
         $stmt->bind_param("i", $adminID);
         $stmt->execute();
 
+    case "skillsTab2":
         // ✅ Reset skill profiling questions
         $sql2 = "
             UPDATE questions_skill AS q
@@ -84,7 +85,6 @@ switch ($tab) {
         $status = "success";
         $message = "Skill restrictions and skill profiling questions reset to default.";
         break;
-
 
     case "interestAndPassionTab":
         $sql = "

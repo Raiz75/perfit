@@ -191,7 +191,12 @@ $userTodayCount = 0;
 $today = date('Y-m-d'); // ✅ today's date for comparison
 
 $genderStats = [];
-$faithStats = [];
+$faithStats = [
+    '1+ Week' => 0,
+    '6+ Months' => 0,
+    '1+ Year' => 0,
+    '2+ Years' => 0
+];
 $ageStats = [
     'Under 18' => 0,
     '18-25' => 0,
@@ -230,7 +235,12 @@ $skillColumnMap = [
     'Mentoring' => 'mentoring',
     'Bible Knowledge' => 'bibleKnowledge'
 ];
-
+$faithMap = [
+        1 => '1+ Week',
+        2 => '6+ Months',
+        3 => '1+ Year',
+        4 => '2+ Years'
+    ];
 while ($row = $resultReports->fetch_assoc()) {
     $userTakeCount++;
 
@@ -249,15 +259,9 @@ while ($row = $resultReports->fetch_assoc()) {
         $genderStats['Female'] = ($genderStats['Female'] ?? 0) + 1;
     }
 
-    $faithMap = [
-        1 => '1+ Week',
-        2 => '6+ Months',
-        3 => '1+ Year',
-        4 => '2+ Years'
-    ];
     $faithLabel = $faithMap[$row['timeInFaith']] ?? '-';
-    if ($faithLabel != '-') {
-        $faithStats[$faithLabel] = ($faithStats[$faithLabel] ?? 0) + 1;
+    if ($faithLabel !== '-') {
+        $faithStats[$faithLabel]++;
     }
 
     $age = intval($row['age']);
@@ -324,9 +328,6 @@ $response = [
         'eligibleMinistry' => $eligibleMinistryStats
     ]
 ];
-
-
-
 echo json_encode($response);
 $conn->close();
 ?>
