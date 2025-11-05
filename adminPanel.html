@@ -1619,6 +1619,7 @@
             })
             .catch(() => {});
         }
+        
     //display admin datas
         fetch("php-loadAdminPanel.php")
         .then(response => response.json())
@@ -2509,6 +2510,19 @@
 
             if (new Date(startDateInput.value) > new Date(endDateInput.value)) {
                 message.textContent = "The start date cannot be later than the end date.";
+                message.className = "message error";
+                message.style.opacity = 1;
+                setTimeout(() => (message.style.opacity = 0), 3000);
+                return;
+            }
+
+            // Get today's date (without time) for comparison
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); // reset time to midnight
+            const selectedEndDate = new Date(endDateInput.value);
+            selectedEndDate.setHours(0, 0, 0, 0);
+            if (selectedEndDate > today) {
+                message.textContent = "Invalid date: End date cannot be later than today.";
                 message.className = "message error";
                 message.style.opacity = 1;
                 setTimeout(() => (message.style.opacity = 0), 3000);
