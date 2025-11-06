@@ -145,6 +145,18 @@
             gap: 10px;
             padding: 10px;
         }
+        .personalBox{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .personalBox input[type="text"], .personalBox input[type="number"]{
+            height: 30px;
+            width: 70%;
+            font-size: 1rem;
+            border: 1px solid grey;
+            border-radius: 8px;
+        }
         .box input[type="number"]{
             width: 100%;
             border: 2px solid var(--a);
@@ -161,6 +173,16 @@
         .box input[type="number"]::placeholder{
             color: var(--a);
         }
+        .personalBox input[type="number"]{
+            width: 70%;
+            border: 1px solid grey;
+        }
+        .personalBox input[type="number"]:focus{
+            outline: none;
+        }
+        .personalBox input[type="number"]::placeholder{
+            color: var(--a);
+        }
         .box label {
             display: flex;
             align-items: center;
@@ -175,6 +197,42 @@
             width: 25%;
             height: 40px;
         }
+        .personalBox label{
+            width: 55%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .contactInput {
+            width: 55%;
+        }
+        .contactInput div{
+            width: 70%;
+            display: flex;
+            height: 30px;
+            border: 1px solid grey;
+            border-radius: 8px;
+            box-sizing: border-box;
+            padding: 0px;
+        }
+        .contactInput label{
+            width: 100%;
+        }
+        .contactInput div p{
+            margin: 0px;
+            width: 20%;
+        }
+        .contactInput input[type="number"]{
+            margin: 0px;
+            height: 27px;
+            width: 80%;
+            border: none;
+            border-left: 1px solid var(--a);
+            border-radius: 0px;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            padding-left: 5px;
+        }
+
         /*question box*/
         .questionBox{
             width: 90%;
@@ -436,7 +494,7 @@
             border: 3px solid #721c24;;
         }
         /* personal info div */
-        .personalInfoDivOverlay{
+        /* .personalInfoDivOverlay{
             display: none;
             position: fixed;
             top: 0;
@@ -454,12 +512,12 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 30%;
-            height: auto; 
+            height: auto;
             color: var(--a);
             background-color: white;
             border-radius: 12px;
             font-size: 1rem;
-            text-align: center; 
+            text-align: center;
         }
         .personalInfoDiv button{
             border: 3px solid var(--a);
@@ -511,7 +569,7 @@
             width: 15%;
         }
         .asd input {
-            width: 85%; 
+            width: 85%;
             border: none;
             margin: 0px;
             border-radius: 0px;
@@ -525,7 +583,7 @@
             outline: none;
             border: none;
             border-left: 2px solid var(--a);
-        }
+        } */
 
     /* loading */
         .overlayLoad {
@@ -545,8 +603,8 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 300px;
-            height: auto; 
-            text-align: center; 
+            height: auto;
+            text-align: center;
         }
         .loader {
             border: 30px solid var(--b);
@@ -640,6 +698,26 @@
                 width: 50%;
                 font-size: 1.2rem;
             }
+            .contactInput{
+                width: 60%;
+            }
+            .personalBox label{
+                width: 60%;
+            }
+            .personalBox input[type="text"]{
+                width: 65%;
+            }
+            .contactInput label{
+                width: 100%;
+            }
+            .contactInput div{
+                width: 65%;
+                border: 1px solid red;;
+            }
+            .box input[type="number"]{
+                width: 50%;
+                font-size: 1.2rem;
+            }
             .questionText {font-size: 1.3rem;}
             .rateBox {gap: 0.3rem;}
             .rateBox button {
@@ -698,6 +776,7 @@
             .ansDiv{
                 display: flex;
                 flex-direction: column;
+
             }
             .box label {
                 width: 100%;
@@ -814,6 +893,21 @@
     <p class="instruction" id="inst1" translate="i1" style="text-align: justify;">INSTRUCTION: Please provide your personal details accurately. This information helps us understand your profile better and will only be used for assessment purposes.</p>
     <div class="personalDetail move-up" id="personalForm">
         <h2 translate="ph1">DEMOGRAPHICS</h2>
+        <div class="box move-up" id="personalInfoBox">
+            <span translate="ph1T">Personal Details</span><br>
+            <div class="ansDiv personalBox">
+                <label>Name: <input type="text" translate="ph1N" id="userName"></label>
+                <label>Email: <input type="text" translate="ph1E" id="userEmail"></label>
+                <div class="contactInput">
+                    <label id="contactInputDiv">Contact No.: 
+                        <div>
+                            <p>+63</p><input type="number" id="contactInput" oninput="limitDigits(this, 10)">
+                        </div>
+                    </label translate="ph1C">
+                </div>
+                
+            </div>
+        </div>
         <div class="box move-up" id="genderBox">
             <span id="genderBoxttl" translate="ph1a">Gender</span><br>
             <div class="ansDiv">
@@ -953,7 +1047,7 @@
 <!-- small alert -->
     <div class="messageAlert" id="messageAlert"></div>
 <!-- personal info -->
-    <div class="personalInfoDivOverlay" id="personalInfoDivOverlay">
+    <!-- <div class="personalInfoDivOverlay" id="personalInfoDivOverlay">
         <div class="personalInfoDiv">
             <h3>Personal Info</h3>
             <div class="pInfoBox qwe">
@@ -968,12 +1062,12 @@
                 <p>Contact No:</p>
                 <div class="phone-input-wrapper asd">
                     <p>+63</p>
-                    <input type="number" id="userContact" placeholder="Enter Contact number" oninput="limitDigits(this, 10)">
+                    <input type="number" id="userContact" placeholder="Enter Contact number" oninput="limitDigits('userContact', 10)">
                 </div>
             </div>
             <button id="seeResult" onclick="saveUserReport()">Save Result</button>
         </div>
-    </div>
+    </div> -->
 <!--script-->
     <!-- api -->
     <script src="callApi.js"></script>
@@ -995,7 +1089,7 @@
         let interestQuestions = [];
         let behavioralQuestions = [];
 
-        window.addEventListener("DOMContentLoaded", () => { 
+        window.addEventListener("DOMContentLoaded", () => {
             // --- Fetch Restrictions ---
             fetch("php-getDbData.php", {
                 method: "POST",
@@ -1085,13 +1179,13 @@
                 console.log(
                     "%c>> Phase 2 Data%c %o",
                     "color: white; background: green; font-weight: bold; padding: 2px 6px; border-radius: 3px;",
-                    "color: gray; font-style: italic;", 
+                    "color: gray; font-style: italic;",
                     JSON.parse(localStorage.getItem("phase2"))
                 );
                 console.log(
                     "%c>> Phase 3 Data%c %o",
                     "color: white; background: green; font-weight: bold; padding: 2px 6px; border-radius: 3px;",
-                    "color: gray; font-style: italic;", 
+                    "color: gray; font-style: italic;",
                     JSON.parse(localStorage.getItem("phase3"))
                 );
                 console.log(
@@ -1176,6 +1270,10 @@
                 t5: "Result",
                 i1: "INSTRUCTION: Please provide your personal details accurately. This information helps us understand your profile better and will only be used for assessment purposes.",
                 ph1: "DEMOGRAPHICS",
+                ph1T: "Personal Information",
+                ph1N: "Name:",
+                ph1E: "Email:",
+                ph1C: "Contact No:",
                 ph1a: "Gender",
                 ph1b: "Male",
                 ph1c: "Female",
@@ -1226,6 +1324,10 @@
                 t5: "Resulta",
                 i1: "TAGUBILIN: Mangyaring ibigay ang iyong personal na detalye nang tapat. Makakatulong ito upang mas maunawaan ang iyong profile at gagamitin lamang para sa layunin ng pagsusuri.",
                 ph1: "DEMOGRAPIKO",
+                ph1T: "Impormasyon Pangpersonal",
+                ph1N: "Pangalan:",
+                ph1E: "Email:",
+                ph1C: "Contact No:",
                 ph1a: "Kasarian",
                 ph1b: "Lalaki",
                 ph1c: "Babae",
@@ -1268,7 +1370,7 @@
                 b44: "I-DOWNLOAD"
             }
         };
-        
+
     //varibales
         let gender=0;
         let age=0;
@@ -1294,62 +1396,62 @@
                 }
             });
         });
-        function verifyPhase1(){
+        function verifyPhase1() {
+            // Get existing answers
             const genderAns = document.querySelector("input[name='genderBox']:checked");
             const ageAns = document.querySelector("input[name='ageBox']").value;
             const statusAns = document.querySelector("input[name='statusBox']:checked");
             const baptizedAns = document.querySelector("input[name='baptizedBox']:checked");
             const timeInFaithAns = document.querySelector("input[name='timeInFaithBox']:checked");
-            if (!genderAns) {
+
+            // Get new personal info inputs
+            const nameInput = document.querySelector("input[translate='ph1N']").value.trim();
+            const emailInput = document.querySelector("input[translate='ph1E']").value.trim();
+            const contactInput = document.getElementById("contactInput").value.trim();
+
+            console.log(nameInput);
+            console.log(emailInput);
+            console.log(contactInput);
+            // Validation
+            if (!nameInput) {
+                document.querySelector("input[translate='ph1N']").scrollIntoView({ behavior: 'smooth', block: 'center' });
+                blinkInput("input[translate='ph1N']");
+            } else if (!emailInput || !validateEmail(emailInput)) {
+                document.querySelector("input[translate='ph1E']").scrollIntoView({ behavior: 'smooth', block: 'center' });
+                blinkInput("input[translate='ph1E']");
+            } else if (!contactInput) {
+                document.getElementById("contactInput").scrollIntoView({ behavior: 'smooth', block: 'center' });
+                blinkInput2("contactInputDiv");
+            } else if (!genderAns) {
                 document.getElementById('genderBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                let blink = 0;
-                const blinkInterval = setInterval(() => {
-                    document.getElementById('genderBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
-                    blink++;
-                    if (blink > 5) clearInterval(blinkInterval);
-                }, 300);
-            }else if (ageAns<1 || ageAns>100) {
+                blinkInput('#genderBox');
+            } else if (ageAns < 1 || ageAns > 100) {
                 document.getElementById('ageBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                let blink = 0;
-                const blinkInterval = setInterval(() => {
-                    document.getElementById('ageBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
-                    document.getElementById('ageInput').value = '';
-                    blink++;
-                    if (blink > 5) clearInterval(blinkInterval);
-                }, 300);
-            }else if (!statusAns) {
+                document.getElementById('ageInput').value = '';
+                blinkInput('#ageBox');
+            } else if (!statusAns) {
                 document.getElementById('statusBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                let blink = 0;
-                const blinkInterval = setInterval(() => {
-                    document.getElementById('statusBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
-                    blink++;
-                    if (blink > 5) clearInterval(blinkInterval);
-                }, 300);
-            }else if (!baptizedAns) {
+                blinkInput('#statusBox');
+            } else if (!baptizedAns) {
                 document.getElementById('baptizedBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                let blink = 0;
-                const blinkInterval = setInterval(() => {
-                    document.getElementById('baptizedBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
-                    blink++;
-                    if (blink > 5) clearInterval(blinkInterval);
-                }, 300);
-            }else if (!timeInFaithAns) {
+                blinkInput('#baptizedBox');
+            } else if (!timeInFaithAns) {
                 document.getElementById('timeInFaithBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                let blink = 0;
-                const blinkInterval = setInterval(() => {
-                    document.getElementById('timeInFaithBox').style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
-                    blink++;
-                    if (blink > 5) clearInterval(blinkInterval);
-                }, 300);
-             }else {
+                blinkInput('#timeInFaithBox');
+            } else {
+                // Disable current step
                 document.getElementById('step1').classList.add("disable");
-                //record variables
-                let phase1 = { 
-                    gender: document.querySelector('input[name="genderBox"]:checked')?.value || "", 
-                    age: document.querySelector('input[name="ageBox"]')?.value || "", 
-                    status: document.querySelector('input[name="statusBox"]:checked')?.value || "", 
-                    baptized: document.querySelector('input[name="baptizedBox"]:checked')?.value || "", 
-                    timeInFaith: document.querySelector('input[name="timeInFaithBox"]:checked')?.value || ""
+
+                // Record all variables including new personal info
+                let phase1 = {
+                    name: nameInput,
+                    email: emailInput,
+                    contact: contactInput,
+                    gender: genderAns.value,
+                    age: ageAns,
+                    status: statusAns.value,
+                    baptized: baptizedAns.value,
+                    timeInFaith: timeInFaithAns.value
                 };
                 localStorage.setItem("phase1", JSON.stringify(phase1));
                 console.log(
@@ -1358,10 +1460,34 @@
                     "color: gray; font-style: italic;",
                     JSON.parse(localStorage.getItem('phase1'))
                 );
+
                 showPuzzle("bottom");
                 gotoPhase2(false);
             }
-        };
+        }
+        // Helper function for blinking effect
+        function blinkInput(selector) {
+            const el = document.querySelector(selector);
+            let blink = 0;
+            const blinkInterval = setInterval(() => {
+                el.style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
+                blink++;
+                if (blink > 5) clearInterval(blinkInterval);
+            }, 300);
+        }
+        function blinkInput2(selector) {
+            const el = document.getElementById(selector);
+            let blink = 0;
+            const blinkInterval = setInterval(() => {
+                el.style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
+                blink++;
+                if (blink > 5) clearInterval(blinkInterval);
+            }, 300);
+        }
+        // Helper function to validate email
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
         function gotoPhase2(mode){
             if(mode){
                 document.getElementById('overlayLoad').style.display = "block";
@@ -2028,6 +2154,7 @@
     let behavioralProfilingScoreUnranked = [];
     let ministryInterestUnranked = [];
     async function interpret() {
+        saveUserReport();
         console.log(">> Interpret Data");
         startThinkingAnimation();
         let message = `
@@ -2322,9 +2449,9 @@
                 document.getElementById("part1").innerHTML = part1;
                 document.getElementById("part2").innerHTML = part2;
 
-                setTimeout(function() {
-                        document.getElementById("personalInfoDivOverlay").style.display = "block";
-                }, 500);
+                // setTimeout(function() {
+                //         document.getElementById("personalInfoDivOverlay").style.display = "block";
+                // }, 500);
             } catch (error) {
                 document.getElementById("step5").classList.remove("disable");
                 stopThinkingAnimation();
@@ -2334,66 +2461,6 @@
             }
         }
         //charts
-        // function displayChart() {
-        //     let fontSize = 16;
-        //     if (window.matchMedia("(max-width: 480px)").matches) {
-        //         fontSize = 12;
-        //     } else if (window.matchMedia("(max-width: 1024px)").matches) {
-        //         fontSize = 15;
-        //     }
-        //     const ctx = document.getElementById('topMinistryChart').getContext('2d');
-        //     const topMinistryChart = new Chart(ctx, {
-        //         type: 'pie',
-        //         data: {
-        //             labels: ministryInterestUnranked,
-        //             datasets: [{
-        //                 label: 'SCORE',
-        //                 data: behavioralProfilingScoreUnranked,
-        //                 backgroundColor: [
-        //                     'rgba(128, 65, 128, 0.7)',
-        //                     'rgba(75, 192, 192, 0.7)',
-        //                     'rgba(255, 206, 86, 0.7)',
-        //                     'rgba(54, 162, 235, 0.7)',
-        //                     'rgba(255, 99, 132, 0.7)',
-        //                     'rgba(153, 102, 255, 0.7)',
-        //                     'rgba(255, 159, 64, 0.7)'
-        //                 ],
-        //                 borderColor: [
-        //                     'rgb(128, 65, 128)',
-        //                     'rgb(75, 192, 192)',
-        //                     'rgb(255, 206, 86)',
-        //                     'rgb(54, 162, 235)',
-        //                     'rgb(255, 99, 132)',
-        //                     'rgb(153, 102, 255)',
-        //                     'rgb(255, 159, 64)'
-        //                 ],
-        //                 borderWidth: 2
-        //             }]
-        //         },
-        //         options: {
-        //             responsive: true,
-        //             plugins: {
-        //                 title: {
-        //                     display: true,
-        //                     text: 'Ministry Interest Breakdown',
-        //                     font: {
-        //                         size: fontSize + 4,
-        //                         weight: 'bold'
-        //                     },
-        //                     color: 'rgb(128, 65, 128)',
-        //                     padding: { top: 10, bottom: 30 }
-        //                 },
-        //                 legend: { 
-        //                     position: 'bottom', 
-        //                     labels: { 
-        //                     usePointStyle: true, 
-        //                     pointStyle: 'circle', 
-        //                     } 
-        //                 }
-        //             }
-        //         }
-        //     });
-        // }
         function displayChart() {
             let fontSize = 16;
             if (window.matchMedia("(max-width: 480px)").matches) {
@@ -2401,9 +2468,7 @@
             } else if (window.matchMedia("(max-width: 1024px)").matches) {
                 fontSize = 15;
             }
-
             const ctx = document.getElementById('topMinistryChart').getContext('2d');
-
             const topMinistryChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
@@ -2445,12 +2510,12 @@
                             color: 'rgb(128, 65, 128)',
                             padding: { top: 10, bottom: 30 }
                         },
-                        legend: { 
-                            position: 'bottom', 
-                            labels: { 
-                                usePointStyle: true, 
-                                pointStyle: 'circle', 
-                            } 
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                usePointStyle: true,
+                                pointStyle: 'circle',
+                            }
                         },
                         datalabels: {
                             color: 'white',
@@ -2471,7 +2536,6 @@
             });
         }
 
-
         // limit phone number
         function limitDigits(el, maxLength) {
             if (el.value.length > maxLength) {
@@ -2483,34 +2547,12 @@
         let fEmail = "";
         let fContactNo = "";
         function saveUserReport() {
-            const name = document.getElementById('userName').value.trim();
-            const email = document.getElementById('userEmail').value.trim();
-            const rawContactNo = document.getElementById('userContact').value.trim();
-            if (!churchCode) {
-                showMessage('Church code is missing.', 'error');
-                return;
-            }
-            if (!name || !email || !rawContactNo) {
-                showMessage('Please fill in Name, Email, and Contact Number.', 'error');
-                return;
-            }
-            // Validate email contains '@'
-            if (!email.includes('@')) {
-                showMessage('Invalid email format. Must contain "@"', 'error');
-                return;
-            }
-            // Validate contact number is exactly 9 digits
-            if (!/^\d{10}$/.test(rawContactNo)) {
-                showMessage('Invalid contact number format.', 'error');
-                return;
-            }
-            let contactNo = "+63" + rawContactNo;
-
-            fName = name;
-            fEmail = email;
-            fContactNo = contactNo;
             // Demographic data
             const phase1 = JSON.parse(localStorage.getItem("phase1")) || {};
+            fName = phase1.name || "";
+            fEmail = phase1.email || "";
+            const rawContactNo = phase1.contact || "";
+            fContactNo = "+63" + rawContactNo;
             const gender = phase1.gender || "";
             const age = phase1.age || "";
             const marital = phase1.status || "";
@@ -2539,9 +2581,9 @@
             // Prepare data
             const postData = {
                 churchCode,
-                name,
-                email,
-                contactNo,
+                fName,
+                fEmail,
+                fContactNo,
                 ...skills,
                 eligibleMinistry,
                 gender,
@@ -2561,7 +2603,7 @@
             .then(data => {
                 if (data.success) {
                     showMessage('User report saved successfully!', 'success');
-                    document.getElementById("personalInfoDivOverlay").style.display = "none";
+                    //document.getElementById("personalInfoDivOverlay").style.display = "none";
                 } else {
                     showMessage('Error: ' + (data.error || 'Unknown error'), 'error');
                 }
@@ -2719,7 +2761,7 @@
             document.getElementById('overlayLoad').style.display = "block";
             setTimeout(function() {
                 document.getElementById('overlayLoad').style.display = "none";
-                localStorage.clear(); 
+                localStorage.clear();
                 window.location.href = 'index.html';
             }, 2000);
         }

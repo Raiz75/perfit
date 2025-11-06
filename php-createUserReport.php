@@ -7,8 +7,21 @@ include 'php-dbCon.php';
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-if (empty($data['name']) || empty($data['email']) || empty($data['contactNo']) || empty($data['churchCode'])) {
-    echo json_encode(['error' => 'Name, Email, Contact Number and Church code are required']);
+if (empty($data['fName'])) {
+    echo json_encode(['error' => 'Name are required']);
+    exit;
+}
+
+if (empty($data['fEmail'])) {
+    echo json_encode(['error' => 'Email are required']);
+    exit;
+}
+if (empty($data['fContactNo'])) {
+    echo json_encode(['error' => 'Contact Number are required']);
+    exit;
+}
+if (empty($data['churchCode'])) {
+    echo json_encode(['error' => 'Church code are required']);
     exit;
 }
 
@@ -28,9 +41,9 @@ try {
     $stmt->bind_param(
         "ssssiiiiiiiisiiiii",
         $data['churchCode'],       // s
-        $data['email'],            // s
-        $data['name'],             // s
-        $data['contactNo'],        // s
+        $data['fEmail'],            // s
+        $data['fName'],             // s
+        $data['fContactNo'],        // s
         $data['music'],            // i
         $data['technology'],       // i
         $data['writing'],          // i

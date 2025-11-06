@@ -2499,7 +2499,6 @@
         document.getElementById("generateReportBtn").addEventListener("click", async () => {
             const startDateInput = document.getElementById("startDate");
             const endDateInput = document.getElementById("endDate");
-
             if (!startDateInput.value || !endDateInput.value) {
                 message.textContent = "Please select both a start date and an end date before generating the report.";
                 message.className = "message error";
@@ -2507,7 +2506,6 @@
                 setTimeout(() => (message.style.opacity = 0), 3000);
                 return;
             }
-
             if (new Date(startDateInput.value) > new Date(endDateInput.value)) {
                 message.textContent = "The start date cannot be later than the end date.";
                 message.className = "message error";
@@ -2515,7 +2513,6 @@
                 setTimeout(() => (message.style.opacity = 0), 3000);
                 return;
             }
-
             // Get today's date (without time) for comparison
             const today = new Date();
             today.setHours(0, 0, 0, 0); // reset time to midnight
