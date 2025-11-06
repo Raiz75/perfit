@@ -1050,17 +1050,13 @@
                 <div class="applyFilterBtn">
                     <button id="applyFilterBtn">Apply Filters</button>
                     <button id="ResetFilterBtn">Reset Filters</button>
-                <!-- </div>
-                <div class="genReportBtnDiv"> -->
                     <button id="generateReportBtn">Generate Report</button>
                 </div>
             </div>
         </div>
         <!-- charts -->
         <div class="dashboardDiv1" id="dashboardDiv1">
-            <!-- <div class="reportBtnDiv"> -->
-                <h1>Volunteer Metrics</h1>
-            <!-- </div> -->
+            <h1>Volunteer Metrics</h1>
             <div class="textReport">
                     <div><img src="img/icn-userCount.png"><h3>Total Takers<br><span id="userTakeCount">0</span></h3></div>
                     <div><img src="img/icn-submissionCount.png"><h3>Submission Today<br><span id="userTodayCount">0</span></h3></div>
@@ -1322,6 +1318,7 @@
             })
             .then(data => {
                 if (!data) return;
+                window.adminEmail = data.email;
                 const adminEmail = data.email;
                 if (adminEmail === "admin@admin") {
                     document.querySelectorAll(".noToAdmin").forEach(btn => {
@@ -1808,1306 +1805,823 @@
             })
             .catch(error => console.error("Error loading data:", error));
 
-
-
-
-
-
-
-
-
-
-
-
-
-//         // Standalone Dashboard for Step 7 - Works with php-AdminFilter.php
-// // This file handles filtering, charts, and user reports independently
-
-// let allReports = [];
-// const chartInstances = {};
-
-// // Load initial data from php-AdminFilter.php
-// fetch("php-adminFilter.php")
-//     .then(response => response.json())
-//     .then(data => {
-//         if (data.error) {
-//             console.error(data.error);
-//             return;
-//         }
-
-//         // Store all reports globally
-//         allReports = data.userReports || [];
-        
-//         // Display user counts (coming directly from data, not nested in charts)
-//         document.getElementById('userTakeCount').innerText = data.userTakeCount || 0;
-//         document.getElementById('userTodayCount').innerText = data.userTodayCount || 0;
-        
-//         // Initial render
-//         renderUserReports(allReports);
-//         buildCharts(allReports);
-
-//         // Setup event listeners
-//         setupFilterListeners();
-//     })
-//     .catch(error => console.error("Error loading filter data:", error));
-
-// // Render user reports table
-// function renderUserReports(filteredReports) {
-//     const reportTbody = document.querySelector("#userReportTable tbody");
-//     reportTbody.innerHTML = "";
-
-//     if (filteredReports.length > 0) {
-//         filteredReports.forEach(report => {
-//             const skills = [
-//                 report.music === "Yes" ? "Music" : null,
-//                 report.technology === "Yes" ? "Technology" : null,
-//                 report.writing === "Yes" ? "Writing" : null,
-//                 report.technical === "Yes" ? "Technical" : null,
-//                 report.speaking === "Yes" ? "Speaking" : null,
-//                 report.accounting === "Yes" ? "Accounting" : null,
-//                 report.mentoring === "Yes" ? "Mentoring" : null,
-//                 report.bibleKnowledge === "Yes" ? "Bible Knowledge" : null
-//             ].filter(Boolean);
-
-//             let skillsListHTML = skills.length > 0
-//                 ? `<ul style="margin:0; padding-left:18px;">${skills.map(s => `<li>${s}</li>`).join("")}</ul>`
-//                 : "—";
-
-//             let ministryListHTML = "—";
-//             if (report.eligibleMinistry && report.eligibleMinistry.trim() !== "") {
-//                 const ministries = report.eligibleMinistry.split(",").map(m => m.trim()).filter(Boolean);
-//                 if (ministries.length > 0) {
-//                     ministryListHTML = `<ul style="margin:0; padding-left:18px;">${ministries.map(m => `<li>${m}</li>`).join("")}</ul>`;
-//                 }
-//             }
-
-//             const row = document.createElement("tr");
-//             row.innerHTML = `
-//                 <td>${report.timeOfSubmission || "—"}</td>
-//                 <td>${report.email}</td>
-//                 <td>${report.name}</td>
-//                 <td>${skillsListHTML}</td>
-//                 <td>${ministryListHTML}</td>
-//                 <td>${report.gender || "—"}</td>
-//                 <td>${report.age || "—"}</td>
-//                 <td>${report.marital || "—"}</td>
-//                 <td>${report.baptized || "—"}</td>
-//                 <td>${report.timeInFaith || "—"}</td>
-//             `;
-//             reportTbody.appendChild(row);
-//         });
-//     } else {
-//         const emptyRow = document.createElement("tr");
-//         emptyRow.innerHTML = `<td colspan="10" style="text-align:center; color:gray; font-style:italic;">No user reports available</td>`;
-//         reportTbody.appendChild(emptyRow);
-//     }
-// }
-
-// // Build all charts from filtered data
-// function buildCharts(filtered) {
-//     const newCharts = {
-//         gender: {}, 
-//         timeInFaith: {}, 
-//         skillStats: {}, 
-//         eligibleMinistry: {},
-//         age: {}, 
-//         marital: {}, 
-//         baptized: {}
-//     };
-
-//     const ageOrder = ['Under 18', '18-25', '26-35', '36-50', '51+'];
-//     const faithOrder = ['1+ Week', '6+ Months', '1+ Year', '2+ Years'];
-//     const baptizedOrder = ['Yes', 'No'];
-//     const skillOrder = ['music', 'technology', 'writing', 'technical', 'speaking', 'accounting', 'mentoring', 'bibleKnowledge'];
-
-//     // Helper functions
-//     function bucketAge(ageRaw) {
-//         const n = parseInt(ageRaw);
-//         if (isNaN(n)) return 'Unknown';
-//         if (n < 18) return 'Under 18';
-//         if (n <= 25) return '18-25';
-//         if (n <= 35) return '26-35';
-//         if (n <= 50) return '36-50';
-//         return '51+';
-//     }
-
-//     function normalizeFaith(val) {
-//         if (typeof val === 'string') {
-//             const s = val.trim();
-//             const labels = ['1+ Week', '6+ Months', '1+ Year', '2+ Years'];
-//             if (labels.includes(s)) return s;
-//             const n = parseInt(s);
-//             if (!isNaN(n)) val = n;
-//         }
-//         if (typeof val === 'number') {
-//             const map = {1: '1+ Week', 2: '6+ Months', 3: '1+ Year', 4: '2+ Years'};
-//             return map[val] || 'Unknown';
-//         }
-//         return 'Unknown';
-//     }
-
-//     // Aggregate data
-//     filtered.forEach(r => {
-//         if (r.gender) newCharts.gender[r.gender] = (newCharts.gender[r.gender] || 0) + 1;
-        
-//         if (r.timeInFaith != null) {
-//             const f = normalizeFaith(r.timeInFaith);
-//             newCharts.timeInFaith[f] = (newCharts.timeInFaith[f] || 0) + 1;
-//         }
-        
-//         if (r.age) {
-//             const a = bucketAge(r.age);
-//             newCharts.age[a] = (newCharts.age[a] || 0) + 1;
-//         }
-        
-//         if (r.marital) {
-//             const m = (r.marital == 1 || r.marital === 'Single') ? 'Single' :
-//                     (r.marital == 2 || r.marital === 'Married') ? 'Married' : String(r.marital);
-//             newCharts.marital[m] = (newCharts.marital[m] || 0) + 1;
-//         }
-        
-//         if (r.baptized) {
-//             const b = (r.baptized == 1 || r.baptized === 'Yes') ? 'Yes' :
-//                     (r.baptized == 2 || r.baptized === 'No') ? 'No' : String(r.baptized);
-//             newCharts.baptized[b] = (newCharts.baptized[b] || 0) + 1;
-//         }
-        
-//         skillOrder.forEach(s => {
-//             if (r[s] === 'Yes') newCharts.skillStats[s] = (newCharts.skillStats[s] || 0) + 1;
-//         });
-        
-//         if (r.eligibleMinistry) {
-//             r.eligibleMinistry.split(',').forEach(min => {
-//                 const m = min.trim();
-//                 if (m) newCharts.eligibleMinistry[m] = (newCharts.eligibleMinistry[m] || 0) + 1;
-//             });
-//         }
-//     });
-
-//     // Get CSS colors
-//     const colorA = getComputedStyle(document.documentElement).getPropertyValue('--a').trim();
-//     const colorE = getComputedStyle(document.documentElement).getPropertyValue('--b').trim();
-
-//     // Utilities
-//     const hasData = (obj) => obj && Object.values(obj).some(v => v > 0);
-
-//     function toggleChartDisplay(id, showChart, msg = 'No data available') {
-//         const chartDiv = document.getElementById(id)?.parentElement;
-//         if (!chartDiv) return;
-
-//         const msgEl = chartDiv.querySelector('.noDataMsg');
-//         if (msgEl) msgEl.remove();
-
-//         const canvas = chartDiv.querySelector('canvas');
-//         if (!canvas) return;
-
-//         if (showChart) {
-//             canvas.style.display = 'block';
-//         } else {
-//             canvas.style.display = 'none';
-//             const div = document.createElement('div');
-//             div.className = 'noDataMsg';
-//             div.style.cssText = 'text-align:center;color:gray;font-style:italic;padding:50px;';
-//             div.textContent = msg;
-//             chartDiv.appendChild(div);
-//         }
-//     }
-
-//     const percentagePlugin = {
-//         id: 'percentagePlugin',
-//         afterDatasetsDraw(chart) {
-//             const { ctx } = chart;
-//             chart.data.datasets.forEach((ds, i) => {
-//                 const meta = chart.getDatasetMeta(i);
-//                 if (!meta.hidden) {
-//                     meta.data.forEach((el, idx) => {
-//                         const total = ds.data.reduce((a, b) => a + b, 0);
-//                         const val = ds.data[idx];
-//                         if (!total) return;
-//                         const percent = ((val / total) * 100).toFixed(1) + '%';
-//                         const pos = el.tooltipPosition();
-//                         ctx.save();
-//                         ctx.fillStyle = '#fff';
-//                         ctx.font = 'bold 12px sans-serif';
-//                         ctx.textAlign = 'center';
-//                         ctx.textBaseline = 'middle';
-//                         ctx.fillText(percent, pos.x, pos.y - 10);
-//                         ctx.restore();
-//                     });
-//                 }
-//             });
-//         }
-//     };
-
-//     function safeChart(id, config) {
-//         const c = document.getElementById(id);
-//         if (!c) {
-//             console.warn(`⚠️ Chart skipped: "${id}" not found.`);
-//             return;
-//         }
-
-//         const ctx = c.getContext("2d");
-//         if (!ctx) {
-//             console.warn(`⚠️ Chart skipped: "${id}" has no 2D context.`);
-//             return;
-//         }
-
-//         if (chartInstances[id]) {
-//             chartInstances[id].destroy();
-//         }
-
-//         toggleChartDisplay(id, true);
-//         chartInstances[id] = new Chart(ctx, config);
-//     }
-
-//     // Create all charts
-    
-//     // Gender Chart
-//     if (hasData(newCharts.gender)) {
-//         safeChart('genderChart', {
-//             type: 'pie',
-//             data: {
-//                 labels: Object.keys(newCharts.gender),
-//                 datasets: [{
-//                     data: Object.values(newCharts.gender),
-//                     backgroundColor: ['#E6194B', '#F58231'],
-//                     borderColor: '#fff',
-//                     borderWidth: 2,
-//                     hoverOffset: 10
-//                 }]
-//             },
-//             options: {
-//                 responsive: true,
-//                 plugins: {
-//                     title: { display: true, text: 'Distribution of Test Takers by Gender', color: colorA, font: { size: 18, weight: 'bold' } },
-//                     legend: { position: 'bottom', labels: { color: colorA } }
-//                 }
-//             },
-//             plugins: [percentagePlugin]
-//         });
-//     } else toggleChartDisplay('genderChart', false);
-
-//     // Time in Faith Chart
-//     const faithData = faithOrder.map(l => newCharts.timeInFaith[l] || 0);
-//     if (faithData.some(v => v > 0)) {
-//         safeChart('faithChart', {
-//             type: 'bar',
-//             data: {
-//                 labels: faithOrder,
-//                 datasets: [{
-//                     label: 'Users',
-//                     data: faithData,
-//                     backgroundColor: ['#FFE119', '#BFEF45', '#3CB44B', '#46F0F0'],
-//                     borderRadius: 6
-//                 }]
-//             },
-//             options: {
-//                 responsive: true,
-//                 plugins: {
-//                     title: { display: true, text: 'Duration of Participants\' Spiritual Engagement', color: colorA, font: { size: 18, weight: 'bold' } },
-//                     legend: { display: false }
-//                 },
-//                 scales: {
-//                     x: { ticks: { color: colorA }, grid: { color: 'white' } },
-//                     y: { beginAtZero: true, ticks: { color: colorA }, grid: { color: colorE } }
-//                 }
-//             },
-//             plugins: [percentagePlugin]
-//         });
-//     } else toggleChartDisplay('faithChart', false);
-
-//     // Skills Chart
-//     const skillData = skillOrder.map(k => newCharts.skillStats[k] || 0);
-//     if (skillData.some(v => v > 0)) {
-//         safeChart('skillsChart', {
-//             type: 'bar',
-//             data: {
-//                 labels: skillOrder,
-//                 datasets: [{
-//                     label: "Users with Skill",
-//                     data: skillData,
-//                     backgroundColor: ['#46F0F0', '#42D4F4', '#4363D8', '#0000FF', '#000075', '#911EB4', '#F032E6', '#FABED4'],
-//                     borderRadius: 6
-//                 }]
-//             },
-//             options: {
-//                 responsive: true,
-//                 plugins: {
-//                     title: { display: true, text: "Skill Proficiency Breakdown Among Participants", color: colorA, font: { size: 18, weight: 'bold' } },
-//                     legend: { display: false }
-//                 },
-//                 scales: {
-//                     x: { ticks: { color: colorA }, grid: { color: 'white' } },
-//                     y: { beginAtZero: true, ticks: { color: colorA }, grid: { color: colorE } }
-//                 }
-//             },
-//             plugins: [percentagePlugin]
-//         });
-//     } else toggleChartDisplay('skillsChart', false);
-
-//     // Ministry Chart
-//     if (hasData(newCharts.eligibleMinistry)) {
-//         safeChart('ministryChart', {
-//             type: 'doughnut',
-//             data: {
-//                 labels: Object.keys(newCharts.eligibleMinistry),
-//                 datasets: [{
-//                     data: Object.values(newCharts.eligibleMinistry),
-//                     backgroundColor: [
-//                         '#E6194B', '#F58231', '#FFE119', '#BFEF45', '#3CB44B', '#46F0F0', '#42D4F4', '#4363D8',
-//                         '#0000FF', '#000075', '#911EB4', '#F032E6', '#FABED4', '#9A6324', '#FFD8B1', '#808000',
-//                         '#AAFFC3', '#FF7F50', '#FFD700', '#A9A9FF', '#B39EB5', '#800000', '#808080', '#000000'
-//                     ],
-//                     borderColor: '#fff',
-//                     borderWidth: 2
-//                 }]
-//             },
-//             options: {
-//                 responsive: true,
-//                 plugins: {
-//                     title: { display: true, text: "Frequency of Eligibility Across Ministry Categories", color: colorA, font: { size: 18, weight: 'bold' } },
-//                     legend: { position: 'bottom', labels: { color: colorA } }
-//                 }
-//             },
-//             plugins: [percentagePlugin]
-//         });
-//     } else toggleChartDisplay('ministryChart', false);
-
-//     // Age Chart
-//     const ageData = ageOrder.map(a => newCharts.age[a] || 0);
-//     if (ageData.some(v => v > 0)) {
-//         safeChart('ageChart', {
-//             type: 'pie',
-//             data: {
-//                 labels: ageOrder,
-//                 datasets: [{
-//                     data: ageData,
-//                     backgroundColor: ['#9A6324', '#FFD8B1', '#808000', '#AAFFC3', '#FF7F50']
-//                 }]
-//             },
-//             options: {
-//                 responsive: true,
-//                 plugins: {
-//                     title: { display: true, text: "Age Demographic Profile of Participants", color: colorA, font: { size: 18, weight: 'bold' } },
-//                     legend: { position: 'bottom', labels: { color: colorA } }
-//                 }
-//             },
-//             plugins: [percentagePlugin]
-//         });
-//     } else toggleChartDisplay('ageChart', false);
-
-//     // Marital Chart
-//     if (hasData(newCharts.marital)) {
-//         safeChart('maritalChart', {
-//             type: 'bar',
-//             data: {
-//                 labels: Object.keys(newCharts.marital),
-//                 datasets: [{
-//                     label: "Marital Status",
-//                     data: Object.values(newCharts.marital),
-//                     backgroundColor: ['#800000', '#808080']
-//                 }]
-//             },
-//             options: {
-//                 responsive: true,
-//                 plugins: {
-//                     title: { display: true, text: "Marital Status Distribution of Participants", color: colorA, font: { size: 18, weight: 'bold' } },
-//                     legend: { display: false }
-//                 },
-//                 scales: {
-//                     x: { ticks: { color: colorA } },
-//                     y: { beginAtZero: true, ticks: { color: colorA } }
-//                 }
-//             },
-//             plugins: [percentagePlugin]
-//         });
-//     } else toggleChartDisplay('maritalChart', false);
-
-//     // Baptized Chart
-//     const baptizedData = baptizedOrder.map(l => newCharts.baptized[l] || 0);
-//     if (hasData(newCharts.baptized)) {
-//         safeChart('baptizedChart', {
-//             type: 'doughnut',
-//             data: {
-//                 labels: baptizedOrder,
-//                 datasets: [{
-//                     data: baptizedData,
-//                     backgroundColor: ['#A9A9FF', '#B39EB5']
-//                 }]
-//             },
-//             options: {
-//                 responsive: true,
-//                 plugins: {
-//                     title: { display: true, text: "Baptismal Status Statistics", color: colorA, font: { size: 18, weight: 'bold' } },
-//                     legend: { position: 'bottom', labels: { color: colorA } }
-//                 }
-//             },
-//             plugins: [percentagePlugin]
-//         });
-//     } else toggleChartDisplay('baptizedChart', false);
-
-//     // Store filtered data globally for report generation
-//     window.filteredReports = filtered;
-//     window.filteredCharts = newCharts;
-// }
-
-// // Setup filter event listeners
-// function setupFilterListeners() {
-//     // Reset Filters Button
-//     document.getElementById("ResetFilterBtn")?.addEventListener("click", () => {
-//         // Reset text & number inputs
-//         const searchInput = document.getElementById("searchInput");
-//         const ageFilter = document.getElementById("ageFilter");
-//         const startDate = document.getElementById("startDate");
-//         const endDate = document.getElementById("endDate");
-        
-//         if (searchInput) searchInput.value = "";
-//         if (ageFilter) ageFilter.value = "";
-//         if (startDate) startDate.value = "";
-//         if (endDate) endDate.value = "";
-
-//         // Reset selects to default
-//         const selects = ['genderFilter', 'maritalFilter', 'baptizedFilter', 'faithFilter'];
-//         selects.forEach(id => {
-//             const el = document.getElementById(id);
-//             if (el) el.selectedIndex = 0;
-//         });
-
-//         // Uncheck all checkboxes
-//         document.querySelectorAll('input[name="skillFilter"], input[name="ministryFilter"]').forEach(cb => {
-//             cb.checked = false;
-//         });
-
-//         // Clear chart containers
-//         const chartIds = ['genderChart', 'faithChart', 'skillsChart', 'ministryChart', 'ageChart', 'maritalChart', 'baptizedChart'];
-//         chartIds.forEach(id => {
-//             const old = document.getElementById(id);
-//             if (old && old.parentElement) {
-//                 const parent = old.parentElement;
-//                 parent.innerHTML = `<canvas id="${id}" height="300"></canvas>`;
-//             }
-//         });
-
-//         // Re-render with all data
-//         renderUserReports(allReports);
-//         buildCharts(allReports);
-
-//         // Reset global filters
-//         setTimeout(() => {
-//             window.filteredReports = null;
-//             window.filteredCharts = null;
-//         }, 100);
-//     });
-
-//     // Apply Filters Button
-//     document.getElementById("applyFilterBtn")?.addEventListener("click", () => {
-//         const searchText = document.getElementById("searchInput")?.value.toLowerCase() || "";
-//         const genderFilter = document.getElementById("genderFilter")?.value || "";
-//         const ageFilter = document.getElementById("ageFilter")?.value || "";
-//         const maritalFilter = document.getElementById("maritalFilter")?.value || "";
-//         const baptizedFilter = document.getElementById("baptizedFilter")?.value || "";
-//         const faithFilter = document.getElementById("faithFilter")?.value || "";
-//         const startDate = document.getElementById("startDate")?.value || "";
-//         const endDate = document.getElementById("endDate")?.value || "";
-
-//         // Get selected skills and ministries
-//         const selectedSkills = Array.from(document.querySelectorAll('input[name="skillFilter"]:checked')).map(cb => cb.value);
-//         const selectedMinistries = Array.from(document.querySelectorAll('input[name="ministryFilter"]:checked')).map(cb => cb.value);
-
-//         // Filter reports
-//         const filtered = allReports.filter(r => {
-//             // Search filter
-//             const matchSearch = !searchText ||
-//                 r.name.toLowerCase().includes(searchText) ||
-//                 r.email.toLowerCase().includes(searchText);
-
-//             // Skills filter
-//             const matchSkill = selectedSkills.length === 0 || selectedSkills.some(skill => r[skill] === "Yes");
-            
-//             // Ministry filter
-//             const matchMinistry = selectedMinistries.length === 0 || (
-//                 r.eligibleMinistry && selectedMinistries.some(min => r.eligibleMinistry.includes(min))
-//             );
-
-//             // Demographics filters
-//             const matchGender = !genderFilter || r.gender === genderFilter;
-//             const matchAge = !ageFilter || parseInt(r.age) === parseInt(ageFilter);
-//             const matchMarital = !maritalFilter || r.marital === maritalFilter;
-//             const matchBaptized = !baptizedFilter || r.baptized === baptizedFilter;
-//             const matchFaith = !faithFilter || r.timeInFaith === faithFilter;
-
-//             // Date range filter
-//             let matchDate = true;
-//             if (startDate || endDate) {
-//                 if (r.timeOfSubmission) {
-//                     // Extract date portion from datetime string (YYYY-MM-DD)
-//                     const submissionDate = r.timeOfSubmission.split(' ')[0];
-                    
-//                     if (startDate && endDate) {
-//                         matchDate = submissionDate >= startDate && submissionDate <= endDate;
-//                     } else if (startDate) {
-//                         matchDate = submissionDate >= startDate;
-//                     } else if (endDate) {
-//                         matchDate = submissionDate <= endDate;
-//                     }
-//                 } else {
-//                     matchDate = false; // No submission date means it doesn't match
-//                 }
-//             }
-
-//             return matchSearch && matchSkill && matchMinistry && matchGender && 
-//                    matchAge && matchMarital && matchBaptized && matchFaith && matchDate;
-//         });
-
-//         // Clear chart containers
-//         const chartIds = ['genderChart', 'faithChart', 'skillsChart', 'ministryChart', 'ageChart', 'maritalChart', 'baptizedChart'];
-//         chartIds.forEach(id => {
-//             const old = document.getElementById(id);
-//             if (old && old.parentElement) {
-//                 const parent = old.parentElement;
-//                 parent.innerHTML = `<canvas id="${id}" height="300"></canvas>`;
-//             }
-//         });
-
-//         // Update table and charts
-//         renderUserReports(filtered);
-//         setTimeout(() => buildCharts(filtered), 50);
-//     });
-// }
-
-
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-let allReports = [];
-const chartInstances = {};
-const today = new Date().toISOString().split('T')[0];
-    document.getElementById("startDate").setAttribute("max", today);
-    document.getElementById("endDate").setAttribute("max", today);
-// Load initial data
-fetch("php-adminFilter.php")
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            console.error(data.error);
-            return;
-        }
-
-        allReports = data.userReports || [];
-        document.getElementById('userTakeCount').innerText = data.userTakeCount || 0;
-        document.getElementById('userTodayCount').innerText = data.userTodayCount || 0;
-
-        // Convert numeric fields to readable text before rendering
-        allReports = allReports.map(r => convertNumericFields(r));
-
-        renderUserReports(allReports);
-        buildCharts(allReports);
-        setupFilterListeners();
-    })
-    .catch(error => console.error("Error loading filter data:", error));
-
-/* ✅ Converts numeric DB values to readable text */
-function convertNumericFields(r) {
-    const genderMap = {1: "Male", 2: "Female"};
-    const maritalMap = {1: "Single", 2: "Married"};
-    const baptizedMap = {1: "Yes", 2: "No"};
-    const faithMap = {1: "1+ Week", 2: "6+ Months", 3: "1+ Year", 4: "2+ Years"};
-
-    return {
-        ...r,
-        gender: genderMap[r.gender] || "—",
-        marital: maritalMap[r.marital] || "—",
-        baptized: baptizedMap[r.baptized] || "—",
-        timeInFaith: faithMap[r.timeInFaith] || "—",
-        // Keep skills numeric (1 or 0)
-    };
-}
-
-// Render user table
-function renderUserReports(filteredReports) {
-    const reportTbody = document.querySelector("#userReportTable tbody");
-    reportTbody.innerHTML = "";
-
-    if (filteredReports.length > 0) {
-        filteredReports.forEach(report => {
-            // ✅ Skill list using numeric check
-            const skills = [
-                report.music == 1 ? "Music" : null,
-                report.technology == 1 ? "Technology" : null,
-                report.writing == 1 ? "Writing" : null,
-                report.technical == 1 ? "Technical" : null,
-                report.speaking == 1 ? "Speaking" : null,
-                report.accounting == 1 ? "Accounting" : null,
-                report.mentoring == 1 ? "Mentoring" : null,
-                report.bibleKnowledge == 1 ? "Bible Knowledge" : null
-            ].filter(Boolean);
-
-            let skillsListHTML = skills.length > 0
-                ? `<ul style="margin:0; padding-left:18px;">${skills.map(s => `<li>${s}</li>`).join("")}</ul>`
-                : "—";
-
-            let ministryListHTML = "—";
-            if (report.eligibleMinistry && report.eligibleMinistry.trim() !== "") {
-                const ministries = report.eligibleMinistry.split(",").map(m => m.trim()).filter(Boolean);
-                if (ministries.length > 0) {
-                    ministryListHTML = `<ul style="margin:0; padding-left:18px;">${ministries.map(m => `<li>${m}</li>`).join("")}</ul>`;
+            //dashboard
+            let allReports = [];
+            const chartInstances = {};
+            //date filter restrictions
+            const today = new Date().toISOString().split('T')[0];
+            const startDateInput = document.getElementById("startDate");
+            const endDateInput = document.getElementById("endDate");
+
+            // Set both inputs' max date to today
+            startDateInput.setAttribute("max", today);
+            endDateInput.setAttribute("max", today);
+
+            // When the start date changes, adjust end date min
+            startDateInput.addEventListener("change", () => {
+                const startDate = startDateInput.value;
+                if (startDate) {
+                    endDateInput.setAttribute("min", startDate);
                 }
-            }
-
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${report.timeOfSubmission || "—"}</td>
-                <td>${report.email}</td>
-                <td>${report.name}</td>
-                <td>${skillsListHTML}</td>
-                <td>${ministryListHTML}</td>
-                <td>${report.gender}</td>
-                <td>${report.age || "—"}</td>
-                <td>${report.marital}</td>
-                <td>${report.baptized}</td>
-                <td>${report.timeInFaith}</td>
-            `;
-            reportTbody.appendChild(row);
-        });
-    } else {
-        const emptyRow = document.createElement("tr");
-        emptyRow.innerHTML = `<td colspan="10" style="text-align:center; color:gray; font-style:italic;">No user reports available</td>`;
-        reportTbody.appendChild(emptyRow);
-    }
-}
-
-/* ✅ Adjusted buildCharts() skill check */
-function buildCharts(filtered) {
-    const newCharts = {
-        gender: {}, timeInFaith: {}, skillStats: {}, eligibleMinistry: {},
-        age: {}, marital: {}, baptized: {}
-    };
-
-    const ageOrder = ['Under 18', '18-25', '26-35', '36-50', '51+'];
-    const faithOrder = ['1+ Week', '6+ Months', '1+ Year', '2+ Years'];
-    const baptizedOrder = ['Yes', 'No'];
-    const skillOrder = ['music', 'technology', 'writing', 'technical', 'speaking', 'accounting', 'mentoring', 'bibleKnowledge'];
-
-    function bucketAge(ageRaw) {
-        const n = parseInt(ageRaw);
-        if (isNaN(n)) return 'Unknown';
-        if (n < 18) return 'Under 18';
-        if (n <= 25) return '18-25';
-        if (n <= 35) return '26-35';
-        if (n <= 50) return '36-50';
-        return '51+';
-    }
-
-    filtered.forEach(r => {
-        if (r.gender) newCharts.gender[r.gender] = (newCharts.gender[r.gender] || 0) + 1;
-        if (r.timeInFaith) newCharts.timeInFaith[r.timeInFaith] = (newCharts.timeInFaith[r.timeInFaith] || 0) + 1;
-        if (r.age) newCharts.age[bucketAge(r.age)] = (newCharts.age[bucketAge(r.age)] || 0) + 1;
-        if (r.marital) newCharts.marital[r.marital] = (newCharts.marital[r.marital] || 0) + 1;
-        if (r.baptized) newCharts.baptized[r.baptized] = (newCharts.baptized[r.baptized] || 0) + 1;
-
-        // ✅ Count skills numerically
-        skillOrder.forEach(s => {
-            if (r[s] == 1) newCharts.skillStats[s] = (newCharts.skillStats[s] || 0) + 1;
-        });
-
-        if (r.eligibleMinistry) {
-            r.eligibleMinistry.split(',').forEach(min => {
-                const m = min.trim();
-                if (m) newCharts.eligibleMinistry[m] = (newCharts.eligibleMinistry[m] || 0) + 1;
             });
-        }
-    });
 
-    // Get CSS colors
-    const colorA = getComputedStyle(document.documentElement).getPropertyValue('--a').trim();
-    const colorE = getComputedStyle(document.documentElement).getPropertyValue('--b').trim();
-
-    // Utilities
-    const hasData = (obj) => obj && Object.values(obj).some(v => v > 0);
-
-    function toggleChartDisplay(id, showChart, msg = 'No data available') {
-        const chartDiv = document.getElementById(id)?.parentElement;
-        if (!chartDiv) return;
-
-        const msgEl = chartDiv.querySelector('.noDataMsg');
-        if (msgEl) msgEl.remove();
-
-        const canvas = chartDiv.querySelector('canvas');
-        if (!canvas) return;
-
-        if (showChart) {
-            canvas.style.display = 'block';
-        } else {
-            canvas.style.display = 'none';
-            const div = document.createElement('div');
-            div.className = 'noDataMsg';
-            div.style.cssText = 'text-align:center;color:gray;font-style:italic;padding:50px;';
-            div.textContent = msg;
-            chartDiv.appendChild(div);
-        }
-    }
-
-    const percentagePlugin = {
-        id: 'percentagePlugin',
-        afterDatasetsDraw(chart) {
-            const { ctx } = chart;
-            chart.data.datasets.forEach((ds, i) => {
-                const meta = chart.getDatasetMeta(i);
-                if (!meta.hidden) {
-                    meta.data.forEach((el, idx) => {
-                        const total = ds.data.reduce((a, b) => a + b, 0);
-                        const val = ds.data[idx];
-                        if (!total) return;
-                        const percent = ((val / total) * 100).toFixed(1) + '%';
-                        const pos = el.tooltipPosition();
-                        ctx.save();
-                        ctx.fillStyle = '#fff';
-                        ctx.font = 'bold 12px sans-serif';
-                        ctx.textAlign = 'center';
-                        ctx.textBaseline = 'middle';
-                        ctx.fillText(percent, pos.x, pos.y - 10);
-                        ctx.restore();
+            // When the end date changes, adjust start date max
+            endDateInput.addEventListener("change", () => {
+                const endDate = endDateInput.value;
+                if (endDate) {
+                    startDateInput.setAttribute("max", endDate);
+                }
+            });
+            // Load initial data
+            fetch("php-adminFilter.php")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error(data.error);
+                        return;
+                    }
+                    allReports = data.userReports || [];
+                    document.getElementById('userTakeCount').innerText = data.userTakeCount || 0;
+                    document.getElementById('userTodayCount').innerText = data.userTodayCount || 0;
+                    // Convert numeric fields to readable text before rendering
+                    allReports = allReports.map(r => convertNumericFields(r));
+                    renderUserReports(allReports);
+                    buildCharts(allReports);
+                    setupFilterListeners();
+                })
+                .catch(error => console.error("Error loading filter data:", error));
+            /* ✅ Converts numeric DB values to readable text */
+            function convertNumericFields(r) {
+                const genderMap = {1: "Male", 2: "Female"};
+                const maritalMap = {1: "Single", 2: "Married"};
+                const baptizedMap = {1: "Yes", 2: "No"};
+                const faithMap = {1: "1+ Week", 2: "6+ Months", 3: "1+ Year", 4: "2+ Years"};
+                return {
+                    ...r,
+                    gender: genderMap[r.gender] || "—",
+                    marital: maritalMap[r.marital] || "—",
+                    baptized: baptizedMap[r.baptized] || "—",
+                    timeInFaith: faithMap[r.timeInFaith] || "—",
+                    // Keep skills numeric (1 or 0)
+                };
+            }
+            // Render user table
+            function renderUserReports(filteredReports) {
+                const reportTbody = document.querySelector("#userReportTable tbody");
+                reportTbody.innerHTML = "";
+                if (filteredReports.length > 0) {
+                    filteredReports.forEach(report => {
+                        // ✅ Skill list using numeric check
+                        const skills = [
+                            report.music == 1 ? "Music" : null,
+                            report.technology == 1 ? "Technology" : null,
+                            report.writing == 1 ? "Writing" : null,
+                            report.technical == 1 ? "Technical" : null,
+                            report.speaking == 1 ? "Speaking" : null,
+                            report.accounting == 1 ? "Accounting" : null,
+                            report.mentoring == 1 ? "Mentoring" : null,
+                            report.bibleKnowledge == 1 ? "Bible Knowledge" : null
+                        ].filter(Boolean);
+                        let skillsListHTML = skills.length > 0
+                            ? `<ul style="margin:0; padding-left:18px;">${skills.map(s => `<li>${s}</li>`).join("")}</ul>`
+                            : "—";
+                        let ministryListHTML = "—";
+                        if (report.eligibleMinistry && report.eligibleMinistry.trim() !== "") {
+                            const ministries = report.eligibleMinistry.split(",").map(m => m.trim()).filter(Boolean);
+                            if (ministries.length > 0) {
+                                ministryListHTML = `<ul style="margin:0; padding-left:18px;">${ministries.map(m => `<li>${m}</li>`).join("")}</ul>`;
+                            }
+                        }
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${report.timeOfSubmission || "—"}</td>
+                            <td>${report.email}</td>
+                            <td>${report.name}</td>
+                            <td>${skillsListHTML}</td>
+                            <td>${ministryListHTML}</td>
+                            <td>${report.gender}</td>
+                            <td>${report.age || "—"}</td>
+                            <td>${report.marital}</td>
+                            <td>${report.baptized}</td>
+                            <td>${report.timeInFaith}</td>
+                        `;
+                        reportTbody.appendChild(row);
                     });
+                } else {
+                    const emptyRow = document.createElement("tr");
+                    emptyRow.innerHTML = `<td colspan="10" style="text-align:center; color:gray; font-style:italic;">No user reports available</td>`;
+                    reportTbody.appendChild(emptyRow);
+                }
+            }
+            /* ✅ Adjusted buildCharts() skill check */
+            function buildCharts(filtered) {
+                const newCharts = {
+                    gender: {}, timeInFaith: {}, skillStats: {}, eligibleMinistry: {},
+                    age: {}, marital: {}, baptized: {}
+                };
+                const ageOrder = ['Under 18', '18-25', '26-35', '36-50', '51+'];
+                const faithOrder = ['1+ Week', '6+ Months', '1+ Year', '2+ Years'];
+                const baptizedOrder = ['Yes', 'No'];
+                const skillOrder = ['music', 'technology', 'writing', 'technical', 'speaking', 'accounting', 'mentoring', 'bibleKnowledge'];
+
+                function bucketAge(ageRaw) {
+                    const n = parseInt(ageRaw);
+                    if (isNaN(n)) return 'Unknown';
+                    if (n < 18) return 'Under 18';
+                    if (n <= 25) return '18-25';
+                    if (n <= 35) return '26-35';
+                    if (n <= 50) return '36-50';
+                    return '51+';
+                }
+
+                filtered.forEach(r => {
+                    if (r.gender) newCharts.gender[r.gender] = (newCharts.gender[r.gender] || 0) + 1;
+                    if (r.timeInFaith) newCharts.timeInFaith[r.timeInFaith] = (newCharts.timeInFaith[r.timeInFaith] || 0) + 1;
+                    if (r.age) newCharts.age[bucketAge(r.age)] = (newCharts.age[bucketAge(r.age)] || 0) + 1;
+                    if (r.marital) newCharts.marital[r.marital] = (newCharts.marital[r.marital] || 0) + 1;
+                    if (r.baptized) newCharts.baptized[r.baptized] = (newCharts.baptized[r.baptized] || 0) + 1;
+
+                    // ✅ Count skills numerically
+                    skillOrder.forEach(s => {
+                        if (r[s] == 1) newCharts.skillStats[s] = (newCharts.skillStats[s] || 0) + 1;
+                    });
+
+                    if (r.eligibleMinistry) {
+                        r.eligibleMinistry.split(',').forEach(min => {
+                            const m = min.trim();
+                            if (m) newCharts.eligibleMinistry[m] = (newCharts.eligibleMinistry[m] || 0) + 1;
+                        });
+                    }
+                });
+
+                // Get CSS colors
+                const colorA = getComputedStyle(document.documentElement).getPropertyValue('--a').trim();
+                const colorE = getComputedStyle(document.documentElement).getPropertyValue('--b').trim();
+
+                // Utilities
+                const hasData = (obj) => obj && Object.values(obj).some(v => v > 0);
+
+                function toggleChartDisplay(id, showChart, msg = 'No data available') {
+                    const chartDiv = document.getElementById(id)?.parentElement;
+                    if (!chartDiv) return;
+
+                    const msgEl = chartDiv.querySelector('.noDataMsg');
+                    if (msgEl) msgEl.remove();
+
+                    const canvas = chartDiv.querySelector('canvas');
+                    if (!canvas) return;
+
+                    if (showChart) {
+                        canvas.style.display = 'block';
+                    } else {
+                        canvas.style.display = 'none';
+                        const div = document.createElement('div');
+                        div.className = 'noDataMsg';
+                        div.style.cssText = 'text-align:center;color:gray;font-style:italic;padding:50px;';
+                        div.textContent = msg;
+                        chartDiv.appendChild(div);
+                    }
+                }
+
+                const percentagePlugin = {
+                    id: 'percentagePlugin',
+                    afterDatasetsDraw(chart) {
+                        const { ctx } = chart;
+                        chart.data.datasets.forEach((ds, i) => {
+                            const meta = chart.getDatasetMeta(i);
+                            if (!meta.hidden) {
+                                meta.data.forEach((el, idx) => {
+                                    const total = ds.data.reduce((a, b) => a + b, 0);
+                                    const val = ds.data[idx];
+                                    if (!total) return;
+                                    const percent = ((val / total) * 100).toFixed(1) + '%';
+                                    const pos = el.tooltipPosition();
+                                    ctx.save();
+                                    ctx.fillStyle = '#fff';
+                                    ctx.font = 'bold 12px sans-serif';
+                                    ctx.textAlign = 'center';
+                                    ctx.textBaseline = 'middle';
+                                    ctx.fillText(percent, pos.x, pos.y - 10);
+                                    ctx.restore();
+                                });
+                            }
+                        });
+                    }
+                };
+
+                function safeChart(id, config) {
+                    const c = document.getElementById(id);
+                    if (!c) {
+                        console.warn(`⚠️ Chart skipped: "${id}" not found.`);
+                        return;
+                    }
+
+                    const ctx = c.getContext("2d");
+                    if (!ctx) {
+                        console.warn(`⚠️ Chart skipped: "${id}" has no 2D context.`);
+                        return;
+                    }
+
+                    if (chartInstances[id]) {
+                        chartInstances[id].destroy();
+                    }
+
+                    toggleChartDisplay(id, true);
+                    chartInstances[id] = new Chart(ctx, config);
+                }
+
+                // Create all charts
+                
+                // Gender Chart
+                if (hasData(newCharts.gender)) {
+                    safeChart('genderChart', {
+                        type: 'pie',
+                        data: {
+                            labels: Object.keys(newCharts.gender),
+                            datasets: [{
+                                data: Object.values(newCharts.gender),
+                                backgroundColor: ['#E6194B', '#F58231'],
+                                borderColor: '#fff',
+                                borderWidth: 2,
+                                hoverOffset: 10
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: { display: true, text: 'Distribution of Test Takers by Gender', color: colorA, font: { size: 18, weight: 'bold' } },
+                                legend: { position: 'bottom', labels: { color: colorA } }
+                            }
+                        },
+                        plugins: [percentagePlugin]
+                    });
+                } else toggleChartDisplay('genderChart', false);
+
+                // Time in Faith Chart
+                const faithData = faithOrder.map(l => newCharts.timeInFaith[l] || 0);
+                if (faithData.some(v => v > 0)) {
+                    safeChart('faithChart', {
+                        type: 'bar',
+                        data: {
+                            labels: faithOrder,
+                            datasets: [{
+                                label: 'Users',
+                                data: faithData,
+                                backgroundColor: ['#FFE119', '#BFEF45', '#3CB44B', '#46F0F0'],
+                                borderRadius: 6
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: { display: true, text: 'Duration of Participants\' Spiritual Engagement', color: colorA, font: { size: 18, weight: 'bold' } },
+                                legend: { display: false }
+                            },
+                            scales: {
+                                x: { ticks: { color: colorA }, grid: { color: 'white' } },
+                                y: { beginAtZero: true, ticks: { color: colorA }, grid: { color: colorE } }
+                            }
+                        },
+                        plugins: [percentagePlugin]
+                    });
+                } else toggleChartDisplay('faithChart', false);
+
+                // Skills Chart
+                const skillData = skillOrder.map(k => newCharts.skillStats[k] || 0);
+                if (skillData.some(v => v > 0)) {
+                    safeChart('skillsChart', {
+                        type: 'bar',
+                        data: {
+                            labels: skillOrder,
+                            datasets: [{
+                                label: "Users with Skill",
+                                data: skillData,
+                                backgroundColor: ['#46F0F0', '#42D4F4', '#4363D8', '#0000FF', '#000075', '#911EB4', '#F032E6', '#FABED4'],
+                                borderRadius: 6
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: { display: true, text: "Skill Proficiency Breakdown Among Participants", color: colorA, font: { size: 18, weight: 'bold' } },
+                                legend: { display: false }
+                            },
+                            scales: {
+                                x: { ticks: { color: colorA }, grid: { color: 'white' } },
+                                y: { beginAtZero: true, ticks: { color: colorA }, grid: { color: colorE } }
+                            }
+                        },
+                        plugins: [percentagePlugin]
+                    });
+                } else toggleChartDisplay('skillsChart', false);
+
+                // Ministry Chart
+                if (hasData(newCharts.eligibleMinistry)) {
+                    safeChart('ministryChart', {
+                        type: 'doughnut',
+                        data: {
+                            labels: Object.keys(newCharts.eligibleMinistry),
+                            datasets: [{
+                                data: Object.values(newCharts.eligibleMinistry),
+                                backgroundColor: [
+                                    '#E6194B', '#F58231', '#FFE119', '#BFEF45', '#3CB44B', '#46F0F0', '#42D4F4', '#4363D8',
+                                    '#0000FF', '#000075', '#911EB4', '#F032E6', '#FABED4', '#9A6324', '#FFD8B1', '#808000',
+                                    '#AAFFC3', '#FF7F50', '#FFD700', '#A9A9FF', '#B39EB5', '#800000', '#808080', '#000000'
+                                ],
+                                borderColor: '#fff',
+                                borderWidth: 2
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: { display: true, text: "Frequency of Eligibility Across Ministry Categories", color: colorA, font: { size: 18, weight: 'bold' } },
+                                legend: { position: 'bottom', labels: { color: colorA } }
+                            }
+                        },
+                        plugins: [percentagePlugin]
+                    });
+                } else toggleChartDisplay('ministryChart', false);
+
+                // Age Chart
+                const ageData = ageOrder.map(a => newCharts.age[a] || 0);
+                if (ageData.some(v => v > 0)) {
+                    safeChart('ageChart', {
+                        type: 'pie',
+                        data: {
+                            labels: ageOrder,
+                            datasets: [{
+                                data: ageData,
+                                backgroundColor: ['#9A6324', '#FFD8B1', '#808000', '#AAFFC3', '#FF7F50']
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: { display: true, text: "Age Demographic Profile of Participants", color: colorA, font: { size: 18, weight: 'bold' } },
+                                legend: { position: 'bottom', labels: { color: colorA } }
+                            }
+                        },
+                        plugins: [percentagePlugin]
+                    });
+                } else toggleChartDisplay('ageChart', false);
+
+                // Marital Chart
+                if (hasData(newCharts.marital)) {
+                    safeChart('maritalChart', {
+                        type: 'bar',
+                        data: {
+                            labels: Object.keys(newCharts.marital),
+                            datasets: [{
+                                label: "Marital Status",
+                                data: Object.values(newCharts.marital),
+                                backgroundColor: ['#800000', '#808080']
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: { display: true, text: "Marital Status Distribution of Participants", color: colorA, font: { size: 18, weight: 'bold' } },
+                                legend: { display: false }
+                            },
+                            scales: {
+                                x: { ticks: { color: colorA } },
+                                y: { beginAtZero: true, ticks: { color: colorA } }
+                            }
+                        },
+                        plugins: [percentagePlugin]
+                    });
+                } else toggleChartDisplay('maritalChart', false);
+
+                // Baptized Chart
+                const baptizedData = baptizedOrder.map(l => newCharts.baptized[l] || 0);
+                if (hasData(newCharts.baptized)) {
+                    safeChart('baptizedChart', {
+                        type: 'doughnut',
+                        data: {
+                            labels: baptizedOrder,
+                            datasets: [{
+                                data: baptizedData,
+                                backgroundColor: ['#A9A9FF', '#B39EB5']
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: { display: true, text: "Baptismal Status Statistics", color: colorA, font: { size: 18, weight: 'bold' } },
+                                legend: { position: 'bottom', labels: { color: colorA } }
+                            }
+                        },
+                        plugins: [percentagePlugin]
+                    });
+                } else toggleChartDisplay('baptizedChart', false);
+                // Store filtered data globally for report generation
+                setTimeout(() => {
+                    window.filteredReports = filtered;
+                    window.filteredCharts = newCharts;
+                }, 500);
+            }
+
+            /* ✅ Updated filter logic to use numeric skills and codes */
+            function setupFilterListeners() {
+                // Reset Filters Button
+                document.getElementById("ResetFilterBtn")?.addEventListener("click", () => {
+                    // Reset text & number inputs
+                    const searchInput = document.getElementById("searchInput");
+                    const ageFilter = document.getElementById("ageFilter");
+                    const startDate = document.getElementById("startDate");
+                    const endDate = document.getElementById("endDate");
+                    
+                    if (searchInput) searchInput.value = "";
+                    if (ageFilter) ageFilter.value = "";
+                    if (startDate) startDate.value = "";
+                    if (endDate) endDate.value = "";
+
+                    // Reset selects to default
+                    const selects = ['genderFilter', 'maritalFilter', 'baptizedFilter', 'faithFilter'];
+                    selects.forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el) el.selectedIndex = 0;
+                    });
+
+                    // Uncheck all checkboxes
+                    document.querySelectorAll('input[name="skillFilter"], input[name="ministryFilter"]').forEach(cb => {
+                        cb.checked = false;
+                    });
+
+                    // Clear chart containers
+                    const chartIds = ['genderChart', 'faithChart', 'skillsChart', 'ministryChart', 'ageChart', 'maritalChart', 'baptizedChart'];
+                    chartIds.forEach(id => {
+                        const old = document.getElementById(id);
+                        if (old && old.parentElement) {
+                            const parent = old.parentElement;
+                            parent.innerHTML = `<canvas id="${id}" height="300"></canvas>`;
+                        }
+                    });
+
+                    // Re-render with all data
+                    renderUserReports(allReports);
+                    buildCharts(allReports);
+
+                    // Reset global filters
+                    setTimeout(() => {
+                        window.filteredReports = null;
+                        window.filteredCharts = null;
+                    }, 100);
+                });
+
+                //apply filters
+                document.getElementById("applyFilterBtn")?.addEventListener("click", () => {
+                    const searchText = document.getElementById("searchInput")?.value.toLowerCase() || "";
+                    const genderFilter = document.getElementById("genderFilter")?.value || "";
+                    const ageFilter = document.getElementById("ageFilter")?.value || "";
+                    const maritalFilter = document.getElementById("maritalFilter")?.value || "";
+                    const baptizedFilter = document.getElementById("baptizedFilter")?.value || "";
+                    const faithFilter = document.getElementById("faithFilter")?.value || "";
+                    const startDate = document.getElementById("startDate")?.value || "";
+                    const endDate = document.getElementById("endDate")?.value || "";
+
+                    const selectedSkills = Array.from(document.querySelectorAll('input[name="skillFilter"]:checked')).map(cb => cb.value);
+                    const selectedMinistries = Array.from(document.querySelectorAll('input[name="ministryFilter"]:checked')).map(cb => cb.value);
+
+                    const filtered = allReports.filter(r => {
+                        const matchSearch = !searchText ||
+                            r.name.toLowerCase().includes(searchText) ||
+                            r.email.toLowerCase().includes(searchText);
+
+                        // ✅ skill filter numeric
+                        const matchSkill = selectedSkills.length === 0 || selectedSkills.some(skill => r[skill] == 1);
+
+                        const matchMinistry = selectedMinistries.length === 0 ||
+                            (r.eligibleMinistry && selectedMinistries.some(min => r.eligibleMinistry.includes(min)));
+
+                        const matchGender = !genderFilter || r.gender === genderFilter;
+                        const matchAge = !ageFilter || parseInt(r.age) === parseInt(ageFilter);
+                        const matchMarital = !maritalFilter || r.marital === maritalFilter;
+                        const matchBaptized = !baptizedFilter || r.baptized === baptizedFilter;
+                        const matchFaith = !faithFilter || r.timeInFaith === faithFilter;
+
+                        let matchDate = true;
+                        if (startDate || endDate) {
+                            if (r.timeOfSubmission) {
+                                const submissionDate = r.timeOfSubmission.split(' ')[0];
+                                if (startDate && endDate)
+                                    matchDate = submissionDate >= startDate && submissionDate <= endDate;
+                                else if (startDate)
+                                    matchDate = submissionDate >= startDate;
+                                else if (endDate)
+                                    matchDate = submissionDate <= endDate;
+                            } else matchDate = false;
+                        }
+
+                        return matchSearch && matchSkill && matchMinistry && matchGender &&
+                            matchAge && matchMarital && matchBaptized && matchFaith && matchDate;
+                    });
+
+                    renderUserReports(filtered);
+                    setTimeout(() => buildCharts(filtered), 50);
+                });
+            }
+        
+    //download report
+        document.getElementById("generateReportBtn").addEventListener("click", async () => {
+            const startDateInput = document.getElementById("startDate");
+            const endDateInput = document.getElementById("endDate");
+            const message = document.getElementById("message");
+            const churchName = document.getElementById("churchName").value.trim() || "PERFIT";
+            const AdminEmail = document.getElementById("churchName").value.trim() || "PERFIT";
+
+            const startValue = startDateInput.value;
+            const endValue = endDateInput.value;
+
+        // 🔹 Validate date logic only if user entered any date
+            if (startValue && endValue && new Date(startValue) > new Date(endValue)) {
+                showMessage("The start date cannot be later than the end date.");
+                return;
+            }
+            if (endValue) {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const selectedEndDate = new Date(endValue);
+                selectedEndDate.setHours(0, 0, 0, 0);
+                if (selectedEndDate > today) {
+                    showMessage("Invalid date: End date cannot be later than today.");
+                    return;
+                }
+            }
+        // 🔹 Use already filtered data
+            const filteredReports = window.filteredReports || [];
+            const filteredCharts = window.filteredCharts || {};
+
+        // 🔹 Initialize PDF
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF("p", "mm", "a4");
+
+            pdf.setFontSize(18);
+            pdf.text(`${churchName}`, 105, 15, { align: "center" });
+            pdf.setFontSize(15);
+            pdf.text(`Dashboard Report`, 105, 22, { align: "center" });
+            pdf.setFontSize(13);
+
+            // Display range info if available
+            if (startValue || endValue) {
+                const rangeText = `${startValue || "All Time"} - ${endValue || "Present"}`;
+                pdf.text(`Report Period: ${rangeText}`, 14, 28);
+            } else {
+                pdf.text(`Report Period: All Available Data`, 14, 28);
+            }
+
+            let yPos = 38;
+
+        // 🔹 Filters Applied Section
+            pdf.setFontSize(14);
+            pdf.text("Filters Applied", 14, yPos);
+            yPos += 8;
+            pdf.setFontSize(11);
+
+            // --- Get Filter Values from page ---
+            const searchInput = document.getElementById("searchInput")?.value || "N/A";
+            const ageFilter = document.getElementById("ageFilter")?.value || "N/A";
+            const genderFilter = document.getElementById("genderFilter")?.value || "N/A";
+            const maritalFilter = document.getElementById("maritalFilter")?.value || "N/A";
+            const baptizedFilter = document.getElementById("baptizedFilter")?.value || "N/A";
+            const faithFilter = document.getElementById("faithFilter")?.value || "N/A";
+
+            const skillCheckboxes = Array.from(document.querySelectorAll("input[name='skillFilter']:checked")).map(c => c.value);
+            const skillsFilter = skillCheckboxes.length ? skillCheckboxes.join(" | ") : "N/A";
+
+            const ministryCheckboxes = Array.from(document.querySelectorAll("input[name='ministryFilter']:checked")).map(c => c.value);
+            const ministriesFilter = ministryCheckboxes.length ? ministryCheckboxes.join(" | ") : "N/A";
+
+            // --- Prepare Filter Data ---
+            const filters = [
+                { title: "Name or Email Filter", value: searchInput },
+                { title: "Age Filter", value: ageFilter },
+                { title: "Gender Filter", value: genderFilter },
+                { title: "Baptized Status Filter", value: baptizedFilter },
+                { title: "Marital Status Filter", value: maritalFilter },
+                { title: "Time in Faith Filter", value: faithFilter },
+                { title: "Skills Filter", value: skillsFilter },
+                { title: "Ministries Filter", value: ministriesFilter }
+            ];
+
+            // --- Group Filters into Left/Right Columns ---
+            const pairedRows = [];
+            for (let i = 0; i < filters.length; i += 2) {
+                const left = filters[i];
+                const right = filters[i + 1] || { title: "", value: "" };
+
+                // Title row with purple bg
+                pairedRows.push([
+                    { content: left.title, styles: { fillColor: [128, 65, 128], textColor: 255, halign: "center", fontStyle: "bold" } },
+                    { content: right.title, styles: { fillColor: [128, 65, 128], textColor: 255, halign: "center", fontStyle: "bold" } },
+                ]);
+
+                // Value row below
+                pairedRows.push([
+                    { content: left.value || "N/A", styles: { halign: "center" } },
+                    { content: right.value || "N/A", styles: { halign: "center" } },
+                ]);
+            }
+
+            // --- Draw the Styled Table ---
+            pdf.autoTable({
+                startY: yPos,
+                body: pairedRows,
+                theme: "grid",
+                styles: {
+                    fontSize: 10,
+                    cellPadding: 4,
+                    valign: "middle",
+                    textColor: [0, 0, 0],
+                },
+                margin: { left: 18, right: 18 },
+                tableWidth: "wrap",
+                columnStyles: {
+                    0: { cellWidth: 88 },
+                    1: { cellWidth: 88 },
+                },
+                didDrawPage: (data) => {
+                    // Custom header style consistency
+                    pdf.setDrawColor(0);
+                    pdf.setLineWidth(0.1);
+                },
+            });
+
+            // Move Y position after table
+            yPos = pdf.lastAutoTable.finalY + 10;
+
+        // 🔹 Summary
+            pdf.setFontSize(14);
+            pdf.text("Summary of Test Participants", 14, yPos);
+            yPos += 8;
+            pdf.setFontSize(11);
+            pdf.text(`• Total Test Takers: ${filteredReports.length}`, 20, yPos);
+            yPos += 12;
+
+        // 🔹 Helper to draw tables
+            const drawTable = (title, rows) => {
+                if (yPos > 260) { pdf.addPage(); yPos = 20; }
+
+                // Section Title
+                pdf.setFontSize(13);
+                pdf.text(title, 14, yPos);
+                yPos += 6;
+
+                // Prepare table data
+                const bodyData = rows.map(r => [
+                    { content: r.label, styles: { halign: "center" } },
+                    { content: String(r.count), styles: { halign: "center" } }
+                ]);
+
+                // Create AutoTable
+                pdf.autoTable({
+                    startY: yPos,
+                    head: [[
+                        { content: "Category", styles: { fillColor: [128, 65, 128], textColor: 255, halign: "center", fontStyle: "bold" } },
+                        { content: "Count", styles: { fillColor: [128, 65, 128], textColor: 255, halign: "center", fontStyle: "bold" } }
+                    ]],
+                    body: bodyData,
+                    theme: "grid",
+                    styles: {
+                        fontSize: 10,
+                        cellPadding: 4,
+                        valign: "middle",
+                        textColor: [0, 0, 0],
+                    },
+                    margin: { left: 18, right: 18 },
+                    tableWidth: "wrap", // ensures fixed width columns work properly
+                    columnStyles: {
+                        0: { cellWidth: 88 }, // fixed width for "Category"
+                        1: { cellWidth: 88 }, // fixed width for "Count"
+                    },
+                    didDrawPage: () => {
+                        pdf.setDrawColor(0);
+                        pdf.setLineWidth(0.1);
+                    }
+                });
+
+                // Update position for next section
+                yPos = pdf.lastAutoTable.finalY + 10;
+            };
+
+        // 🔹 Chart Data Tables
+            const ageGroups = ["Under 18", "18-25", "26-35", "36-50", "51+"];
+            const faithLabels = ["1+ Week", "6+ Months", "1+ Year", "2+ Years"];
+            const allSkills = ["Music", "Technology", "Writing", "Technical", "Speaking", "Accounting", "Mentoring", "Bible Knowledge"];
+
+            drawTable("Distribution of Test Takers by Gender", [
+                { label: "Male", count: filteredCharts.gender?.Male || 0 },
+                { label: "Female", count: filteredCharts.gender?.Female || 0 },
+            ]);
+            drawTable("Duration of Participants' Spiritual Engagement", faithLabels.map(label => ({
+                label, count: filteredCharts.timeInFaith?.[label] || 0
+            })));
+            drawTable("Skill Proficiency Breakdown", allSkills.map(skill => ({
+                label: skill,
+                count: filteredCharts.skillStats?.[skill.toLowerCase()] || 0
+            })));
+            drawTable("Age Demographic Profile", ageGroups.map(a => ({
+                label: a, count: filteredCharts.age?.[a] || 0
+            })));
+            drawTable("Marital Status Distribution", [
+                { label: "Single", count: filteredCharts.marital?.Single || 0 },
+                { label: "Married", count: filteredCharts.marital?.Married || 0 },
+            ]);
+            drawTable("Baptismal Status Statistics", [
+                { label: "Yes", count: filteredCharts.baptized?.Yes || 0 },
+                { label: "No", count: filteredCharts.baptized?.No || 0 },
+            ]);
+
+            // 🔹 Detailed user table
+            pdf.addPage();
+            pdf.setFontSize(14);
+            pdf.text("Detailed Report of Users Including Contact and Ministry Eligibility", 14, 20);
+            pdf.setFontSize(11);
+
+            const tableY = 30;
+
+            // Prepare table data with bullet-style ministries
+            const userRows = filteredReports.length > 0
+                ? filteredReports.map(report => {
+                    const ministriesArray = (report.eligibleMinistry || "")
+                        .split(",")
+                        .map(m => m.trim())
+                        .filter(Boolean);
+
+                    // Convert ministries to bullet format, or show "None"
+                    const ministries = ministriesArray.length > 0
+                        ? ministriesArray.map(m => `• ${m}`).join("\n")
+                        : "None";
+
+                    return [
+                        report.name || "-",
+                        report.email || "-",
+                        ministries
+                    ];
+                })
+                : [[{ content: "No data available", colSpan: 3, styles: { halign: "center", fontStyle: "italic" } }]];
+
+            // Generate AutoTable
+            pdf.autoTable({
+                startY: tableY,
+                head: [[
+                    { content: "Name", styles: { fillColor: [128, 65, 128], textColor: 255, halign: "center", fontStyle: "bold" } },
+                    { content: "Email", styles: { fillColor: [128, 65, 128], textColor: 255, halign: "center", fontStyle: "bold" } },
+                    { content: "Eligible Ministries", styles: { fillColor: [128, 65, 128], textColor: 255, halign: "center", fontStyle: "bold" } }
+                ]],
+                body: userRows,
+                theme: "grid",
+                styles: {
+                    fontSize: 10,
+                    cellPadding: 4,
+                    valign: "middle",
+                    textColor: [0, 0, 0]
+                },
+                headStyles: {
+                    fillColor: [128, 65, 128],
+                    textColor: [255, 255, 255],
+                    halign: "center",
+                    fontStyle: "bold"
+                },
+                columnStyles: {
+                    0: { cellWidth: 50 },
+                    1: { cellWidth: 50 },
+                    2: { cellWidth: 75, halign: "left" }
+                },
+                margin: { left: 18, right: 18 },
+                tableWidth: "wrap",
+                didDrawPage: () => {
+                    pdf.setDrawColor(0);
+                    pdf.setLineWidth(0.1);
                 }
             });
-        }
-    };
 
-    function safeChart(id, config) {
-        const c = document.getElementById(id);
-        if (!c) {
-            console.warn(`⚠️ Chart skipped: "${id}" not found.`);
-            return;
-        }
-
-        const ctx = c.getContext("2d");
-        if (!ctx) {
-            console.warn(`⚠️ Chart skipped: "${id}" has no 2D context.`);
-            return;
-        }
-
-        if (chartInstances[id]) {
-            chartInstances[id].destroy();
-        }
-
-        toggleChartDisplay(id, true);
-        chartInstances[id] = new Chart(ctx, config);
-    }
-
-    // Create all charts
-    
-    // Gender Chart
-    if (hasData(newCharts.gender)) {
-        safeChart('genderChart', {
-            type: 'pie',
-            data: {
-                labels: Object.keys(newCharts.gender),
-                datasets: [{
-                    data: Object.values(newCharts.gender),
-                    backgroundColor: ['#E6194B', '#F58231'],
-                    borderColor: '#fff',
-                    borderWidth: 2,
-                    hoverOffset: 10
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: { display: true, text: 'Distribution of Test Takers by Gender', color: colorA, font: { size: 18, weight: 'bold' } },
-                    legend: { position: 'bottom', labels: { color: colorA } }
-                }
-            },
-            plugins: [percentagePlugin]
-        });
-    } else toggleChartDisplay('genderChart', false);
-
-    // Time in Faith Chart
-    const faithData = faithOrder.map(l => newCharts.timeInFaith[l] || 0);
-    if (faithData.some(v => v > 0)) {
-        safeChart('faithChart', {
-            type: 'bar',
-            data: {
-                labels: faithOrder,
-                datasets: [{
-                    label: 'Users',
-                    data: faithData,
-                    backgroundColor: ['#FFE119', '#BFEF45', '#3CB44B', '#46F0F0'],
-                    borderRadius: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: { display: true, text: 'Duration of Participants\' Spiritual Engagement', color: colorA, font: { size: 18, weight: 'bold' } },
-                    legend: { display: false }
-                },
-                scales: {
-                    x: { ticks: { color: colorA }, grid: { color: 'white' } },
-                    y: { beginAtZero: true, ticks: { color: colorA }, grid: { color: colorE } }
-                }
-            },
-            plugins: [percentagePlugin]
-        });
-    } else toggleChartDisplay('faithChart', false);
-
-    // Skills Chart
-    const skillData = skillOrder.map(k => newCharts.skillStats[k] || 0);
-    if (skillData.some(v => v > 0)) {
-        safeChart('skillsChart', {
-            type: 'bar',
-            data: {
-                labels: skillOrder,
-                datasets: [{
-                    label: "Users with Skill",
-                    data: skillData,
-                    backgroundColor: ['#46F0F0', '#42D4F4', '#4363D8', '#0000FF', '#000075', '#911EB4', '#F032E6', '#FABED4'],
-                    borderRadius: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: { display: true, text: "Skill Proficiency Breakdown Among Participants", color: colorA, font: { size: 18, weight: 'bold' } },
-                    legend: { display: false }
-                },
-                scales: {
-                    x: { ticks: { color: colorA }, grid: { color: 'white' } },
-                    y: { beginAtZero: true, ticks: { color: colorA }, grid: { color: colorE } }
-                }
-            },
-            plugins: [percentagePlugin]
-        });
-    } else toggleChartDisplay('skillsChart', false);
-
-    // Ministry Chart
-    if (hasData(newCharts.eligibleMinistry)) {
-        safeChart('ministryChart', {
-            type: 'doughnut',
-            data: {
-                labels: Object.keys(newCharts.eligibleMinistry),
-                datasets: [{
-                    data: Object.values(newCharts.eligibleMinistry),
-                    backgroundColor: [
-                        '#E6194B', '#F58231', '#FFE119', '#BFEF45', '#3CB44B', '#46F0F0', '#42D4F4', '#4363D8',
-                        '#0000FF', '#000075', '#911EB4', '#F032E6', '#FABED4', '#9A6324', '#FFD8B1', '#808000',
-                        '#AAFFC3', '#FF7F50', '#FFD700', '#A9A9FF', '#B39EB5', '#800000', '#808080', '#000000'
-                    ],
-                    borderColor: '#fff',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: { display: true, text: "Frequency of Eligibility Across Ministry Categories", color: colorA, font: { size: 18, weight: 'bold' } },
-                    legend: { position: 'bottom', labels: { color: colorA } }
-                }
-            },
-            plugins: [percentagePlugin]
-        });
-    } else toggleChartDisplay('ministryChart', false);
-
-    // Age Chart
-    const ageData = ageOrder.map(a => newCharts.age[a] || 0);
-    if (ageData.some(v => v > 0)) {
-        safeChart('ageChart', {
-            type: 'pie',
-            data: {
-                labels: ageOrder,
-                datasets: [{
-                    data: ageData,
-                    backgroundColor: ['#9A6324', '#FFD8B1', '#808000', '#AAFFC3', '#FF7F50']
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: { display: true, text: "Age Demographic Profile of Participants", color: colorA, font: { size: 18, weight: 'bold' } },
-                    legend: { position: 'bottom', labels: { color: colorA } }
-                }
-            },
-            plugins: [percentagePlugin]
-        });
-    } else toggleChartDisplay('ageChart', false);
-
-    // Marital Chart
-    if (hasData(newCharts.marital)) {
-        safeChart('maritalChart', {
-            type: 'bar',
-            data: {
-                labels: Object.keys(newCharts.marital),
-                datasets: [{
-                    label: "Marital Status",
-                    data: Object.values(newCharts.marital),
-                    backgroundColor: ['#800000', '#808080']
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: { display: true, text: "Marital Status Distribution of Participants", color: colorA, font: { size: 18, weight: 'bold' } },
-                    legend: { display: false }
-                },
-                scales: {
-                    x: { ticks: { color: colorA } },
-                    y: { beginAtZero: true, ticks: { color: colorA } }
-                }
-            },
-            plugins: [percentagePlugin]
-        });
-    } else toggleChartDisplay('maritalChart', false);
-
-    // Baptized Chart
-    const baptizedData = baptizedOrder.map(l => newCharts.baptized[l] || 0);
-    if (hasData(newCharts.baptized)) {
-        safeChart('baptizedChart', {
-            type: 'doughnut',
-            data: {
-                labels: baptizedOrder,
-                datasets: [{
-                    data: baptizedData,
-                    backgroundColor: ['#A9A9FF', '#B39EB5']
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: { display: true, text: "Baptismal Status Statistics", color: colorA, font: { size: 18, weight: 'bold' } },
-                    legend: { position: 'bottom', labels: { color: colorA } }
-                }
-            },
-            plugins: [percentagePlugin]
-        });
-    } else toggleChartDisplay('baptizedChart', false);
-
-    // Store filtered data globally for report generation
-   
-    setTimeout(() => {
-        window.filteredReports = filtered;
-        window.filteredCharts = newCharts;
-    }, 500);
-
-}
-
-/* ✅ Updated filter logic to use numeric skills and codes */
-function setupFilterListeners() {
-    // Reset Filters Button
-    document.getElementById("ResetFilterBtn")?.addEventListener("click", () => {
-        // Reset text & number inputs
-        const searchInput = document.getElementById("searchInput");
-        const ageFilter = document.getElementById("ageFilter");
-        const startDate = document.getElementById("startDate");
-        const endDate = document.getElementById("endDate");
-        
-        if (searchInput) searchInput.value = "";
-        if (ageFilter) ageFilter.value = "";
-        if (startDate) startDate.value = "";
-        if (endDate) endDate.value = "";
-
-        // Reset selects to default
-        const selects = ['genderFilter', 'maritalFilter', 'baptizedFilter', 'faithFilter'];
-        selects.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.selectedIndex = 0;
-        });
-
-        // Uncheck all checkboxes
-        document.querySelectorAll('input[name="skillFilter"], input[name="ministryFilter"]').forEach(cb => {
-            cb.checked = false;
-        });
-
-        // Clear chart containers
-        const chartIds = ['genderChart', 'faithChart', 'skillsChart', 'ministryChart', 'ageChart', 'maritalChart', 'baptizedChart'];
-        chartIds.forEach(id => {
-            const old = document.getElementById(id);
-            if (old && old.parentElement) {
-                const parent = old.parentElement;
-                parent.innerHTML = `<canvas id="${id}" height="300"></canvas>`;
-            }
-        });
-
-        // Re-render with all data
-        renderUserReports(allReports);
-        buildCharts(allReports);
-
-        // Reset global filters
-        setTimeout(() => {
-            window.filteredReports = null;
-            window.filteredCharts = null;
-        }, 100);
-    });
-
-    //apply filters
-    document.getElementById("applyFilterBtn")?.addEventListener("click", () => {
-        const searchText = document.getElementById("searchInput")?.value.toLowerCase() || "";
-        const genderFilter = document.getElementById("genderFilter")?.value || "";
-        const ageFilter = document.getElementById("ageFilter")?.value || "";
-        const maritalFilter = document.getElementById("maritalFilter")?.value || "";
-        const baptizedFilter = document.getElementById("baptizedFilter")?.value || "";
-        const faithFilter = document.getElementById("faithFilter")?.value || "";
-        const startDate = document.getElementById("startDate")?.value || "";
-        const endDate = document.getElementById("endDate")?.value || "";
-
-        const selectedSkills = Array.from(document.querySelectorAll('input[name="skillFilter"]:checked')).map(cb => cb.value);
-        const selectedMinistries = Array.from(document.querySelectorAll('input[name="ministryFilter"]:checked')).map(cb => cb.value);
-
-        const filtered = allReports.filter(r => {
-            const matchSearch = !searchText ||
-                r.name.toLowerCase().includes(searchText) ||
-                r.email.toLowerCase().includes(searchText);
-
-            // ✅ skill filter numeric
-            const matchSkill = selectedSkills.length === 0 || selectedSkills.some(skill => r[skill] == 1);
-
-            const matchMinistry = selectedMinistries.length === 0 ||
-                (r.eligibleMinistry && selectedMinistries.some(min => r.eligibleMinistry.includes(min)));
-
-            const matchGender = !genderFilter || r.gender === genderFilter;
-            const matchAge = !ageFilter || parseInt(r.age) === parseInt(ageFilter);
-            const matchMarital = !maritalFilter || r.marital === maritalFilter;
-            const matchBaptized = !baptizedFilter || r.baptized === baptizedFilter;
-            const matchFaith = !faithFilter || r.timeInFaith === faithFilter;
-
-            let matchDate = true;
-            if (startDate || endDate) {
-                if (r.timeOfSubmission) {
-                    const submissionDate = r.timeOfSubmission.split(' ')[0];
-                    if (startDate && endDate)
-                        matchDate = submissionDate >= startDate && submissionDate <= endDate;
-                    else if (startDate)
-                        matchDate = submissionDate >= startDate;
-                    else if (endDate)
-                        matchDate = submissionDate <= endDate;
-                } else matchDate = false;
+            // Update y-position for next section
+            yPos = pdf.lastAutoTable.finalY + 10;
+            // 🔹 Footer
+            const totalPages = pdf.getNumberOfPages();
+            for (let i = 1; i <= totalPages; i++) {
+                pdf.setPage(i);
+                pdf.setFontSize(9);
+                pdf.setTextColor(100);
+                pdf.text(`Generated by: ${window.adminEmail}`, 105, 285, { align: "center" });
+                const today = new Date().toLocaleDateString();
+                pdf.text(`Generated on: ${today}`, 105, 290, { align: "center" });
+                pdf.text(`Page ${i} of ${totalPages}`, 195, 290, { align: "right" });
             }
 
-            return matchSearch && matchSkill && matchMinistry && matchGender &&
-                   matchAge && matchMarital && matchBaptized && matchFaith && matchDate;
+            pdf.save(`${churchName}_Dashboard_Report.pdf`);
         });
 
-        renderUserReports(filtered);
-        setTimeout(() => buildCharts(filtered), 50);
-    });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        //download report
-        document.getElementById("generateReportBtn").addEventListener("click", async () => {
-    const startDateInput = document.getElementById("startDate");
-    const endDateInput = document.getElementById("endDate");
-    const message = document.getElementById("message");
-    const churchName = document.getElementById("churchName").value.trim() || "PERFIT";
-
-    const startValue = startDateInput.value;
-    const endValue = endDateInput.value;
-
-    // 🔹 Validate date logic only if user entered any date
-    if (startValue && endValue && new Date(startValue) > new Date(endValue)) {
-        showMessage("The start date cannot be later than the end date.");
-        return;
-    }
-    if (endValue) {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const selectedEndDate = new Date(endValue);
-        selectedEndDate.setHours(0, 0, 0, 0);
-        if (selectedEndDate > today) {
-            showMessage("Invalid date: End date cannot be later than today.");
-            return;
+        // 🔹 Helper
+        function showMessage(text) {
+            const message = document.getElementById("message");
+            message.textContent = text;
+            message.className = "message error";
+            message.style.opacity = 1;
+            setTimeout(() => (message.style.opacity = 0), 3000);
         }
-    }
-
-    // 🔹 Use already filtered data
-    const filteredReports = window.filteredReports || [];
-    const filteredCharts = window.filteredCharts || {};
-
-    // 🔹 Initialize PDF
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF("p", "mm", "a4");
-
-    pdf.setFontSize(18);
-    pdf.text(`${churchName} Dashboard Report`, 105, 15, { align: "center" });
-    pdf.setFontSize(13);
-
-    // Display range info if available
-    if (startValue || endValue) {
-        const rangeText = `${startValue || "All Time"} - ${endValue || "Present"}`;
-        pdf.text(`Report Period: ${rangeText}`, 14, 28);
-    } else {
-        pdf.text(`Report Period: All Available Data`, 14, 28);
-    }
-
-    let yPos = 38;
-
-    // 🔹 Filters Applied Section
-    pdf.setFontSize(14);
-    pdf.text("Filters Applied", 14, yPos);
-    yPos += 8;
-    pdf.setFontSize(11);
-
-    const searchInput = document.getElementById("searchInput")?.value || "N/A";
-    const ageFilter = document.getElementById("ageFilter")?.value || "N/A";
-    const genderFilter = document.getElementById("genderFilter")?.value || "N/A";
-    const maritalFilter = document.getElementById("maritalFilter")?.value || "N/A";
-    const baptizedFilter = document.getElementById("baptizedFilter")?.value || "N/A";
-    const faithFilter = document.getElementById("faithFilter")?.value || "N/A";
-
-    const skillCheckboxes = Array.from(document.querySelectorAll("input[name='skillFilter']:checked")).map(c => c.value);
-    const skillsFilter = skillCheckboxes.length ? skillCheckboxes.join(", ") : "N/A";
-
-    const ministryCheckboxes = Array.from(document.querySelectorAll("input[name='ministryFilter']:checked")).map(c => c.value);
-    const ministriesFilter = ministryCheckboxes.length ? ministryCheckboxes.join(", ") : "N/A";
-
-    pdf.text(`Name or Email Filter: ${searchInput}`, 20, yPos); yPos += 6;
-    pdf.text(`Age Filter: ${ageFilter}`, 20, yPos); yPos += 6;
-    pdf.text(`Gender Filter: ${genderFilter}`, 20, yPos); yPos += 6;
-    pdf.text(`Marital Status Filter: ${maritalFilter}`, 20, yPos); yPos += 6;
-    pdf.text(`Baptized Status Filter: ${baptizedFilter}`, 20, yPos); yPos += 6;
-    pdf.text(`Time in Faith Filter: ${faithFilter}`, 20, yPos); yPos += 6;
-    pdf.text(`Skills Filter: ${skillsFilter}`, 20, yPos); yPos += 6;
-    pdf.text(`Ministries Filter: ${ministriesFilter}`, 20, yPos); yPos += 10;
-
-    // 🔹 Summary
-    pdf.setFontSize(14);
-    pdf.text("Summary of Test Participants", 14, yPos);
-    yPos += 8;
-    pdf.setFontSize(11);
-    pdf.text(`• Total Test Takers: ${filteredReports.length}`, 20, yPos);
-    yPos += 12;
-
-    // 🔹 Helper to draw tables
-    const drawTable = (title, rows) => {
-        if (yPos > 260) { pdf.addPage(); yPos = 20; }
-        pdf.setFontSize(13);
-        pdf.text(title, 14, yPos); yPos += 6;
-        pdf.setFillColor(128, 65, 128);
-        pdf.setTextColor(255, 255, 255);
-        pdf.rect(18, yPos - 4, 172, 8, "F");
-        pdf.text("Category", 25, yPos + 2);
-        pdf.text("Count", 100, yPos + 2);
-        pdf.setTextColor(0, 0, 0);
-        yPos += 10;
-
-        rows.forEach(r => {
-            if (yPos > 270) { pdf.addPage(); yPos = 20; }
-            pdf.text(r.label, 25, yPos);
-            pdf.text(String(r.count), 100, yPos);
-            yPos += 6;
-        });
-        pdf.line(18, yPos, 190, yPos); yPos += 10;
-    };
-
-    // 🔹 Chart Data Tables
-    const ageGroups = ["Under 18", "18-25", "26-35", "36-50", "51+"];
-    const faithLabels = ["1+ Week", "6+ Months", "1+ Year", "2+ Years"];
-    const allSkills = ["Music", "Technology", "Writing", "Technical", "Speaking", "Accounting", "Mentoring", "Bible Knowledge"];
-
-    drawTable("Distribution of Test Takers by Gender", [
-        { label: "Male", count: filteredCharts.gender?.Male || 0 },
-        { label: "Female", count: filteredCharts.gender?.Female || 0 },
-    ]);
-    drawTable("Duration of Participants' Spiritual Engagement", faithLabels.map(label => ({
-        label, count: filteredCharts.timeInFaith?.[label] || 0
-    })));
-    drawTable("Skill Proficiency Breakdown", allSkills.map(skill => ({
-        label: skill,
-        count: filteredCharts.skillStats?.[skill.toLowerCase()] || 0
-    })));
-    drawTable("Age Demographic Profile", ageGroups.map(a => ({
-        label: a, count: filteredCharts.age?.[a] || 0
-    })));
-    drawTable("Marital Status Distribution", [
-        { label: "Single", count: filteredCharts.marital?.Single || 0 },
-        { label: "Married", count: filteredCharts.marital?.Married || 0 },
-    ]);
-    drawTable("Baptismal Status Statistics", [
-        { label: "Yes", count: filteredCharts.baptized?.Yes || 0 },
-        { label: "No", count: filteredCharts.baptized?.No || 0 },
-    ]);
-
-    // 🔹 Detailed user table
-    pdf.addPage();
-    pdf.setFontSize(14);
-    pdf.text("Detailed Report of Users Including Contact and Ministry Eligibility", 14, 20);
-    pdf.setFontSize(11);
-    let tableY = 30;
-    pdf.setFillColor(128, 65, 128);
-    pdf.setTextColor(255, 255, 255);
-    pdf.rect(14, tableY - 5, 182, 8, "F");
-    pdf.text("Name", 18, tableY);
-    pdf.text("Email", 80, tableY);
-    pdf.text("Eligible Ministries", 150, tableY);
-    pdf.setTextColor(0, 0, 0);
-    tableY += 8;
-
-    filteredReports.forEach(report => {
-        if (tableY > 270) { pdf.addPage(); tableY = 20; }
-        pdf.text(report.name || "-", 18, tableY);
-        pdf.text(report.email || "-", 80, tableY);
-
-        const ministries = (report.eligibleMinistry || "").split(",").map(m => m.trim()).filter(Boolean);
-        if (ministries.length > 0) {
-            pdf.text(`- ${ministries[0]}`, 150, tableY); tableY += 6;
-            for (let i = 1; i < ministries.length; i++) {
-                pdf.text(`- ${ministries[i]}`, 150, tableY); tableY += 6;
-            }
-        } else {
-            pdf.text("None", 150, tableY); tableY += 6;
-        }
-        tableY += 4;
-    });
-
-    // 🔹 Footer
-    const totalPages = pdf.getNumberOfPages();
-    for (let i = 1; i <= totalPages; i++) {
-        pdf.setPage(i);
-        pdf.setFontSize(9);
-        pdf.setTextColor(100);
-        pdf.text("Generated from the PERFIT System.", 105, 285, { align: "center" });
-        const today = new Date().toLocaleDateString();
-        pdf.text(`Generated on: ${today}`, 105, 290, { align: "center" });
-        pdf.text(`Page ${i} of ${totalPages}`, 195, 290, { align: "right" });
-    }
-
-    pdf.save(`${churchName}_Dashboard_Report.pdf`);
-});
-
-// 🔹 Helper
-function showMessage(text) {
-    const message = document.getElementById("message");
-    message.textContent = text;
-    message.className = "message error";
-    message.style.opacity = 1;
-    setTimeout(() => (message.style.opacity = 0), 3000);
-}
-
-
     </script>
 </body>
 </html>
