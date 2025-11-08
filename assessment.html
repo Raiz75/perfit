@@ -68,14 +68,12 @@
         }
         /* assessment tools */
         .instruction{
-            background: linear-gradient(to right, rgb(255, 223, 255), transparent);
-            width: 90%;
-            margin-left: 5%;
-            border-radius: 5px;
-            border: 3px solid rgb(128, 65, 128);
+            background: linear-gradient(to top, var(--b) 0%, white 100%);
+            width: 100%;
+            padding: 1%;
+            padding-left: 5%;
             color: rgb(128, 65, 128);
-            padding: 20px;
-            margin-bottom: 10px;
+            box-sizing: border-box;
         }
         .instruction hr{border:1px solid rgb(128, 65, 128);}
         .instruction span{font-weight: bold;}
@@ -83,11 +81,10 @@
             width: 100%;
             position: sticky;
             top: 0px;
-            background: rgb(255, 223, 255);
+            background: linear-gradient(to top, rgb(128, 65, 128, .7) 0%, var(--b) 30%,var(--b) 100%);
             margin: 0px auto;
-            border-bottom: 3px solid rgb(128, 65, 128);
+            color: white;
             padding: 10px;
-            box-shadow: 0 0 8px rgba(51, 26, 51, 0.3);
             z-index: 5;
             transition: .5s ease-in-out;
         }
@@ -112,38 +109,50 @@
         }
         /*personalDetail*/
         .personalDetail{
+            padding-top:2rem;
             height: auto;
-            width: 70%;
-            margin: 2rem auto;
+            width: 100%;
             text-align: center;
             border-radius: 8px;
-            padding: 1rem;
-            background-color: whitesmoke;
-            box-shadow: 0 0 8px rgba(128, 128, 128, 0.3);
-            border: 1px solid rgba(128, 128, 128, 0.3);
             color:rgb(128, 65, 128);
             font-size: 2rem;
+            background: radial-gradient(circle, whitesmoke 0%, whitesmoke 10%, white 100%);
         }
         .personalDetail span{
-            font-size: 1.2rem;
-            color: grey;
+            font-size: 1.8rem;
+            color: var(--a);
             transition: .3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 50px;
+            background: radial-gradient(circle, var(--b) 0%, transparent 100%);
         }
         .box{
             width: auto;
             height: auto;
-            border-radius: 8px;
             padding: 0.75rem;
             text-align: center;
             margin: 1rem 0;
-            border: 2px solid var(--a);
-            background-color: white;
         }
         .ansDiv{
             display: flex;
             justify-content: center;
             gap: 10px;
             padding: 10px;
+        }
+        .box input[type="number"]{
+            height: 30px;
+            width: 70%;
+            font-size: 1rem;
+            border: none;
+            border-bottom: 2px solid var(--a);
+            color: var(--a);
+            background-color: transparent;
+        }
+        .box input[type="number"]:focus{
+            outline: none;
         }
         .personalBox{
             display: flex;
@@ -154,35 +163,25 @@
             height: 30px;
             width: 70%;
             font-size: 1rem;
-            border: 1px solid grey;
-            border-radius: 8px;
-        }
-        .box input[type="number"]{
-            width: 100%;
-            border: 2px solid var(--a);
-            border-radius: 8px;
-            background-color: white;
-            color: white;
-            font-size: 1.5rem;
-            color: var(--a);
+            padding-left: 5%;
             border: none;
-        }
-        .box input[type="number"]:focus{
-            outline: none;
-        }
-        .box input[type="number"]::placeholder{
+            border-bottom: 2px solid var(--a);
             color: var(--a);
+            background-color: transparent;
         }
         .personalBox input[type="number"]{
-            width: 70%;
-            border: 1px solid grey;
+            width:80%;
+            height: 28px;
+            background-color: transparent;
+            border: none;
+        }
+        .personalBox input[type="text"]:focus{
+            outline: none;
         }
         .personalBox input[type="number"]:focus{
             outline: none;
         }
-        .personalBox input[type="number"]::placeholder{
-            color: var(--a);
-        }
+        
         .box label {
             display: flex;
             align-items: center;
@@ -190,12 +189,18 @@
             font-size: 1.5rem;
             padding:4px;
             width:fit-content;
-            border: 2px solid var(--a);
-            border-radius: 8px;
             background-color: white;
             color: var(--a);
             width: 25%;
             height: 40px;
+            display: flex;
+            justify-content: center;
+            border-radius: 8px;
+            background-color: transparent;
+        }
+        .box label {
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
         }
         .personalBox label{
             width: 55%;
@@ -209,10 +214,11 @@
             width: 70%;
             display: flex;
             height: 30px;
-            border: 1px solid grey;
-            border-radius: 8px;
+            border-bottom: 2px solid var(--a);
             box-sizing: border-box;
             padding: 0px;
+            background-color: white;
+            background-color: transparent;
         }
         .contactInput label{
             width: 100%;
@@ -221,27 +227,12 @@
             margin: 0px;
             width: 20%;
         }
-        .contactInput input[type="number"]{
-            margin: 0px;
-            height: 27px;
-            width: 80%;
-            border: none;
-            border-left: 1px solid var(--a);
-            border-radius: 0px;
-            border-top-right-radius: 8px;
-            border-bottom-right-radius: 8px;
-            padding-left: 5px;
-        }
-
         /*question box*/
         .questionBox{
-            width: 90%;
+            width: 100%;
             margin: 2rem auto;
             text-align: center;
             padding: 1.5rem;
-            background-color: whitesmoke;
-            border-radius: 12px;
-            box-shadow: 0 0 8px rgba(51, 26, 51, 0.3);
         }
         .questionText{
             width: 95%;
@@ -256,16 +247,16 @@
             display: flex;
             flex-direction: column;
             gap: .5rem;
+            background: radial-gradient(circle, whitesmoke 0%, white 100%);
         }
         .rateBox button{
             font-size: 1rem;
             min-height: 50px;
-            border-radius: 12px;
-            border: 2px solid rgb(128, 65, 128);
             color: rgb(128, 65, 128);
-            background-color: white;
+            background: radial-gradient(circle, var(--b) 0%, white 100%);
             cursor: pointer;
             transition: all 0.3s ease;
+            border: none;
         }
         .denyInput {
             filter: blur(5px);
@@ -273,7 +264,7 @@
             opacity: 0.9;
         }
         .clicked {
-            background-color: rgb(128, 65, 128) !important;
+            background: radial-gradient(circle, var(--a) 0%, white 100%) !important;
             color: white !important;
         }
         /*specific questions*/
@@ -284,11 +275,9 @@
         }
         /*responseDiv*/
         .responseDiv{
-            width: 90%;
+            width: 100%;
             margin: 2rem auto;
-            padding: 2rem;
-            border: 3px solid rgb(128, 65, 128);
-            border-radius: 12px;
+            padding: 5%;
             display: none;
         }
         .topMinistryChart{
@@ -358,6 +347,16 @@
             border: 3px solid grey;
             background-color: rgb(196, 171, 196);
             color: white;
+        }
+        .ministryResultDisplay {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            color: var(--a)
+        }
+        .ministryItem {
+            white-space: nowrap;
         }
         /*footer*/
         .footer{
@@ -493,98 +492,6 @@
             color: #721c24;
             border: 3px solid #721c24;;
         }
-        /* personal info div */
-        /* .personalInfoDivOverlay{
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.4);
-            backdrop-filter: blur(5px);
-            z-index: 101;
-        }
-        .personalInfoDiv{
-            border: 3px solid var(--a);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30%;
-            height: auto;
-            color: var(--a);
-            background-color: white;
-            border-radius: 12px;
-            font-size: 1rem;
-            text-align: center;
-        }
-        .personalInfoDiv button{
-            border: 3px solid var(--a);
-            padding: 10px;
-            width: 50%;
-            background-color: var(--a);
-            border-radius: 12px;
-            color: white;
-            margin: 20px auto;
-            font-size: 1.2rem;
-        }
-        .pInfoBox{
-            display: flex;
-            height: 30px;
-            margin: 15px auto;
-            width: 75%;
-        }
-        .qwe input{
-            border: 2px solid var(--a);
-            height: 30px;
-            width: 70%;
-            border-radius: 8px;
-        }
-        .qwe input:focus{
-            outline: none;
-            border: 2px solid var(--a);
-            height: 30px;
-            width: 70%;
-            border-radius: 8px;
-        }
-        .pInfoBox p{
-            width: 30%;
-            height: 30px;
-            margin: 0px;
-            padding-top:5px;
-        }
-        .phone-input-wrapper {
-            display: flex;
-            width: 70%;
-            height: 30px;
-            border: 2px solid var(--a);
-            border-radius: 8px;
-            padding: 0xp;
-            box-sizing: border-box;
-        }
-        .phone-input-wrapper p {
-            pointer-events: none;
-            color: var(--a);
-            width: 15%;
-        }
-        .asd input {
-            width: 85%;
-            border: none;
-            margin: 0px;
-            border-radius: 0px;
-            border-top-right-radius: 8px;
-            border-bottom-right-radius: 8px;
-            border-left: 2px solid var(--a);
-            box-sizing: border-box;
-            padding-left: 5px;
-        }
-        .phone-input-wrapper input:focus {
-            outline: none;
-            border: none;
-            border-left: 2px solid var(--a);
-        } */
-
     /* loading */
         .overlayLoad {
             display: none;
@@ -632,7 +539,7 @@
             }
             .rateBox button:hover{
                 color: white;
-                background-color: rgb(128, 65, 128);
+                background: radial-gradient(circle, var(--a) 0%, white 100%);
             }
             .exportBtn:hover{
                 background-color: rgb(255, 223, 255);
@@ -674,27 +581,26 @@
             }
             .line {display: none;}
             .instruction{
-                margin: auto;
                 font-size: 1.9em;
             }
             .progressBarDiv{
-                margin: 10px auto;
                 font-size: 2em;
             }
             .personalDetail {
-                width: 95%;
-                padding: 1rem;
                 font-size: 1.9em;
+            }
+            .personalDetail h2{
+                font-size: 2.2em;
             }
             .personalInfoDiv{
                 width: 50%;
                 font-size: 1rem;
             }
-            .box label {
+            .box input[type="number"]{
                 width: 50%;
                 font-size: 1.2rem;
             }
-            .box input[type="number"]{
+            .box label {
                 width: 50%;
                 font-size: 1.2rem;
             }
@@ -702,21 +608,20 @@
                 width: 60%;
             }
             .personalBox label{
-                width: 60%;
+                width: 65%;
             }
             .personalBox input[type="text"]{
+                width: 65%;
+            }
+            .personalBox div{
                 width: 65%;
             }
             .contactInput label{
                 width: 100%;
             }
-            .contactInput div{
-                width: 65%;
-                border: 1px solid red;;
-            }
-            .box input[type="number"]{
-                width: 50%;
-                font-size: 1.2rem;
+            .contactInput div input[type="number"]{
+                width: 80%;
+                align-items: center;
             }
             .questionText {font-size: 1.3rem;}
             .rateBox {gap: 0.3rem;}
@@ -750,6 +655,13 @@
                 margin: 10px 5px;
                 padding: 3px;
             }
+            .ministryResultDisplay {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .ministryItem {
+                margin: auto;
+            }
         }
         @media (max-width: 480px) {
             .ttl {font-size: 10em;}
@@ -769,22 +681,52 @@
             }
             .line {display: none;}
             .instruction{
-                margin: auto 20px;
                 font-size:3em;
             }
-            .personalDetail {font-size:3em;}
+            .personalDetail {
+                font-size:3em;
+            }
+            .personalDetail span{
+                font-size: 1.5rem;
+            }
             .ansDiv{
                 display: flex;
                 flex-direction: column;
-
+            }
+            .personalBox input[type="text"]{
+                width: 85%;
             }
             .box label {
                 width: 100%;
                 font-size: 1.2rem;
             }
-            .box input[type="number"]{
+            .personalBox{
+                padding:0px;
+            }
+            .contactInput{
+                width: 95%;
+            }
+            .personalBox label{
+                width: 95%;
+                flex-direction: column;
+                height: 75px;
+            }
+            .contactInput label{
+                width: 100%;
+            }
+            .contactInput div input[type="number"]{
                 width: 80%;
-                font-size: .8rem;
+                height: 28px;
+            }
+             .personalBox div{
+                width: 90%;
+            }
+            .contactInput label{
+                width: 100%;
+            }
+            .contactInput div input[type="number"]{
+                width: 80%;
+                align-items: center;
             }
             .box input[type="radio"]{
                 width: 10px;
@@ -798,7 +740,6 @@
                 width: 25%;
             }
             .questionBox{font-size: 3em;}
-            .questionText {width: 100%;}
             .rateBox {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 0.5em;
@@ -807,7 +748,9 @@
                 height: 40px;
                 min-height: 40px;
             }
-            .progressBarDiv{font-size: 3em;}
+            .progressBarDiv{
+                font-size: 3em;
+            }
             .nextBtn {
                 width: 150px;
                 height: 45px;
@@ -889,23 +832,21 @@
         </div>
     </div>
 <!--personal details-->
-
     <p class="instruction" id="inst1" translate="i1" style="text-align: justify;">INSTRUCTION: Please provide your personal details accurately. This information helps us understand your profile better and will only be used for assessment purposes.</p>
     <div class="personalDetail move-up" id="personalForm">
         <h2 translate="ph1">DEMOGRAPHICS</h2>
         <div class="box move-up" id="personalInfoBox">
-            <span translate="ph1T">Personal Details</span><br>
+            <span translate="ph1T" id="personalInfottl">Personal Details</span><br>
             <div class="ansDiv personalBox">
-                <label>Name: <input type="text" translate="ph1N" id="userName"></label>
-                <label>Email: <input type="text" translate="ph1E" id="userEmail"></label>
+                <label id="namettl">Name: <input type="text" translate="ph1N" id="userName" placeholder="Enter Name"></label>
+                <label id="emailttl">Email: <input type="text" translate="ph1E" id="userEmail" placeholder="Enter Email"></label>
                 <div class="contactInput">
-                    <label id="contactInputDiv">Contact No.: 
+                    <label id="contactttl">Contact No.:
                         <div>
-                            <p>+63</p><input type="number" id="contactInput" oninput="limitDigits(this, 10)">
+                            <p>+63</p><input type="number" id="contactInput" oninput="limitDigits(this, 10)" placeholder="Enter Contact Number">
                         </div>
                     </label translate="ph1C">
                 </div>
-                
             </div>
         </div>
         <div class="box move-up" id="genderBox">
@@ -1046,28 +987,6 @@
     </div>
 <!-- small alert -->
     <div class="messageAlert" id="messageAlert"></div>
-<!-- personal info -->
-    <!-- <div class="personalInfoDivOverlay" id="personalInfoDivOverlay">
-        <div class="personalInfoDiv">
-            <h3>Personal Info</h3>
-            <div class="pInfoBox qwe">
-                <p>Name:</p>
-                <input type="text" id="userName" placeholder="Enter Full Name">
-            </div>
-            <div class="pInfoBox qwe">
-                <p>Email:</p>
-                <input type="email" id="userEmail" placeholder="Enter Email"><br>
-            </div>
-            <div class="pInfoBox">
-                <p>Contact No:</p>
-                <div class="phone-input-wrapper asd">
-                    <p>+63</p>
-                    <input type="number" id="userContact" placeholder="Enter Contact number" oninput="limitDigits('userContact', 10)">
-                </div>
-            </div>
-            <button id="seeResult" onclick="saveUserReport()">Save Result</button>
-        </div>
-    </div> -->
 <!--script-->
     <!-- api -->
     <script src="callApi.js"></script>
@@ -1099,8 +1018,7 @@
             .then(res => res.json())
             .then(data => {
                 if (data.error) {
-                    console.error(data.error);
-                    //errorFound("Error: " + data.error);
+                    errorFound("Error: " + data.error);
                     return;
                 }
                 churchName = data.churchName;
@@ -1113,8 +1031,7 @@
 
                 console.log("Database data loaded successfully");
             })
-            //.catch(err => errorFound("Error loading database data"));
-            .catch(err => console.log("Error loading database data"));
+            .catch(err => errorFound("Error loading database data"));
         });
 
     //assessment local storage reset
@@ -1386,14 +1303,16 @@
 
                 // Reset all labels in this group
                 document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
-                    r.parentElement.style.backgroundColor = 'white';
-                    r.parentElement.style.color = 'rgb(128, 65, 128)';
+                    r.parentElement.style.background = 'linear-gradient(to top, transparent 30%, transparent 100%)';
+                    r.parentElement.style.borderLeft = '3px solid transparent';
+                    r.parentElement.style.borderRight = '3px solid transparent';
                 });
 
                 // Highlight the selected label
                 if (radio.checked) {
-                    radio.parentElement.style.backgroundColor = 'rgb(128, 65, 128)';
-                    radio.parentElement.style.color = 'white';
+                    radio.parentElement.style.background = 'rgb(255, 223, 255)';
+                    radio.parentElement.style.borderLeft = '3px solid rgb(128, 65, 128)';
+                    radio.parentElement.style.borderRight = '3px solid rgb(128, 65, 128)';
                 }
             });
         });
@@ -1416,29 +1335,29 @@
             // Validation
             if (!nameInput) {
                 document.querySelector("input[translate='ph1N']").scrollIntoView({ behavior: 'smooth', block: 'center' });
-                blinkInput("input[translate='ph1N']");
+                blinkInput("personalInfottl");
             } else if (!emailInput || !validateEmail(emailInput)) {
                 document.querySelector("input[translate='ph1E']").scrollIntoView({ behavior: 'smooth', block: 'center' });
-                blinkInput("input[translate='ph1E']");
+                blinkInput("personalInfottl");
             } else if (!contactInput) {
                 document.getElementById("contactInput").scrollIntoView({ behavior: 'smooth', block: 'center' });
-                blinkInput2("contactInputDiv");
+                blinkInput("personalInfottl");
             } else if (!genderAns) {
                 document.getElementById('genderBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                blinkInput('#genderBox');
+                blinkInput('genderBoxttl');
             } else if (ageAns < 1 || ageAns > 100) {
                 document.getElementById('ageBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
                 document.getElementById('ageInput').value = '';
-                blinkInput('#ageBox');
+                blinkInput('ageBoxttl');
             } else if (!statusAns) {
                 document.getElementById('statusBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                blinkInput('#statusBox');
+                blinkInput('statusBoxttl');
             } else if (!baptizedAns) {
                 document.getElementById('baptizedBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                blinkInput('#baptizedBox');
+                blinkInput('baptizedBoxttl');
             } else if (!timeInFaithAns) {
                 document.getElementById('timeInFaithBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                blinkInput('#timeInFaithBox');
+                blinkInput('timeInFaithBoxttl');
             } else {
                 // Disable current step
                 document.getElementById('step1').classList.add("disable");
@@ -1468,19 +1387,13 @@
         }
         // Helper function for blinking effect
         function blinkInput(selector) {
-            const el = document.querySelector(selector);
-            let blink = 0;
-            const blinkInterval = setInterval(() => {
-                el.style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
-                blink++;
-                if (blink > 5) clearInterval(blinkInterval);
-            }, 300);
-        }
-        function blinkInput2(selector) {
             const el = document.getElementById(selector);
             let blink = 0;
             const blinkInterval = setInterval(() => {
-                el.style.borderColor = (blink % 2 === 0) ? "red" : "rgb(128, 65, 128)";
+                // el.style.color = (blink % 2 === 0) ? "white" : "rgb(128, 65, 128)";
+                el.style.background = (blink % 2 === 0)
+                    ? "radial-gradient(circle, red 0%, white 100%)"
+                    : "radial-gradient(circle, rgb(255, 223, 255) 0%, white 100%)";
                 blink++;
                 if (blink > 5) clearInterval(blinkInterval);
             }, 300);
@@ -2156,7 +2069,6 @@
         let ministryInterestUnranked = [];
 
         async function interpret() {
-            saveUserReport();
             console.log(">> Interpret Data");
             startThinkingAnimation();
 
@@ -2230,9 +2142,9 @@
                 top: topMinistries.map(m => `top ${m.rank} ${m.ministry}`),
                 least: leastMinistries.map(m => `top ${m.rank} ${m.ministry}`)
             }));
-
             console.log("Top List:", topList);
             console.log("Least Aligned Ministries:", leastList);
+            saveUserReport();
 
             // --- Build AI Message ---
             message += `
@@ -2257,28 +2169,34 @@
                 // Top 1–3 sections
                 for (let r = 1; r <= 3; r++) {
                     if (groupedRanks[r]) {
-                        const ministries = groupedRanks[r].join(", ");
+                        const ministries = groupedRanks[r].map(m => `<span class="ministryItem">${m} Ministry</span>`).join("");
                         const plural = groupedRanks[r].length > 1 ? "Ministries" : "Ministry";
 
                         if (r === 1) {
                             message += `
-                                <h2 style="color:rgb(128,65,128);">Best Fit: ${ministries} ${plural}</h2>
+                                <h2 style="color:rgb(128,65,128); text-align:center;">BEST FIT ${plural}</h2>
+                                <h3 class="ministryResultDisplay">${ministries}</h3>
                                 <p style="text-align:justify;">(at least 100 words)
-                                    Explain why ${ministries} ${groupedRanks[r].length > 1 ? "are" : "is"} the user's top fit. Highlight alignment with strengths, calling, and purpose.
+                                    Offer heartfelt advice to the user about how they can nurture and deepen their calling in ${ministries}.
+                                    Encourage them to use their gifts faithfully and purposefully in this ministry, showing how it aligns with their God-given strengths and sense of purpose.
                                 </p>
                             `;
                         } else if (r === 2) {
                             message += `
-                                <h2 style="color:rgb(128,65,128);">Top 2: ${ministries} ${plural}</h2>
+                                <h2 style="color:rgb(128,65,128); text-align:center;">Top 2 ${plural}</h2>
+                                <h3 class="ministryResultDisplay">${ministries}</h3>
                                 <p style="text-align:justify;">(at least 100 words)
-                                    Explain why ${ministries} ${groupedRanks[r].length > 1 ? "are" : "is"} the second-best fit and how ${groupedRanks[r].length > 1 ? "they complement" : "it complements"} the top ministry.
+                                    Give supportive advice on how the user can grow and serve effectively in ${ministries}.
+                                    Guide them to see how this ministry complements their top fit and helps balance their spiritual journey, teamwork, and personal growth.
                                 </p>
                             `;
                         } else if (r === 3) {
                             message += `
-                                <h2 style="color:rgb(128,65,128);">Top 3: ${ministries} ${plural}</h2>
+                                <h2 style="color:rgb(128,65,128); text-align:center;">Top 3 ${plural}</h2>
+                                <h3 class="ministryResultDisplay">${ministries}</h3>
                                 <p style="text-align:justify;">(at least 100 words)
-                                    Explain how ${ministries} ${groupedRanks[r].length > 1 ? "align with" : "fits"} the user's spiritual character and support${groupedRanks[r].length > 1 ? "" : "s"} their faith journey.
+                                    Share thoughtful encouragement on how involvement in ${ministries} can further shape their faith, build character, and strengthen their walk with God.
+                                    Offer ways they can serve meaningfully and stay aligned with their spiritual mission.
                                 </p>
                             `;
                         }
@@ -2286,10 +2204,20 @@
                 }
 
                 // Other Ministries
-                const otherMinistries = ranked.slice(3).filter(r => !allSame && r.score !== ranked[ranked.length - 1].score);
+                const bestFitMinistries = [];
+                for (let r = 1; r <= 3; r++) {
+                    if (groupedRanks[r]) {
+                        bestFitMinistries.push(...groupedRanks[r]);
+                    }
+                }
+                // ✅ Filter out those ministries from the rest
+                const otherMinistries = ranked.filter(
+                    r => !bestFitMinistries.includes(r.ministry) && !allSame && r.score !== ranked[ranked.length - 1].score
+                );
+
                 if (otherMinistries.length > 0) {
                     message += `
-                        <h2 style="color:rgb(128,65,128);">Other Ministries (Ranked)</h2>
+                        <h3 style="color:rgb(128,65,128);">Other Ministries (Ranked)</h3>
                         <ul>
                             ${otherMinistries.map(r => `<li>Top ${r.rank}: ${r.ministry} Ministry</li>`).join("")}
                         </ul>
@@ -2298,13 +2226,14 @@
 
                 // Least Aligned (only if not all same)
                 if (!allSame && leastMinistries.length > 0) {
-                    const leastDisplay = leastMinistries.map(m => m.ministry).join(", ");
+                    const leastDisplay = leastMinistries.map(m => `<span class="ministryItem">${m.ministry} Ministry</span>`).join("");
                     message += `
-                        <h2 style="color:rgb(128,65,128);">
-                            Least Aligned Ministr${leastMinistries.length > 1 ? "ies" : "y"}: ${leastDisplay}
-                        </h2>
+                        <h2 style="color:rgb(128,65,128); text-align:center;">Least Aligned Ministr${leastMinistries.length > 1 ? "ies" : "y"}</h2>
+                        <h3 class="ministryResultDisplay">${leastDisplay}</h3>
                         <p style="text-align:justify;">(at least 100 words)
-                            Reflect on why these ministr${leastMinistries.length > 1 ? "ies" : "y"} may rank lowest. Emphasize growth and encouragement.
+                            Provide gentle, uplifting advice for the user regarding ${ministries}.
+                            Help them reflect on why this area might currently feel less fitting, and encourage openness to growth, learning, and spiritual development.
+                            Focus on self-awareness and how God can still work through them even in areas of challenge.
                         </p>
                     `;
                 }
@@ -2317,7 +2246,8 @@
                     message += `
                         <h2 style="color:rgb(128,65,128);">Spiritual Relationship Between Top Ministries</h2>
                         <p style="text-align:justify;">(at least 100 words)
-                            Explain how these ministries connect, support, and work together to strengthen spiritual growth and fulfill their divine purpose.
+                            Offer insight on how these ministries — ${ministries} — can work hand-in-hand to build a stronger faith community.
+                            Encourage the user to see how their combined involvement can bring unity, purpose, and deeper fulfillment in serving others.
                         </p>
                     `;
                 }
@@ -2326,18 +2256,22 @@
                 message += `
                     <h2 style="color:rgb(128,65,128);">Growth Opportunities:</h2>
                     <p style="text-align:justify;">(at least 100 words)
-                        Suggest how they can grow in this ministry spiritually, emotionally, and skill-wise.
+                        Give practical and spiritual advice on how the user can continue growing in ${ministries}, focusing on spiritual maturity, emotional resilience, and skill development.
+                        Encourage consistent faith, humility, and the desire to keep learning and improving.
                     </p>
                     <h2 style="color:rgb(128,65,128);">Ministry Pathway / Journey Map:</h2>
-                    <p style="text-align:justify;">(at least 100 words)</p>
+                    <p style="text-align:justify;">(at least 100 words)
+                        Offer guidance to the user on how they can see and follow their path in ministry as a continuous process of growth and service.
+                        Encourage them to reflect on where they currently are—whether in discovery, active service, or mentoring others—and how they can continue to grow in faith and leadership.
+                        Advise them to remain rooted in humility, prayer, and consistency, embracing each challenge as part of God’s preparation.
+                    </p>
                 `;
             }
-
             // ==============================
             // ========= TAGALOG ============
             // ==============================
             else if (selectedLanguage === "tl") {
-                message += `<h1 style="color:rgb(128,65,128);text-align:center;">PROFIL NG PAGTAWAG AT PAGLILINGKOD</h1>`;
+                message += `<h1 style="color:rgb(128,65,128);text-align:center;">PROFILE NG PAGTAWAG AT PAGLILINGKOD</h1>`;
 
                 const groupedRanks = {};
                 ranked.forEach(item => {
@@ -2345,75 +2279,101 @@
                     groupedRanks[item.rank].push(item.ministry);
                 });
 
+                // Top 1–3 sections
                 for (let r = 1; r <= 3; r++) {
                     if (groupedRanks[r]) {
-                        const ministries = groupedRanks[r].join(", ");
-                        const plural = groupedRanks[r].length > 1 ? "mga Ministry" : "Ministry";
+                        const ministries = groupedRanks[r].map(m => `<span class="ministryItem">${m} Ministry</span>`).join("");
+                        const plural = groupedRanks[r].length > 1 ? "Ministries" : "Ministry";
 
                         if (r === 1) {
                             message += `
-                                <h2 style="color:rgb(128,65,128);">Pinakamainam na Tugma: ${ministries} ${plural}</h2>
-                                <p style="text-align:justify;">(hindi bababa sa 100 salita)
-                                    Ilarawan kung bakit ang ${ministries} ${groupedRanks[r].length > 1 ? "ang mga ito ay" : "ito ay"} pinaka-tugma sa kakayahan, karakter, at tawag ng Diyos sa buhay ng gumagamit.
+                                <h2 style="color:rgb(128,65,128); text-align:center;">PINAKAMAINAM NA FIT ${plural}</h2>
+                                <h3 class="ministryResultDisplay">${ministries}</h3>
+                                <p style="text-align:justify;">(humigit-kumulang 100 salita)
+                                    Magbigay ng taos-pusong payo sa gumagamit kung paano nila mapapalago at mapapalalim ang kanilang pagtawag sa ${groupedRanks[r].join(", ")}.
+                                    Hikayatin silang gamitin ang kanilang mga talento nang tapat at may layunin sa ministeryong ito, na ipinapakita kung paano ito naaayon sa kanilang mga kaloob na ibinigay ng Diyos at layunin sa buhay.
                                 </p>
                             `;
                         } else if (r === 2) {
                             message += `
-                                <h2 style="color:rgb(128,65,128);">Pangalawang Tugma: ${ministries} ${plural}</h2>
-                                <p style="text-align:justify;">(hindi bababa sa 100 salita)
-                                    Ilarawan kung bakit ang ${ministries} ${groupedRanks[r].length > 1 ? "ay" : "ay"} pangalawang pinakamainam na tugma at kung paano ${groupedRanks[r].length > 1 ? "nakatutulong ang mga ito" : "ito ay nakatutulong"} sa pangunahing ministry.
+                                <h2 style="color:rgb(128,65,128); text-align:center;">Top 2 ${plural}</h2>
+                                <h3 class="ministryResultDisplay">${ministries}</h3>
+                                <p style="text-align:justify;">(humigit-kumulang 100 salita)
+                                    Magbigay ng gabay kung paano maaaring lumago at magsilbi nang epektibo sa ${groupedRanks[r].join(", ")}.
+                                    Tulungan silang makita kung paano nakatutulong ang ministeryong ito upang kumumplemento sa kanilang pinakamatinding fit at paano ito nakakatulong sa balanse ng kanilang espiritwal na paglalakbay, pakikipagtulungan, at personal na paglago.
                                 </p>
                             `;
                         } else if (r === 3) {
                             message += `
-                                <h2 style="color:rgb(128,65,128);">Ikatlong Tugma: ${ministries} ${plural}</h2>
-                                <p style="text-align:justify;">(hindi bababa sa 100 salita)
-                                    Ilarawan kung paano ${ministries} ${groupedRanks[r].length > 1 ? "ay" : "ay"} umaayon sa espiritwal na karakter at paglago ng pananampalataya ng gumagamit.
+                                <h2 style="color:rgb(128,65,128); text-align:center;">Top 3 ${plural}</h2>
+                                <h3 class="ministryResultDisplay">${ministries}</h3>
+                                <p style="text-align:justify;">(humigit-kumulang 100 salita)
+                                    Magbigay ng maingat na payo kung paano ang pakikilahok sa ${groupedRanks[r].join(", ")} ay maaaring higit pang hubugin ang kanilang pananampalataya, karakter, at palakasin ang kanilang espiritwal na paglalakbay.
+                                    Magmungkahi ng mga paraan upang magsilbi nang makahulugan at manatiling nakahanay sa kanilang espiritwal na misyon.
                                 </p>
                             `;
                         }
                     }
                 }
+                // Other Ministries
+                const bestFitMinistries = [];
+                for (let r = 1; r <= 3; r++) {
+                    if (groupedRanks[r]) {
+                        bestFitMinistries.push(...groupedRanks[r]);
+                    }
+                }
+                const otherMinistries = ranked.filter(
+                    r => !bestFitMinistries.includes(r.ministry) && !allSame && r.score !== ranked[ranked.length - 1].score
+                );
 
-                const otherMinistries = ranked.slice(3).filter(r => !allSame && r.score !== ranked[ranked.length - 1].score);
                 if (otherMinistries.length > 0) {
                     message += `
-                        <h2 style="color:rgb(128,65,128);">Iba pang mga Ministry (na may ranggo)</h2>
+                        <h3 style="color:rgb(128,65,128);">Ibang Ministries (Naka-ranggo)</h3>
                         <ul>
                             ${otherMinistries.map(r => `<li>Top ${r.rank}: ${r.ministry} Ministry</li>`).join("")}
                         </ul>
                     `;
                 }
-
+                // Least Aligned
                 if (!allSame && leastMinistries.length > 0) {
-                    const leastDisplay = leastMinistries.map(m => m.ministry).join(", ");
+                    const leastDisplay = leastMinistries.map(m => `<span class="ministryItem">${m.ministry} Ministry</span>`).join("");
                     message += `
-                        <h2 style="color:rgb(128,65,128);">Pinakahuling Tugma: ${leastDisplay}</h2>
-                        <p style="text-align:justify;">(hindi bababa sa 100 salita)
-                            Ilarawan kung bakit maaaring ito ang pinakahuling tugma at magbigay ng payo para sa paglago at pagsasanay.
+                        <h2 style="color:rgb(128,65,128); text-align:center;">Pinakamababang Naaangkop na Ministr${leastMinistries.length > 1 ? "ies" : "y"}</h2>
+                        <h3 class="ministryResultDisplay">${leastDisplay}</h3>
+                        <p style="text-align:justify;">(humigit-kumulang 100 salita)
+                            Magbigay ng magaan at nakapagpapasiglang payo tungkol sa ${leastMinistries.map(m => m.ministry).join(", ")}.
+                            Tulungan silang suriin kung bakit maaaring hindi ito angkop sa kasalukuyan, at hikayatin ang pagiging bukas sa paglago, pagkatuto, at espiritwal na pag-unlad.
+                            Ituon ang pansin sa kamalayan sa sarili at kung paano pa rin maaaring kumilos ang Diyos sa kanila kahit sa mga hamong ito.
                         </p>
                     `;
                 }
-
+                // Chart separator
                 message += `<p>cutHere</p>`;
 
+                // Spiritual Relationship
                 if (ministryInterest.length > 1) {
                     message += `
-                        <h2 style="color:rgb(128,65,128);">Ugnayang Espiritwal ng mga Nangungunang Ministeryo</h2>
-                        <p style="text-align:justify;">(hindi bababa sa 100 salita)
-                            Ipaliwanag kung paano nagkakaugnay, nagtutulungan, at nagkakaisa ang mga ministeryong ito 
-                            upang mapalakas ang espiritwal na paglago at matupad ang kanilang banal na layunin.
+                        <h2 style="color:rgb(128,65,128);">Ugnayang Espiritwal sa Pagitan ng Nangungunang Ministries</h2>
+                        <p style="text-align:justify;">(humigit-kumulang 100 salita)
+                            Magbigay ng payo kung paano maaaring magtulungan ang mga ministrong ito — ${ministries} — upang bumuo ng mas matibay na komunidad ng pananampalataya.
+                            Hikayatin ang gumagamit na makita kung paano maaaring magdala ng pagkakaisa, layunin, at mas malalim na kasiyahan ang kanilang pinagsamang paglilingkod.
                         </p>
                     `;
                 }
 
+                // Growth Section
                 message += `
-                    <h2 style="color:rgb(128,65,128);">Mga Pagkakataon para sa Paglago:</h2>
-                    <p style="text-align:justify;">(hindi bababa sa 100 salita)
-                        Magmungkahi kung paano sila maaaring lumago sa espiritwal, emosyonal, at sa kanilang mga kakayahan habang naglilingkod.
+                    <h2 style="color:rgb(128,65,128);">Mga Oportunidad sa Paglago:</h2>
+                    <p style="text-align:justify;">(humigit-kumulang 100 salita)
+                        Magbigay ng praktikal at espiritwal na payo kung paano maaaring patuloy na lumago ang gumagamit sa ${ministries}, na nakatuon sa espiritwal na paglago, emosyonal na katatagan, at pag-unlad ng kasanayan.
+                        Hikayatin ang patuloy na pananampalataya, kababaang-loob, at kagustuhang matuto at umunlad.
                     </p>
-                    <h2 style="color:rgb(128,65,128);">Landas ng Ministeryo / Mapa ng Paglalakbay:</h2>
-                    <p style="text-align:justify;">(hindi bababa sa 100 salita)</p>
+                    <h2 style="color:rgb(128,65,128);">Ministry Pathway / Journey Map:</h2>
+                    <p style="text-align:justify;">(humigit-kumulang 100 salita)
+                        Magbigay ng payo sa gumagamit kung paano nila maaaring makita at sundan ang kanilang landas sa ministeryo bilang isang proseso ng paglago at paglilingkod.
+                        Hikayatin silang suriin kung nasaan sila sa kasalukuyan—pagkatuklas, aktibong paglilingkod, o paggabay sa iba—at kung paano patuloy na lalago sa pananampalataya at pamumuno.
+                        Ipayo na manatiling nakaugat sa kababaang-loob, panalangin, at konsistensya, at tanggapin ang bawat hamon bilang bahagi ng paghahanda ng Diyos.
+                    </p>
                 `;
             }
 
@@ -2576,9 +2536,12 @@
 
             // Eligible ministries as comma-separated string
             const ministryRankings = JSON.parse(localStorage.getItem("topMinistryList")) || { top: [], least: [] };
-            const cleanTop = ministryRankings.top.map(m => m.replace(/^top \d+\s*/, '').trim());
-            const cleanLeast = ministryRankings.least.map(m => m.replace(/^top \d+\s*/, '').trim());
-            const eligibleMinistry = [...cleanTop, ...cleanLeast].join(', ');
+            const extractName = str => str.replace(/^top\s*\d+\s*/i, '').trim();
+            const allMinistries = [
+            ...ministryRankings.top.map(extractName),
+            ...ministryRankings.least.map(extractName)
+            ];
+            const eligibleMinistry = allMinistries.join(', ');
 
             // Prepare data
             const postData = {
@@ -2826,19 +2789,19 @@
             ), 3000);
         }
     // Catch errors in synchronous code
-        // function errorFound(msg){
-        //     localStorage.clear();
-        //     document.getElementById("overlay").style.display = "block";
-        //     if(selectedLanguage=="en"){
-        //         document.getElementById("alertMessage").innerText = "Fatal error found: "+ msg;
-        //         document.getElementById("a1").innerText = "RETURN TO HOME PAGE";
-        //     }
-        //     if(selectedLanguage=="tl"){
-        //         document.getElementById("alertMessage").innerText = "Malubhang error na naganap: "+ msg;
-        //         document.getElementById("a1").innerText = "BUMALIK SA HOME PAGE";
-        //     }
-        //     console.log("An unknown Error");
-        // }
+        function errorFound(msg){
+            localStorage.clear();
+            document.getElementById("overlay").style.display = "block";
+            if(selectedLanguage=="en"){
+                document.getElementById("alertMessage").innerText = "Fatal error found: "+ msg;
+                document.getElementById("a1").innerText = "RETURN TO HOME PAGE";
+            }
+            if(selectedLanguage=="tl"){
+                document.getElementById("alertMessage").innerText = "Malubhang error na naganap: "+ msg;
+                document.getElementById("a1").innerText = "BUMALIK SA HOME PAGE";
+            }
+            console.log("An unknown Error");
+        }
         // window.onerror = function(message, source, lineno, colno, error) {
         //     localStorage.clear();
         //     document.getElementById("overlay").style.display = "block";

@@ -35,7 +35,7 @@
             background-size: 30%;
             background-position: right top;
             box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
-            border:3px solid var(--a);
+           
         }
         button{
             width: fit-content;
@@ -122,7 +122,7 @@
             color: var(--a);
             box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
             border-radius: 12px;
-            border: 3px solid var(--a);
+            /* border: 3px solid var(--a); */
             text-align: center;
         }
         .dashBoardBtnDiv{
@@ -201,7 +201,7 @@
             font-size: 1rem;
             max-height: 500px;
             overflow-x: auto;
-            border: 3px solid var(--a);
+            /* border: 3px solid var(--a); */
         }
         .filterDiv{
             display: flex;
@@ -233,7 +233,8 @@
         }
         .userReportTable td {border-bottom: 1px solid var(--a);}
         .filter-container{
-            border: 3px solid var(--a);
+            /* border: 3px solid var(--a); */
+            box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
             margin:10px 5%;
             border-radius: 12px;
             background-color: white;
@@ -387,7 +388,7 @@
             background-color: white;
             color: var(--a);
             box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
-            border: 3px solid var(--a);
+            /* border: 3px solid var(--a); */
             border-top-left-radius: 12px;
             border-bottom-left-radius: 12px;
             display: none;
@@ -457,7 +458,7 @@
             border-bottom-left-radius: 12px;
             max-height: 500px;
             overflow-x: auto;
-            border: 3px solid var(--a);
+            /* border: 3px solid var(--a); */
         }
         .skillsRestrictions {
             width: 100%;
@@ -513,7 +514,7 @@
             background-color: white;
             color: var(--a);
             box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
-            border: 3px solid var(--a);
+            /* border: 3px solid var(--a); */
             border-top-left-radius: 12px;
             border-bottom-left-radius: 12px;
             display: none;
@@ -550,7 +551,7 @@
             background-color: white;
             color: var(--a);
             box-shadow: 1px 1px 8px 2px rgb(197, 195, 195);
-            border: 3px solid var(--a);
+            /* border: 3px solid var(--a); */
             border-top-left-radius: 12px;
             border-bottom-left-radius: 12px;
             max-height: 500px;
@@ -941,7 +942,6 @@
         <div class="churchCode">
             <p>Church Code: <b><span id="churchCode"></span></b></p><button id="copyBtn">copy</button>
         </div>
-
         <div class="btnDiv">
             <div class="">
                 <button onclick="saveChurchName()">Save Church Name</button>
@@ -1042,7 +1042,10 @@
                         <label><input type="checkbox" name="ministryFilter" value="Creative & Social Media"> Creative & Social Media</label><br>
                         <label><input type="checkbox" name="ministryFilter" value="Counseling"> Counseling</label><br>
                         <label><input type="checkbox" name="ministryFilter" value="Healing & Deliverance"> Healing & Deliverance</label><br>
-                        <label><input type="checkbox" name="ministryFilter" value="Funeral"> Funeral</label><br>
+                        <label><input type="checkbox" name="ministryFilter" value="Addiction Recovery"> Addiction Recovery</label><br>
+                        <label><input type="checkbox" name="ministryFilter" value="Special Needs"> Special Needs</label><br>
+                        <label><input type="checkbox" name="ministryFilter" value="Seniors"> Seniors</label><br>
+                        <label><input type="checkbox" name="ministryFilter" value="Single Adults"> Single Adults</label><br>
                     </fieldset>
                 </div>
             </div>

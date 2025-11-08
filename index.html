@@ -129,34 +129,32 @@
         /*how it works*/
         .howItWorks {
             display: flex;
-            flex-direction: row;
-            height: 40vw;
-            padding: 120px;
+            height: 45vw;
+            padding: 50px;
             background-color: var(--b);
             margin: 3vw auto;
-            margin-bottom: 0vw;
         }
         .howItWorks img {
-            width: 30vw;
-            margin: 0 auto;
+            width: 25vw;
+            margin: auto;
             border-radius: 1.2vw;
             border: 0.3vw solid grey;
         }
         .step {
-            width: 56vw;
+            width: 65vw;
+            margin: 0px;
+            padding: 0px;
             text-align: center;
         }
         .step h1 {
             color: var(--a);
             font-size: 2.8em;
-            margin-top: 5vw;
         }
         .step hr {
             width: 80%;
             border: 1px solid var(--a);
         }
         .stepContiner {
-            padding: 0.5vw;
             display: flex;
             flex-direction: row;
             height: 15vw;
@@ -164,7 +162,7 @@
         .stepBox {
             margin: 1vw;
             width: 31%;
-            height: 13vw;
+            height: auto;
             padding: 0.3vw;
             border-top-left-radius: 0vw;
             border-top-right-radius: 4vw;
@@ -275,7 +273,7 @@
             font-size: .7em;
             color: white;
             position:absolute;
-            top: 150vw;
+            top: 160vw;
             left: 5vw;
             z-index: 4;
         }
@@ -435,7 +433,7 @@
         }
         .dsn1 {
             position: absolute;
-            top: 150vw;
+            top: 160vw;
             right: 1vw;
             width: 20%;
             border-radius: 1.2vw;
@@ -1122,25 +1120,39 @@
             <div class="stepContiner">
                 <div class="stepBox move-up">
                     <h3>STEP 1</h3>
+                    <p>Choose user type</p>
+                    <hr>
+                    <p>Select <b>Leader</b> to set restrictions or <b>Volunteer</b> to take the assessment.</p>
+                </div>
+                <div class="stepBox move-up">
+                    <h3>STEP 2</h3>
+                    <p>Enter Church Code</p>
+                    <hr>
+                    <p>Use your church’s code to apply your pastor’s settings.</p>
+                </div>
+                <div class="stepBox move-up">
+                    <h3>STEP 3</h3>
                     <p>Choose Language</p>
                     <hr>
                     <p>Choose your preferred language</p>
                 </div>
+            </div>
+            <div class="stepContiner">
                 <div class="stepBox move-up">
-                    <h3>STEP 2</h3>
+                    <h3>STEP 4</h3>
                     <p>answer the assesment</p>
                     <hr>
                     <p>Carefully go through each question and select you answer.</p>
                 </div>
                 <div class="stepBox move-up">
-                    <h3>STEP 3</h3>
+                    <h3>STEP 5</h3>
                     <p>submit the assessment</p>
                     <hr>
                     <p></p>
                     <p>Once done, Submit your response for evaluation.</p>
                 </div>
                 <div class="stepBox move-up">
-                    <h3>STEP 4</h3>
+                    <h3>STEP 6</h3>
                     <p>see the result</p>
                     <hr>
                     <p>After submission, check your pesonalized result.</p>
