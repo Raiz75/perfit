@@ -2802,34 +2802,34 @@
             }
             console.log("An unknown Error");
         }
-        // window.onerror = function(message, source, lineno, colno, error) {
-        //     localStorage.clear();
-        //     document.getElementById("overlay").style.display = "block";
-        //     if(selectedLanguage=="en"){
-        //         document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";
-        //         document.getElementById("a1").innerText = "RETURN TO HOME PAGE";
-        //     }
-        //     if(selectedLanguage=="tl"){
-        //         document.getElementById("alertMessage").innerText = "May hindi inaasahang error na naganap, mangyaring bumalik sa home page.";
-        //         document.getElementById("a1").innerText = "BUMALIK SA HOME PAGE";
-        //     }
-        //     console.log("An unknown Error");
-        // };
-        // // Catch errors in promises/async
-        // window.onunhandledrejection = function(event) {
-        //     console.warn("Unhandled promise error:", event.reason);
-        //     localStorage.clear();
-        //     document.getElementById("overlay").style.display = "block";
-        //     if(selectedLanguage=="en"){
-        //         document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";
-        //         document.getElementById("a1").innerText = "RETURN TO HOME PAGE";
-        //     }
-        //     if(selectedLanguage=="tl"){
-        //         document.getElementById("alertMessage").innerText = "May hindi inaasahang error na naganap, mangyaring bumalik sa home page.";
-        //         document.getElementById("a1").innerText = "BUMALIK SA HOME PAGE";
-        //     }
-        //     console.log("An unknown Error");
-        // };
+        window.onerror = function(message, source, lineno, colno, error) {
+            localStorage.clear();
+            document.getElementById("overlay").style.display = "block";
+            if(selectedLanguage=="en"){
+                document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";
+                document.getElementById("a1").innerText = "RETURN TO HOME PAGE";
+            }
+            if(selectedLanguage=="tl"){
+                document.getElementById("alertMessage").innerText = "May hindi inaasahang error na naganap, mangyaring bumalik sa home page.";
+                document.getElementById("a1").innerText = "BUMALIK SA HOME PAGE";
+            }
+            console.log("An unknown Error");
+        };
+        // Catch errors in promises/async
+        window.onunhandledrejection = function(event) {
+            console.warn("Unhandled promise error:", event.reason);
+            localStorage.clear();
+            document.getElementById("overlay").style.display = "block";
+            if(selectedLanguage=="en"){
+                document.getElementById("alertMessage").innerText = "An unknown error has accured please return to home page";
+                document.getElementById("a1").innerText = "RETURN TO HOME PAGE";
+            }
+            if(selectedLanguage=="tl"){
+                document.getElementById("alertMessage").innerText = "May hindi inaasahang error na naganap, mangyaring bumalik sa home page.";
+                document.getElementById("a1").innerText = "BUMALIK SA HOME PAGE";
+            }
+            console.log("An unknown Error");
+        };
     </script>
 </body>
 </html>

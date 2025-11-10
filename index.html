@@ -1607,12 +1607,19 @@
         }, { threshold: 0.1 });
         moveUp.forEach(el => upObserver.observe(el));
     //referrer
-        const referrer = document.referrer;
-        const referrerFile = referrer.split("/").pop();
-        if (referrerFile == "privacyPolicy.html") {
-            document.getElementById('overlay').style.display = "block";
-        }else if(referrerFile == "admin.html"){
-            document.getElementById('overlayUser').style.display = "block";
+        const navEntries = performance.getEntriesByType("navigation");
+        const isReload = navEntries.length && navEntries[0].type === "reload";
+        // Referrer logic
+        if (!isReload) {
+            const referrer = document.referrer;
+            if (referrer) {
+                const referrerFile = referrer.split("/").pop();
+                if (referrerFile === "privacyPolicy.html") {
+                    document.getElementById('overlay').style.display = "block";
+                } else if (referrerFile === "admin.html") {
+                    document.getElementById('overlayUser').style.display = "block";
+                }
+            }
         }
     </script>
 </body>

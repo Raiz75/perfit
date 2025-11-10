@@ -1406,7 +1406,11 @@
                     <h2>Skill Questions</h2>
                     <p class="instruction">
                         <b>Instruction</b>: Edit the skill profiling questions to assess volunteer <b>abilities</b> in specific areas.
-                        Click on a cell to edit directly, then click '<u>Save all changes</u>' to record updates.
+                        Questions should measure what the volunteer <b>can do</b> or has <b>experience</b> in, such as technical, musical, or speaking skills.
+                        Each row displays a question number along with its English and Tagalog versions.
+                        Focus on crafting statements that can be rated on a scale from <b>Strongly Disagree</b> to <b>Strongly Agree</b>, e.g., "I can operate sound or multimedia equipment confidently."
+                        Click on a cell to edit the text directly.
+                        After making changes, click '<u>Save all changes</u>' to record your updates.
                     </p>
                     <div class="saveDeleteBtnDiv">
                         <button class="noToAdmin" onclick="showResetPopup('skillsTab2')">Reset all to default</button>
@@ -2432,32 +2436,6 @@
             } else toggleChartDisplay('skillsChart', false);
 
             // Ministry Chart
-            // if (hasData(newCharts.eligibleMinistry)) {
-            //     safeChart('ministryChart', {
-            //         type: 'doughnut',
-            //         data: {
-            //             labels: Object.keys(newCharts.eligibleMinistry),
-            //             datasets: [{
-            //                 data: Object.values(newCharts.eligibleMinistry),
-            //                 backgroundColor: [
-            //                     '#E6194B', '#F58231', '#FFE119', '#BFEF45', '#3CB44B', '#46F0F0', '#42D4F4', '#4363D8',
-            //                     '#0000FF', '#000075', '#911EB4', '#F032E6', '#FABED4', '#9A6324', '#FFD8B1', '#808000',
-            //                     '#AAFFC3', '#FF7F50', '#FFD700', '#A9A9FF', '#B39EB5', '#800000', '#808080', '#000000'
-            //                 ],
-            //                 borderColor: '#fff',
-            //                 borderWidth: 2
-            //             }]
-            //         },
-            //         options: {
-            //             responsive: true,
-            //             plugins: {
-            //                 title: { display: true, text: "Frequency of Eligibility Across Ministry Categories", color: colorA, font: { size: 18, weight: 'bold' } },
-            //                 legend: { position: 'bottom', labels: { color: colorA } }
-            //             }
-            //         },
-            //         plugins: [percentagePlugin]
-            //     });
-            // } else toggleChartDisplay('ministryChart', false);
             if (hasData(newCharts.eligibleMinistry)) {
                 const labels = Object.keys(newCharts.eligibleMinistry);
                 const data = Object.values(newCharts.eligibleMinistry);
@@ -2485,7 +2463,6 @@
                     plugins: [percentagePlugin]
                 });
             } else toggleChartDisplay('ministryChart', false);
-
 
             // Age Chart
             const ageData = ageOrder.map(a => newCharts.age[a] || 0);
